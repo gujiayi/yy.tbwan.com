@@ -1,0 +1,58 @@
+
+.gcslide { width: 1262px; height: 340px; overflow:hidden; position:relative; }
+.gcslide li { min-width: 110px; height: 340px; margin-right: 2px; float: left; }
+.gcslide li .kv1 { display: block; position:relative;}
+.gcslide li .kv2 { display: none; }
+.gcslide .active .kv1, .gcslide li:hover .kv1 { display: none; }
+.gcslide .active .kv2, .gcslide li:hover .kv2 { display: block;  }
+.gcslide li i { width: 100%; height: 100%; position:absolute; top: 0px; left: 0px; background: url('/images/2017/h5/pc2018/gckvbg.png') no-repeat; }
+.gcslide li em { width: 12px; height: 80px; padding-right: 12px; line-height: 14px; color: #fff; background: url('/images/2017/h5/pc2018/kvi.png') right top no-repeat; position:absolute; bottom: 36px; right: 20px;}
+
+.game-type-wp { width: 350px; padding: 10px 18px; margin-top: 20px; }
+.game-type-wp .game-item { text-align: center; font-size: 14px; border-bottom: 1px dashed #d7d7d7; padding: 6px 0; overflow:hidden;  }
+.game-type-wp .game-item a { width: 62px; height: 20px; line-height: 20px; color: #999; margin: 4px 34px 6px 0; float: left; }
+.game-type-wp .game-item a:nth-child(4n) { margin-right: 0; }
+.game-type-wp .game-item:last-child { border-bottom: 0 none; }
+.game-type-wp .game-item .active, .game-type-wp .game-item a:hover { color: #fff; background: #ff823c; border-radius: 4px; }
+
+.rank-wp { width: 350px; padding: 0 18px; margin-top: 20px; overflow: hidden;}
+.rank-slide-wp { width: 350px; position:relative; overflow:hidden; }
+.rank-slide-wp .slide-bd { height: 542px; position:relative; }
+.rank-list { width: 350px; float: left;}
+.rank-list li { padding: 16px 0; line-height: 16px; border-bottom: 1px dashed #d7d7d7; overflow:hidden; position:relative;}
+.rank-list em { width: 16px; height: 16px; text-align: center; color: #fff; background: #cbcbcb; border-radius: 2px; margin-right: 20px; float: left;}
+.rank-list .rank-1 { background: #d61939; }
+.rank-list .rank-2 { background: #ff833d; }
+.rank-list .rank-3 { background: #ffae29; }
+.rank-list .gname { font-size: 14px; color: #3a3a3a; float: left;}
+.rank-list .img { border-radius: 10px; overflow:hidden; display: none; float: left;}
+.rank-list .info { display: none; margin-left: 14px; float: left; }
+.rank-list .info .name { font-size: 14px; color: #d51838; margin: 12px 0;}
+.rank-list .xinfo { position:absolute; top: 16px; right: 0px; }
+.rank-list .opt { position:absolute; top: 38px; right: 0px; display: none; }
+
+
+.rank-list .active em { margin-top: 26px; }
+.rank-list .active .img, .rank-list .active .info, .rank-list .active .xinfo, .rank-list .active .opt { display: block; }
+.rank-list .active .gname, .rank-list .active .xinfo { display: none; }
+
+.slide-nav { width: 100%; text-align: center; padding-top: 28px;}
+.slide-nav li { display:inline-block; vertical-align: top; width: 8px; height: 8px; border-radius: 4px; overflow:hidden; line-height: 8; margin: 0 5px; background: #d7d7d7; }
+.slide-nav .active { background: #d51838; }
+
+.game-list-wp { width: 856px; height: 868px; margin-top: 20px;}
+.game-list li { width: 248px; margin: 22px 18px 0; float: left; }
+.game-list img { width: 86px; float: left; }
+.game-list .info { width: 150px; overflow:hidden; margin-left: 12px; color: #999; float: left; }
+.game-list .name { display: block; font-size: 14px; color: #3a3a3a; margin: 6px 0; }
+
+.game-list .play, .game-list .playm { display:inline-block; vertical-align: top; width: 60px; height: 24px; line-height: 24px; text-align: center; margin-right: 2px; margin-top: 6px; border-radius: 12px; border: 1px solid #9f9f9f;}
+.game-list .play:hover { background: #d51838; border-color: #d51838; color: #fff; }
+.game-list .playm:hover { background: #ff823c; border-color: #ff823c; color: #fff;}
+
+.pagination{text-align:center;overflow:hidden;margin:42px 0 0}
+.pagination a, .pagination span, .pagination input{display:inline-block; vertical-align: top; height: 30px; line-height: 30px; padding: 0 12px; margin: 0 2px;}
+.pagination a:hover,.hotgame-list .pagination .active,.pagination .on,.pagination .cur{color:#fff!important;border-color:#e1405a;background:#e1405a}
+
+
+.g-footer { background: #fff; margin-top: 40px; border-top: 0 none; }

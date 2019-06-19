@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{{$G.CONFIG.alias_name}}_9377{{$G.CONFIG.alias_name}}h5游戏_一起玩更快乐</title>
+    <meta name="keywords" content="{{$G.CONFIG.alias_name}},9377{{$G.CONFIG.alias_name}}" />
+    <meta name="description" content="9377游戏平台{{$G.CONFIG.alias_name}}，{{$G.CONFIG.alias_name}}h5游戏，在线手机网页游戏，无需下载，快速玩页戏。9377手游{{$G.CONFIG.alias_name}}，一起玩更快乐。" />
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv="Cache-Control" content="max-age=3600" />
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/h5/style.css?{{$CONFIG.build}}" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/h5/style.game3.css?{{$CONFIG.build}}" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/h5/play.game3.css?{{$CONFIG.build}}" />
+    {{if $G.ID == '715'}} <style> .loading { background-image: url('{{$CONFIG.resource}}/images/2017/h5/loading/xkx.jpg?20180423');} </style> {{/if}}
+    {{if $G.CONFIG.parent == '736' || $G.CONFIG.parent == '739'}}
+    <style> .mask-wxshare { background-image: url('/images/2017/h5/wxshare-qzsg.png?{{$CONFIG.build}}');} </style>
+    {{/if}}
+    {{if $G.CONFIG.parent == '934' || $G.CONFIG.parent == '937'}}
+    <style> .mask-wxshare { background-image: url('/images/2017/h5/wxshare-rxzr.png?{{$CONFIG.build}}');} .mask-qr .qr-wp { width: 90%; } </style>
+    {{/if}}
+</head>
+<body scroll="no">
+    <div class="loading" id="loading"></div>
+    <iframe scrolling="no" id="ifr" src="{{$url}}" frameborder="0" width="100%" height="100%" {{if $G.ID == '715'}}style="opacity:0;"{{/if}}></iframe>
+    <!-- 浮标 -->
+    <div class="floatmod floaticon-right" id="floatmod">
+        <img src="{{$CONFIG.resource}}/images/2017/h5/floaticonv2.png?{{$CONFIG.build}}" width="46" class="floaticon" id="floaticon">
+        <ul class="float-menu {{if $G.CONFIG.parent == 394 || $G.CONFIG.parent == 481 || $G.CONFIG.parent == 511}}float-menu4{{/if}}">
+            <li><a href="javascript:H9377.selectUcMod('ctl');"><i class="icon-user"></i><p>账户</p></a></li>
+            <li><a href="javascript:H9377.selectUcMod('gift');"><i class="icon-gift"></i><p>礼包</p></a></li>
+            <li><a href="javascript:H9377.selectUcMod('kf');"><i class="icon-kf"></i><p>客服</p></a></li>
+            {{if $G.CONFIG.parent == 394 || $G.CONFIG.parent == 481 || $G.CONFIG.parent == 511}} <li><a href="javascript:H9377.selectUcMod('gg');"><i class="icon-gg"></i><p>公告</p></a></li> {{/if}}
+        </ul>
+    </div>
+    <div class="pay-wp"> 
+        <a href="javascript:closePayWindows();" class="pay-close icon-close"></a>
+        <iframe src="" frameborder="0" id="iframe-pay"></iframe> 
+    </div>
+    <div class="kf-wp">
+        <a href="javascript:closeKfWindows();" class="close"></a>
+        <iframe src="" frameborder="0" id="iframe-pay"></iframe> 
+    </div>
+    <!-- QQ超级会员浮标 -->
+    <div class="qqvipicon" id="qqvipicon"> <img src="{{$CONFIG.resource}}/images/2017/h5/yyb/floaticonv.png?{{$CONFIG.build}}" width="46"> </div>
+    <!-- QQ超级会员 -->
+    <div class="mask qqvip-card-wp none" id="qqvip-card-wp">
+        <i class="vc-close icon-close" onClick="vcHide()"></i>
+        <iframe scrolling="no" src="" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <!-- QQ超级会员礼包 -->
+    <div class="mask none" id="mask-card">
+        <i class="mask-close" onClick="QQVIPCardHide()"></i>
+        <div class="dialog-box dialog-card">
+            <h3 class="hd-card">会员特权礼包</h3>
+            <div class="bd-card">
+                <p class="txt1">恭喜你获得会员特权礼包，请复制以下激活码，打开福利大厅进行兑换。</p>
+                <p class="txt2">温馨提示：完成前40级主线任务即可开启福利大厅。(点击空白区域，关闭礼包窗口)</p>
+                <img src="{{$CONFIG.resource}}/images/2017/h5/yyb/hd-qqvipcard.jpg?{{$CONFIG.build}}x"> 
+                <ul class="card-list">
+                    <!-- js加载 -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {{include file="h5/login.tpl2.html"}}
+    <div class="mask mask2 none" id="uc-pop">
+        <!-- 控制面板 -->
+        <div class="dialog-box2 mod-login mod-uc mod-uc-ctl none">
+			<div class="dialog-tit">账号中心<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a></div>
+			<div class="dialog-user">
+				<img src="{{$CONFIG.resource}}/images/2017/h5/user.png?{{$CONFIG.build}}" alt="" title="" width="20" height="20"/><span>{{$user['LOGIN_ACCOUNT']}}</span><a href="javascript:H9377.logout();">切换帐号</a>
+			</div>
+			<ul class="uc-tool2"> 
+                <li onClick="H9377.selectUcMod('pass')"><i class="icon-lock"></i>修改密码</li> 
+				<li onClick="H9377.selectUcMod('bindphone')">
+					<i class="icon-mobile"></i>绑定手机
+					{{if $user.BIND_CELLPHONE && $user.PHONE}} <span>>>已绑定</span> {{else}} <span>>>未绑定</span> {{/if}}
+				</li> 
+				<li onClick="H9377.selectUcMod('email')">
+					<i class="icon-email"></i>绑定邮箱
+					{{if $user.EMAIL}} <span>>>已绑定</span> {{else}} <span>>>未绑定</span> {{/if}}
+				</li> 
+                <li onClick="H9377.selectUcMod('idv')">
+                	<i class="icon-idc"></i>实名认证
+					{{if $user.ID_CARD_NUMBER}} <span>>>已绑定</span> {{else}} <span>>>未绑定</span> {{/if}}
+                </li> 
+                <li onClick="H9377.selectUcMod('kf');"><i class="icon-kf"></i>在线客服</li> 
+                <li onClick="H9377.selectUcMod('kfOnline')"><i class="icon-qqqb"></i>玩家QQ交流群</li> 
+            </ul>
+        </div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-email none">
+            <div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>绑定邮箱</div>
+            <div class="w-form w-form-s {{if $user.EMAIL}}none{{/if}}">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>		
+                <div class="w-item"> <i class="icon-email"></i> <input type="text" name="email" placeholder="请输入邮箱"/> </div>
+                <div class="w-item pr">
+					<i class="icon-email"></i>
+					<input name="code" type="text" placeholder="请输入邮箱验证码"/>
+					<button class="w-button4 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'email',1);">获取验证码</button>
+				</div>
+				<div class="w-btn fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a  href="javascript:;" onClick="H9377.bindEmail(this)" class="fr w-blue">下一步</a> 
+				</div>
+            </div> 
+            <!-- 已绑定 -->
+			<div class="w-form w-form-e {{if !$user.EMAIL}}none{{/if}}">
+				<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/right.png" /></div>
+				<div class="w-tips3 mrb30 {{if !$user.EMAIL}}none{{/if}}">
+					您的账号已绑定密保邮箱<br/>
+					<em class="red-word">*</em>密保邮箱：<span class="red-word">{{$user.EMAIL}}</span>
+				</div>
+				<div class="w-btn2"><a href="javascript:H9377.selectUcMod('ubemail');">重置邮箱</a></div>
+				<div class="w-tips4"><em>*注</em>：密保邮箱是用于密码修改时信息提示<br/>和密码遗失时重置密码</div>
+			</div>
+        </div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-ubemail none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>重置邮箱</div>
+			<div class="w-form">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item idab"> <i class="icon-email"></i> <input name="email" type="text" value="{{$user.EMAIL}}" disabled="disabled" /> </div>
+				<div class="w-item3 flex"> 
+					<label for=""> <em>*</em>验证码：</label>
+					<div class="flex-list">	<input name="code" type="text" placeholder="请输入验证码"/> </div>
+					<img onclick="this.src= '/code.php?' +Math.random();" src="" title="点击更换" class="php-code"/>
+				</div>
+				<div class="w-item pr">
+					<i class="icon-email"></i><input name="captcha" type="text" placeholder="请输入邮箱验证码"/> <button class="w-button4 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'ubemail', 1);">获取验证码</button>
+				</div>
+				<div class="w-tips mb10"><em class="red-word">*</em>账号绑定邮箱后，如忘记密码，可使用邮箱找回密码</div>
+				<div class="w-btn mt15 fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a href="javascript:;" class="fr w-blue" onClick="H9377.unbindEmail(this)">下一步</a>
+				</div>
+			</div>
+		</div>
+        <div class="dialog-box2 mod-login mod-uc mod-uc-pass1 none"> 
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>修改密码</div>
+            <div class="w-form">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item2 flex"><label for="">旧密码：</label><div class="flex-list"><input name="oldpassword" type="password" placeholder="请输入当前密码"/></div></div>
+				<div class="w-item2 flex"><label for="">新密码：</label><div class="flex-list"><input name="newpassword" type="password" maxlength="20" placeholder="请输入新密码"/></div></div>
+				<a href="javascript:;" class="btn-submit2" onClick="H9377.modifyPass(this)">确定修改</a>
+            </div> 
+        </div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-pass2 none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>修改密码</div>
+            <div class="w-form mu-pass2"> 
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-word pr"><em>*</em>已选择绑定手机：{{$user.PHONE}}<button class="w-button3 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'modpsw1',1);">点击发送</button></div>
+				<div class="w-item2 flex"><label class="gray2" for=""><em>*</em>短信验证码：</label><div class="flex-list"><input name="captcha" type="text" placeholder="请输入验证码"/></div></div>
+				<div class="w-btn fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a href="javascript:H9377.modpsw(1);" class="fr w-blue">下一步</a>
+				</div>
+            </div>
+			<!-- 确认修改 -->
+            <div class="w-form mu-pass2-2 none">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item2 flex"><label for="">输&nbsp;&nbsp;入&nbsp;&nbsp;新&nbsp;&nbsp;密&nbsp;码：</label><div class="flex-list"><input name="newpassword" type="password" placeholder="请输入6~12位字符"/></div></div>
+				<div class="w-item2 flex"><label for="">再次输入新密码：</label><div class="flex-list"><input name="newpassword2" type="password" maxlength="20" placeholder="请输入6~12位字符"/></div></div>
+				<div class="w-btn fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a href="javascript:H9377.modpsw(2);" class="fr w-blue">下一步</a>
+				</div>
+            </div> 
+        </div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-pass3 none"> 
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>修改密码</div>
+            <div class="w-form">
+				<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/right.png" alt="" title="" /></div>
+				<div class="w-tips3 mrb30">恭喜！密码修改成功</div>
+				<div class="w-btn fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回账号中心</a>
+					<a href="javascript:$('.dialog-close').click();" class="fr w-blue">返回游戏</a>
+				</div>
+            </div> 
+        </div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-bindphone none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>绑定手机</div>
+			<div class="w-form w-form-s {{if $user.BIND_CELLPHONE && $user.PHONE}}none{{/if}}">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item"> <i class="icon-mobile"></i> <input name="cellphone" type="text" placeholder="请输入11位数字手机号码" /> </div>
+				<div class="w-item3 flex"> 
+					<label for=""><em>*</em>验证码：</label><div class="flex-list"><input name="code" type="text" placeholder="请输入验证码"/> </div>
+					<img onclick="this.src= '/code.php?' +Math.random();" src="" title="点击更换" class="php-code"/>
+				</div>
+				<div class="w-item pr">
+					<i class="icon-email"></i><input name="captcha" type="text" placeholder="请输入短信验证码"/> <button class="w-button4 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'bp@code');">获取验证码</button>
+				</div>
+				<div class="w-tips mb10"><em class="red-word">*</em>账号绑定手机后，如忘记密码，可使用手机找回密码</div>
+				<div class="w-btn mt15 fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a href="javascript:;" class="fr w-blue" onClick="H9377.bindPhone(this)">下一步</a>
+				</div>
+			</div>
+			<!-- 已绑定 -->
+			<div class="w-form w-form-e {{if !$user.BIND_CELLPHONE || !$user.PHONE}}none{{/if}}">
+				<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/right.png" alt="" title="" /></div>
+				<div class="w-tips3 mrb30">您的账号已绑定密保手机<br/><em class="red-word">*</em>密保手机：<span class="red-word">{{$user.PHONE}}</span></div>
+				<div class="w-btn2"><a href="javascript:H9377.selectUcMod('ubp');">重置手机</a></div>
+				<div class="w-tips4"><em>*注</em>：密保手机是用于密码修改时短信提示<br/>和密码遗失时重置密码</div>
+			</div>
+		</div>
+		<div class="dialog-box2 mod-login mod-uc mod-uc-ubp none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>重置手机</div>
+			<div class="w-form">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item idab"> <i class="icon-mobile"></i> <input name="cellphone" type="text" value="{{$user.PHONE}}" disabled="disabled" /> </div>
+				<div class="w-item3 flex"> 
+					<label for=""><em>*</em>验证码：</label><div class="flex-list"><input name="code" type="text" placeholder="请输入验证码"/> </div>
+					<img onclick="this.src= '/code.php?' +Math.random();" src="" title="点击更换" class="php-code"/>
+				</div>
+				<div class="w-item pr">
+					<i class="icon-email"></i><input name="captcha" type="text" placeholder="请输入短信验证码"/> <button class="w-button4 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'ubp@code');">获取验证码</button>
+				</div>
+				<div class="w-tips mb10"><em class="red-word">*</em>账号绑定手机后，如忘记密码，可使用手机找回密码</div>
+				<div class="w-btn mt15 fix">
+					<a href="javascript:H9377.selectUcMod();" class="fl w-red">返回</a>
+					<a href="javascript:;" class="fr w-blue" onClick="H9377.unbindPhone(this)">下一步</a>
+				</div>
+			</div>
+		</div>
+        <div class="dialog-box2 mod-login mod-uc mod-uc-idv none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>实名认证</div>
+            <div class="w-form"> 
+            	{{if empty($user.ID_CARD_NUMBER)}}
+                <div class="w-item"> <i class="icon-user"></i> <input name="realname" type="text" placeholder="请输入真实姓名" value="{{$user.NAME}}"> </div>
+                <div class="w-item"> <i class="icon-idc"></i> <input name="idc" type="text" placeholder="请输入身份证号码" value="{{$user.ID_CARD_NUMBER}}"/></div>
+				<div class="w-tips5"><em>*</em>根据最新监管需求，进行游戏需要身份验证</div>
+				<div class="w-btn2"> <a href="javascript:;" onClick="H9377.bindIdc(this)">完成认证</a></div></div>
+				{{else}}
+				<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/protect.png" alt="" title="" /></div>
+				<div class="w-tips3">恭喜！实名认证成功</div>
+				{{/if}}
+            </div>
+        </div>
+		<div class="dialog-box2 mod-login mod-uc none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>找回密码</div>
+			<div class="w-form">
+				<div class="w-box w-box1"><input type="text" name="" id="" placeholder="请输入账号"/></div>
+				<div class="w-box mrb15"><input type="text" name="" id="" placeholder="请输入验证码"/></div>
+				<div class="w-btn2"><a href="javascript:;" onClick="">确定修改</a></div>
+			</div>
+		</div>
+		<div class="dialog-box2 mod-login mod-uc none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>找回密码</div>
+			<div class="w-form">
+				<div class="w-word w-word2"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item4 flex"><label for=""><em>*</em>选择验证方式：</label><div class="flex-list"><select name="" id=""><option value="">密保手机</option><option value="">密保邮箱</option></select></div></div>
+				<div class="w-item4"><label for=""><em>*</em>已绑定邮箱：150***4215@qq.com</label><button class="w-button3 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'bindphone');">点击发送</button></div>
+				<div class="w-item4 flex"><label for=""><em>*</em>邮件验证码：</label><div class="flex-list"><input name="captcha" type="text" placeholder="请输入邮件验证码"/></div></div>
+				<div class="w-btn2"><a href="javascript:;" onClick="">下一步</a></div>
+			</div>
+        </div>
+		<div class="dialog-box2 mod-login mod-uc none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>找回密码</div>
+			<div class="w-form">
+				<div class="w-word"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-box w-box2"><input type="text" name="" id="" placeholder="输入新密码"/></div>
+				<div class="w-box mrb15"><input type="text" name="" id="" placeholder="再次输入新密码"/></div>
+				<div class="w-btn2"><a href="javascript:;" onClick="">确认</a></div>
+			</div>
+		</div>
+		<div class="dialog-box2 mod-login mod-uc none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>找回密码</div>
+			<div class="w-form">
+				<div class="w-word w-word2"><em>*</em>已确认账号：{{$user['LOGIN_ACCOUNT']}}</div>
+				<div class="w-item4 flex"><label for=""><em>*</em>选择验证方式：</label><div class="flex-list"><select name="" id=""><option value="">密保手机</option><option value="">密保邮箱</option></select></div></div>
+				<div class="w-item4"><label for=""><em>*</em>已绑定手机：123****1566</label><button class="w-button3 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'bindphone');">点击发送</button></div>
+				<div class="w-item4 flex"><label for=""><em>*</em>短信验证码：</label><div class="flex-list"><input name="captcha" type="text" placeholder="请输入短信验证码"/></div></div>
+				<div class="w-btn2"><a href="javascript:;" onClick="">下一步</a></div>
+			</div>
+		</div>
+		<div class="dialog-box2 mod-login mod-uc none">
+			<div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>找回密码</div>
+			<div class="w-form">
+				<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/right.png" alt="" title="" /></div>
+				<div class="w-tips3 mrb30">恭喜！密码修改成功</div>
+				<div class="w-btn fix">
+					<a class="fr w-blue" href="javascript:;">返回游戏</a><a href="javascript:;" class="fl w-red">返回账号中心</a>
+				</div>
+			</div>
+		</div>
+        <!-- 礼包 -->
+        <div class="dialog-box2 mod-login mod-uc mod-uc-gift none"> 
+			<div class="dialog-tit">领取礼包<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a></div>
+			<div class="w-form">
+				<ul class="gift-tab2">
+					<li class="active">未领取</li>
+					<li>已领取</li>
+				</ul>
+			</div>
+			<div class="gift-wp">
+				<div class="gift-box">
+					<ul class="gift-list2">
+						{{data name="礼包列表"}}
+						{{foreach from=$DATA['礼包列表'].list item=item}}
+						<li class="flex">
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gift.png?{{$CONFIG.build}}" width="48" height="48" class="img">
+							<div class="flex flex-list">
+								<div class="ginfo">
+									<p class="gtit">{{$item.title}}</p>
+									<p class="gtxt">礼包内容：金币*30000，黑铁矿*50...</p>
+									<p class="gtxt">剩余量：{{$item.ext3}}</p>
+								</div>
+							</div>
+							<a href="javascript:;" onClick="H9377.getCard(this, '{{$item.ext4}}', '{{$item.ext5}}', '')" class="btn-get {{if !empty($item.ext5)}}btn-getBPcard{{/if}}">领号 <div class="desc none">{{$item.ext8}}</div></a>
+						</li>
+						{{/foreach}}
+						{{data name="系统礼包列表"}}
+						{{foreach from=$DATA['系统礼包列表'].list item=item}}
+						<li class="flex">
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gift.png?{{$CONFIG.build}}" width="48" height="48" class="img">
+							<div class="flex flex-list">
+								
+								<div class="ginfo">
+									<p>{{$item.name}}</p>
+									<p>剩余量：{{if $item.surplus}}{{$item.surplus}}{{else}}0{{/if}}</p>
+								</div>
+							</div>
+							<a href="javascript:;" onClick="H9377.getCard(this, '', '{{$item.CONFIG.bindingMobile}}', '{{$item.id}}')" class="btn-get {{if $item.CONFIG.bindingMobile == 1}}btn-getBPcard{{/if}}">领号 <div class="desc none">{{$item.description}}</div></a>
+						</li>
+						{{/foreach}}
+						{{if $DATA['礼包列表'] == '' && $DATA['系统礼包列表'] == ''}}
+						<div class="nodata">敬请期待</div>
+						{{/if}}
+					</ul>
+					<div class="gift-info">兑换说明：进入游戏——福利——序列号——兑换<br/>绑定礼包：需绑定手机后才能领取。</div>
+				</div>
+				<div class="gift-box">
+					<ul class="gift-list2">
+						<li class="flex">
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gift.png?{{$CONFIG.build}}" width="48" height="48" class="img">
+							<div class="flex flex-list">
+								<div class="ginfo">
+									<p class="gtit">新手礼包</p>
+									<p>礼包内容：金币*30000，黑铁矿*50，附魔值*30，金币*30000，黑铁矿*50，</p>
+								</div>
+							</div>
+							<a href="javascript:H9377.getCard('{{$item.ext4}}', '{{$item.ext5}}', '');" class="btn-get2 {{if !empty($item.ext5)}}btn-getBPcard{{/if}}">查看礼包</a>
+						</li>
+					
+						{{foreach from=$DATA['礼包列表'].list item=item}}
+						<li class="flex">
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gift.png?{{$CONFIG.build}}" width="48" height="48" class="img">
+							<div class="flex flex-list">
+								
+								<div class="ginfo">
+									<p>{{$item.title}}</p>
+									<p>剩余量：{{$item.ext3}}</p>
+								</div>
+							</div>
+							<a href="javascript:H9377.getCard('{{$item.ext4}}', '{{$item.ext5}}', '');" class="btn-get {{if !empty($item.ext5)}}btn-getBPcard{{/if}}">领号</a>
+						</li>
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+        </div>
+		
+		
+		
+		<!-- 信息提示end -->
+		
+        <!-- 客服 -->
+        <div class="dialog-box3 mod-login mod-uc mod-uc-kf none">
+			<div class="dialog-tit">客服<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a> </div>
+            <div class="w-form"> 
+                <div class="w-item"> <a href="tel:020-36152720">020-36152720 （08:30-00:30）</a> </div>
+                <div class="w-item"> <a href="javascript:H9377.kfOnline();">在线客服</a> </div>
+            </div> 
+        </div>
+        {{if $G.CONFIG.parent == 394 || $G.CONFIG.parent == 481 || $G.CONFIG.parent == 511}}
+		
+        <!-- 公告 -->
+        <div class="dialog-box2 mod-login mod-uc mod-uc-gg none"> 
+            <div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>新闻公告<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a></div>
+			<div class="w-form">
+				<ul class="news-tab fix">
+					<li class="active">公告</li>
+					<li>活动</li>
+					<li>攻略</li>
+				</ul>
+				{{data name="公告列表{{$G.CONFIG.parent}}"}}
+				
+				<!-- <div class="gg-wp">
+					<ul class="gg-list">
+						{{foreach from=$DATA["公告列表{{$G.CONFIG.parent}}"].list item=item name=list}}
+						<li>{{$smarty.foreach.list.index+1}}.{{$item.title}}</li>
+						{{/foreach}}
+					</ul>
+				</div> -->
+				
+				<div class="gg-wp gg-wp2">
+					<ul class="gg-list2">
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">1111《绝地奇迹H5》拍卖行提示“账号存在安全隐患”公告</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{foreach from=$DATA["公告列表{{$G.CONFIG.parent}}"].list item=item name=list}}
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">{{$smarty.foreach.list.index+1}}.{{$item.title}}</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{/foreach}}
+					</ul>
+					<ul class="gg-list2 none">
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">22222《绝地奇迹H5》拍卖行提示“账号存在安全隐患”公告</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{foreach from=$DATA["公告列表{{$G.CONFIG.parent}}"].list item=item name=list}}
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">{{$smarty.foreach.list.index+1}}.{{$item.title}}</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{/foreach}}
+					</ul>
+					<ul class="gg-list2 none">
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">33333《绝地奇迹H5》拍卖行提示“账号存在安全隐患”公告</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{foreach from=$DATA["公告列表{{$G.CONFIG.parent}}"].list item=item name=list}}
+						<li class="flex">
+							<div class="flex-list">
+								<div class="gg-txt">{{$smarty.foreach.list.index+1}}.{{$item.title}}</div>
+								<p class="gg-time">2018-05-20&nbsp;&nbsp;18:05:36</p>
+							</div>
+							<img src="{{$CONFIG.resource}}/images/2017/h5/gtxt.jpg?{{$CONFIG.build}}" width="70" height="52" class="img">
+						</li>
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+        </div>
+        <!-- 公告内容 -->
+        <div class="dialog-box2 mod-login mod-uc mod-uc-ggc none"> 
+            <div class="dialog-tit"><a href="javascript:H9377.selectUcMod();" class="icon-back"></a>新闻公告<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a></div>
+			<div class="w-form gg-con-wp gg-con-scroll">
+				<div class="gg-article-tit">《绝地奇迹》5月20日维护更新公告</div>
+				<p class="gg-article-time">日期：2018-04-10</p>
+				<div class="gg-article-txt">
+					许多迹象显示，真实情况可能并非像特朗普的描述那样，是为要保住中国人的饭碗。真正让特朗普"反转"的原因，是中国在贸易谈判中和特朗普达成了重要的共识，让特朗普认识到贸易战进行下去只能竹篮打水一场空。<img src="{{$CONFIG.resource}}/images/2017/h5/art.jpg?{{$CONFIG.build}}" width="100%" class="img">
+					许多迹象显示，真实情况可能并非像特朗普的描述那样，是为要保住中国人的饭碗。真正让特朗普"反转"的原因，是中国在贸易谈判中和特朗普达成了重要的共识，让特朗普认识到贸易战进行下去只能竹篮打水一场空。
+				</div>
+				<div class="gg-article-list">
+					<ul>
+						<li><a href="javascript:;">上一篇 9377《雷霆之怒》勇士565区5月12日10点火爆开启</a></li>
+						<li><a href="javascript:;">下一篇 9377《雷霆之怒》勇士454区5月12日10点火爆开启</a></li>
+					</ul>
+				</div>
+			</div>
+            <!-- <div class="gg-con-wp">
+                {{foreach from=$DATA["公告列表{{$G.CONFIG.parent}}"].list item=item name=list}}
+                <div class="gg-con-box none">
+                    {{data name="{{$item.title}}内容"}}
+                    <div class="login-hd">{{$item.title}}</div> 
+                    <div class="gg-con">{{$DATA["{{$item.title}}内容"]}}</div>
+                </div>
+                {{/foreach}}
+            </div> -->
+        </div>
+        {{/if}}
+    </div>
+    
+    <script src="{{$CONFIG.resource}}/js/2017/h5/zepto.min.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript">
+		var footer = 0;
+        C9377.game = {'coin_radio': '{{$G.COIN_RADIO}}', 'coin_name': '{{$G.COIN_NAME}}', 'parent': '{{$G.CONFIG.parent}}'},
+        C9377.build = '{{$CONFIG.build}}';
+		C9377.gid = '{{$G.ID}}';
+		C9377.app_url = C9377.app_url.replace(/:\/\/[^\/]+\//, '://'+ window.location.hostname +'/');
+	</script>
+    <script src="{{$CONFIG.resource}}/js/2017/h5/main.game3.js?{{$CONFIG.build}}"></script>
+    <script src="{{$CONFIG.resource}}/js/2017/h5/play.game2.js?{{$CONFIG.build}}"></script>
+
+    {{if stripos($user.REFERER, 'tx_') !== false && in_array($G.ID, array(397,409,424,439,475,499,514,529))}}
+    <script>
+        var refererUser = getCookie('login_name'),
+            reflocalname = 'h5_referer';
+        readReferer();
+        function h5LocalDb(name){
+            var data = C9377.data(name);
+            if(!data || !data.length){
+                data = [];
+            }
+            return data;
+        }
+        function setReferer(uname, gid){
+            var data = h5LocalDb(reflocalname);
+            data.unshift({"uname": uname, "gid": gid});
+            data = data.slice(0, 20);
+            C9377.data('h5_referer', data);
+        }
+        function readReferer(){
+            var data = h5LocalDb(reflocalname);
+            var xdata = false;
+            for(var i in data){
+                if (data[i].uname == refererUser && data[i].gid == C9377.gid) {
+                    xdata = true;
+                }
+            } 
+            if (!xdata) {
+                setTimeout(function(){
+                    if (C9377.gid == 397) { H9377.getCard('','',3379); }
+                    if (C9377.gid == 409) { H9377.getCard('','',3286); }
+                    if (C9377.gid == 424) { H9377.getCard('','',3289); }
+                    if (C9377.gid == 439) { H9377.getCard('','',3313); }
+                    if (C9377.gid == 475) { H9377.getCard('','',3370); }
+                    if (C9377.gid == 499) { H9377.getCard('','',3406); }
+                    if (C9377.gid == 514) { H9377.getCard('','',3508); }
+                    if (C9377.gid == 529) { H9377.getCard('','',3508); }
+                    setReferer(refererUser, C9377.gid);
+                }, 1000);
+            }
+        }
+    </script>
+    {{/if}}
+    {{if stripos($smarty.server.HTTP_USER_AGENT,'micromessenger')}}
+        {{if $G.CONFIG.parent == '661' || $G.CONFIG.parent == '664'}}
+            <!-- 只在微信执行 -->
+            <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+            <script>
+                function share_callback(){
+                    document.getElementById('ifr').contentWindow.postMessage('{"event":"getWxSharePrize"}','*');
+                    $('.mask-wxshare').remove();
+                }
+                var wxConfig = wxConfig || {};
+                if (C9377.wechat) {
+                    $.getJSON(C9377.app_url+'/api/wx_share.php', {xurl : window.location.href}, function(json, textStatus) {
+                        wxConfig = {
+                            "debug": false,
+                            "appId": json.signPackage.appId,
+                            "timestamp": json.signPackage.timestamp,
+                            "nonceStr": json.signPackage.nonceStr,
+                            "signature": json.signPackage.signature,
+                            "title":  "侠客行",
+                            "link":   window.location.href,
+                            "imgUrl": "http://f11.hdurl.me/p/17/08/23/p3_c9afa6dd786836ab6764225c4963ef16.png_96X96.png",
+                            "desc":   "2018年金庸正版武侠大作。仗剑江湖、快意恩仇，打造最真实的武侠世界！百种绝世武学，铸武林至尊路；自创无上神功，傲立华山之巅！开帮建派，争武林盟主；广收门徒，留百世芳名；侠行天下，携绝世红颜"
+                        }
+                        C9377.include_once(C9377.resource+'/js/weixin.js?'+C9377.build);
+                    });
+                }
+            </script>
+        {{/if}}
+
+        {{if $G.CONFIG.parent == '934' || $G.CONFIG.parent == '937'}}
+            <!-- 只在微信执行 -->
+            <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+            <script>
+                function share_callback(){
+                    document.getElementById('ifr').contentWindow.postMessage('{"event":"getWxSharePrize"}','*');
+                    $('.mask-wxshare').remove();
+                }
+                var wxConfig = wxConfig || {};
+                if (C9377.wechat) {
+                    $.getJSON(C9377.app_url+'/api/wx_share.php', {xurl : window.location.href}, function(json, textStatus) {
+                        wxConfig = {
+                            "debug": false,
+                            "appId": json.signPackage.appId,
+                            "timestamp": json.signPackage.timestamp,
+                            "nonceStr": json.signPackage.nonceStr,
+                            "signature": json.signPackage.signature,
+                            "title":  "热血之刃",
+                            "link":   window.location.href,
+                            "imgUrl": "http://47.95.218.140/shareimg/rxzr_zhj.png",
+                            "desc":   "真合击 真体验.不一样的合击，不一样的传奇,合击在手，天下我有 ，真男人就玩真合击"
+                        }
+                        C9377.include_once(C9377.resource+'/js/weixin.js?'+C9377.build);
+                    });
+                }
+            </script>
+        {{/if}}
+    {{/if}}
+</body>
+</html>

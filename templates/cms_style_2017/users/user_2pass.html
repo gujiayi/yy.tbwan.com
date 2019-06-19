@@ -1,0 +1,102 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">二级密码</em></p></div>
+<div class="user-mod-wp user-mod-2pass">
+	<table class="table-2pass">
+		<tr>
+			<td class="item-1">
+				<i class="icon-2pass"></i>
+			</td>
+			<td class="item-2">
+				<h3 class="fz14">二级密码 {{if empty($user.GAMES_LOGINED)}}<em class="tag">未设置</em>{{else}}<em class="tag tag-green">已设置</em>{{/if}}</h3>
+				<p>二级密码是为了保护玩家隐私及财产安全而推出的功能，玩家在进行部分操作时需要输入</p>
+				<p>二级密码，才能够进行操作。二级密码可以防止玩家帐号被盗时引发的用户隐私泄漏或者</p>
+				<p>积分、9377游戏币等财产遭受额外损失</p>
+			</td>
+			<td class="item-3">
+				{{if empty($user.GAMES_LOGINED)}}
+				<a href="javascript:;" class="btn btn-m" id="btn-set2pass">马上设置</a>
+				{{else}}
+				<a href="javascript:;" class="btn btn-m" id="btn-reset2pass">修改</a>
+				<p> <a href="{{$CONFIG.app_url}}/getpass.php?pwd2=2" target="_blank">忘记二级密码？</a> </p>
+				{{/if}}
+			</td>
+		</tr>
+	</table>
+	<div class="list-2pass">
+		<h3 class="hd fz14">二级密码相关作用</h3>
+		<div class="bd fix">
+			<dl>
+				<dt>1、积分商城相关操作</dt>
+				<dd>· 进行商品兑换</dd>
+				<dd>· 查看商品兑换记录</dd>
+			</dl>
+			<dl>
+				<dt>2、9377游戏币相关操作</dt>
+				<dd>· 查看9377游戏币充值明细</dd>
+				<dd>· 9377游戏币充值</dd>
+			</dl>
+			<dl>
+				<dt>3、个人积分的相关操作</dt>
+				<dd>· 查看积分的获取和消耗明细</dd>
+			</dl>
+			<dl>
+				<dt>4、其他相关操作</dt>
+				<dd>· 活动抽奖验证</dd>
+				<dd>· 收货地址查看和修改</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="setting-2pass none" id="setting-2pass">
+		<h3 class="hd"><i class="icon-s2p"></i> 二级密码</h3>
+		<div class="bd">
+			<form action="" method="post" id="form-new2pass">
+				<input type="hidden" name="dosubmit" value="1">
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 输入密码：</label>
+					<input  type="password" name="password" class="w-input">
+					<div class="w-tips w-tips1"></div>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 密码确认：</label>
+					<input  type="password" name="password1" class="w-input">
+				</div>
+				<div class="w-item">
+					<label class="w-label"></label>
+					<div class="w-div-l mgv10">
+						<a href="javascript:myPass2.setNew();" class="btn btn-l btn-green mgh20">确认</a>
+						<a href="javascript:;" class="btn btn-l btn-back-2pass">返回</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="setting-2pass none" id="reset-2pass">
+		<h3 class="hd"><i class="icon-s2p"></i> 二级密码</h3>
+		<div class="bd">
+			<form action="" method="post" id="form-mod2pass">
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 原二级密码：</label>
+					<input  type="password" name="password_old" class="w-input">
+					<div class="w-tips w-tips1"></div>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 新二级密码：</label>
+					<input  type="password" name="password_new" class="w-input">
+					<div class="w-tips w-tips2"></div>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 确认新密码：</label>
+					<input  type="password" name="password_new1" class="w-input">
+				</div>
+				<div class="w-item">
+					<label class="w-label"></label>
+					<div class="w-div-l mgv10">
+						<a href="javascript:myPass2.modify();" class="btn btn-l btn-green mgh20">确认修改</a>
+						<a href="javascript:;" class="btn btn-l btn-back-2pass">返回</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

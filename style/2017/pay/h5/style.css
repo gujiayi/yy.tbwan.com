@@ -1,0 +1,44 @@
+@charset "utf-8";
+html,body,div,span,iframe,h1,h2,h3,h4,h5,p,pre,em,img,strong,b,i,dl,dt,dd,ul,li,fieldset,form,label,legend,table,tbody,tfoot,thead,tr,th,td {margin:0;padding:0;border:0;outline:0}a,input,button{padding:0;margin:0;outline:0}
+h1,h2,h3,h4,h5 {font-size:100%}
+ul {list-style:none}
+a {text-decoration:none}
+a:hover {text-decoration:underline}
+a,button {cursor:pointer}
+table {border-collapse:collapse;border-spacing:0}
+input,select,img {vertical-align:middle}
+.cl {clear: both; }
+.cl:after {clear: both; display: table; content: ""; } 
+.tc{ text-align:center;}
+.tr{ text-align:right;}
+.fl{ float:left;}
+.fr{ float:right;}
+
+html, body, .wrap { width: 100%; height: 100%;}
+.wrap{ color:#333;}
+.color1{ color:#797979;}
+.color2{ color:#0056ae;}
+.color3{ color:#474747;}
+.color4{ color:#359700;}
+.bg1{ background:#eee;}
+.bg2{ background:#393a3f;}
+.wd{ width:300px; position:absolute; left:50%; margin-left:-150px;}
+.font { font:normal 12px/1.5 'Microsoft Yahei';}
+
+:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+
+.t{ font-size:16px; font-weight:bold; line-height:48px; color:#fff; height:48px; position:relative;}
+.game-info{ height:76px;}
+.game-info dl{ font-size:16px; padding:10px 0;}
+.game-info dt{ height:30px; line-height:30px;}
+.game-info dd{ line-height:26px; }
+.result{ padding:12px 0; height:22px; border-bottom:1px solid #b6b6b6;}
+.h102{ height:102px;}
+
+.form { padding-top:15px; font-size:14px;}
+.form li{ margin-bottom:15px; clear:both;}
+.form .fl{ width:50px; line-height:30px;}
+.form .text{ margin-left:50px; line-height:30px; overflow:hidden;zoom:1;}
+.li{ min-width:86px; max-width:225px; text-align:center; display:inline-block; height:27px; line-height:27px; border:1px solid #949494; overflow:hidden; float:left; margin:0 10px 10px 0; padding:0 5px;}
+.sel{ border:1px solid #f06000; color:#f06000;}
+.form .sub{ display:block; height:34px; color:#fff; text-align:center; font-size:18px; border:0; width:100%; background:#f06000;}

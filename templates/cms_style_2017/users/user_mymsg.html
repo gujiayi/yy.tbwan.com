@@ -1,0 +1,62 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">我的信息</em></p></div>
+<div class="user-mod-wp user-mod-mymsg">
+	<div class="user-select-hd">
+		<ul class="left fl">
+			<li class="item-1 {{if empty($msg_type)}}active{{/if}}"><a href="?type=15">全部消息</a><i></i></li>
+			<li class="item-2 {{if $msg_type == 1}}active{{/if}}"><a href="?type=15&msg_type=1">系统通知</a><i></i></li>
+			<li class="item-2 {{if $msg_type == 2}}active{{/if}}"><a href="?type=15&msg_type=2">游戏推荐</a><i></i></li>
+			<li class="item-2 {{if $msg_type == 3}}active{{/if}}"><a href="?type=15&msg_type=3">热门活动</a></li>
+		</ul>
+		<div class="right fr">
+			<a href="javascript:;" class="btn-link btn-selall"><i class="icon-cb"></i> 全选</a>
+			<a href="javascript:;" class="btn-red btn-del-sel">删除</a>
+			<a href="javascript:;" class="btn-red btn-del-readed">删除已读信息</a>
+		</div>
+	</div>
+	<div class="user-mod-bd">
+		<div class="mymsg-wp">
+			<ul class="mymsg-list">
+				{{if empty($data.data)}}
+				<div class="nodata"> <i></i> <p>暂无消息</p> </div>
+				{{else}}
+				{{foreach from=$data.data item="v"}}	
+				<li data-status="{{$v.status}}" mid="{{$v.msg_id}}" class="msg-{{$v.msg_id}}">
+					<a href="javascript:;" mid="{{$v.msg_id}}" class="btn-del"></a>
+					<a href="javascript:;" class="btn-cb"><i class="icon-cb"></i></a>
+					<div class="img">
+						<a href="{{$v.url}}" mid="{{$v.msg_id}}" {{if $v.status==1}}class="btn-read"{{/if}} target="_blank"><img src="{{$v.pic}}" width="168" height="118"></a>
+					</div>
+					<div class="info">
+						<h3 class="tit"><a href="{{$v.url}}" mid="{{$v.msg_id}}" {{if $v.status==1}}class="btn-read"{{/if}} target="_blank">{{$v.title}}</a></h3>
+						<div class="desc-wp">
+							<div class="desc">
+								{{$v.description}}
+								{{if !empty($v.url)}}<a href="{{$v.url}}" mid="{{$v.msg_id}}" {{if $v.status==1}}class="btn-read"{{/if}} target="_blank">查看详情</a>{{/if}}
+							</div>
+						</div>
+						<div class="tip">
+							<div class="tags">
+								{{if $v.type == 1}}
+								<em class="tag tag-blue">系统通知</em>
+								{{elseif $v.type == 2}}
+								<em class="tag tag-green">游戏推荐</em>
+								{{else}}
+								<em class="tag tag-ylw">热门活动</em>
+								{{/if}}
+								{{if $v.status == 1}}<em class="tag tag-red J-tag">未读</em>{{else}}<em class="tag tag-gray">已读</em>{{/if}}
+							</div>
+							<span class="time">{{$v.addtime|date_format:"%Y-%m-%d %H:%M"}}</span>
+						</div>
+					</div>
+				</li>
+				{{/foreach}}
+				{{/if}}
+			</ul>
+			{{if !empty($data.data)}}
+			<div class="mod-pages">
+				{{$data.pages}}
+			</div>
+			{{/if}}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+{{if $games}}
+<ul class="game-list fix">
+	{{foreach from=$games item=item}}
+	{{if in_array($item.ALIAS, array('ztx','yqdx','xn','sgyy','myyy'))}} {{continue}} {{/if}}
+	<li>
+		<a href="{{$item.CONFIG['site']}}" target="_blank" class="img">
+			{{data name="{{$item.ALIAS}}_208_126"}} {{$DATA["{{$item.ALIAS}}_208_126"]}}
+			<i class="m"></i>
+			<img src="{{$CONFIG.resource}}/images/2017/gclogo/{{$item.ALIAS}}.png?{{$CONFIG.build}}" class="glogo">
+		</a>
+		<div class="info">
+			<a href="{{$item.CONFIG['site']}}" target="_blank" class="name">{{if $item.CONFIG.alias_name}}{{$item.CONFIG.alias_name}}{{else}}{{$item.NAME}}{{/if}}</a>
+			<a href="{{if $item.DOMAIN=='h59377.com'}}http://www.9377.com/h5/m/{{else}}{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new{{/if}}" target="_blank" class="go">进入游戏</a>
+		</div>
+	</li>
+	{{/foreach}}
+</ul>
+<div class="mod-pages">
+	{{$pagelist}}
+</div>
+{{else}}
+<div class="nodata"> <i></i> <p>很抱歉，未找到符合条件的游戏！</p> </div>
+<!-- 大家都在玩 -->
+<div class="weplay-list">
+	<div class="hd">
+		<h3 class="mod-tit"><span>大家都在玩</span></h3>
+	</div>
+	<div class="bd">
+		<ul class="game-list">
+		{{foreach from=$DATA['大家都在玩'].list item=item}}
+			<li>
+				<a href="{{$item.CONFIG['site']}}" target="_blank" class="img">{{$DATA["{{$item.ALIAS}}_208_126"]}}</a>
+				<div class="info">
+					<a href="{{$item.CONFIG['site']}}" target="_blank" class="name">{{$item.NAME}}</a>
+					<a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new" target="_blank" class="go">进入游戏</a>
+				</div>
+			</li>
+		{{/foreach}}
+		</ul>
+	</div>
+</div>
+{{/if}}

@@ -1,0 +1,43 @@
+@charset "utf-8";
+body{background:#f2f2f2;position: relative;}
+.w503{width:503px;}
+.showRegister{display:none;position: fixed;top:50%;left:50%;margin-top:-350px;margin-left:-250px;z-index:998;padding:0 !important;}
+.layerRegister{display:none;position: fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:997}
+.showRegister .register-main .title{width:503px;height:76px;line-height:76px;text-align: center;font-weight:bold;color:#fff;background: #ff7733;font-size: 20px;}
+.showRegister .normal-header{overflow:hidden;padding-top:28px}
+.showRegister .normal-header .txt{height:42px;line-height:42px;margin:10px 0 0 24px;font-size:24px;padding-left:24px;border-left:1px solid #c5c5c5;float:left}
+.showRegister  .tologin{display:block;padding:8px 0 15px ;font-size:16px;color:#595757;}
+.showRegister  .tologin p{text-align: center}
+.showRegister  .tologin em{color:#ff7733}
+
+.showRegister .mod-register-wp{background:#fff}
+.showRegister .register-tab{width:390px;margin:0 auto;overflow:hidden}
+.showRegister .register-tab li{width:50%;height:37px;margin-top:8px;line-height:37px;cursor:pointer;border-bottom:1px solid #c5c5c5;text-align:center;color:#c5c5c5;font-size:16px;font-weight:bold;float:left}
+.showRegister .register-tab .active{border-bottom-color:#ff7733;color:#ff7733}
+.showRegister .register-tab-con{width:auto;font-size:14px;color:#595757;}
+.showRegister .w-item{height:40px;min-height:40px;margin:15px 0;line-height:36px;position: relative;}
+.showRegister .w-item-sm{height:30px;min-height:30px;margin:5px 0;line-height:30px;position: relative;}
+.js-ydcode-reg,.js-ydcode-phone{margin:15px 0 0 !important;}
+.showRegister .w-item .w-label{width:110px;height:36px;line-height:36px;padding-right:10px;text-align:right;float:left}
+.showRegister .w-item .w-label-sub{width:40px;height:36px;line-height:36px;padding-right:10px;text-align:right;float:left}
+.showRegister .w-item .w-input,.w-item .w-input-m,.w-item .w-input-s{width:288px;height:14px;line-height:14px;border:0 none;border:1px solid #c5c5c5;-webkit-border-radius:5px;border-radius:5px;padding:10px 15px;font-family:'microsoft yahei';float:left}
+.showRegister .w-item .w-input-m{width:160px}
+.showRegister .w-item .w-input-s{width:160px}
+.showRegister .w-item .w-div{width:320px;height:auto;min-height:36px;line-height:36px;font-size:12px;float:left;position:relative;}
+.showRegister .w-item .w-div em{color:#ff7733}
+.showRegister .w-item .icon-cb{display:inline-block;vertical-align:middle;width:17px;height:17px;position:relative;top:-2px;margin-right: 6px;}
+.showRegister .w-item .w-submit{width:394px;height:44px;font:14px/44px 'microsoft yahei';border:0 none;cursor:pointer;-webkit-border-radius:5px;border-radius:5px;color:#fff;background:#ff7733}
+.showRegister .w-item .w-submit:hover { background: #ff8948; }
+.showRegister .w-item .w-btn{display: block;border:0 none;width:118px;height:36px;line-height:36px;text-align:center;color:#fff;-webkit-border-radius:0 5px 5px 0;border-radius:5px;background:#4dd589;float:right;font-family: 'microsoft yahei';cursor: pointer;position:absolute;top: 0px; right: 0px;}
+
+.showRegister .w-item .w-btn:hover{color:#fff!important;background: #58e79c;}
+.showRegister .w-button-disabled, .w-button-disabled:hover { color: #fff; background: #ccc!important; cursor: default; }
+/* .showRegister .w-item .w-tips{color:#9fa0a0;padding-left:15px;float:left;} */
+.showRegister .w-item .w-tips {float:left;padding-left:15px;}
+.showRegister .w-item .w-tips .error{position: absolute;left:120px ;top:-26px;color:#fe0202}
+.showRegister .w-item .w-tips .correct{ display:inline-block; vertical-align: top; width: 36px; height: 36px; background-position: 0px -17px;}
+.showRegister .php-code{overflow: hidden;line-height: 30px;text-align: center;margin:2px 0 0 56px;cursor:pointer;position:absolute;top: 4px;right: 8px;}
+.showRegister .w-item .icon-cb{background-position:0px 0px}.w-item .icon-cbed{background-position:-27px 0px !important}.w-item .icon-cb,.w-item .icon-cbed,.w-item .w-tips .correct{background-image: url(/images/2017/register.png?201812151727); background-repeat: no-repeat;}
+
+.w-captcha{width:162px !important}
+.w-code{width:162px !important}

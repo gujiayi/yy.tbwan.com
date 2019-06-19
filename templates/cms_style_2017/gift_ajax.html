@@ -1,0 +1,22 @@
+{{if $games}}
+	<ul class="game-list fix">
+		{{foreach from=$games item=item}}
+		<li>
+			<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank" class="img">{{data name="{{$item.ALIAS}}_208_126_gift"}} {{$DATA["{{$item.ALIAS}}_208_126_gift"]}}</a>
+			<div class="info">
+				<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank" class="name">{{if $item.CONFIG.alias_name}}{{$item.CONFIG.alias_name}}{{else}}{{$item.NAME}}{{/if}}礼包</a>
+				{{if $card_list[$item.ID].surplus <= 0}}
+					<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank" class="go-x">已领完</a>
+				{{else}}
+					<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank" class="go">可领取</a>
+				{{/if}}
+			</div>
+		</li>
+		{{/foreach}}
+	</ul>
+	<div class="mod-pages">
+		{{$pagelist}}
+	</div>
+{{else}}
+	<div class="nodata"> <i></i> <p>很抱歉，未找到符合条件的游戏！</p> </div>
+{{/if}}

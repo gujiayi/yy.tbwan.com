@@ -1,0 +1,258 @@
+.order-tit i, .o-table .pay-for i,.o-table .pay-for em, .o-table .role-status i, .pay-money-list .money-item i, .select-wp .close, .search-box .btn-search, .other-money-box i, .ubind-pop .level-tips i, .login-pop .icon-user, .login-pop .icon-lock, .login-pop .icon-cb { display:inline-block; vertical-align: top; background: url('/images/2017/pay/pay.png?20180319') no-repeat;}
+body { color: #595757; }
+input, select { font-family: 'microsoft yahei'; color: #595757;}
+.pay-header	{ height: 62px; padding: 20px 0; background: #fff;}
+.pay-header	.logo { float: left; }
+.pay-header	.tit { height: 40px; line-height: 40px; font-size: 24px; color: #595757; padding-left: 24px; margin: 11px 0 0 24px; border-left: 1px solid #c5c5c5; float: left; }
+.pay-header	.info { height: 40px; text-align: right; float: right; }
+.pay-header	.info .item { height: 14px; line-height: 14px; }
+.pay-header	.info .item-2 { margin-top: 12px; }
+.pay-header	.info .btn-usebal { color: #429deb; margin-left: 20px; border-bottom: 1px solid #429deb; }
+.g-container { padding: 12px 0; }
+.wp-pay { background: #f9fafa; }
+.pay-left { width: 240px; float: left; position:relative; z-index: 2; min-height: 500px; _overflow:hidden;}
+.pay-list { padding: 16px 0; }
+.pay-list li { vertical-align: top; }
+.pay-list a { display: block; width: 200px; height: 42px; line-height: 42px; padding-left: 40px; border-top: 1px solid #f9fafa; border-bottom: 1px solid #f9fafa; background: #f9fafa; margin-top: -1px;-webkit-transition: initial; -ms-transition: initial; -o-transition: initial; transition: initial;}
+.pay-list .active, .pay-list a:hover { width: 201px; color: #595757!important; border-top-color: #ff7733; border-bottom-color: #ff7733; background-color: #fff; position:relative; z-index: 2;}
+.pay-list i { width: 30px; height: 42px; margin-right: 12px; background: url('/images/2017/pay/pay-menu.png') no-repeat; float: left;}
+.pay-list span { float: left;}
+/* .pay-list .item-1 i { background-position: 0px -118px; }
+.pay-list .item-2 i { background-position: 2px -32px; }
+.pay-list .item-4 i { background-position: 3px -326px; }
+.pay-list .item-13 i { background-position: 2px -367px; }
+.pay-list .item-15 i { background-position: 5px -412px; }
+.pay-list .item-16 i { background-position: 4px -283px; }
+.pay-list .item-26 i { background-position: 2px -200px; }
+.pay-list .item-32 i { background-position: 2px 10px; }
+.pay-list .item-37 i { background-position: 2px -74px; }
+.pay-list .item-43 i { background-position: 2px -155px; }
+.pay-list .item-46 i { background-position: 2px -243px; } */
+.pay-list .item-76 i { background-position: 2px 10px; }
+.pay-list .item-24 i {  background-position: 3px -326px; }
+.pay-list .item-67 i { background-position: 2px -32px; }
+.pay-list .item-88 i { background-position: 2px -32px; }
+.pay-list .item-103 i { background-position:2px -74px;}
+.pay-right { width: 759px; border-left: 1px solid #e4e4e4; background: #fff; float: right; min-height: 520px; _padding-bottom: 30px;}
+.order-tit { height: 38px; line-height: 38px; font-size: 26px; margin: 30px 0 30px 70px;}
+.order-tit i { width: 38px; height: 38px; margin-right: 10px;}
+.o-tit-1 i { background-position: 0 -116px;}
+.o-tit-2 i { background-position: 0 -35px;}
+.o-tit-4 i { background-position: 0 -316px;}
+.o-tit-13 i { background-position: 0 -358px;}
+.o-tit-15 i { background-position: 0 -398px;}
+.o-tit-16 i { background-position: 0 -275px;}
+.o-tit-26 i { background-position: 0 -198px;}
+.o-tit-32 i { background-position: 0 2px;}
+.o-tit-37 i { background-position: 0 -75px;}
+.o-tit-43 i { background-position: 0 -151px;}
+.o-tit-46 i { background-position: 0 -238px;}
+
+.btn-define { display:inline-block; vertical-align: top; color: #429deb; margin: 0 12px; }
+/* 充值公用 S */
+.o-table { margin-left: 70px; }
+.o-table .o-tr { margin: 14px 0; position:relative;}
+.o-table .o-label { width: 68px; height: 32px; line-height: 32px; padding-right: 10px; text-align: right; float: left;}
+.o-table .o-div { min-height: 32px; line-height: 32px; float: left; position:relative;}
+.o-table .o-input, .o-table .pay-for { display:inline-block; width: 206px; height: 30px; line-height: 30px; margin-right: 10px; border: 1px solid #d1d1d1; background: #fff; vertical-align: top; position:relative; overflow:hidden;}
+.o-table .o-input:focus { border-color: #ff7733; }
+.o-table .pay-for { text-align: center; float: left; display: inline;}
+.o-table .pay-for em { width: 16px; height: 16px; background-position: 0 -520px; position:absolute; right: 0px; bottom: 0px; display: none; }
+.o-table .pay-for span { display:inline-block; vertical-align: top; height: 28px; }
+.o-table .pay-for i { width: 30px; height: 30px;}
+.o-table .pay-for-game i { background-position: 0 -435px; }
+.o-table .pay-for-platform i { background-position: 0 -475px; }
+.o-table .pay-for.active em { display: block; }
+.o-table .pay-for.active, .o-table .pay-for:hover { width: 204px; height: 28px; line-height: 28px; border: 2px solid #ff7733; color: #595757!important;}
+.o-table .pay-for.active i, .o-table .pay-for:hover i { height: 28px; }
+.o-table .pay-for-game.active i { background-position: 0 -436px!important; }
+.o-table .pay-for-game:hover i { background-position: 0 -436px!important; }
+.o-table .pay-for-platform.active i { background-position: 0 -476px!important; }
+.o-table .pay-for-platform:hover i { background-position: 0 -476px!important; }
+.pay-for-tip { width: 159px; height: 23px; line-height: 23px; text-align: center; color: #ff7733; margin-top: 5px; float: left; background: url('/images/2017/pay/pay-for-tip.png') no-repeat; }
+
+.o-table .o-select { display: block; width: 166px; height: 30px; line-height: 30px; padding: 0 20px; border: 1px solid #d1d1d1; background: #fff; margin-right: 10px; float: left; position:relative; box-sizing: content-box;}
+.o-table .o-select:after { width: 0; height: 0; content: ' '; position:absolute; top: 10px; right: 10px; border-width: 8px; border-style: solid; border-color: #a8a8a8 #fff #fff #fff; }
+.o-table .select-list { width: 206px; height: auto; border: 1px solid #d1d1d1; border-top: 0 none; background: #fff; position:absolute; top: 31px; left: 0px; z-index: 1;}
+.o-table .select-list li { height: 34px; line-height: 34px; padding: 0 20px; cursor: pointer; }
+.o-table .select-list li:hover { color: #fff; background: #ff7733; }
+
+.o-table .o-button { display: block; width: 95px; height: 28px; cursor: pointer; box-sizing: content-box; float: left; }
+.o-table .role-status { height: 32px; line-height: 32px; margin-left: 10px; position:relative; }
+.o-table .role-status i { display:inline-block; vertical-align: top; *vertical-align: middle; width: 30px; height: 32px; }
+.o-table .role-status-ok i { background-position: 0 -552px; }
+.o-table .role-status-ng i { background-position: 0 -594px; color: #ff7733;}
+.o-table .role-status-load i { background-position: 5px -634px; -webkit-animation: irotate 1s linear infinite; -o-animation: irotate 1s linear infinite; animation: irotate 1s linear infinite;}
+@-webkit-keyframes irotate {0% {transform: rotate(0) } 100% {transform: rotate(-360deg) } }
+@-moz-keyframes irotate {0% {transform: rotate(0) } 100% {transform: rotate(-360deg) } }
+@-o-keyframes irotate {0% {transform: rotate(0) } 100% {transform: rotate(-360deg) } }
+/* 充值公用 E */
+.pay-money-list { width: 580px; height: auto!important; overflow:hidden;}
+.pay-money-list a { width: 97px; height: 30px; line-height: 30px; text-align: center; border: 1px solid #d1d1d1; margin: 0 10px 14px 0; float: left; display: inline; position:relative;}
+.pay-money-list .money-item i, .other-money-box i { width: 16px; height: 16px; background-position: 0 -520px!important;; position:absolute; right: 0px; bottom: 0px; display: none; overflow:hidden;}
+.pay-money-list .active, .pay-money-list a:hover { width: 95px; height: 28px; line-height: 28px; border: 2px solid #ff7733; }
+.pay-money-list .active i { display: block; }
+.o-table .other-money { text-align: center; }
+.other-money-wp { display:inline-block; vertical-align: top; height: 32px; line-height: 32px; margin-right: 10px; position:relative; *margin-top: 10px;}
+.other-money-box { display:inline-block; vertical-align: top; height: 32px; line-height: 32px; position:relative; margin-right: 10px; *vertical-align: middle;}
+.user-getcoin { display:inline-block; vertical-align: top; height: 32px; line-height: 32px; *margin-top: 10px; display: none;}
+.other-money-box .other-money  { margin-right: 0;-webkit-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    -ms-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    -o-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out; }
+.other-money-box.active .other-money  { width: 204px; height: 28px; line-height: 28px; border: 2px solid #ff7733;}
+.other-money-box.active i { display: block; }
+.btn-cforder { display: block; width: 208px; height: 40px; line-height: 40px; text-align: center; font-size: 16px; color: #fff; border-radius: 5px; background: #ff7733; }
+.btn-cforder:hover { color: #fff!important; background: #ff8948; }
+/* 选游戏 选服 */
+.tr-select-type { z-index: 2; }
+.select-wp { width: 512px; padding: 16px; border: 1px solid #d1d1d1; background: #fff; position:absolute; top: 38px; left: 78px; z-index: 4; }
+.select-wp .hd { width: 100%; height: 25px; overflow:hidden; padding-bottom: 16px; border-bottom: 1px solid #d1d1d1; position:relative;}
+.select-wp .close { width: 19px; height: 19px; background-position: 0 -720px; position:absolute; top: -1px; right: -20px; }
+.select-wp .close:hover { background-position: 0 -760px; }
+.select-wp .hdmenu { width: 390px; padding-bottom: 14px;}
+.select-wp .hd ul {width: 3300px; height: 25px;}
+.select-wp .hd li { width: 75px; height: 25px; line-height: 25px; text-align: center; margin-left: 10px; border-radius: 13px; cursor: pointer; float: left; display: inline;}
+.select-wp .hd .active, .select-wp .hd li:hover { color: #fff!important; background: #429eeb!important; border: 0 none!important; }
+.select-wp .bd { width: 490px; height: 160px; padding: 22px 0 0 22px; overflow: hidden; position:relative;}
+.select-wp .select-box {  height: 160px;}
+.filter-box { width: 100%; position:relative;}
+.filter-box .filter-item { margin-bottom: 12px; overflow: hidden; }
+.filter-box em {width: 20px; height: 20px; line-height: 20px; text-align: center; font-size: 14px; color: #fff; -webkit-border-radius: 4px; border-radius: 4px; font-weight: 700; float: left; }
+.filter-box .tag-a,.filter-box .tag-i,.filter-box .tag-q,.filter-box .tag-y{background:#96f}
+.filter-box .tag-b,.filter-box .tag-j,.filter-box .tag-r,.filter-box .tag-z{background:#419dea}
+.filter-box .tag-c,.filter-box .tag-k,.filter-box .tag-s{background:#42d7dc}
+.filter-box .tag-d,.filter-box .tag-l,.filter-box .tag-t{background:#53c1f8}
+.filter-box .tag-e,.filter-box .tag-m,.filter-box .tag-u{background:#f7ce0c}
+.filter-box .tag-f,.filter-box .tag-n,.filter-box .tag-v{background:#ffa234}
+.filter-box .tag-g,.filter-box .tag-o,.filter-box .tag-w{background:#ff5534}
+.filter-box .tag-h,.filter-box .tag-p,.filter-box .tag-x{background:#d56fc5}
+.filter-box .fbd {width:424px; margin-left: 32px; float:left}
+.filter-box .fbd a {width:105px; line-height:20px; margin-bottom:8px; float:left; height: 20px; overflow:hidden;}
+
+.search-box { width: 116px; height: 22px; border: 1px solid #d1d1d1; overflow:hidden; position:absolute; top: 0px; right: 0px; }
+.search-box input { display: block; width: 84px; padding: 4px 5px; height: 14px; line-height: 14px; border: 0 none; float: left; }
+.search-box .btn-search { width: 22px; height: 22px; background-position: 5px -675px; float: right; }
+
+
+.servers-box { height: 220px; overflow:hidden; *overflow-y: auto; overflow-y: auto\0;}
+.servers-box .sid-item { width: 122px; height: 32px; line-height: 32px; float: left; *width: 118px; width: 118px\0;}
+.servers-box .active, .filter-item .active { color: #ff7733!important; border: 0 none!important; }
+.noserver { font-size: 16px; text-align: center; line-height: 120px; display: block;}
+/* 选游戏 选服 */
+/* 支付弹窗 */
+.pay-window { position:absolute; z-index: 99999; display: none; }
+/* 二级密码 */
+/*二级密码*/
+.button-red { display:inline-block;vertical-align: top;width: 134px; height: 40px; line-height: 40px; text-align: center; color: #fff; border-radius: 5px; background: #ff7733;}
+.button-red:hover {color:#fff!important;border-color: #ff8948;background: #ff8948!important;}
+.pass2-pop, .confirm-pop { width: 402px; position: fixed; top: 50%; left: 50%; margin: -100px 0 0 -201px; z-index: 999999; _position:absolute;}
+.pass2-pop .hd { height: 38px; line-height: 38px; text-indent: 18px; font-size: 16px; color: #fff; background: #ff7733; }
+.pass2-pop .bd { padding: 20px 0; background: #fff; }
+.pass2-pop .tip { font-size: 14px; text-align: center; }
+.pass2-pop .cs-psw2 { display: block; width: 220px; height: 36px; line-height: 36px; padding: 0 5px; border: 1px solid #9fa0a0; border-radius: 5px; margin: 20px auto 0; font-family: 'microsoft yahei';}
+.pass2-pop .input-tips { height: 30px; line-height: 30px; color: #ff7733; margin-left: 86px;}
+.pass2-pop .opt { overflow:hidden; width: 232px; margin: 0 auto; line-height: 40px; }
+/* 充值确认 */
+.confirm-pop { width: 454px; height: 454px; margin: -227px 0 0 -227px; }
+.confirm-pop .hd { width: 100%; height: 74px; line-height: 75px; color: #fff; font-size: 20px; text-indent: 200px; background: #ff7733 url('/images/2017/pop-hd.jpg') no-repeat; }
+.confirm-pop .bd { height: 380px; padding: 0 40px; background: #fff; overflow:hidden;}
+.confirm-pop .tit { font-size: 14px; color: #ff7733; text-align: center; height: 22px; line-height: 22px; margin: 26px 0; background: url('/images/2017/u1-7.png') 80px center no-repeat; }
+.confirm-list { padding-bottom: 26px; border-bottom: 1px solid #ededed; }
+.confirm-list li { vertical-align: top; overflow:hidden; }
+.confirm-pop .x-label, .confirm-pop .x-p { width: 160px; height: 34px; line-height: 34px; text-align: right; float: left;}
+.confirm-pop .x-p { width: 200px; margin-left: 10px; text-align: left;}
+.confirm-pop .btn-submit { display: block; width: 96px; height: 32px; line-height: 32px; text-align: center; color: #fff; border-radius: 16px; font-size: 14px; margin: 20px auto 0; background: #ff7733;}
+.confirm-pop .btn-submit:hover{color: #fff!important; background: #ff8948;}
+/*kill ie*/
+.killie { width: 100%; height: 30px; line-height: 30px; color: #c7a17b; text-align: center; background: #ffffe1; z-index: 10;}
+.killie a { color: #3399ff;}
+.killie a:hover { text-decoration: underline;}
+
+/* 人工充值 */
+.o-rgpay { padding: 0 50px 55px 70px;}
+.o-rgpay .a-kf { color: #429deb; }
+.rg-tit { margin: 30px 0 12px; font-size: 14px; font-weight: bold;}
+.o-rgpay table { width: 100%; text-align: center; }
+.o-rgpay table td { border: 1px solid #d1d1d1; line-height: 32px;}
+.o-rgpay table thead { background: #ff7733; color: #fff;}
+.o-rgpay .td1 { width: 80px; }
+.o-rgpay .td2 { width: 186px; }
+.o-rgpay .td3 { width: 268px; }
+.o-rgpay .td4 { width: 372px; }
+.o-rgpay dl dd { line-height: 24px; }
+/* 充值说明 */
+.tip-box { display: none; margin: 80px; line-height: 24px; background: #f9fafa; }
+.tip-wp .pd20 { padding: 20px; }
+.float-menu .f-top { display: none; }
+.tips-pop .pop-button { margin: 20px 6px 0; border: 1px solid #ff7733; color: #ff7733;}
+.tips-pop .pop-button:hover { background: #ff7733; color: #fff!important;}
+.tips-pop .pop-button-red { color: #fff;}
+.tips-pop .pop-button-red:hover {color:#fff!important; background: #ff8948;}
+/* 表单 */
+.btn, .w-button{display:inline-block;vertical-align:top;width:64px;height:18px;line-height:18px;-webkit-border-radius:9px;border-radius:9px;text-align:center;color:#9e9e9e;border:1px solid #9e9e9e;font-family: 'microsoft yahei';box-sizing: content-box;cursor: pointer; background: #fff;position:relative;}
+.btn:hover,.btn-h{color:#fff!important;border-color:#ff7733;background:#ff7733}
+.btn-s{}
+.btn-m{width:76px;height:24px;line-height:24px;-webkit-border-radius:13px;border-radius:13px;}
+.btn-l {font-size: 14px; }
+.btn-l, .w-button{width:94px;height:30px;line-height:30px;-webkit-border-radius:15px;border-radius:15px}
+.btn-blue{color:#fff!important;border-color:#429dea;background:#429dea}
+.btn-blue:hover{color:#fff!important;border-color: #53c1f8;background: #53c1f8!important;}
+.btn-green{color:#fff!important;border-color:#4dd589;background:#4dd589}
+.btn-green:hover {color:#fff!important;border-color: #58e79c;background: #58e79c!important;}
+.btn-red{color:#fff!important;border-color:#ff7733;background:#ff7733}
+.btn-red:hover, .button-red:hover {color:#fff!important;border-color: #ff8948;background: #ff8948!important;}
+.btn-gray{color:#fff!important;border-color:#d7d7d7;background:#d7d7d7}
+.btn-gray:hover {color:#fff!important;border-color: #e2e2e2;background: #e2e2e2!important;}
+.w-button-disabled, .w-button-disabled:hover { color: #fff; border-color: #ccc; background: #ccc!important; cursor: default; }
+
+.w-item{width: 100%;overflow:hidden;margin:15px 0;line-height:36px;position:relative;}
+.w-item .w-label, .w-item .w-label-l{width:124px;height:36px;line-height:36px;padding-right:10px;text-align:right;font-size:14px;color:#595757;float:left;}
+.w-item .w-label-l { width: 126px; }
+.g-container .w-item .w-input,.w-item .w-input-m,.w-item .w-input-s{width:232px;height:18px;line-height:18px;border:0 none;border:1px solid #c5c5c5;-webkit-border-radius:5px;border-radius:5px;padding:8px 15px;font-family:'microsoft yahei';float:left}
+.w-item .w-input-m{width:138px}
+.w-item .w-input-s{width:110px}
+.g-container .w-item .w-div,.w-item .w-div-l,.w-item .w-div-m{min-width:160px;height:auto;min-height:36px;line-height:36px;font-size:12px;padding:0 14px;float:left;position:relative;}
+.w-item .w-div-l{min-width:262px}
+.w-item .w-div-m{min-width:192px}
+.w-item i{color:red;margin-right: 2px;}
+/* 表单 */
+/* 用户信息绑定弹窗 */
+.ubind-pop { width: 524px; height: 434px; position: fixed; top: 50%; left: 50%; margin: -217px 0 0 -262px; background: #fff; z-index: 1001; _position:absolute; _top: 400px;}
+.ubind-pop .hd { height: 75px; line-height: 75px; font-size: 22px; color: #fff; padding-left: 220px; background: #ff7733 url('/images/2017/pop-hd.jpg?201802281550') 34px top no-repeat; }
+.ubind-pop .bd { width: 446px; margin: 0 auto; }
+.ubind-pop .ubind-tab { width: 100%; text-align: center; height: 42px; border-bottom: 1px solid #ededed;}
+.ubind-pop .ubind-tab li { display:inline-block; *display: inline; width: 90px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; color: #848484; border-bottom: 2px solid #fff; margin: 0 25px; cursor: pointer; zoom: 1;}
+.ubind-pop .ubind-tab .active, .ubind-pop .ubind-tab li:hover { color: #595757; border-color: #ff7733; }
+.ubind-pop .level-tips { width: 100%; line-height: 22px; margin: 22px 0; background: #fff; color: #ff7733; text-align: center; }
+.ubind-pop .level-tips i { width: 22px; height: 22px; margin-right: 18px; background-position: 0 -798px; }
+.ubind-pop .btn { margin-top: 5px; }
+.ubind-pop .php-code { margin-left: 34px; }
+.ftips { height: 60px; padding: 8px 40px 0; line-height: 20px; color: #848484; border-bottom: 1px solid #ededed; }
+.ubind-pop .pop-button { width: 88px; height: 36px; border: 0 none; margin: 0; cursor: pointer; margin-left: 10px;}
+/* 登录弹窗 */
+.login-pop { width: 302px; height: 430px; position: fixed; top: 50%; left: 50%; margin: -215px 0 0 -151px; background: #fff; z-index: 1001; _position:absolute; _top: 400px;}
+.login-pop .hd { height: 75px; line-height: 75px; font-size: 22px; color: #fff; padding-left: 150px; background: #ff7733 url('/images/2017/pop-hd.jpg?201802281550') 5px top no-repeat; }
+.login-pop .bd { width: 234px; margin: 0 auto; }
+.login-tab{width:100%;overflow:hidden;margin: 18px 0 32px;}
+.login-tab-1 li{width: 100%;}
+.login-tab-2 li{width:50%;}
+.login-tab li{height:36px;line-height:36px;cursor:pointer;border-bottom:1px solid #ddd;text-align:center;color:#595757;font-size:14px;float:left}
+.login-tab .active{border-bottom-color:#d70023}
+
+.login-pop .icon-user, .login-pop .icon-lock { width: 36px; height: 36px; margin-right: 0; position:absolute; top: 0px; left: 0px; z-index: 2;}
+.login-pop .icon-user { background-position: 12px -826px; }
+.login-pop .icon-lock { background-position: 13px -866px; }
+.login-pop .w-item { margin: 10px 0; }
+.login-pop .w-input { width: 181px; padding-left: 36px; }
+.login-item .user-opt{height:14px;line-height:14px;margin:10px 0}
+.login-pop .icon-cb{display:inline-block;vertical-align:top;width:13px;height:13px; background-position: 0 -920px;position:relative;top: 1px;}
+.login-pop .icon-cbed{ background-position: -27px -920px;}
+.login-item .user-third{height: 24px;margin:15px 0;line-height: 24px;}
+.login-item .link-reg { color: #ff7733; }
+.login-item .link-reg:hover { text-decoration: underline; }
+.third-login-qq,.third-login-wx,.third-login-wb{display:inline-block;width:24px;height:24px;background:url(/images/2017/third.png?201708251703) no-repeat;}
+.third-login-wx{background-position:-27px 0}
+.third-login-wb{background-position:-53px 0}
+.pop-button-login { width: 100%; height: 38px; line-height: 38px; margin: 18px 0 0 0; font-size: 14px;}
+.login-tip { width: 100%; height: 30px; line-height: 30px; margin-bottom: 16px; color: #ff7733 }

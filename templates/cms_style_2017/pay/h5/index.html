@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<title>9377游戏-移动支付</title>
+<meta name="frontend" content="Robin">
+<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/pay/h5/style.css?{{$CONFIG.build}}" />
+</head>
+<body>
+<div class="wrap">
+	<div class="font t tc bg2">购买商品</div>
+	<div class="game-info bg1">
+		<div class="wd">
+			<dl class="font">
+				<dt>{{$G.NAME}}  {{$G.SERVERS_SID[$req.server]['SERVER_NAME']}}</dt>
+				<dd class="color3">充值帐号：{{$req.uname}}</dd>
+			</dl>
+		</div>
+	</div>
+	{{if $SERVER_CLOSE_PAY}}	
+	<h4 style="margin:0 auto; padding-top: 50px; text-align:center;"><span style="border: 1px solid #EEEEEE; padding:15px 35px;">该服充值通道已关闭</span></h3>
+	{{else}}
+	<form action="qrcode.php" method="post">
+	<ul class="form font wd">
+		<li><label class="fl">价格：</label><div class="text color4" id="moneys">10000元</div></li>
+		<li>
+			<label class="fl">金额：</label>
+			<div class="text" id="radios">
+				{{if $req['test']}}
+					{{assign var=amount value=array(1,10,50,100,500,1000,2000,5000,10000)}}
+				{{else}}
+					{{assign var=amount value=array(10,50,100,500,1000,2000,5000,10000)}}
+				{{/if}}
+				{{foreach from=$amount item=item}}
+				<span class="li" data-key="{{$item}}" data-val="{{$item * $G.COIN_RADIO}}">{{$item * $G.COIN_RADIO}} {{$G.COIN_NAME}}</span>
+				{{/foreach}}
+			</div>
+		</li>
+		{{foreach from=$req item=item key=key}}
+		<input type="hidden" name="{{$key}}" value="{{$item}}" />
+		{{/foreach}}
+		<input type="hidden" name="post" value="1" />
+		<input type="hidden" id="money" name="money" value="" />
+		<input type="hidden" id="game_coin" name="game_coin" value="" />
+		<li><input type="submit" id="subOrder" class="font sub" value="立即购买" /></li>
+	</ul>
+	</form>	
+	{{/if}}
+</div>
+<script src="{{$CONFIG.resource}}/js/zepto.min.js?{{$CONFIG.build}}"></script>
+{{if $SERVER_CLOSE_PAY}}
+
+{{else}}
+<script>
+		var ua = navigator.userAgent.toLowerCase(),
+			$wrap = $('.wrap'),
+			isAlipay = ua.match(/AliApp/i) == "aliapp",
+			isWechat = ua.match(/MicroMessenger/i) == "micromessenger";
+		//探测useragent是否是微信或支付宝
+		if(!isAlipay && !isWechat) {
+			// window.location.href = "http://www.9377.com/wap/guide/";
+		}
+		if(isAlipay) { document.title = "9377游戏-支付宝支付"; }else if(isWechat) { document.title = "9377游戏-微信支付"; }
+		(function(w,$){
+			$wrap.show();
+			var $moneys = $("#moneys"),
+				$radios = $("#radios").find("span"),
+				$moneyNum = $("#money"),
+				$commodityNum = $("#game_coin"),
+				k = "",
+				v = "";
+			$radios.on("click",function(){
+				var k = $(this).data("key") || " " ,
+					v = $(this).data("val");
+
+				$moneys.html(k + "元");
+				$radios.removeClass("sel");
+				$(this).addClass("sel");
+				$moneyNum.val(k);
+				$commodityNum.val(v);
+			});
+
+			//选择按钮
+			$("#radios").find("span[data-key='100']").click();
+		})(window,Zepto);
+	
+</script>
+{{/if}}
+</body>
+</html>

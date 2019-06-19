@@ -1,0 +1,102 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">我的账号</em></p></div>
+<div class="user-mod-wp user-mod-myacc pl70">
+
+	<div class="part part-1"> 
+		<div class="level-wp"> 账号安全：<span class="save-level">
+		{{section name="tt" loop=$user.security_per}}<i class="v"></i>{{/section}}
+		{{section name="tt" loop=3-$user.security_per}}<i></i>{{/section}}
+		</span> 安全指数： <em>{{$user.security_level}}</em> </div>
+	</div>
+	<div class="part part-2">
+		<ul class="setting-list">
+			<li>
+				<i class="icon-ques"></i>
+				<div class="info">
+					<p><span>密保问题</span> 
+					{{if !empty($user.ANSWER)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+					</p>
+					<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+				</div>
+				<a href="javascript:;" onClick="userVphone.push('{{$CONFIG.app_url}}/users/users_index.php?type=2')" class="btn btn-m">
+					{{if !empty($user.ANSWER)}}重置密保{{else}}设置密保{{/if}}
+				</a>
+			</li>
+			<li>
+				<i class="icon-email"></i>
+				<div class="info">
+					<p><span>密保邮箱</span>
+					{{if !empty($user.EMAIL)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+					</p>
+					<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+				</div>
+				<a href="javascript:;" onClick="userVphone.push('{{$CONFIG.app_url}}/users/users_index.php?type=20')" class="btn btn-m">
+					{{if !empty($user.EMAIL)}}重置邮箱{{else}}设置邮箱{{/if}}
+				</a>
+			</li>
+			<li>
+				<i class="icon-phone"></i>
+				<div class="info">
+					<p><span>手机号码</span>
+					{{if !empty($user.PHONE)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+					</p>
+					<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+				</div>
+				<a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" class="btn btn-m">{{if !empty($user.PHONE) && !empty($user.BIND_CELLPHONE)}}重置手机{{else}}设置手机{{/if}}</a>
+			</li>
+			<li>
+				<i class="icon-idcard"></i>
+				<div class="info">
+					<p><span>证件信息</span>
+					{{if !empty($user.ID_CARD_NUMBER)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+					</p>
+					<p class="desc">用于帐号防沉迷认证，是账号申诉的重要依据</p>
+				</div>
+				<a href="{{$CONFIG.app_url}}/users/users_index.php?type=21" class="btn btn-m">{{if !empty($user.ID_CARD_NUMBER)}}查看证件{{else}}设置证件{{/if}}</a>
+			</li>
+		</ul>
+	</div>
+	{{if empty($user.ID_CARD_NUMBER)}}
+	<div class="part part-3">
+		<!-- 未验证 -->
+		<form action="" class="form-mibao-idcard">
+			<dl>
+				<dt>防沉迷认证：</dt>
+				<dd>
+					<div class="w-item">
+						<label class="w-label">真实姓名</label>
+						<input type="text" name="name" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label">身份证号</label>
+						<input type="text" name="id_card_number" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+				</dd>
+				<dd class="tc">
+					<input type="submit" class="btn btn-l" value="确  定">
+				</dd>
+			</dl>
+		</form>
+		<div class="desc">根据政府相关规定， 未满18周岁的玩家将被纳入防沉迷范围；届时被纳入防沉迷的玩家，游戏收益将会受损；未填写身份证玩家在游戏内3小时后会被踢下线或收益减半5小时后被踢下线，请各位玩家尽快填写姓名、身份证信息，以便顺畅游戏。<em>此帐号的身份证信息只能填写一次，是判断帐号归属的重要依据。</em></div>
+	</div>
+	{{else}}
+	<div class="part part-4">
+		<!-- 已验证 -->
+		<p class="fz14">防沉迷认证：</p>
+		<div class="table">
+			<div class="tr tr1">
+				<div class="td">真实姓名</div>
+				<div class="td">身份证号</div>
+			</div>
+			<div class="tr tr2">
+				<div class="td">{{$user.NAME}}</div>
+				<div class="td">{{$user.ID_CARD_NUMBER}}</div>
+			</div>
+			<div class="tr tr3">
+				<em class="flag">已通过验证</em>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+</div>

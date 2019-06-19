@@ -1,0 +1,104 @@
+@charset "utf-8";
+    html, body {width: 100%;height: 100%;margin: 0;padding: 0;overflow: hidden;background-color: #000;}
+    iframe {border: none;}
+    .loading { width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background-position: center center; background-repeat: no-repeat; background-size: cover; z-index: 10002; display: none; }
+    /*浮标*/
+    .floaticon { width: 37px; height: 37px; position:absolute; top: 50%; right: 0; z-index: 10001; }
+    .floaticon { animation: button_breath 4s infinite; -webkit-animation: button_breath 4s infinite; -moz-animation: button_breath 4s infinite; -ms-animation: button_breath 4s infinite; -o-animation: button_breath 4s infinite; }
+    @keyframes button_breath {0% {opacity: 0.3;} 50% {opacity: 0.8;} 100% {opacity: 0.3;} }
+    @-moz-keyframes button_breath {0% {opacity: 0.3;} 50% {opacity: 0.8;} 100% {opacity: 0.3;} }
+    @-webkit-keyframes button_breath {0% {opacity: 0.3;} 50% {opacity: 0.8;} 100% {opacity: 0.3;} }
+    @-o-keyframes button_breath {0% {opacity: 0.3;} 50% {opacity: 0.8;} 100% {opacity: 0.3;} }
+    /*侧边栏*/
+    .sidebar-close { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1;}
+    .sidebar-wp { width: 100%; height: 100%; background: rgba(0,0,0,.5); position: fixed; top: 0; left:-100%;-webkit-transition:left 0.2s;-moz-transition:left 0.2s;-o-transition:left 0.2s;transition:left 0.2s; z-index: 999;}
+    .sidebar-wp-active { left: 0; }
+    .sidebar {height: 100%; width: 85%; max-width: 350px;position: absolute; overflow: hidden; background: #fff; top: 0; left: 0; z-index: 2;}
+    .sidebar .header { background: #f64956; text-align: center;}
+    .sidebar .logo { margin: 12px 0; }
+    .sidebar .player { margin: 0 12px; padding: 10px 0 20px;}
+    .sidebar .username { font-size: 18px; color: #fff; margin: 5px 0; }
+    .sidebar .opt a { display:inline-block; vertical-align: top; padding: 0 15px; line-height: 26px; font-size: 14px; margin: 0 15px; border-radius: 20px; color: #f64956; background: #ffff8f; }
+    .sidebar .sidebar-menu { padding: 8px 0; border-bottom: 1px solid #ddd; box-shadow: 0px 2px 3px #ddd; overflow:hidden; }
+    .sidebar .sidebar-menu li { width: 25%; text-align: center; color: #539cd9; float: left; }
+    .sidebar .sidebar-menu i { font-size: 26px; }
+    .sidebar .sidebar-menu p { margin-top: 4px; }
+    .sidebar .sidebar-menu .active { color: #f64956; }
+
+    .box-wp {}
+    .box-item {}
+    .box-item-1 { text-align: center; }
+    .box-item-1 .txt { width: 206px; margin: 25px auto; position:relative;}
+    .box-item-1 .txt i { display: block; width: 206px; height: 1px; overflow:hidden; background: #4ed68a; }
+    .box-item-1 .txt span { width: 120px; padding: 0 10px; color: #4ed68a;position: absolute; top:50%;left:50%;-moz-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background: #fff;}
+    
+    .box-item-1 h2 { color: #5e5e5e; font-size: 22px; }
+    .box-item-1 h5 { color: #5e5e5e; font-size: 14px; margin: 10px 0; }
+    .box-item-1 h6 { color: #999; font-size: 12px;}
+    .box-item-1 .tip { color: #f64956; margin-top: 20px; }
+    .box-item-1 .btn-bindphone { display:inline-block; vertical-align: top; padding: 0 20px; line-height: 30px; color: #fff; border-radius: 20px; margin-top: 10px; background: #f64956; }
+    
+    .gift-list {}
+    .gift-list li { padding: 10px; color: #999; border-bottom: 1px solid #ddd; line-height: 24px;}
+    .gift-list .tit { font-size: 14px; color: #5e5e5e; }
+    .gift-list .proc { width: 100%; height: 5px; border-radius: 3px; overflow:hidden; background: #dcdcdc; }
+    .gift-list .proc i { display: block; width: 0; height: 5px; -webkit-border-radius: 3px; border-radius: 3px; overflow: hidden; background: #4ed68a; transition: width .4s ease;}
+    .gift-list .btn-get { padding: 0 18px; height: 24px; line-height: 24px; color: #fff; font-size: 14px; border-radius: 20px; margin: auto 0 auto 16px; background: #4ed68a; }
+    
+    .server-list {}
+    .server-list li { height: 30px; line-height: 30px; text-align: center; color: #999; font-size: 14px; overflow:hidden; }
+    .server-list li span { width: 25%; float: left; }
+    .server-list .hd { font-size: 16px; margin-top: 20px; }
+    .server-list .name { color: #666; }
+    .server-list .s-hot { color: #06ce06; }
+    .server-list .s-smooth { color: #cecd66; }
+    .server-list .s-ready { color: #008100; }
+    .nodata { font-size: 24px; color: #5e5e5e; text-align: center; padding: 40px 0; }
+
+    .box-item-4 { color: #539cd9; text-align: center; }
+    .box-item-4 h2 { font-size: 16px; color: #5e5e5e; padding: 40px 0 10px 0; }
+    .box-item-4 img { margin: 30px 0 10px 0; }
+    
+    /*充值弹窗*/
+    .pay-wp { width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: none; z-index: 10002;} /*盖住浮标*/
+    .pay-wp iframe { width: 100%; height: 100%; position:relative; z-index: 1;}
+    .pay-wp .pay-close { width: 26px; height: 26px; line-height: 26px; text-align: center; font-size: 18px; color: #fff; background: rgba(0,0,0,.5); border-radius: 3px; position:absolute; top: 17px; right: 10px; z-index: 9; display: none;}
+    /* pc端充值弹窗 2018年4月12日 15:30:10 */
+    .pay-confirm-wp, .pay-qr-wp { width: 100%; height: 100%; background: rgba(0,0,0,.5); position: fixed; top: 0px; left: 0px; z-index: 10002;}
+    .pay-confirm-box { width: 340px; height: 284px; color: #fff; font-size: 14px; background: url('/images/2017/h5/pay-confirm-wp.png') no-repeat; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+    .pay-confirm-box .close, .pay-confirm-box .bd, .pay-confirm-box .topay { background: url('/images/2017/h5/pay-confirm-icon.png') no-repeat;}
+    .pay-confirm-box .close { width: 40px; height: 40px; background-position: 10px 10px; position:absolute; top: 0; right: 0;}
+    .pay-confirm-box .hd { height: 70px; line-height: 70px; text-align: center; color: #fff; font-size: 16px; }
+    .pay-confirm-box .bd { margin: 8px 0 0 65px; padding-left: 60px; line-height: 40px; background-position: 0 -26px;}
+    .pay-confirm-box .topay { display: block; width: 200px; height: 32px; line-height: 32px; text-align: center; margin: 46px auto 0; color: #fff; background-position: 0 -131px;}
+    
+    .pay-qr-wp .pay-qr-box { width: 340px; height: 354px; color: #fff; font-size: 14px; background: url('/images/2017/h5/pay-qr-wp.png') no-repeat; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+    .pay-qr-box .close { width: 70px; height: 45px; position:absolute; top: 0px; right: 0px; }
+    .pay-qr-box .qr { display: block; width: 180px; height: 180px; margin: 68px auto 0; }
+    
+    /* 二维码弹窗  postmessage {"event":"qryyb"}  2018年4月28日 10:35:14*/
+    .mask-qr .close { width: 80px; height: 40px; position:absolute; top: 0px; right: 0px; background: transparent; }
+    .mask-qr .btn-url { width: 100%; height: 28%; position:absolute; bottom: 0px; left: 0px; background: transparent; }
+    .mask-qr .qr-wp { width: 72%; max-width: 540px; margin: 0 auto; position:relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
+    /*弹窗位置调整*/
+    .login-hd .btn-loginmod {top: 34px;}
+    /* 游客注册 */
+    .dialog-vreg { width: 314px; height: 374px; background: url('/images/2017/h5/vistor_reg.png?2018') no-repeat; }
+    .dialog-vreg .w-form { width: 210px; margin: 20px auto 0; }
+    .dialog-vreg .w-form .w-item { width: 210px; height: 32px; padding-top: 3px; margin-bottom: 21px;}
+    .dialog-vreg .w-form .w-item input { margin-left: 68px; width: 138px; height: 26px; border: 0 none; background: transparent; color: #fff; outline: 0 none;}
+    .dialog-vreg .w-form .btn-submit { width: 110px; height: 40px; margin: -2px auto 0; background-color: transparent;}
+    .dialog-vreg .close { background-color: transparent; width: 46px; height: 34px; cursor: pointer; position:absolute; top: 16px; right: 20px; }
+    .dialog-vreg .txt { width: 210px; margin: 65px 0 0 50px; color: #eed68c; line-height: 24px; font-size: 14px; text-shadow: 0 0 3px #000; text-align: left; }
+    
+    /*屏幕适配*/
+    @media only screen and (max-width: 375px){ /*iphone6*/
+    	
+    }
+    @media only screen and (max-width: 320px){ /*iphone5*/
+    	.logo { height: 40px; }
+    }
+    @media only screen and (min-width: 415px){ /*大于6P的尺寸（ipad，pc）*/
+    	
+    	
+    }

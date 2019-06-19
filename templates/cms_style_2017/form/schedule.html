@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+    <meta charset="utf-8">
+    <title>{{$CONFIG.site_title}}</title>
+    <meta name="keywords" content="{{$CONFIG.site_keyword}}" />
+    <meta name="description" content="{{$CONFIG.site_description}}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+    <link href="{{$CONFIG.resource}}/style/cms_style_2015/user/users_css.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+    {{if !$admin}} <script type="text/javascript"> document.domain = '{{$CONFIG.cookie_domain}}'; </script> {{/if}}
+    {{if $admin}}
+    <script type="text/javascript"> C9377.domain = ''; </script>
+    <script type="text/javascript" src="/js/uploader.js?{{$CONFIG.build}}"></script>
+    {{/if}}
+</head>
+<body>
+
+    {{include file="header.html"}}
+
+    <!--kefu_管理系统-->
+    <div class="user_section02 w998 fix mgv30">
+        <!--用户中心左边 开始--> 
+    	<div class="user_main_area">
+            <div class="user_main_area_tit">
+                <h2>问题查询</h2>
+            </div>
+            <div id="outer">
+                  <ul id="tab">
+                     <li {{if $type=='go'}}class="current"{{/if}}>待解决的问题<span>{{if $num['go']}}（{{$num['go']}}）{{/if}}</span></li> <li {{if $type=='end'}}class="current"{{/if}}>已经解决的问题<span>{{if $num['end']}}（{{$num['end']}}）{{/if}}</span></li>
+                  </ul>
+                  <div id="content">
+                    {{foreach from=$questions key=k item=ques}}
+                    <div class="tab_content" {{if $type==$k}}style="display:block;"{{/if}}>
+                        {{foreach from=$ques item=q}}
+                      <table width="100%" cellpadding="0" cellspacing="0" >
+                         <tr>
+                            <th>问题单号</th>
+                            <th>问题类型</th>
+                            <th>提交时间<span>{{$q.timestamp|date_format:"%Y-%m-%d %H:%M:%S"}}</span></th>
+                            <th></th>
+                        </tr>
+                         <tr>
+                            <td height="50"><span style="color:#003399;">{{$q.id}}</span></td>
+                            <td><span class="red">[{{$model[$q.model].alias}}]</span></td>
+                            <td valign="middle"> {{if $q.status==0}}
+                                <div class="pbg"> <div class="bar" style="width:5%;"></div>{{$model[$q.model]['config']['status'][$q.status]}}</div>
+                                {{elseif $q.status==1}}
+                                <div class="pbg"> <div class="bar" style="width:65%;"></div>{{$model[$q.model]['config']['status'][$q.status]}}</div>
+                                {{else}}
+                                <div class="pbg"> <div class="bar" style="width:100%;"></div>{{$model[$q.model]['config']['status'][$q.status]}}</div>
+                                
+                                {{/if}}
+                            </td>
+                        <td><a href="view.php?name={{$q.model}}&id={{$q.id}}" class="detail">查看详情</a></td></tr>
+                        </table>
+                        {{/foreach}}
+                        <div class="page">{{$pagelist[$k]}}</div>
+                    </div>
+                    {{/foreach}}
+                    
+                  </div>
+                </div>
+        </div>
+
+        <div class="user_sidebar">
+            <div class="user_left_menu">
+                <ul>
+                    <li><a class="my_ques" href="schedule.php">我的问题查询</a></li>
+                    <li><a class="online" href="index.php">提交其他问题</a> </li>
+                </ul>
+            </div>
+      </div>
+    </div>
+    <!--管理系统结束-->
+    
+    {{include file="footer.html"}}
+
+    <script type="text/javascript">
+    var fixedSize = false, menuID = 6;
+    $('#tab li').each(function(k){
+    	var li = $(this);
+    	(function(i){
+    		li.click(function(){
+    			$('#tab li').removeClass('current');
+    			li.addClass('current');
+    			
+    			$('#content .tab_content').hide().eq(i).show();
+    		});
+    	})(k);
+    });
+    </script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+
+</body>
+</html>

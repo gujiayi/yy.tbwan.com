@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="game_main_bg">{{data name="游戏背景图片{{$G.ALIAS}}"}}{{$DATA["游戏背景图片{{$G.ALIAS}}"]}}</div>
+    <div class="game_g_info">
+        <div class="game_g_top game_main_top fix">
+            <div class="game-icon fl">
+                <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$G.ALIAS}}.jpg?{{$CONFIG.build}}" />
+            </div>
+            <div class="game_center_msg fl">
+                <div class="game_center_title">{{$G.NAME}} <span class="game_center_type">{{$G.TYPE}}</span></div>
+                <div class="game_center_summary ell">{{data name="{{$G.ALIAS}}_slogan"}}{{$DATA["{{$G.ALIAS}}_slogan"]}}</div>
+                <div class="game_center_iconfont">{{$G.df_pack_size}}</div>
+            </div>
+        </div>
+        <div class="game_infor_tab tab">
+            <div class="game_infor_tit tit">
+                <a class="cur" href="javascript:;">详情</a>
+                <a href="javascript:;">BOSS闹钟</a>
+            </div>
+            
+            <div class="game_infor_box txt cur">
+                <div class="mod-othergift fix">
+                    <ul class="othergift-list">
+                    {{foreach from=$card_list item=item}}
+                        <li class="game-row fix">
+                            <a class="game-link clearfix fl" href="#">
+                                <div class="game-icon fl"> <img src="{{$CONFIG.resource}}/images/2017/app/gift_ico.gif" /> </div>
+                                <div class="game-msg fl">
+                                    <p class="gamei-title">{{$G.NAME}}</p>
+                                    <p class="game-summary ell">{{$item.name}}</p>
+                                </div>
+                            </a>
+                            <div class="game-down-btn fr">
+                                <a href="javascript:;" onClick="getCard('{{$item.sign}}','{{$item.id}}')" class="blue_down">领取</a>
+                            </div>
+                        </li>
+                    {{/foreach}}
+    
+                    </ul>
+                </div>
+        
+                <div class="i_com_box gamedetail">
+                    <div class="recom_title">
+                        <h2 class="fix"><font class="tit_ico tit_ico03"></font>游戏简介</h2>
+                    </div>
+                    <div class="game_simple_des fix">
+                        <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$G.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                        <div class="gray_word">
+                            {{$G.SHORT_DESCRIPTION}}
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 热门游戏 六款 -->
+                <div class="i_com_box recommend">
+                    <div class="recom_title">
+                        <h2 class="fix"><font class="tit_ico tit_ico02"></font>大家都在玩</h2>
+                    </div>
+                    <div class="i_comon_game" >
+                        {{data name="首页热门游戏"}}
+                        <ul class="fix">
+                            {{foreach from=$DATA['首页热门游戏'].list item=item}}
+                            <li>
+                                <a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.ALIAS}}{{/if}}">
+                                    <div class="hot_game_img">
+                                        <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                                    </div>
+                                </a>
+                                <p class="ell">{{$item.NAME}}</p>
+                            </li>
+                            {{/foreach}}
+                        
+                        </ul>
+                    </div>
+                        <a class="get_more_area" href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center">前往游戏中心<span class="arrow_more_area"></span></a>
+                </div>
+                
+            </div>
+            
+            <div class="game_infor_box txt">
+                <div class="has_set_clock">
+                    <h3 class="set_clock_h2">已设定闹钟的服务器</h3>
+                    <ul>
+                        {{foreach from=$boss_list item=item}}
+                        <li>
+                            <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=boss_list&gid={{$item.gid}}&sid={{$item.sid}}&token={{$item.token}}"><span class="has_set_clock_ser">{{$item.server_name}}</span><span class="has_set_clock_time">{{$item.msg}}距离刷新时间{{$item.format_time}}</span><span class="go_right_btn"></span> </a>
+                        </li>
+                        {{/foreach}}
+                    </ul>
+                </div>
+                
+                <div class="i_com_box choose_set_clock">
+                    <h3 class="set_clock_h2">选择服务器设定闹钟</h3>
+                    <h4 class="set_clock_h3">玩过的</h4>
+                    <div class="has_played_ser" id="has_played_ser"> </div>
+                    <div class="game_more_area"><a class="game_more_server" href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=server_more&game={{$G.ALIAS}}&token={{$smarty.get.token}}">更多服务器</a></div>
+                    <!-- <h4 class="set_clock_h3">其他服务器</h4>
+                    <div class="set_clock_write">
+                        选择<input type="text" placeholder="请选择玩过的区服" readonly class="set_clock_input" id="J_clock_data" />
+                        <a href="javascript:;" class="sub_comon_btn" id="J_clock_submit">确认</a>
+                    </div> -->
+                </div>
+                
+                <div class="i_com_box choose_set_clock">
+                    <h3 class="set_clock_h2">提醒设置</h3>
+                    <div class="remind_set_area">
+                        <div class="before_start">距离开始时间 <input type="text" class="before_second" />秒提醒 <a href="" class="sub_comon_btn">确认</a></div>
+                        <div class="remind_tip">
+                            声音提示 <span class="remind_tip_txt">默认系统提示声</span><div class="bigswitch"><div class="switch_btn"></div></div>
+                        </div>
+                        <div class="remind_tip bd_shadow_none">
+                            震动提示 <span class="remind_tip_txt">静静提示，老板也未知</span><div class="bigswitch checked_ios"><div class="switch_btn"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+<script> getLastGame('{{$G.ID}}'); </script>
+    
+</body>
+</html>

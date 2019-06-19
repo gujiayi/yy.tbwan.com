@@ -1,0 +1,137 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">个人资料</em></p></div>
+<div class="user-mod-wp user-mod-info pl70" id="user-mod-info">
+	<!-- 默认状态 -->
+	<div class="userinfo-default">
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 姓名：</label>
+			<div class="w-div">{{if $user['NAME']!='' and $user['NAME']!='张三'}}{{$user['NAME']}}{{else}}未设置{{/if}}</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 性别：</label>
+			<div class="w-div"> {{if $user['SEX']==1}}男{{elseif $user['SEX']==0}}女{{else}}未设置{{/if}} </div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 身份证号：</label>
+			<div class="w-div">
+				{{if $user['ID_CARD_NUMBER']!=''}}
+					{{$user['ID_CARD_NUMBER']}}
+				{{else}}
+					未设置 <span class="tip">身份证信息只能填写一次，是判断帐号归属和提现审核的重要依据</span>
+				{{/if}}
+			</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 出生日期：</label>
+			<div class="w-div">
+				{{if $user['BIRTH_YEAR'] && $user['BIRTH_MONTH'] && $user['BIRTH_DAY']}}
+					{{$user['BIRTH_YEAR']}}-{{$user['BIRTH_MONTH']}}-{{$user['BIRTH_DAY']}}
+				{{else}}
+					未设置 <span class="tip">帐号的出生日期只能填写一次，是判断您生日特权的重要凭证</span>
+				{{/if}}
+			</div>
+		</div>
+		<!-- 
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 邮箱：</label>
+			<div class="w-div">
+				{{if $user['EMAIL']!=''}}
+					{{$user['EMAIL']}}
+				{{else}}
+					未设置 <span class="tip">绑定邮箱有助找回密码</span>
+				{{/if}}
+			</div>
+		</div> 
+		-->
+		<div class="w-item">
+			<label class="w-label"><i>*</i> QQ：</label>
+			<div class="w-div"> {{if $user['QQ']!=''}}{{$user['QQ']}}{{else}}未设置{{/if}}</div>
+		</div>
+
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 微信号：</label>
+			<div class="w-div"> {{if $user['CONFIG']['wechat']!=''}}{{$user['CONFIG']['wechat']}}{{else}}未设置{{/if}}</div>
+		</div>
+
+		<div class="w-item">
+			<label class="w-label"> </label>
+			<div class="w-div tc">
+				<a href="javascript:;" class="btn btn-l btn-blue btn-tomodinfo">完善资料</a>
+				<!-- <p>完善所有资料可获得积分大礼包</p> -->
+			</div>
+		</div>
+	</div>
+	<!-- 编辑状态 -->
+	<form class="userinfo-modify none">
+		<input name="do" type="hidden" value="userinfo_up" />
+		<input name="sex" type="hidden" id="sex" value="1" />
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 姓名：</label>
+			<input type="text" class="w-input" name="name" id="name" value="{{$user['NAME']}}" {{if $user['NAME']!='' and $user['NAME']!='张三'}}disabled {{else}}  dataType="Chinese" msg="请认真填写姓名" {{/if}}>
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 性别：</label>
+			<div class="w-div">
+				<label sid="1" class="radio-item {{if $user['SEX']==1}}selected{{/if}}"><i class="w-radio"></i> 男</label>
+				<label sid="0" class="radio-item {{if $user['SEX']==0}}selected{{/if}}"><i class="w-radio"></i> 女</label>
+			</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 身份证号：</label>
+			<input type="text" class="w-input" value="{{$user['ID_CARD_NUMBER']}}" {{if $user['ID_CARD_NUMBER']!=''}} disabled name="idCardNumber2" id="id_card_number2" {{else}} name="idCardNumber" id="id_card_number" dataType="IdCard" msg="身份证号码不正确" {{/if}}>
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 出生日期：</label>
+			<select name="birth_year" id="birth_year" {{if $user['BIRTH_YEAR']}} disabled class="w-select-s w-select-disabled"{{else}} class="w-select-s"{{/if}}>
+				<option value="0" >无</option>
+				{{foreach from=range(2000, 1940) item=year}}
+				<option value="{{$year}}" {{if $user['BIRTH_YEAR'] == $year}} selected="selected" {{/if}}>{{$year}}</option>
+				{{/foreach}}
+			</select>			
+			<select name="birth_month" id="birth_month" {{if $user['BIRTH_MONTH']}} disabled class="w-select-s w-select-disabled"{{else}} class="w-select-s"{{/if}}>
+				{{if $user['BIRTH_MONTH']!=''}}
+				<option value="{{$user['BIRTH_MONTH']}}" selected="selected" >{{$user['BIRTH_MONTH']}}</option>
+				{{/if}}
+
+				<option value="0">无</option>
+				{{foreach from=range(1,12) item=month}}
+				<option value="{{$month}}" >{{$month}}</option>
+				{{/foreach}}
+			</select>			
+			<select name="birth_day" id="birth_day" {{if $user['BIRTH_DAY']}} disabled class="w-select-s w-select-disabled"{{else}} class="w-select-s"{{/if}}>
+				{{if $user['BIRTH_DAY']!=''}}
+				<option value="{{$user['BIRTH_DAY']}}" selected="selected" >{{$user['BIRTH_DAY']}}</option>
+				{{/if}}
+				<option value="0">无</option>
+				{{foreach from=range(1,31) item=day}}
+				<option value="{{$day}}" >{{$day}}</option>
+				{{/foreach}}
+			</select>			
+		</div>
+		<!-- 
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 邮箱：</label>
+			<input type="text" class="w-input" value="{{$user['EMAIL']}}" {{if $user['EMAIL']!='' and $user['EMAIL']!='undefined'}} disabled {{else}} name="email" id="email"  dataType="Email" msg="请认真填写邮箱地址！" {{/if}}>
+		</div> 
+		-->
+		<div class="w-item">
+			<label class="w-label"><i>*</i> QQ：</label>
+			<input type="text" name="qq" class="w-input" value="{{$user['QQ']}}">
+		</div>
+
+		<div class="w-item">
+			<label class="w-label"><i>*</i> 微信号：</label>
+			<input type="text" name="wechat" class="w-input" value="{{$user['CONFIG']['wechat']}}">
+		</div> 
+
+		<div class="w-item">
+			<label class="w-label"> </label>
+			<div class="w-div tc">
+				<input type="submit" value="保存" class="btn btn-l btn-blue">
+				<a href="javascript:;" class="btn btn-l btn-gray btn-back-def">取消</a>
+				<!-- <p>完善所有资料可获得积分大礼包</p> -->
+			</div>
+		</div>
+	</form>
+</div>

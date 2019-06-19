@@ -1,0 +1,43 @@
+.news-main .mod{padding:26px 24px;padding-bottom:0;border-bottom:3px solid #ebeaea;overflow:hidden;margin-bottom:10px;background:#fff}
+.news-local{height:40px;line-height:40px;padding:0 20px;color:#595757;background:#f2f2f2}
+.news-local a{color:#595757}
+.news-local .active,.news-local a:hover{color:#ff7733}
+.news-wp{}
+.news-hd{padding:0 20px;border-bottom:1px solid #f2f2f2}
+.news-hd .item{display:inline-block;width:auto;height:56px;line-height:56px;font-size:16px;color:#595757;margin-right:36px;border-bottom:2px solid #fff}
+.news-hd .item:hover,.news-hd .active{border-bottom-color:#ff7733;color:#ff7733}
+.news-bd{padding:0 20px;overflow:hidden}
+.news-bd .news-left{width:538px;padding-right:40px;border-right:1px solid #f2f2f2;overflow:hidden;float:left;min-height: 804px;}
+.news-bd .news-list{}
+.news-bd .news-list li{padding:15px 0;overflow:hidden;color:#9fa0a0;border-bottom:1px dotted #d9d9d9}
+.news-bd .news-list .t{height:16px;line-height:16px;overflow:hidden;margin:5px 0 8px}
+.news-bd .news-list .tag-blue,.news-bd .news-list .tag-green{width:32px;height:16px;text-align:center;color:#fff;float:left}
+.news-bd .news-list .tag-blue{background:#419ae9}
+.news-bd .news-list .tag-green{background:#4dd589}
+.news-bd .news-list .tit{width:420px;margin-left:10px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-size:14px;font-weight:700;float:left}
+.news-bd .news-list .time{float:right}
+.news-bd .news-list .b{height:40px;line-height:20px;position:relative}
+.news-bd .news-list .desc{width:440px}
+.news-bd .news-list .view{color:#419ae9;position:absolute;bottom:0;right:0}
+.mod-pages input { display: none; }
+.news-bd .news-right{width:288px;padding: 0 0 20px 45px;float:left}
+.news-bd .recom{display:block;margin-bottom:10px}
+.openser-wp{}
+.openser-wp .hd{overflow:hidden;color:#9fa0a0;font-size:14px}
+.openser-wp .i1,.openser-wp .i2,.openser-wp .i3{width:96px;height:43px;line-height:43px;float:left}
+.openser-wp .i2{text-align:center}
+.openser-wp .i3{text-align:right}
+.openser-wp .bd{}
+.openser-wp .slide-bd li{overflow:hidden;color:#595757}
+.openser-wp .slide-bd span{border-bottom:1px dotted #d9d9d9;}
+.openser-wp .slide-bd a {display: block; overflow:hidden; padding: 0 10px; transition: initial;}
+.openser-wp .slide-bd a:hover { color: #fff!important; background: #409aea;}
+.openser-wp .slide-bd a:hover .i2 { color: #fff; }
+.openser-wp .slide-bd a:hover span { border-color: #409aea; }
+.openser-wp .slide-bd .i2{color:#ff7733}
+.openser-box{width:308px;height:500px;overflow:hidden;position:relative; left: -10px;}
+.openser-box .slide-bd{overflow:hidden;position:relative}
+.openser-box .slide-item{width:308px;float:left}
+.openser-box .slide-nav{width:auto;overflow:hidden;text-align:center;margin:20px 0}
+.openser-box .slide-nav li{display:inline-block;vertical-align:middle;width:12px;height:12px;margin:0 4px;line-height:99px;overflow:hidden;-webkit-border-radius:6px;border-radius:6px;background:#9fa0a0;*display:inline;*zoom:1}
+.openser-box .slide-nav li:hover,.openser-box .slide-nav .active{background:#ff7733}

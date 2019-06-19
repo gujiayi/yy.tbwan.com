@@ -1,0 +1,66 @@
+@charset "utf-8";
+/*资讯首页*/
+/* .news-page { margin: 30px 0;}
+.imgnews-box .item { color: #fff; border-radius: 5px; overflow: hidden; position: relative; float: left; transition: all 0.3s ease;}
+.imgnews-box .item:hover { box-shadow: 0 0 5px #03b4f5;}
+.imgnews-box .item p { width: 100%; height: 30px; line-height: 30px; color:#fff; font-size: 14px; text-align: center; background: #000; background: rgba(0,0,0,.6); position: absolute; bottom: 0px; left: 0px; transition: all 0.3s ease;}
+.imgnews-box .item:hover p { height: 50px; line-height: 50px; font-size: 16px;}
+.imgnews-box .item-1 { width: 595px; height: 425px; font-size: 18px; line-height: 130px;}
+.imgnews-box .item-2 { width: 295px; height: 425px; margin: 0 9px; display: inline;}
+.imgnews-box .item-3 { width: 292px; height: 210px; margin-bottom: 6px;}
+.imgnews-box .item-4 { width: 292px; height: 210px;}
+
+.newsmix { margin-top: 30px;}
+.newsmix-left { width: 850px;}
+.newstype { border-radius: 5px; overflow: hidden; background: #fff; position: relative;}
+.newstype a { height: 40px; line-height: 40px; color: #666; font-size: 16px; padding: 0 12px; margin-right: 10px; float: left; display: inline; position: relative;}
+.newstype a:hover, .newstype .active { color: #fff; background: #03b4f5;}
+
+.news-content-box {}
+.news-list {}
+.news-list li { height: 130px; padding: 15px 12px; margin-top: 15px; transition: all 0.3s ease;}
+.news-list li:hover { box-shadow: 0 0 5px #03b4f5;}
+.news-list .img { width: 184px; height: 130px; text-align: center; float: left;}
+.news-list .info { width: 610px; padding-left: 28px; color: #999; line-height: 24px; float: left;}
+.news-list .type { padding: 3px 12px; color: #fff; border-radius: 10px; background: #76d6f9;}
+.news-list .tit a { font-weight: normal; line-height: 36px; font-size: 18px; color: #333; transition: color 0.3s ease;}
+.news-list .tit a:hover { color: #03b4f5;}
+.pagination { margin: 45px 0;}
+.news-list .desrc{height:50px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis }
+ */
+/*资讯内容页*/
+.news-detail-box { width: 726px; padding: 20px 65px; min-height: 915px;}
+.detail-bd { padding: 30px 45px;}
+.detail-bd .title { font-size: 26px; color: #3a3a3a; text-align: center; margin-bottom: 20px;}
+.detail-bd .desc { color: #999; font-size: 14px; text-align: center; margin-bottom: 10px;}
+.detail-bd .content { color: #999; font-size: 14px; padding: 30px 0; line-height: 1.8; border-top: 1px solid #f1f2f3;}
+.detail-bd .content img { display: block; max-width: 100%; height: auto !important; margin: 20px auto;}
+/* 排行榜 */
+.rank-wp { width: 350px; padding: 0 18px; margin-top: 20px; overflow: hidden;}
+.rank-list { width: 350px; float: left;}
+.rank-list li { padding: 16px 0; line-height: 16px; border-bottom: 1px dashed #d7d7d7; overflow:hidden; position:relative;}
+.rank-list li:last-child { border-bottom: 0 none; }
+.rank-list em { width: 16px; height: 16px; text-align: center; color: #fff; background: #cbcbcb; border-radius: 2px; margin-right: 20px; float: left;}
+.rank-list .gname { font-size: 14px; color: #3a3a3a; float: left;}
+.rank-list .img { border-radius: 10px; overflow:hidden; display: none; float: left;}
+.rank-list .info { display: none; margin-left: 14px; float: left; }
+.rank-list .info .name { font-size: 14px; color: #d51838; margin: 12px 0;}
+.rank-list .xinfo { position:absolute; top: 16px; right: 0px; }
+.rank-list .opt { position:absolute; top: 38px; right: 0px; display: none; }
+.rank-list .gift, .rank-list .down { display:inline-block; vertical-align: top; width: 28px; height: 28px; background-position: 0 0; }
+.rank-list .down { background-position: 0px -40px;  }
+.rank-list .gift:hover { background-position: -40px 0; }
+.rank-list .down:hover { background-position: -40px -40px; }
+
+.rank-list .active em { margin-top: 26px; }
+.rank-list .active .img, .rank-list .active .info, .rank-list .active .xinfo, .rank-list .active .opt { display: block; }
+.rank-list .active .gname, .rank-list .active .xinfo { display: none; }
+/* 游戏资讯 */
+.mod-news { width: 384px; }
+.news-wp { padding: 14px 18px; height: 400px; margin-top: 20px; background: #fff;}
+.pnews-box { width: 100%; height: 120px; border-radius: 5px; overflow:hidden; position:relative; }
+.pnews-box p { width: 100%; height: 26px; line-height: 26px; text-align: center; color: #fff; background: #000; background: rgba(0, 0, 0, .5); position:absolute; bottom: 0; }
+.news-list {}
+.news-list li {}
+.news-list li a { display: block; line-height: 36px; font-size: 14px; color: #999; }
+.news-list li a:hover { color: #d51838 }

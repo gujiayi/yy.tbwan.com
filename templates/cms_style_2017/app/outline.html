@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="inside_game_con" id="outline_page">
+        <div class="i_com_box choose_set_clock mt25 none">
+            <h2 class="set_clock_h2">提醒设置</h2>
+            <div class="remind_set_area">
+                <div class="before_start">距离开始时间 <input type="text" class="before_second" />秒提醒 <a href="" class="sub_comon_btn">确认</a></div>
+                <div class="remind_tip">
+                    声音提示 <span class="remind_tip_txt">默认系统提示声</span><div class="bigswitch"><div class="switch_btn"></div></div></label>
+                </div>
+                <div class="remind_tip bd_shadow_none">
+                    震动提示 <span class="remind_tip_txt">静静提示，老板也未知</span><div class="bigswitch checked_ios"><div class="switch_btn"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="i_com_box has_set_clock_game">
+            <h2 class="set_clock_h2">已设定提醒的游戏</h2>
+            <ul id="ol_remind_list">
+                {{foreach from=$drop_list item=item}}
+                <li class="fix">
+                    <img class="set_clock_game_img" src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                    <div class="set_clock_game_ser">{{$item.NAME}}</div>
+                    <p class="gray_word">{{$DATA["{{$item.ALIAS}}_slogan"]}}</p>
+                    <div class="bigswitch checked_ios" gid="{{$item.ID}}"><div class="switch_btn"></div></div>
+                </li>
+                {{/foreach}}
+            </ul>
+        </div>
+        <div class="i_com_box area_value" id="type">
+            <div class="recom_title">
+                <h2><font class="tit_ico tit_ico05"></font>按字母查询</h2>
+            </div>
+            <div class="fix">
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if empty($cur_letter)}}class="current"{{/if}}>不限</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=recent&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="recent"}}class="current"{{/if}}>玩过的</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=ABCDE&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="ABCDE"}}class="current"{{/if}}>ABCDE</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=FGHIJK&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="FGHIJK"}}class="current"{{/if}}>FGHIJK</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=LMNOP&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="LMNOP"}}class="current"{{/if}}>LMNOP</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=QRSTU&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="QRSTU"}}class="current"{{/if}}>QRSTU</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=outline&letter=VWXYZ&session_id={{$smarty.get.session_id}}&token={{$smarty.get.token}}#type" {{if $cur_letter=="VWXYZ"}}class="current"{{/if}}>VWXYZ</a>
+            </div>
+        </div>
+        
+        <div class="i_com_box game_center_box outline_gc_list">
+            <ul class="fix">
+                {{foreach from=$games item=item}}
+                    <li class="game_center_row fix">
+                        <div class="game-icon fl">
+                            <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                        </div>
+                        <div class="game_center_msg">
+                            <div class="game_center_title">{{$item.NAME}}</div>
+                            <div class="game_center_summary ell">{{data name="{{$item.ALIAS}}_slogan"}}{{$DATA["{{$item.ALIAS}}_slogan"]}}</div>
+                            <div class="bigswitch" gid="{{$item.ID}}"><div class="switch_btn"></div>
+                        </div>
+                    </li>
+                {{/foreach}}	
+            </ul>
+            <div class="pagination" id="gamecenter-pagination"> {{$pagelist}} </div>
+        </div>
+    </div>
+    
+</div>
+  
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

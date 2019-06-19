@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+    <meta charset="utf-8">
+    <title>{{$CONFIG.site_title}}</title>
+    <meta name="keywords" content="{{$CONFIG.site_keyword}}" />
+    <meta name="description" content="{{$CONFIG.site_description}}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+    <link href="{{$CONFIG.resource}}/style/cms_style_2015/user/users_css.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+    {{if !$admin}} <script type="text/javascript"> document.domain = '{{$CONFIG.cookie_domain}}'; </script> {{/if}}
+
+    {{if $admin}} 
+    <script type="text/javascript"> C9377.domain = ''; </script>
+    <script type="text/javascript" src="/js/uploader.js?{{$CONFIG.build}}"></script>
+    {{/if}}
+    <script type="text/javascript">
+        var admin_role = {{$admin_role|json_encode}};
+        $(function(){
+            if({{$model.config.agree|json_encode}} == 1 && {{if $admin || $view}}false{{else}}true{{/if}}){
+                //协议弹出窗
+                $popup('#deal_box_warp');
+            }
+        });
+
+        function next(){
+            var agree = $("input:checked").val();
+            
+            if(agree == 1){
+                  $('#deal_box_warp').hide();
+                  if($.browser.msie && parseInt($.browser.version)==6){$("html,body").css("overflow","")};
+                  $(".gray").fadeOut(500);
+                  $(".gray").remove();
+                  return false;
+            }
+        }
+
+        //弹出层
+        function $popup(arg1){
+        	var $arg1=arg1;
+            var $pLeft=($(window).width()-$($arg1).width())/2+$(window).scrollLeft();
+        	var $pTop=($(window).height()-$($arg1).height())/2+$(window).scrollTop();
+        	$pTop=$pTop>0?$pTop:40;
+        	if($.browser.msie && parseInt($.browser.version)==6){ 
+        	  $("html,body").css("overflow","hidden");
+        	}
+        	$("<div class='gray'></div>").appendTo($("body"))
+        		.height($(document).height())
+        		.fadeTo("fast",0.7);
+        	$($arg1).css({
+        		display:'block',
+        		position:'absolute',
+        		left:$pLeft,
+        		top:$pTop,
+        		zIndex:1000
+        		});
+        		
+        	//窗口大小变化时调用
+        	$(window).bind('scroll resize',function(event){
+        		var $pLeft=($(window).width()-$($arg1).width())/2+$(window).scrollLeft();
+        		var $pTop=($(window).height()-$($arg1).height())/2+$(window).scrollTop();
+        		$($arg1).animate({
+        			left:$pLeft,
+        			top:$pTop
+        			},{duration:500,queue:false})
+        		})	
+        }
+    </script>
+ 
+</head>
+<body>
+
+    {{include file="header.html"}}
+
+    <script type="text/javascript">
+    $(function(){
+        $('#form').validate({
+        	errorPlacement: function(error, element){
+        		if(element.attr('type') == 'file'){
+        			element.parent().parent().siblings('.hint').append(error);
+        		}else{
+        			element.siblings('.hint').append(error);
+        		}
+        	},
+        	
+        	submitHandler: function(form){
+        		$('#form input[type=submit]').attr('disabled', true).val('正在提交中');
+        		
+        		form.submit();
+        	},
+
+        	onkeyup: false
+        });
+    });
+    </script>
+
+    {{if !empty($model['backend']) && $admin}}
+    <script type="text/javascript"> var FORM_ITEM = {{$data|json_encode}}; </script>
+    {{/if}}
+    <div class="user_section02 w998 fix mgv30">
+    <!--用户中心左边 开始--> 
+    <div class="user_main_area">
+        <div class="user_main_area_tit">
+            <h2>请您填写相关资料（<span style=" color:#FF0000;">*</span>为必填项）</h2>
+        </div>
+        <div class="question">
+        <form id="form" method="post" enctype="multipart/form-data">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            {{foreach from=$model.config.layout key=lid item=layout}}
+            <tr><td>&nbsp;</td></tr>
+            {{if $layout.title}}<tr><th colspan="2">{{$layout.title}}</th></tr>{{/if}}
+            
+            <!--layout start{-->
+            
+            <tr><td style="padding-top:10px" colspan="2"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
+            
+                {{assign var="width" value=intval(100 / $layout.columns)}}
+                {{foreach from=range(1, $layout.columns) item=column}}
+    			<td width="{{$width}}%">
+    				<table width="100%">
+    				<!--field start{-->
+    				{{foreach from=$model.layout["$lid/$column"].fields key=field item=field_data}}
+    				{{if empty($field_data['inputable']) && empty($admin) && empty($model['backend'])}}{{continue}}{{/if}}
+    				
+    				{{if $field_data.layout == 'horizon'}}
+    				<tr>
+    					<td valign="top"{{if $layout.text_width}} width="{{$layout.text_width}}%"{{/if}} class="subject">{{$field_data.alias}} {{if !empty($field_data['not_null'])}}<span style="color:red;">*</span>{{/if}}</td>
+    					<td>
+    						{{if $field_data.widget == 'file' && ($view || $admin && !empty($field_data['inputable']))}}
+    							{{foreach from=$data[$field] item=item}}
+    							<div>
+    								<a href="{{$item.url}}" target="_blank">{{$item.name}}</a>
+    								{{if $item.cthumb}}
+    									<a href="{{$item.cthumb}}" target="_blank">中缩略图</a>
+    								{{/if}}
+    								{{if $item.thumb}}
+    									<a href="{{$item.thumb}}" target="_blank">缩略图</a>
+    								{{/if}}
+    								{{if $field_data['config']['extra_config']['cthumb_width']}}
+    									<a href="/image_cut.php?url={{$item.url|urlencode}}{{foreach from=array('cthumb_width','cthumb_height') item=key}}{{if !empty($field_data['config']['extra_config'][$key])}}&{{$key}}={{$field_data['config']['extra_config'][$key]}}{{/if}}{{/foreach}}&cthumb=1" target="_blank">剪裁中缩略图</a>
+    								{{/if}}
+    								{{if $field_data['config']['extra_config']['thumb_width']}}
+    									<a href="/image_cut.php?url={{$item.url|urlencode}}{{foreach from=array('thumb_width','thumb_height') item=key}}{{if !empty($field_data['config']['extra_config'][$key])}}&{{$key}}={{$field_data['config']['extra_config'][$key]}}{{/if}}{{/foreach}}&thumb=1" target="_blank">剪裁缩略图</a>
+    								{{/if}}
+    							</div>
+    							{{/foreach}}
+    						{{else}}
+    							{{include file="form/widget/{{$field_data.widget}}.html"}}
+    						{{/if}}
+    						<span class="hint"></span>
+    						{{if !empty($field_data['config']['remark'])}}
+    							<span style="color:red;">{{$field_data['config']['remark']}}</span>
+    						{{/if}}
+    					</td>
+    				</tr>
+    				{{else}}
+    				<tr><td colspan="{{$column}}" class="subject">{{$field_data.alias}} {{if !empty($field_data['not_null'])}}<span style="color:red;">*</span>{{/if}}</td></tr>
+    				<tr><td colspan="{{$column}}">
+    					{{if $field_data.widget == 'file' && ($view || $admin && !empty($field_data['inputable']))}}
+    						{{foreach from=$data[$field] item=item}}
+    						<div>
+    							<a href="{{$item.url}}" target="_blank">{{$item.name}}</a>
+    							{{if $item.cthumb}}
+    								<a href="{{$item.cthumb}}" target="_blank">中缩略图</a>
+    							{{/if}}
+    							{{if $item.thumb}}
+    								<a href="{{$item.thumb}}" target="_blank">缩略图</a>
+    							{{/if}}
+    							{{if $field_data['config']['extra_config']['cthumb_width']}}
+    								<a href="/image_cut.php?url={{$item.url|urlencode}}{{foreach from=array('cthumb_width','cthumb_height') item=key}}{{if !empty($field_data['config']['extra_config'][$key])}}&{{$key}}={{$field_data['config']['extra_config'][$key]}}{{/if}}{{/foreach}}&cthumb=1" target="_blank">剪裁中缩略图</a>
+    							{{/if}}
+    							{{if $field_data['config']['extra_config']['thumb_width']}}
+    								<a href="/image_cut.php?url={{$item.url|urlencode}}{{foreach from=array('thumb_width','thumb_height') item=key}}{{if !empty($field_data['config']['extra_config'][$key])}}&{{$key}}={{$field_data['config']['extra_config'][$key]}}{{/if}}{{/foreach}}&thumb=1" target="_blank">剪裁缩略图</a>
+    							{{/if}}
+    						</div>
+    						{{/foreach}}
+    					{{else}}
+    						{{include file="form/widget/{{$field_data.widget}}.html"}}
+    					{{/if}}
+    					<span class="hint"></span>
+    					{{if !empty($field_data['config']['remark'])}}
+    						<span style="color:red;">{{$field_data['config']['prompt']}}</span>
+    					{{/if}}
+    				</td></tr>
+    				{{/if}}
+    				
+    				<script type="text/javascript">
+    				$(function(){
+    					{{if !empty($field_data['not_null']) && (($admin xor $field_data['inputable']) && !$view || $model['backend'])}}
+    						$('#form *[name{{if in_array($field_data['widget'], array('checkbox', 'file'))}}^{{/if}}="field#[{{$field}}]"]').rules('add', {
+    							required: true,
+    							messages: { required: '&nbsp;' }
+    						});
+    					{{/if}}
+    					
+    					//view, readonly
+    					{{if $admin && empty($model['backend']) && $field_data['inputable'] || $view}}
+    						$('#form *[name{{if $field_data['widget'] == 'checkbox'}}^{{/if}}="field#[{{$field}}]"]').attr('readonly', true);
+    					{{/if}}
+    					
+    					//default value
+    					{{if $field_data.widget == 'checkbox' || $field_data.widget == 'radio'}}
+    						if($_GET['field#'] !== undefined && $_GET['field#']['{{$field}}']){
+    							for(var i in $_GET['field#']['{{$field}}']){
+    								$('#field#[{{$field}}]['+ i +']').attr('checked', true);
+    							}
+    						}
+    					{{else}}
+    						if($_GET['field#'] !== undefined && $_GET['field#']['{{$field}}']){
+    							$('#field#[{{$field}}]').val($_GET['field#']['{{$field}}']);
+    						}
+    					{{/if}}
+    				});
+    				</script>
+    				
+    				{{if !empty($field_data['config']['js_code'])}}
+    				<script type="text/javascript">
+    				{{$field_data['config']['js_code']}}
+    				</script>
+    				{{/if}}
+    				
+    				{{/foreach}}
+    				<!--field end}-->
+    				</table>
+    			</td>
+                {{/foreach}}
+            </tr></table></td></tr>
+            {{/foreach}}
+            <!--layout end}-->
+            <tr>
+                <td width="100%" colspan="2">
+                {{data name="表单备注"}}
+                {{$DATA['表单备注']}}
+                </td>
+            </tr>
+            
+            
+            {{if (!empty($admin) || $view) && empty($model['backend'])}}
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <th>处理进度</th>
+            </tr>
+            <tr>
+                <td>
+                    {{foreach from=$model['config']['status'] key=k item=v}}
+                        <input type="radio" id="status_{{$k}}" name="status" value="{{$k}}"{{if $data['status'] == $k}} checked{{/if}} /><label for="status_{{$k}}"{{if $data['status'] == $k}} style="color: red;"{{/if}}>{{$v}}</label>
+                    {{/foreach}}
+                    <span class="hint"></span>
+                    
+                    <script type="text/javascript">
+                    $(function(){
+                        $('#form input[name=status]').rules('add', {
+                            required: true,
+                            
+                            messages: { required: '&nbsp;' }
+                        });
+                    });
+                    </script>
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <th>回复内容</th>
+            </tr>
+            <tr>
+                <td>
+                    {{if $view}}
+                        {{$data.reply_content}}
+                    {{else}}
+                        <textarea name="reply_content" id="reply_content">{{$data.reply_content|escape:html}}</textarea>
+                        <span class="hint"></span>
+                        
+                        <script type="text/javascript">
+                        P8_CKEDITOR({
+                            id: 'reply_content',
+                            config: { height: 300 }
+                        });
+                        
+                        $(function(){
+                            $('#form textarea[name=reply_content]').rules('add', {
+                                required: true,
+                                
+                                messages: { required: '填写回复内容' }
+                            });
+                        });
+                        </script>
+                    {{/if}}
+                </td>
+            </tr>
+            
+            {{if $view && $data['status'] == $model['config']['status_to_rate'] && empty($model['backend'])}}
+            <tr>
+                <th>反馈</th>
+            </tr>
+            <tr>
+                <td>
+                    {{foreach from=$model['config']['rate'] key=k item=v}}
+                    <input type="radio" id="rate_{{$k}}" name="rate" value="{{$k}}"{{if $data['rate'] && $data['rate'] == $k}} checked{{/if}} /><label for="rate_{{$k}}">{{$v}}</label>
+                    {{/foreach}}
+                    <span class="hint"></span>
+                    
+                    <script type="text/javascript">
+                    $(function(){
+                        $('#form input[name=rate]').rules('add', {
+                            required: true,
+                            
+                            messages: { required: '请对我们的工作进行反馈' }
+                        });
+                    });
+                    </script>
+                </td>
+            </tr>
+            {{/if}}
+            
+            {{assign var="rate_content" value=!$admin && !empty($model['config']['rate_content']) && !empty($model['config']['rate_content_disable_status']) && $data['status'] != $model['config']['rate_content_disable_status']}}
+            {{if $admin || $view && $rate_content}}
+            <tr>
+                <th>补充内容</th>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="rate_content" cols="111" rows="8">{{$data.rate_content|escape:html}}</textarea><br />
+                    <span class="hint"></span>
+                    
+                    {{if !$admin}}
+                    <script type="text/javascript">
+                    $(function(){
+                        $('#form textarea[name=rate_content]').rules('add', {
+                            required: true,
+                            
+                            messages: { required: '请填写补充内容' }
+                        });
+                    });
+                    </script>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/if}}
+            
+            {{if !$admin && !empty($model['config']['captcha']) && !$view || $rate_content}}
+            <tr>
+                <td colspan="2">
+                    <span>验证码</span>
+                    <input type="text" id="code" name="captcha" size="4" />
+                    <img onclick="this.src= '/code.php?' +Math.random();" src="/code.php?{{$TIMESTAMP}}" title="点击更换" style="cursor: pointer;" />
+                    <span class="hint"></span>
+                    
+                    <script type="text/javascript">
+                    $(function(){
+                        $('#form input[name=captcha]').rules('add', {
+                            required: true,
+                            remote: {
+                                url: '/check_user.php',
+                                cache: false,
+                                data: {'do': 'code', 'new': 1, code: function(){ return $('#code').val(); }},
+                                beforeSend: function(){}
+                            },
+                            
+                            messages: {
+                                required: '请填写验证码',
+                                remote: '验证码不正确'
+                            }
+                        });
+                    });
+                    </script>
+                </td>
+            </tr>
+            {{/if}}
+            
+            
+            {{/if}}
+        </table>
+        
+        <input type="hidden" name="id" value="{{$data.id}}" />
+        
+        {{if !$view || $rate_content}}
+            <input type="hidden" name="forward" value="{{if $smarty.const.ADMIN_9377}}{{else}}{{$CONFIG.url}}/form/schedule.php{{/if}}" />
+            <div align="center"><input type="submit" value="提交" class="que_submit" disabled /></div>
+        {{elseif $view && !$data['rate'] && $data['status'] == $model['config']['status_to_rate']}}
+            <div align="center"><input type="submit" value="反馈" class="que_submit" disabled /></div>
+        {{/if}}
+        
+        </form>
+        </div>
+    </div>
+
+    <!--侧边栏部分-->
+    <div class="user_sidebar">
+        <div class="user_left_menu">
+            <ul class="kefu_center_menu n_bg">
+                <li><a id="user_stolen" href="{{$CONFIG.app_url}}/form/submit.php?name=user_stolen">账号丢失申诉</a></li>
+                <li><a id="goods_stolen" href="{{$CONFIG.app_url}}/form/submit.php?name=goods_stolen">装备被盗申诉</a></li>
+                <li><a id="data_modification" href="{{$CONFIG.app_url}}/form/submit.php?name=data_modification">资料修改申请</a></li>
+                <li><a id="buy_error" href="{{$CONFIG.app_url}}/form/submit.php?name=buy_error">充值未到账申诉</a></li>
+                <li><a id="delay_reward" href="{{$CONFIG.app_url}}/form/submit.php?name=delay_reward">服务器问题</a></li>
+                <li><a id="report_plug_in" href="{{$CONFIG.app_url}}/form/submit.php?name=report_plug_in">举报外挂非法程序</a></li>
+                <li><a id="bug_report" href="{{$CONFIG.app_url}}/form/submit.php?name=bug_report">游戏建议与bug反馈</a> </li>
+                <li><a id="complaints_praise" href="{{$CONFIG.app_url}}/form/submit.php?name=complaints_praise">投诉</a></li>
+                <li><a id="praises" href="{{$CONFIG.app_url}}/form/submit.php?name=praises">表扬</a></li>
+            </ul>
+        </div>
+      </div>
+    <!--侧边栏部分结束--> 
+
+    </div>
+    <!--管理系统结束-->
+
+    <script type="text/javascript">
+        $('#form input[type=text]').addClass('input_text');
+        $(function(){
+            $('#form input[type=submit]').attr('disabled', false);
+            $("#{{$model.name}}").addClass("cur_hover"); 
+        });
+    </script>
+    <div id='deal_box_warp' style="display:none">
+        <div class="deal_box_1">
+          <div class="deal_con">
+            <p style="font-size:15px; font-weight:bold;">账号被盗申诉协议</p>
+            <p>账号被盗申诉协议</p>
+            <div class="con_box">
+            {{data name="协议内容"}}
+            {{$DATA['协议内容']}}
+            </div>
+            <p class="agren"><span><input name="agree" type="radio" value="1" checked/>同意</span><span><input name="agree" type="radio" value="0" />不同意</span></p>
+            <p class="deal_btn"><a href="javascript:" onClick="next()" class="next">下一步</a><a href="{{$CONFIG.url}}/form/" class="reset">取消</a></p>
+
+          </div>
+        </div>
+    </div>
+
+    {{include file="footer.html"}}
+    
+    <script type="text/javascript">
+    var fixedSize = false, menuID = 6;
+    // 导航去掉选中状态
+    $(function(){
+    	$(".user_left_menu li a.cur_hover").parent("li").addClass("use_mouse_out");
+    	$(".user_left_menu ul").hover(function(){
+    		$(".user_left_menu li a").removeClass("cur_hover");
+    	},function(){
+    		$(".user_left_menu li.use_mouse_out a").addClass("cur_hover");
+    	});
+    });
+    </script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/calendar.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

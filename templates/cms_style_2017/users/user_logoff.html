@@ -1,0 +1,96 @@
+<div class="mod"><p class="mod-hd">
+	<em class="mod-tit">账号注销</em>
+</p></div>
+<div class="user-mod-wp user-mod-logoff">
+	{{if !$user.PHONE || !$user['NAME'] || !$user['ID_CARD_NUMBER']}}
+	<div class="level-tips"><i></i>该操作需要完善下列资料，请先进行完善</div>
+	<form action="" method="POST" class="form-logoff form-logoff-no">
+		<p class="hd">该操作需要完善下列资料，请先进行完善</p>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>绑定手机：</label>
+			<div class="w-div phone-row">
+				{{if $user.BIND_CELLPHONE && $user.PHONE}}
+					已绑定
+				{{else}}
+					未绑定 <a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" class="btn btn-l btn-green mgh30">前往绑定</a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>姓名验证：</label>
+			<div class="w-div phone-row">
+				{{if $user['NAME'] !=''}}
+					已绑定
+				{{else}}
+					未绑定 <a href="{{$CONFIG.app_url}}/users/users_index.php?type=22" class="btn btn-l btn-green mgh30">前往绑定</a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>身份证验证：</label>
+			<div class="w-div phone-row">
+				{{if $user['ID_CARD_NUMBER'] !=''}}
+					已绑定
+				{{else}}
+					未绑定 <a href="{{$CONFIG.app_url}}/users/users_index.php?type=22" class="btn btn-l btn-green mgh30">前往绑定</a>
+				{{/if}}
+			</div>
+		</div>
+	</form>
+	{{else}}
+	<div class="level-tips"><i></i>账号一旦注销则无法恢复，该操作请谨慎处理</div>
+	<!-- .form-mibao-phone1 应用做布局 -->
+	<form action="" method="POST" class="form-mibao-phone form-mibao-phone1 form-logoff">
+		<div class="w-item">
+			<label class="w-label"><i>*</i>注销帐号：</label>
+			<div class="w-div">{{$user.LOGIN_ACCOUNT}}</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>已绑定手机号码：</label>
+			<div class="w-div phone-row">
+				{{if $user.BIND_CELLPHONE && $user.PHONE}}
+					{{$user.PHONE}}
+				{{else}}
+					<a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" class="col1">绑定手机后才可注销，点击绑定</a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>验证码：</label>
+			<div class="w-div pd0">
+				<input name="code" type="text" class="w-input" maxlength="4" />
+				<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code"/>
+			</div>
+			<div class="w-tips w-tips1"></div>
+		</div>
+		<div class="w-item">
+			<label class="w-label"><i>*</i>短信验证码：</label>
+			<div class="w-div pd0">
+				<input type="text" name="captcha" id="captcha" class="w-input" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+				<input type="button" value="点击发送" onClick="userLogOff.sendCaptcha(this);" class="w-button btn-green">
+			</div>
+			<div class="w-tips w-tips2"></div>
+		</div>
+		{{if $user['NAME'] !='' and $user['NAME'] != '张三'}}
+		<div class="w-item">
+			<label class="w-label"><i>*</i>真实姓名：</label>
+			<input type="text" name="name" class="w-input">
+			<div class="w-tips w-tips3"></div>
+		</div>
+		{{/if}}
+		{{if $user['ID_CARD_NUMBER'] != ''}}
+		<div class="w-item">
+			<label class="w-label"><i>*</i>身份证号：</label>
+			<input type="text" name="idc" class="w-input">
+			<div class="w-tips w-tips4"></div>
+		</div>
+		{{/if}}
+    	{{if $user.BIND_CELLPHONE && $user.PHONE}}
+		<div class="w-item">
+			<label class="w-label"></label>
+			<a href="javascript:;" onClick="userLogOff.confirm()" class="btn btn-l btn-red mgv15">确认注销</a>
+		</div>
+		{{/if}}
+	</form>
+	{{/if}}
+</div>

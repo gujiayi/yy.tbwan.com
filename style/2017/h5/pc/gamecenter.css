@@ -1,0 +1,23 @@
+.g-tit { height: 30px; line-height: 30px; color: #383838; font-size: 22px; margin: 20px 0; position: relative;}
+.g-tit i {display: inline-block; vertical-align: top; width: 30px; height: 30px; background:url(/images/2017/h5/pc/kai-index.png?201611051634) -1px 4px no-repeat;}
+
+.game-select-box { padding: 15px 40px; background: #fff;}
+.game-item { height: 30px; line-height: 30px; overflow: hidden; color: #999;}
+.game-select-box span { color: #666; }
+.game-select-box a { color: #999; margin-right: 10px; margin-left: 6px;}
+.game-select-box a:hover, .game-select-box .active { color: #03b4f5;}
+.game-content-box { margin-top: 30px; }
+.game-list { margin-right: -30px;}
+.game-list li { width: 318px; height: 188px; margin: 0 23px 20px 0; float: left; position:relative;}
+.game-list .img { display: block; width: 98px; height: 98px; border-radius: 15px; overflow:hidden; margin: 20px 20px 0 16px; float: left;}
+.game-list .img img { max-width: 100%; height: auto!important; }
+.game-list .name { display: block; height: 16px; line-height: 16px; font-size: 18px; color: #666; margin: 20px 0 10px; }
+.game-list .name:hover { color: #03b4f5; }
+.game-list .intro { line-height: 22px; padding-right: 20px;}
+
+.game-list .opt { overflow:hidden; position:absolute; left: 0px; bottom: 0px; }
+.game-list .enterhome, .game-list .download { width: 158px; height: 44px; line-height: 44px; font-size: 16px; color: #848484; text-align: center; border-top: 1px solid #d4d4d4; float: left; position:relative;}
+.game-list .enterhome { border-right: 1px solid #ddd;}
+.game-list .download { width: 159px; border-left: 1px solid #ddd; margin-left: -1px;}
+.game-list .enterhome:hover { color: #fff; border-color: #03b4f5; background: #03b4f5; z-index: 2;}
+.game-list .download:hover { color: #fff; border-color: #53e098; background: #53e098; z-index: 2;}

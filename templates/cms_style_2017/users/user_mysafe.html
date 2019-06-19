@@ -1,0 +1,572 @@
+<div class="mod"><p class="mod-hd">
+	<em class="mod-tit">帐号安全</em>
+	{{if $is_admin}}<a class="col1" href="{{$CONFIG.app_url}}/users/users_index.php?act=test_exception">测试登录异常，仅登录后台后可测</a>{{/if}}
+</p></div>
+<div class="user-mod-wp user-mod-myacc">
+	{{if $type == 9}}
+		<div class="part part-1 pl70"> 
+			<div class="level-wp"> 账号安全：<span class="save-level">
+			{{section name="tt" loop=$user.security_per}}<i class="v"></i>{{/section}}
+			{{section name="tt" loop=3-$user.security_per}}<i></i>{{/section}}
+			</span> 安全指数： <em>{{$user.security_level}}</em> </div>
+			{{if $user.infos_num != 4}} 
+			<div class="level-tips"><i></i>您的账号存在 <strong>{{4-$user.infos_num}}</strong> 项安全隐患，请进行完善资料，以免造成账号受损</div> 
+			{{else}}
+			<div class="level-tips level-full"><i></i>您已经完善所有账号安全资料，请您妥善保管避免忘记</div> 
+			{{/if}}
+		</div>
+		<div class="part part-2 pl70">
+			<ul class="setting-list">
+				<li>
+					<i class="icon-ques"></i>
+					<div class="info">
+						<p><span>密保问题</span> 
+						{{if !empty($user.ANSWER)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+						</p>
+						<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+					</div>
+					<a href="javascript:;" onClick="userVphone.push('{{$CONFIG.app_url}}/users/users_index.php?type=2')" class="btn btn-m">
+						{{if !empty($user.ANSWER)}}重置密保{{else}}设置密保{{/if}}
+					</a>
+				</li>
+				<li>
+					<i class="icon-email"></i>
+					<div class="info">
+						<p>
+						<span>密保邮箱</span>
+						{{if !empty($user.EMAIL)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+						{{if !empty($user.EMAIL)}}<span class="binded">已绑定邮箱{{$user.EMAIL}}</span>{{/if}}
+						</p>
+						<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+					</div>
+					<a href="javascript:;" onClick="userVphone.push('{{$CONFIG.app_url}}/users/users_index.php?type=20')" class="btn btn-m btn-sver">{{if !empty($user.EMAIL)}}重置邮箱{{else}}设置邮箱{{/if}}</a>
+				</li>
+				<li>
+					<i class="icon-phone"></i>
+					<div class="info">
+						<p><span>手机号码</span>
+						{{if $user.BIND_CELLPHONE && $user.PHONE}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+						</p>
+						<p class="desc">用于忘记密码或帐号被盗时快速重置密码</p>
+					</div>
+					<a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" class="btn btn-m">{{if !empty($user.PHONE) && !empty($user.BIND_CELLPHONE)}}重置手机{{else}}设置手机{{/if}}</a>
+				</li>
+				<li>
+					<i class="icon-idcard"></i>
+					<div class="info">
+						<p><span>证件信息</span>
+						{{if !empty($user.ID_CARD_NUMBER)}}<em class="tag tag-green">已设置</em>{{else}}<em class="tag">未设置</em>{{/if}}
+						</p>
+						<p class="desc">用于帐号防沉迷认证，是账号申诉的重要依据</p>
+					</div>
+					<a href="{{$CONFIG.app_url}}/users/users_index.php?type=21" class="btn btn-m">{{if !empty($user.ID_CARD_NUMBER)}}查看证件{{else}}设置证件{{/if}}</a>
+				</li>
+			</ul>
+		</div>
+	{{/if}}
+	
+	<div class="none">
+		{{if $type == 9}}
+			{{if empty($user.ID_CARD_NUMBER)}}
+			<div class="part part-3">
+				<!-- 未验证 -->
+				<form action="" method="POST" class="form-mibao-idcard">
+					<dl>
+						<dt>防沉迷认证：</dt>
+						<dd>
+							<div class="w-item">
+								<label class="w-label">真实姓名</label>
+								<input type="text" name="name" class="w-input">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label class="w-label">身份证号</label>
+								<input type="text" name="id_card_number" class="w-input">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label class="w-label">&nbsp;</label>
+								<div class="w-div"><input type="submit" class="btn btn-l" value="确  定"></div>
+							</div>
+						</dd>
+					</dl>
+				</form>
+				<div class="desc">根据政府相关规定， 未满18周岁的玩家将被纳入防沉迷范围；届时被纳入防沉迷的玩家，游戏收益将会受损；未填写身份证玩家在游戏内3小时后会被踢下线或收益减半5小时后被踢下线，请各位玩家尽快填写姓名、身份证信息，以便顺畅游戏。<em>此帐号的身份证信息只能填写一次，是判断帐号归属的重要依据。</em></div>
+			</div>
+			{{else}}
+			<div class="part part-4">
+				<!-- 已验证 -->
+				<p class="fz14">防沉迷认证：</p>
+				<div class="table">
+					<div class="tr tr1">
+						<div class="td">真实姓名</div>
+						<div class="td">身份证号</div>
+					</div>
+					<div class="tr tr2">
+						<div class="td">{{$user.NAME}}</div>
+						<div class="td">{{$user.ID_CARD_NUMBER}}</div>
+					</div>
+					<div class="tr tr3">
+						<em class="flag">已通过验证</em>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{/if}}
+	</div>
+	
+	{{if $type == 2}}
+		{{if !$user['QUESTION']}}
+		<div class="part part-5">
+			<!-- 设置密保问题 -->
+			<h3 class="mibao-hd"><i class="icon-qques"></i> 密保问题</h3>
+			<div class="mibao-bd mibao-que-fix">
+				<p class="mibao-tit"><i class="icon-no"></i>您的账号尚未设置密保问题</p>
+				<form action="" method="POST" class="form-mibao-setting">
+					<div class="w-item">
+						<label class="w-label"><i>*</i>问题：</label>
+						<select name="question" id="question" class="w-select">
+							<option value="">请选择一个问题</option>
+							<option value="我就读的第一所学校的名称？">我就读的第一所学校的名称？</option>
+							<option value="我最喜欢的休闲运动是什么？">我最喜欢的休闲运动是什么？</option>
+							<option value="我最喜欢的运动员是谁？">我最喜欢的运动员是谁？</option>
+							<option value="我最喜欢的物品的名称？">我最喜欢的物品的名称？</option>
+							<option value="我最喜欢的歌曲？">我最喜欢的歌曲？</option>
+							<option value="我最喜欢的食物？">我最喜欢的食物？</option>
+							<option value="我最爱的人的名字？">我最爱的人的名字？</option>
+							<option value="我最爱的电影？">我最爱的电影？</option>
+							<option value="我妈妈的生日？">我妈妈的生日？</option>
+							<option value="我的初恋日期？">我的初恋日期？</option>
+						</select>
+						<div class="w-tips w-tips1"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"><i>*</i>答案：</label>
+						<input type="text" name="answer" id="answer" class="w-input">
+						<div class="w-tips w-tips2"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"></label>
+						<div class="w-div-l tc mgv15">
+							<a href="javascript:bindQue.setNew();" class="btn btn-l btn-green">确 定</a>
+						</div>
+					</div>
+					<div class="mibao-tips">
+						<em class="fl">注：</em>
+						<div class="fl">
+							<p>密保问题是用户找回帐号密码的重要手段，请认真填写并谨记！</p>
+							<p>绑定后可通过密保问题快速重置密码</p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		{{else}}
+			{{if $smarty.get.t == 2}}
+			<div class="part part-5">
+				<!-- 修改密保问题 -->
+				<h3 class="mibao-hd"><i class="icon-qques"></i> 密保问题</h3>
+				<div class="mibao-bd mibao-que-fix">
+					<form action="" method="POST" class="form-mibao-edit mgv40">
+						<input name="do" value="pwd_bh" type="hidden">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>原密保问题：</label>
+							<input type="text" value="{{$user['QUESTION']}}" disabled="disabled" class="w-input">
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>原密保答案：</label>
+							<input type="text" name="old_answer" class="w-input">
+							<div class="w-tips w-tips1"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>新密保问题：</label>
+							<select name="question" id="question" class="w-select">
+								<option value="">请选择一个问题</option>
+								<option value="我就读的第一所学校的名称？">我就读的第一所学校的名称？</option>
+								<option value="我最喜欢的休闲运动是什么？">我最喜欢的休闲运动是什么？</option>
+								<option value="我最喜欢的运动员是谁？">我最喜欢的运动员是谁？</option>
+								<option value="我最喜欢的物品的名称？">我最喜欢的物品的名称？</option>
+								<option value="我最喜欢的歌曲？">我最喜欢的歌曲？</option>
+								<option value="我最喜欢的食物？">我最喜欢的食物？</option>
+								<option value="我最爱的人的名字？">我最爱的人的名字？</option>
+								<option value="我最爱的电影？">我最爱的电影？</option>
+								<option value="我妈妈的生日？">我妈妈的生日？</option>
+								<option value="我的初恋日期？">我的初恋日期？</option>
+							</select>
+							<div class="w-tips w-tips2"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>新密保答案：</label>
+							<input type="text" name="answer" id="answer" class="w-input">
+							<div class="w-tips w-tips3"></div>
+						</div>
+
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div-l tc mgv15">
+								<a href="javascript:bindQue.modQue();" class="btn btn-l btn-green">确定修改</a>
+								<a href="http://www.9377.com/users/users_index.php?type=9" class="btn btn-l btn-gray mgh10">返 回</a>
+							</div>
+						</div>
+						<div class="mibao-tips">
+							<em class="fl">注：</em>
+							<div class="fl">
+								<p>密保问题是用户找回帐号密码的重要手段，请认真填写并谨记！</p>
+								<p>绑定后可通过密保问题快速重置密码</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			{{else}}
+			<div class="part part-5">
+				<!-- 成功设置密保问题 -->
+				<h3 class="mibao-hd"><i class="icon-qques"></i> 密保问题</h3>
+				<div class="mibao-bd mibao-success-wp">
+					<p class="mibao-tit"><i class="icon-yes"></i>您的账号已设置密保问题</p>
+					<p class="ver-ok-tit"><span class="col1">*</span> 密保问题：<span class="col1">{{$user['QUESTION']}}</span></p>
+					<div class="tc">
+						<a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" class="btn btn-l btn-blue mgh10">返 回</a>
+						<a href="?type=2&t=2" class="btn btn-l btn-gray mgh10">修改问题</a>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{/if}}
+	{{/if}}
+
+	{{if $type == 20}}
+		<!-- t不存在是初始操作，2是重置页面，3是重置流程 -->
+		{{if $smarty.get.t != 2}}
+			<div class="part part-6 {{if $user.EMAIL || $smarty.get.t == 3}}none{{/if}}" id="form-mail-step1">
+				<!-- 密保邮箱 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd mibao-email-fix3">
+					{{if $smarty.get.t == 3}}
+						<p class="mibao-tit mibao-tit-fix">请输入新的密保邮箱</p>
+					{{else}}
+						<p class="mibao-tit"><i class="icon-no"></i>您的账号尚未设置密保邮箱</p>
+					{{/if}}
+					<div class="form-mibao-email">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>设置邮箱：</label>
+							<input type="text" name="email" class="w-input">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div-l tc mgv15"><a href="javascript:bindEmail.getCode();" class="btn btn-l pdh10 btn-blue">发送验证邮件</a></div>
+						</div>
+						<div class="mibao-tips mg0 mibao-tips-fix4">
+							<em class="fl">注：</em>
+							<div class="fl">
+								<p>密保邮箱是用户找回帐号密码的重要手段，请认真填写并谨记！</p>
+								<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="part part-6 none" id="form-mail-step2">
+				<!-- 密保邮箱 2 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd tc mgv40">
+					<p class="fz16">验证邮件已发送至您的密保邮箱：<span class="col1" id="qemail"></span></p>
+					<p class="fz14 mgv20"><i class="col1">*</i>请您尽快登录邮箱，按邮件中指示完成验证 <a href="javascript:;" class="btn-button btn-button-disabled"><em id="cd">120</em>S后重新验证</a></p>
+					<p> <a href="javascript:;" target="_blank" class="btn btn-l btn-blue mgh10 J-tomail">登录邮箱</a> </p>
+				</div>
+				<div class="mibao-tips tc mg0">
+					<p><em class="col1">提示：</em>系统已经向该邮箱发送一封验证激活邮件，请尽快查看并激活</p>
+					<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+				</div>
+			</div>
+			<div class="part part-6 none" id="form-mail-step3">
+				<!-- 密保邮箱 3 -->
+				<div class="form-mibao-email">
+					<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+					<div class="mibao-bd mibao-email-fix4">
+						<p class="fz16 mgv40 mibao-tit-fix2">请输入邮件中的验证码</p>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<input type="text" name="code" class="w-input">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div-l tc mgv15">
+								<a href="javascript:bindEmail.bind();" class="btn btn-l btn-blue">验 证</a>
+							</div>
+						</div>
+					</div>
+					<div class="mibao-tips mibao-tips-fix5">
+						<em class="col1 fl">注：</em>
+						<div class="fl">
+							<p>为了您的账号安全，重置密保邮箱需要进行邮箱验证</p>
+							<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="part part-6 {{if !$user.EMAIL || ($user.EMAIL && $smarty.get.t == 3)}}none{{/if}}" id="form-mail-step4">
+				<!-- 成功设置密保邮箱 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd mibao-success-wp">
+					<p class="mibao-tit"><i class="icon-yes"></i>您的账号已设置密保邮箱</p>
+					<p class="ver-ok-tit"><span class="col1">*</span> 密保邮箱：<span class="col1" id="binded-mail">{{$user.EMAIL}}</span></p>
+					<div class="tc mgv40">
+						<a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" class="btn btn-l btn-blue mgh10">返 回</a>
+						<a href="?type=20&t=2" class="btn btn-l btn-gray mgh10">重置邮箱</a>
+					</div>
+					<div class="mibao-tips mibao-tips-fix1">
+						<em class="fl">注：</em>
+						<div class="fl">
+							<p>密保邮箱是用户找回帐号密码的重要手段，请认真填写并谨记！</p>
+							<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="part part-6 {{if $smarty.get.t != 3}}none{{/if}}" id="form-remail-step3">
+				<!-- 重置密保邮箱确认 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd mibao-email-fix2">
+					<p class="mibao-tit mibao-tit-fix mibao-tit-fix1">请输入邮件中的验证码</p>
+					<div class="form-mibao-email">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<input type="text" name="email-code" class="w-input">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div-l tc"><a href="javascript:bindEmail.verRemCode();" class="btn btn-l btn-blue">验 证</a></div>
+						</div>
+						<div class="mibao-tips mg0 mibao-tips-fix3">
+							<em class="fl">注：</em>
+							<div class="fl">
+								<p>为了您的账号安全，重置密保邮箱需要进行邮箱验证</p>
+								<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{{else}}
+			<div class="part part-6" id="form-remail-step1">
+				<!-- 重置密保邮箱 1 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd">
+					<form action="" class="form-mibao-email mibao-email-fix">
+						<p class="hd">您已绑定的密保邮箱：<span class="col1">{{$user.EMAIL}}</span></p>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<input type="text" name="code" class="w-input-s" >
+							<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="mt5 ml10 fl"/>
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div pd0 mgv10">
+								<a href="javascript:bindEmail.reset1();" class="btn btn-l btn-green">确定</a>
+								<a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" class="btn btn-l btn-gray mgh10">返 回</a>
+							</div>
+						</div>
+						<div class="mibao-tips"> <em class="col1">注：</em> 为了您的账号安全，重置密保邮箱前需要进行邮箱验证！ </div>
+					</form>
+				</div>
+			</div>
+			<div class="part part-6 none" id="form-remail-step2">
+				<!-- 重置密保邮箱 2 -->
+				<h3 class="mibao-hd"><i class="icon-qemail"></i> 密保邮箱</h3>
+				<div class="mibao-bd tc mgv40">
+					<p class="fz16">验证邮件已发送至您的密保邮箱：<span class="col1">{{$user.EMAIL}}</span></p>
+					<p class="fz14 mgv20"><i class="col1">*</i>请您尽快登录邮箱，按邮件中指示完成验证 <a href="javascript:;" class="btn-button btn-button-disabled"><em id="cd">120</em>S后重新验证</a></p>
+					<p> <a href="javascript:;" target="_blank" class="btn btn-l btn-blue mgh10 J-tomail">登录邮箱</a> </p>
+				</div>
+				<div class="mibao-tips mibao-tips-fix2">
+					<em class="fl">注：</em>
+					<div class="fl">
+						<p>系统已经向该邮箱发送一封验证激活邮件，请尽快查看并激活</p>
+						<p>如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</p>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+	{{/if}}
+
+	{{if $type == 21}}
+		{{if empty($user.ID_CARD_NUMBER)}}
+		<div class="part part-7">
+			<!-- 防沉迷验证 -->
+			<h3 class="mibao-hd"><i class="icon-qcard"></i> 证件信息</h3>
+			<div class="mibao-bd">
+				<p class="mibao-tit mibao-tit-fix3"><i class="icon-no"></i>您的账号尚未设置防沉迷验证</p>
+				<form method="POST" class="form-mibao-idcard mibao-idc-fix1">
+					<div class="w-item">
+						<label class="w-label"><i>*</i>真实姓名：</label>
+						<input type="text" name="name" value="{{$user['NAME']}}" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"><i>*</i>身份证号：</label>
+						<input type="text" name="id_card_number" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"></label>
+						<div class="w-div-l tc"><input type="submit" value="确 定" class="btn btn-l btn-green mgv15"></div>
+					</div>
+				</form>
+				<div class="mibao-tips mibao-tips-fix7">
+					<span class="col1">注：</span>根据政府相关规定， 未满18周岁的玩家将被纳入防沉迷范围；届时被纳入防沉迷的玩家，游戏收益将会受损； 未填写身份证玩家在游戏内3小时后会被踢下线或收益减半5小时后被踢下线，请各位玩家尽快填写姓名、身份证信 息，以便顺畅游戏。<span class="col1">此帐号的身份证信息只能填写一次，是判断帐号归属的重要依据。</span>
+				</div>
+			</div>
+		</div>
+		{{else}}
+		<div class="part part-7">
+			<!-- 成功防沉迷验证 -->
+			<h3 class="mibao-hd"><i class="icon-qcard"></i> 证件信息</h3>
+			<div class="mibao-bd mibao-success-wp">
+				<p class="mibao-tit"><i class="icon-yes"></i>您的账号已通过防沉迷验证</p>
+				<div class="idcard-info">
+					<p><span class="col1">*</span> 真实姓名：<span class="col1">{{$user.NAME}}</span></p>
+					<p><span class="col1">*</span> 身份证号：<span class="col1">{{$user.ID_CARD_NUMBER}}</span></p>
+				</div>
+				<div class="col1 tc"> 注：帐号的身份证信息只能填写一次，是判断帐号归属的重要依据。 </div>
+			</div>
+		</div>
+		{{/if}}
+	{{/if}}
+
+	{{if $type == 6}}
+		{{if $smarty.get.t != 2}}
+			{{if $user.PHONE && $user.BIND_CELLPHONE}}
+			<div class="part part-8" id="form-phone-step2">
+				<!-- 成功设置密保手机 -->
+				<h3 class="mibao-hd"><i class="icon-qphone"></i> 密保手机</h3>
+				<div class="mibao-bd mibao-success-wp">
+					<p class="mibao-tit"><i class="icon-yes"></i>您的账号已绑定密保手机</p>
+					<p class="ver-ok-tit"><span class="col1">*</span> 密保手机：<span class="col1" id="binded-phone">{{$user.PHONE}}</span></p>
+					<div class="tc">
+						<a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" class="btn btn-l btn-blue mgh10">返 回</a>
+						<a href="?type=6&t=2" class="btn btn-l btn-gray mgh10">重置手机</a>
+					</div>
+					<div class="tc mgv30"> <span class="col1">注：</span><span class="col2">密保手机是用于密码修改时短信提示和密码遗失时重置密码</span></div>
+				</div>
+			</div>
+			{{else}}
+			<div class="part part-8 " id="form-phone-step1">
+				<!-- 密保手机 -->
+				<h3 class="mibao-hd"><i class="icon-qphone"></i> 密保手机</h3>
+				<div class="mibao-bd mibao-phone-fix1">
+					<p class="mibao-tit"><i class="icon-no"></i>您的账号尚未绑定密保手机</p>
+					<form action="" method="POST" class="form-mibao-phone form-mibao-phone1" id="form-mibao-Phone">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>手机号码：</label>
+							<input type="text" name="cellphone" class="w-input">
+							<div class="w-tips w-tips1"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<div class="w-div pd0">
+								<input name="code" type="text" class="w-input" />
+								<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code"/>
+							</div>
+							<div class="w-tips w-tips2"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>短信验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="captcha" id="captcha" class="w-input" >
+								<input type="button" value="点击发送" onClick="bindPhone.sendCaptcha(this);" class="w-button btn-green">
+							</div>
+							<div class="w-tips w-tips3"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<a href="javascript:bindPhone.bind();" class="btn btn-l btn-blue mgv15">立即绑定</a>
+						</div>
+					</form>
+					<div class="mibao-tips mibao-tips-fix6">
+						<span class="col1">注：</span>密保手机是用于密码修改时短信提示和密码遗失时重置密码</span>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+		{{else}}
+			<div class="part part-8" id="form-rephone-step1">
+				<!-- 重置密保手机 1 -->
+				<h3 class="mibao-hd"><i class="icon-qphone"></i> 密保手机</h3>
+				<div class="mibao-bd">
+					<form action="" method="POST" class="form-mibao-phone form-rephone-step1" id="form-mibao-Phone">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>已绑定手机：</label>
+							<div class="w-div pd0 col1">{{$user.PHONE}}</div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<div class="w-div pd0">
+								<input name="code" type="text" class="w-input" />
+								<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code"/>
+							</div>
+							<div class="w-tips w-tips2"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>短信验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="captcha" id="captcha" class="w-input" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+								<input type="button" value="点击发送" onClick="bindPhone.unBindCaptcha(this);" class="w-button btn-green">
+							</div>
+							<div class="w-tips w-tips3"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<input type="button" value="验证" onClick="bindPhone.unBind();" class="btn btn-l btn-blue mgv15">
+						</div>
+						<div class="mibao-tips mibao-tips-fix6">
+							<span class="col1">注：</span>密保手机是用于密码修改时短信提示和密码遗失时重置密码</span>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="part part-8 none" id="form-rephone-step3">
+				<!-- 重置密保手机 2 -->
+				<h3 class="mibao-hd"><i class="icon-qphone"></i> 密保手机</h3>
+				<div class="mibao-bd">
+					<form action="" method="POST" class="form-mibao-phone form-rephone-step3" id="form-mibao-rephone">
+						<p class="hd">请输入新的密保手机</p>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>新密保手机：</label>
+							<input type="text" name="cellphone" class="w-input">
+							<div class="w-tips w-tips1"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<div class="w-div pd0">
+								<input name="code" type="text" class="w-input" />
+								<img onclick="this.src= '/code.php?'+Math.random();" src="" alt="点击更换" class="php-code"/>
+							</div>
+							<div class="w-tips w-tips2"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>短信验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="captcha" id="captcha" class="w-input" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+								<input type="button" value="点击发送" onClick="bindPhone.sendCaptcha(this,3);" class="w-button btn-green">
+							</div>
+							<div class="w-tips w-tips3"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<a href="javascript:bindPhone.bind();" class="btn btn-l btn-blue mgv15">绑 定</a>
+						</div>
+						<div class="mibao-tips">
+							<span class="col1">注：</span>密保手机是用于密码修改时短信提示和密码遗失时重置密码</span>
+						</div>
+					</form>
+				</div>
+			</div>
+		{{/if}}
+	{{/if}}
+</div>

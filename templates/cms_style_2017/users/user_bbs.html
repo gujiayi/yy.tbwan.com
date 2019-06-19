@@ -1,0 +1,31 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">激活论坛</em></p></div>
+<div class="user-mod-wp">
+	<div class="bd">
+		<form action="" class="form-bbs-setting" onSubmit="return bindBBS.bind();">
+			<input name="do" value="bbs_up" type="hidden" />
+			{{if $gourl}} <input name="gourl" value="{{$gourl}}" type="hidden" /> {{/if}}
+			{{if $user.BBS_NAME}}
+			<div class="w-item">
+				<label class="w-label">论坛昵称:：</label>
+				<div class="w-div">{{$user.BBS_NAME}} <a href="http://bbs.9377.com" target="_blank" class="btn btn-l btn-green mgh20">进入论坛</a></div>
+			</div>
+			{{else}}
+			<div class="w-item">
+				<label class="w-label">账号：</label>
+				<div class="w-div pd0">{{$user.LOGIN_ACCOUNT}}</div>
+			</div>
+			<div class="w-item">
+				<label class="w-label"><i>*</i> 论坛昵称：</label>
+				<input type="text" name="bbs_name" id="bbs_name" value="{{$smarty.session.openid.nickname}}" class="w-input">
+				<div class="w-tips w-tips1"></div>
+			</div>
+			<div class="w-item">
+				<label class="w-label"></label>
+				<div class="w-div-l tc mgv15">
+					<input type="submit" class="btn btn-l btn-blue" value="激活论坛">
+				</div>
+			</div>
+			{{/if}}
+		</form>
+	</div>
+</div>

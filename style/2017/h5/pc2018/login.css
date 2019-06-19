@@ -1,0 +1,280 @@
+/****** 导航部分 ******/
+.login_wrapper{width:1000px; margin:0 auto; position:relative;}
+.top_menu{height:70px; background-color:#fff;}
+.top_menu .logo,.pay_header .logo{ float:left;}
+.top_menu .logo{padding-right:56px;}
+.top_menu ul{float:right;}
+.top_menu li{width:90px; height:70px; float:left; display:inline; margin-left:6px;}
+.top_menu li a{display:block; width:100%; height:100%; text-align:center; font:16px/70px \5FAE\8F6F\96C5\9ED1; color:#333; position: relative;}
+.top_menu li a em { width: 14px; height: 14px; line-height: 4px; *line-height: 14px; font-size: 56px; text-align: left; color: #f00; overflow: hidden; position: absolute; top: 18px; right: 4px; *top: 14px; _top: 16px;}
+.top_menu li a:hover,.top_menu li a.on{color:#fff!important; background:#03b4f5; text-decoration:none; font-weight:bold;}
+.top_menu li a.on{-webkit-transition:all linear 0.2s;-ms-transition:all linear 0.1s;-o-transition:all linear 0.1s;-mz-transition:all linear 0.1s;transition:all linear 0.1s;}
+.g-sidefun,.bianpao_link { display: none;}
+
+
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0 1000px #fff inset;}
+body{background-color:#fff; overflow-x:hidden;}
+.middle_main{height:716px; *overflow:hidden; position:relative;}
+.middle_body{/*position:absolute; width:100%; top:50%; margin-top:-358px;*/}
+.middle_body .commer_foot{background:none;}
+.login_ban{width:896px; height:449px; margin:0 auto; padding-top:42px; position:relative;}
+.form_box{width:276px; padding:11px 15px; background-color:#fff; border-radius:5px; color:#666;}
+.title_box{height:45px; font:20px/44px \5FAE\8F6F\96C5\9ED1;}
+.form_tips{height:30px;}
+.form_tips p{height:22px; font:12px/22px \5b8b\4f53; border:1px solid #03b4f5; padding-left:33px; background:#f0fbff url(/images/2017/h5/pc/login/tips.jpg?201608031135) left center no-repeat;}
+.form_item{height:39px; padding-left:43px; border:1px solid #e1dede; background-color:#fff; margin-bottom:14px;}
+.form_item.error{border:1px solid #03b4f5;}
+.form_item input{display:block; width:212px; height:25px; margin-top:7px; font:14px/25px \5b8b\4f53; border:none; background:none; outline:0 none;}
+.form_item input::-webkit-input-placeholder{color: #999;}
+.form_item input:-moz-placeholder{color:#999;}
+.form_item label{position:absolute; width:33px; height:39px; margin-left:-43px; background:url(/images/2017/h5/pc/login/login_icon.jpg?201608031135) 0 0 no-repeat;}
+.form_item.error label.c_account_icon{background-position:-33px 0;}
+.form_item label.c_password_icon{background-position:0 -39px;}
+.form_item.error label.c_password_icon{background-position:-33px -39px;}
+.f_msg{color:red; font:12px/24px \5b8b\4f53; text-align:center; padding:6px 0;}
+.forgot_l{height:32px; font:12px/32px \5b8b\4f53; color:#979797;}
+.forgot_l input,.forgot_l label{display:inline-block; *display:inline; zoom:1; vertical-align:middle;}
+.forgot_l label{padding-left:5px;}
+.forgot_l a,.f_quick{color:#ff5d13;}
+.forgot_l a:hover,.f_quick:hover{color:#00baff;}
+.f_submit{height:65px; border-bottom:1px solid #d9d9d9;}
+.f_submit input{display:block; width:100%; height:48px; border:none; background-color:#00baff; font:20px/48px \5FAE\8F6F\96C5\9ED1; color:#fff; border-radius:5px; cursor:pointer;}
+.f_submit input:hover{background-color:#1ec1fe;}
+.f_links{padding-top:16px; font:12px/22px \5b8b\4f53;}
+.f_qq, .f_wx, .f_wb { width: 24px; height: 24px; margin-right: 4px; background:url(/images/2017/h5/pc/other_login_icos.png?201608031135) no-repeat; float: left;}
+.f_qq:hover, .f_wx:hover, .f_wb:hover { opacity: .8;}
+.f_qq{ background-position: 0px 0px;}
+.f_wx{ background-position: -28px 0px;}
+.f_wb{ background-position: -57px 0px;}
+.commer_foot a{text-decoration:none;}
+#banner{height:491px; width:100%; position:relative;}
+.login_page{background:#55a5fe url(/images/2017/h5/pc/login/banner1.jpg?201608031135) center top no-repeat;}
+.login_page2{background:#0a8187 url(/images/2017/h5/pc/login/banner2.jpg?201608031135) center top no-repeat;}
+.monkey{position:absolute;}
+.cloud1,.cloud2,.cloud3{position:absolute;}
+.cloud3{
+	-webkit-animation:5s ease-in-out 0s alternate none infinite clouda_float;
+	-moz-animation:5s ease-in-out 0s alternate none infinite clouda_float;
+	-ms-animation:5s ease-in-out 0s alternate none infinite clouda_float;
+	-o-animation:5s ease-in-out 0s alternate none infinite clouda_float;
+	animation:5s ease-in-out 0s alternate none infinite clouda_float;
+}
+.login_page .cloud1,.login_page .cloud2{
+	-webkit-animation:2s ease-in 0s alternate none infinite clouda_float;
+	-moz-animation:2s ease-in 0s alternate none infinite clouda_float;
+	-ms-animation:2s ease-in 0s alternate none infinite clouda_float;
+	-o-animation:2s ease-in 0s alternate none infinite clouda_float;
+	animation:2s ease-in 0s alternate none infinite clouda_float;
+}
+.login_page .monkey{width:188px; height:176px; left:73px; top:156px; background:url(/images/2017/h5/pc/login/bren1.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/bren1.gif?201608031135) 0 0 no-repeat;}
+.login_page .cloud1{width:267px; height:178px; top:98px; left:-465px; background:url(/images/2017/h5/pc/login/yun1.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/yun1.gif?201608031135) 0 0 no-repeat;}
+.login_page .cloud2{width:238px; height:155px; top:58px; left:-227px; background:url(/images/2017/h5/pc/login/yun2.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/yun2.gif?201608031135) 0 0 no-repeat;}
+.login_page .cloud3{width:344px; height:182px; top:31px; left:935px; background:url(/images/2017/h5/pc/login/yun3.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/yun3.gif?201608031135) 0 0 no-repeat;}
+.login_page2 .monkey{width:340px; height:214px; left:-18px; top:119px; background:url(/images/2017/h5/pc/login/bren2.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/bren2.gif?201608031135) 0 0 no-repeat;}
+.login_page2 .cloud1{display:none;}
+.login_page2 .cloud2{width:34px; height:41px; top:62px; left:303px; background:url(/images/2017/h5/pc/login/ball.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/ball.gif?201608031135) 0 0 no-repeat;-webkit-animation:4s ease-in 0s alternate none infinite balloonb_float; -moz-animation:3s ease-in 0s alternate none infinite balloonb_float; -ms-animation:3s ease-in 0s alternate none infinite balloonb_float; -o-animation:3s ease-in 0s alternate none infinite balloonb_float; animation:3s ease-in 0s alternate none infinite balloonb_float;}
+.login_page2 .cloud3{width:62px; height:28px; top:108px; left:506px; background:url(/images/2017/h5/pc/login/byun3.png?201608031135) 0 0 no-repeat; _background:url(/images/2017/h5/pc/login/byun3.gif?201608031135) 0 0 no-repeat;}
+.car{position:absolute; width:45px; height:24px; z-index:9; -webkit-animation:shake 2s infinite;}
+.login_page .car{left:17px; bottom:85px; background:url(/images/2017/h5/pc/login/cars.png?201608031135) no-repeat; _background:url(/images/2017/h5/pc/login/cars.gif?201608031135) no-repeat;}
+.login_page2 .car{left:227px; top:335px; width:46px; background:url(/images/2017/h5/pc/login/car2.png?201608031135) no-repeat; _background:url(/images/2017/h5/pc/login/car2.gif?201608031135) no-repeat;}
+@-webkit-keyframes shake {
+	0%, 100% {-webkit-transform: translateY(0);-webkit-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-webkit-transform: translateY(-1px);-webkit-transform: translateX(1px);}
+	20%, 40%, 60%, 80% {-webkit-transform: translateY(0);-webkit-transform: translateX(0);}
+}
+.car span{position:absolute; left:-10px; top:20px; display:block; width:7px; height:6px; background:url(/images/2017/h5/pc/login/weiqi.gif?201608031135) no-repeat;}
+.login_page .water_back{position:absolute; left:0; bottom:0; width:100%; height:40px; background:url(/images/2017/h5/pc/login/water_back.png?201608031135) repeat-x; _background:url(/images/2017/h5/pc/login/water_back.gif?201608031135) repeat-x; -webkit-animation: water-back-animation 3s infinite ease-in-out; -moz-animation: water-back-animation 3s infinite ease-in-out; -o-animation: water-back-animation 3s infinite ease-in-out; -ms-animation: water-back-animation 3s infinite ease-in-out; animation: water-back-animation 3s infinite ease-in-out;}
+.login_page .water_front{position:absolute; left:0; bottom:0; width:100%; height:34px; background:url(/images/2017/h5/pc/login/water_front.png?201608031135) 22px 0 repeat-x; _background:url(/images/2017/h5/pc/login/water_front.gif?201608031135) 22px 0 repeat-x; -webkit-animation: water-front-animation 2s infinite ease-in-out; -moz-animation: water-front-animation 2s infinite ease-in-out; -o-animation: water-front-animation 2s infinite ease-in-out; -ms-animation: water-front-animation 2s infinite ease-in-out; animation: water-front-animation 2s infinite ease-in-out;}
+.boat{position:absolute; overflow:visible; z-index:99;}
+.login_page .boat{top:436px; left:115px; width:47px; height:39px; -webkit-animation:boat-in-animation 3s 1 ease-out; -moz-animation:boat-in-animation 3s 1 ease-out; -o-animation:boat-in-animation 3s 1 ease-out; -ms-animation:boat-in-animation 3s 1 ease-out; animation:boat-in-animation 3s 1 ease-out;}
+.boat span{display:block; position:absolute; bottom:0px; left:0px;  overflow:visible; -webkit-animation:boat-animation 2s infinite ease-in-out; -moz-animation: boat-animation 2s infinite ease-in-out; -o-animation:boat-animation 2s infinite ease-in-out; -ms-animation: boat-animation 2s infinite ease-in-out; animation: boat-animation 2s infinite ease-in-out;}
+.login_page .boat span{width:47px; height:39px; background:url(/images/2017/h5/pc/login/boat.png?201608031135) no-repeat; _background:url(/images/2017/h5/pc/login/boat.gif?201608031135) no-repeat;}
+.login_page2 .boat{width:64px; height:53px; left:280px; top:388px; -webkit-animation:boat-out-animation 3s 1 ease-out; -moz-animation:boat-out-animation 3s 1 ease-out; -o-animation:boat-out-animation 3s 1 ease-out; -ms-animation:boat-out-animation 3s 1 ease-out; animation:boat-out-animation 3s 1 ease-out;}
+.login_page2 .boat span{width:64px; height:53px; background:url(/images/2017/h5/pc/login/tree.png?201608031135) no-repeat; _background:url(/images/2017/h5/pc/login/tree.gif?201608031135) no-repeat;}
+.login_page2 .water_back,.login_page2 .water_back{display:none;}
+/* WebKit Animations */
+@-webkit-keyframes balloonb_float{
+	100%{margin-top:10px; margin-left:5px;}
+}
+@-webkit-keyframes clouda_float{
+	100%{margin-left:20px;}
+}
+@-webkit-keyframes run {
+  0%{-webkit-transform:rotateX(0) rotateY(0) rotatez(0);}
+  25%{-webkit-transform:rotateX(15deg) rotateY(15deg) rotatez(15deg);}
+  50%{-webkit-transform:rotateX(0deg) rotateY(0deg) rotatez(0);}
+  75%{-webkit-transform:rotateX(-15deg) rotateY(-15deg) rotatez(-15deg);}
+  100%{-webkit-transform:rotateX(0deg) rotateY(0) rotatez(0);}
+}
+@-webkit-keyframes water-back-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-webkit-keyframes water-front-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-webkit-keyframes boat-in-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 115px;opacity: 1;}
+}
+@-webkit-keyframes boat-out-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 280px;opacity: 1;}
+}
+@-webkit-keyframes boat-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: 1px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+/* FireFox Animations */
+@-moz-keyframes balloonb_float{
+	100%{margin-top:10px; margin-left:10px;}
+}
+@-moz-keyframes clouda_float{
+	100%{margin-left:20px;}
+}
+@-moz-keyframes run{
+  0%{-moz-transform:rotateX(0) rotateY(0) rotatez(0);}
+  25%{-moz-transform:rotateX(15deg) rotateY(15deg) rotatez(15deg);}
+  50%{-moz-transform:rotateX(0deg) rotateY(0deg) rotatez(0);}
+  75%{-moz-transform:rotateX(-15deg) rotateY(-15deg) rotatez(-15deg);}
+  100%{-moz-transform:rotateX(0deg) rotateY(0) rotatez(0);}
+}
+@-moz-keyframes water-back-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-moz-keyframes water-front-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-moz-keyframes boat-in-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 115px;opacity: 1;}
+}
+@-moz-keyframes boat-out-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 280px;opacity: 1;}
+}
+@-moz-keyframes boat-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: 1px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+/* Opera Animations */
+@-o-keyframes balloonb_float{
+	100%{margin-top:10px; margin-left:10px;}
+}
+@-o-keyframes clouda_float{
+	100%{margin-left:20px;}
+}
+@-o-keyframes water-back-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-o-keyframes water-front-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-o-keyframes boat-in-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 115px;opacity: 1;}
+}
+@-o-keyframes boat-out-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 280px;opacity: 1;}
+}
+@-o-keyframes boat-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: 1px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+/* IE Animations */
+@-ms-keyframes balloonb_float{
+	100%{margin-top:10px; margin-left:5px;}
+}
+@-ms-keyframes clouda_float{
+	100%{margin-left:20px;}
+}
+@-ms-keyframes run{
+  0%{-ms-transform:rotateX(0) rotateY(0) rotatez(0);}
+  25%{-ms-transform:rotateX(15deg) rotateY(15deg) rotatez(15deg);}
+  50%{-ms-transform:rotateX(0deg) rotateY(0deg) rotatez(0);}
+  75%{-ms-transform:rotateX(-15deg) rotateY(-15deg) rotatez(-15deg);}
+  100%{-ms-transform:rotateX(0deg) rotateY(0) rotatez(0);}
+}
+@-ms-keyframes water-back-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-ms-keyframes water-front-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@-ms-keyframes boat-in-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 115px;opacity: 1;}
+}
+@-ms-keyframes boat-out-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 280px;opacity: 1;}
+}
+@-ms-keyframes boat-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: 1px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+/* Animations */
+@keyframes balloonb_float{
+	100%{margin-top:10px; margin-left:5px;}
+}
+@keyframes clouda_float{
+	100%{margin-left:20px;}
+}
+@keyframes water-back-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@keyframes water-front-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: -2px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}
+@keyframes boat-in-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 115px;opacity: 1;}
+}
+@keyframes boat-out-animation {
+	0%   {left: 0;opacity: 0;}
+	100% {left: 280px;opacity: 1;}
+}
+@keyframes boat-animation {
+	0%   {bottom: 0; left: 0px;}
+	25%  {bottom: -1px; left: -1px;}
+	70%  {bottom: 1px; left: -3px;}
+	100% {bottom: 0; left: 0;}
+}

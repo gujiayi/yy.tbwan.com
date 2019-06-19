@@ -1,0 +1,42 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">我的游戏</em></p></div>
+<div class="user-mod-wp user-mod-mygame">
+	{{if !empty($last_games)}}
+	<ul class="mygame-list">
+		{{foreach from=$last_games item="v" name=game}}
+		{{if $smarty.foreach.game.index > 2}}{{break}}{{/if}}
+		<li>
+			<a href="{{$v.CONFIG['site']}}" target="_blank" class="fl"><img src="{{$CONFIG.resource}}/images/2017/icon/168_118/{{$v.ALIAS}}.jpg?{{$CONFIG.build}}" alt="" width="168" height="118"></a>
+			<div class="info">
+				<p class="i1"><a href="{{$v.CONFIG['site']}}" target="_blank">{{$v.NAME}}</a><em>{{$v.CONFIG.game_subject}}</em></p>
+				<p class="i2">
+					最近玩过：{{foreach from=$v.list item="vv"}}<a href="{{$v.url}}" target="_blank">{{$vv.name}}</a>{{/foreach}}
+				</p>
+				<div class="i3">
+					<a href="{{$v.CONFIG['site']}}" target="_blank" class="btn-hp">官网</a>
+					<a href="{{$v.CONFIG['bbs_url']}}" target="_blank" class="btn-bbs">论坛</a>
+					<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$v.gid}}" target="_blank" class="btn-lb">礼包</a>
+				</div>
+			</div>
+			<a href="{{$v.NEW_SERVER_URL}}" target="_blank" class="btn-go"> <p>{{$v.SERVER_NAME}}</p> <em>人气新服</em> </a>
+		</li>
+		{{/foreach}}
+	</ul>
+	{{else}}
+	<div class="nodata"> <i></i> <p>您尚未玩过任何游戏</p> </div>
+	<div class="guesslike-box">
+		<div class="hd"><i></i>猜您喜欢</div>
+		<ul class="bd">
+			{{data name="猜你喜欢游戏"}}
+			{{foreach from=$DATA['猜你喜欢游戏'].list item="v" name=guess}}
+			<li>
+				<a href="{{$v.url}}" target="_blank" class="img"><img src="{{$v.thumb}}" alt=""></a>
+				<div class="fix">
+					<a href="{{$v.url}}" target="_blank" class="name">{{$v.title}}</a>
+					<a href="{{$v.ext4}}" class="btn btn-s">进入游戏</a>
+				</div>
+			</li>
+			{{/foreach}}
+		</ul>
+	</div>
+	{{/if}}
+</div>

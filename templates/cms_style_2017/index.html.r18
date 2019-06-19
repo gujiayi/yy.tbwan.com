@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{{$CONFIG.site_title}}</title>
+	<meta name="keywords" content="{{$CONFIG.site_keyword}}" />
+	<meta name="description" content="{{$CONFIG.site_description}}" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta property="qc:admins" content="0767356077613776375" />
+	<meta property="wb:webmaster" content="a66b8764e570c6f1" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/style.css?{{$CONFIG.build}}" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> if(/(mobile|ipad|iphone|android|\s+adr\s+)/i.test(navigator.userAgent) && !$_COOKIE['skip_wap']){ window.location.href = '{{$CONFIG.url}}/wap/guide/'; } </script>
+	<script type="text/javascript"> document.domain = '505pk.com'; </script>
+</head>
+<body class="w974">
+	{{include file="header.html"}}
+	<div class="g-container fix">
+		{{data name="2017首页幻灯"}}
+		<div class="slide-box" id="slide-box">
+			<ul class="slide-bd">
+				{{foreach from=$DATA["2017首页幻灯"].list name="kv" item="v"}}
+				<li class="slide-item">
+					{{data name="kv图{{$v.ext1}}-1"}}
+					{{data name="kv图{{$v.ext1}}-2"}}
+					{{data name="kv图{{$v.ext1}}-3"}}
+					<a href="{{$v.url}}" target="_blank">
+						{{$DATA["kv图{{$v.ext1}}-1"]|replace:'src=':'class="lazy_load kv-bg" _src='}}
+						{{$DATA["kv图{{$v.ext1}}-2"]|replace:'src=':'class="lazy_load kv-txt" _src='}}
+						{{$DATA["kv图{{$v.ext1}}-3"]|replace:'src=':'class="lazy_load kv-role" _src='}}
+					</a>
+				</li>
+				{{/foreach}}
+			</ul>
+		</div>
+		<div class="w1000 w1200 index-main">
+			<!-- 热门游戏+登陆模块 -->
+			<div class="mod mod-1 fix">
+				<div class="rec-box fl">
+					{{data name="2017首页火爆游戏"}}
+					<ul class="fix" id="index-hotgame-list">
+						{{foreach from=$DATA['2017首页火爆游戏'].list name=glist item=item}}
+						<li class="item">
+							<a href="{{$item.CONFIG['site']}}" target="_blank" class="img">
+								{{data name="游戏图{{$item.ALIAS}}"}}{{$DATA["游戏图{{$item.ALIAS}}"]|replace:'src=':'class="lazy_load" _src='}}
+								{{if $item['CONFIG']['step'] == 'new'}}<i class="cor-new"></i>
+								{{elseif $item['CONFIG']['step'] == 'hot'}}<i class="cor-rec"></i>{{/if}}
+							</a>
+							<p class="txt">{{$item.NAME}}</p>
+							<div class="glink">
+								<a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new" target="_blank" rel="nofollow" class="go">进入游戏</a>
+								<a href="{{$item.CONFIG['site']}}" target="_blank">官网</a> | 
+								<a href="{{$CONFIG.url}}/gift/g-{{$item.ID}}.html" target="_blank">礼包</a>
+							</div>
+						</li>
+						{{/foreach}}
+						<!-- H5游戏 -->
+						<!-- 
+						<li class="item">
+							<a href="http://wvw.9377.com/h5/game.php?gid=898&sid=new" target="_blank" class="img">
+								<img _src="{{$CONFIG.resource}}/images/2017/sy/qzsg1.jpg?{{$CONFIG.build}}" class="lazy_load">
+								<img _src="{{$CONFIG.resource}}/images/2017/sy/qzsg2.jpg?{{$CONFIG.build}}" class="lazy_load">
+							</a>
+							<p class="txt">骑战三国H5</p>
+							<div class="glink">
+								<a href="http://wvw.9377.com/h5/game.php?gid=898&sid=new" target="_blank" rel="nofollow" class="go">进入游戏</a>
+								<a href="http://www.9377.com/h5/game.php?gid=898&sid=new" target="_blank">官网</a> | 
+								<a href="http://wvw.9377.com/h5/game_card.php?game=736&card_type=3841" target="_blank">礼包</a>
+							</div>
+						</li> 
+						-->
+					</ul>
+				</div>
+				<div class="userlogin-box fr" id="J-index-loginwp">
+					{{data name="新用户游戏推荐"}}
+					<div class="login-block" id="J-index-nologin">
+						<ul class="login-tab login-tab-1">
+							<li>9377游戏账号登录</li>
+							<!-- <li>扫码登录</li> --> 
+						</ul>
+						<div class="login-tab-con">
+							<div class="login-item login-account">
+								<form method="post" action="{{$CONFIG.app_url}}/login.php" class="login-form" id="login-form">
+									<input type="hidden" name="do" value="login" />
+									<input name="login_save" type="hidden" value="1" id="login_save" />
+									<div class="login-tip"></div>
+									<div class="log-item">
+										<div class="w-item"> <i class="icon-user"></i><input name="username" type="text" placeholder="帐号" /> </div>
+										<div class="w-item w-item-2"> <i class="icon-lock"></i><input name="password" type="password" placeholder="密码" /> </div>
+										<input class="btn-tologin" type="submit" value="登录" />
+									</div>
+									<div class="user-opt">
+										<a href="{{$CONFIG.app_url}}/getpass.php" target="_blank" rel="nofollow" class="fr">忘记密码</a>
+										<label class="login-save"><i class="icon-cb icon-cbed"></i> 自动登录</label>
+									</div>
+									<div class="user-third">
+										<a href="{{$CONFIG.app_url}}/register.php" target="_blank" rel="nofollow" class="link-reg fr">立即注册<i></i></a>
+										<a href="{{$CONFIG.app_url}}/api/qq.php?_qq_action=login" target="_blank" rel="nofollow" title="QQ登录" class="third-login-qq"></a>
+										<a href="{{$CONFIG.app_url}}/api/wx_login.php?_wx_action=login" target="_blank" rel="nofollow" title="微信登录" class="third-login-wx"></a>
+										<a href="{{$CONFIG.app_url}}/api/weibo.php?_wb_action=login" target="_blank" rel="nofollow" title="微博登录" class="third-login-wb"></a>
+									</div>
+								</form>
+							</div>
+							<div class="login-item login-qrcode">
+								
+							</div>
+						</div>
+					</div>
+					<div class="logined none" id="J-index-logined">
+						<div class="u-info fix">
+							<div class="uinfo-l">
+								<a href="{{$CONFIG.app_url}}/users/users_index.php" class="avatar"><img src="" alt=""></a>
+								<i class="u-vip"></i>
+							</div>
+							<div class="uinfo-r">
+								<p>
+									<a href="{{$CONFIG.app_url}}/users/users_index.php" rel="nofollow" class="u-name"></a> 
+									<a href="{{$CONFIG.app_url}}/login.php?do=logout" rel="nofollow" class="logout">[退出]</a>
+								</p>
+								<p>积分：<span class="u-credit"></span></p>
+								<p class="uinfo-safe">
+									<a href="javascript:;" class="sign-in" id="sign-in">打卡</a>
+									<a href="{{$CONFIG.app_url}}/users/users_index.php" title="密保手机" class="icon-uphone"></a>
+									<a href="{{$CONFIG.app_url}}/users/users_index.php" title="密保邮箱" class="icon-umail"></a>
+									<a href="javascript:;" title="小号" class="icon-uug" id="small-account"></a>
+								</p>
+								<div class="u-vip-wp">
+									<!-- vip -->
+									<em class="u-vip-proc"><i></i></em>
+									<!-- vip弹窗 -->
+									<div class="u-vip-box"> <!-- js加载 --> </div>
+								</div>
+							</div>
+						</div>
+						<div class="played" id="played">
+							<p class="hd"><strong>我玩过的</strong></p>
+							<div class="bd">
+								<div class="slide-bd">
+									<ul>
+										{{foreach from=$DATA["新用户游戏推荐"].list item="item"}}
+										<li>
+											<a href="{{$item.CONFIG.site}}" target="_blank" class="item1">{{$item.NAME}}</a>
+											<a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new" target="_blank" class="item2">{{$item.NEW_SERVER_NAME}}</a>
+										</li>
+										{{/foreach}}
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{data name="游戏盒子是否开放"}}
+					<ul class="welfare-list">
+						<li><a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" rel="nofollow" class="item-1" target="_blank"><i class="icon-diam"></i><p>VIP特权</p></a></li>
+						{{if $DATA['游戏盒子是否开放']==1}}
+						<li><a href="{{$CONFIG.url}}/gamebox/" class="item-2" target="_blank"><i class="icon-box"></i><p>游戏盒子</p></a></li>
+						{{else}}
+						<li><a href="javascript:alert('暂时无法下载!');" class="item-2"><i class="icon-box"></i><p>游戏盒子</p></a></li>
+						{{/if}}
+						<li><a href="{{$CONFIG.url}}/baobiao/" rel="nofollow" class="item-3" target="_blank"><i class="icon-app"></i><p>游戏保镖</p></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 游戏开服列表 -->
+			<div class="mod mod-2 mod-opser">
+				<div class="mod-hd" id="J-opser-tab">
+					<h2 class="mod-tit"><a href="{{$CONFIG.url}}/kaifu/" target="_blank">游戏开服列表</a></h2>
+					<a href="javascript:;" class="mod-select J-tab-tar"><span class="active">新服预告</span></a>
+					<a href="javascript:;" class="mod-select J-tab-tar"><span>已开新服</span></a>
+				</div>
+				<div class="mod-bd">
+					<div class="opser-box J-tab-box">
+						{{data name="新服预告"}}
+						{{foreach from=array(0,1) item=item key=key1}}
+						<ul class="fix">
+							{{foreach from=range(0,11) item=item key=key2}}
+							{{assign var="item" value=$DATA['新服预告']['list'][$key1 * 12 + $key2]}}
+							{{if !empty($item)}}
+							<li>
+								<a href="{{$item.SERVER_URL}}" rel="nofollow" class="img" target="_blank">
+									<img _src="{{$CONFIG.resource}}/images/2017/icon/44_44/{{$item.GAME.ALIAS}}.jpg?{{$CONFIG.build}}" width="44" height="44" class="lazy_load">
+								</a>
+								<div class="info">
+									<p>
+										<strong><a href="{{$item.GAME.CONFIG.site}}" target="_blank">{{$item.GAME.NAME}}</a></strong> {{$item.SERVER_START_TIME|date_format:'%m-%d %H:%M'}}
+										{{if $item.GAME.CONFIG.step == 'hot'}}
+										<i class="icon-hot"></i>
+										{{else if $item.GAME.CONFIG.step == 'new'}}
+										<i class="icon-new"></i>
+										{{/if}}
+									</p>
+									<p><a href="{{$item.SERVER_URL}}" rel="nofollow" target="_blank">{{$item.SERVER_NAME}}</a></p>
+								</div>
+							</li>
+							{{/if}}
+							{{/foreach}}
+						</ul>
+						{{/foreach}}
+					</div>
+					<div class="opser-box J-tab-box">
+						{{data name="已开新服"}}
+						{{foreach from=array(0,1) item=item key=key1}}
+							<ul class="fix">
+								{{foreach from=range(0,11) item=item key=key2}}
+								{{assign var="item" value=$DATA['已开新服']['list'][$key1 * 12 + $key2]}}
+								{{if !empty($item)}}
+								<li>
+									<a href="{{$item.SERVER_URL}}" class="img" target="_blank">
+										<img _src="{{$CONFIG.resource}}/images/2017/icon/44_44/{{$item.GAME.ALIAS}}.jpg?{{$CONFIG.build}}" width="44" height="44" class="lazy_load">
+									</a>
+									<div class="info">
+										<p>
+											<strong><a href="{{$item.GAME.CONFIG.site}}" target="_blank">{{$item.GAME.NAME}}</a></strong> {{$item.SERVER_START_TIME|date_format:'%m-%d %H:%M'}}
+											{{if $item.GAME.CONFIG.step == 'hot'}}
+											<i class="icon-hot"></i>
+											{{else if $item.GAME.CONFIG.step == 'new'}}
+											<i class="icon-new"></i>
+											{{/if}}
+										</p>
+										<p><a href="{{$item.SERVER_URL}}" target="_blank">{{$item.SERVER_NAME}}</a></p>
+									</div>
+								</li>
+								{{/if}}
+								{{/foreach}}
+							</ul>
+						{{/foreach}}
+					</div>
+				</div>
+			</div>
+			<!-- 热门游戏+页游头条 -->
+			<div class="fix">
+				<div class="mod mod-3 fl">
+					<div class="mod-game">
+						{{data name="2017首页热门游戏"}}
+						<div class="mod-hd">
+							<h2 class="mod-tit">热门网页游戏</h2>
+							<div class="ritem">
+								<a href="{{$CONFIG.app_url}}/game_center.php" target="_blank" class="more">更多 <i></i></a>
+							</div>
+						</div>
+						<ul class="hotgame-list fix">
+							<!-- <li>
+								<img alt="骑战三国热门游戏" class="img" src="http://upload.9377s.com/uploads/2018/08-07/7aa130b8dfa5719c.jpg" />
+								<a href="{{$CONFIG.app_url}}/h5/game.php?gid=898&sid=new" target="_blank" class="item">
+									<h3 class="name">骑战三国H5</h3>
+									<p class="type">角色扮演</p>
+									<em class="status hot"></em>
+								</a>
+								<a href="{{$CONFIG.app_url}}/h5/game.php?gid=898&sid=new" target="_blank" class="go"><em>进入游戏</em></a>
+								<i class="bd"></i>
+							</li> -->
+							{{foreach from=$DATA['2017首页热门游戏'].list item=item}}
+							<li>
+								{{data name="2017首页热门游戏图{{$item.ALIAS}}"}}{{$DATA["2017首页热门游戏图{{$item.ALIAS}}"]|replace:'src=':'class="img lazy_load" _src='}}
+								<a href="{{$item.CONFIG['site']}}" target="_blank" class="item">
+									<h3 class="name">{{$item.NAME}}</h3>
+									<p class="type">{{$item.TYPE}}</p>
+									{{if $item['CONFIG']['step'] == 'new'}}<em class="status new"></em>
+									{{elseif $item['CONFIG']['step'] == 'hot'}}<em class="status hot"></em>{{/if}}
+								</a>
+								<a href="{{if $item.CONFIG['server_list_url']}}{{$item.CONFIG['server_list_url']}}{{else}}{{$CONFIG.app_url}}/game_box.php?game={{$item.ALIAS}}{{/if}}" target="_blank" class="go"><em>进入游戏</em></a>
+								<i class="bd"></i>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+
+				<div class="mod mod-4 mod-news fr">
+					<div class="mod-hd">
+						<p class="mod-tit">页游头条</p>
+						<a href="javascript:;" class="mod-select J-tab-tar"><span class="active">热门活动</span></a>
+						<a href="javascript:;" class="mod-select J-tab-tar"><span>热门资讯</span></a>
+						<a href="javascript:;" class="mod-select J-tab-tar"><span>最新活动</span></a>
+						<a href="javascript:;" class="mod-select J-tab-tar"><span>合服公告</span></a>
+						<div class="ritem">
+							<a href="{{$CONFIG.url}}/focus/" target="_blank" class="more none">更多 <i></i></a>
+							<a href="{{$CONFIG.url}}/news/" target="_blank" class="more none">更多 <i></i></a>
+						</div>
+					</div>
+					<div class="mod-bd">
+						<ul class="news-list J-tab-box">
+							{{data name="2017首页活动公告"}}
+							{{foreach from=$DATA['2017首页活动公告'].list item=item}}
+								<li class="item-li">
+									<a href="{{$item.url}}" target="_blank" class="img"> <img _src="{{$item.thumb}}" alt="{{$item.title}}" class="lazy_load"> </a>
+									<div class="info">
+										<a href="{{$item.url}}" target="_blank" class="tit">{{$item.title}} </a>
+										<p class="desc">{{$item.ext4|truncate:46:"...":true}}</p>
+										<p class="fix">
+											<em class="time">{{$item.ext1}}</em>
+											{{if $item.ext2=='活动'}}
+											<em class="tags tags-green">{{$item.ext2}}</em>
+											{{else}}
+											<em class="tags tags-blue">{{$item.ext2}}</em>
+											{{/if}}
+										</p>
+									</div>
+								</li>
+							{{/foreach}}
+						</ul>
+						<ul class="news-list J-tab-box">
+							{{data name="2017首页热门资讯"}}
+							{{foreach from=$DATA['2017首页热门资讯'].list item=item}}
+								<li class="item-li">
+									<a href="{{$item.url}}" target="_blank" class="img"> <img _src="{{$item.thumb}}" alt="{{$item.title}}" class="lazy_load"></a>
+									<div class="info">
+										<a href="{{$item.url}}" target="_blank" class="tit">{{$item.title}} </a>
+										<p class="desc">{{$item.ext4}}</p>
+										<p class="fix"><em class="time">{{$item.ext1}}</em><em class="tags tags-green">{{$item.ext2}}</em></p>
+									</div>
+								</li>
+							{{/foreach}}
+						</ul>
+						<ul class="news-list news-list-s J-tab-box">
+							{{data name="2017首页最新活动"}}
+							{{foreach from=$DATA['2017首页最新活动'].list item=item}}
+								<li class="item-li">
+									<a href="{{$item.url}}" target="_blank" class="img"> <img _src="{{$item.thumb}}" alt="{{$item.title}}" class="lazy_load"></a>
+									<div class="info">
+										<a href="{{$item.url}}" target="_blank" class="tit">{{$item.title}} </a>
+										<p class="desc">{{$item.ext4|truncate:46:"...":true}}</p>
+										<p class="fix">
+											<em class="time">{{$item.ext1}}</em>
+											<em class="tags tags-green">{{$item.ext2}}</em>
+										</p>
+									</div>
+								</li>
+							{{/foreach}}
+							{{data name="2017首页最新活动列表"}}
+							{{foreach from=$DATA['2017首页最新活动列表'].list item=item name=list}}
+								<li class="item-lis {{if $smarty.foreach.list.index%2 != 0}}item-lix{{/if}}">
+									<a href="{{$item.artlink}}" title="{{$item.title}}" target="_blank" class="item">
+										<p class="tit">{{$item.title}}</p>
+										<p class="fix">
+											<em class="time">{{$item.pubdate|date_format:'%Y-%m-%d'}}</em>
+											<em class="tags tags-green">{{$item.typename}}</em>
+										</p>
+									</a>
+								</li>
+							{{/foreach}}
+						</ul>
+						<ul class="news-list news-list-s J-tab-box">
+							{{data name="2017首页合服公告"}}
+							{{foreach from=$DATA['2017首页合服公告'].list item=item}}
+								<li class="item-li">
+									<a href="{{$item.url}}" rel="nofollow" target="_blank" class="img"><img _src="{{$item.thumb}}" alt="{{$item.title}}" class=" lazy_load"></a>
+									<div class="info">
+										<a href="{{$item.url}}" target="_blank" class="tit">{{$item.title}} </a>
+										<p class="desc">{{$item.ext4|truncate:46:"...":true}}</p>
+										<p class="fix">
+											<em class="time">{{$item.ext1}}</em>
+											<em class="tags tags-blue">{{$item.ext2}}</em>
+										</p>
+									</div>
+								</li>
+							{{/foreach}}
+							{{data name="2017首页合服公告列表"}}
+							{{foreach from=$DATA['2017首页合服公告列表'].list item=item name=list}}
+								<li class="item-lis {{if $smarty.foreach.list.index%2 != 0}}item-lix{{/if}}">
+									<a href="{{$item.artlink}}" title="{{$item.title}}" rel="nofollow" target="_blank" class="item">
+										<p class="tit">{{$item.title}}</p>
+										<p class="fix">
+											<em class="time">{{$item.pubdate|date_format:'%Y-%m-%d'}}</em>
+											<em class="tags tags-blue">{{$item.typename}}</em>
+										</p>
+									</a>
+								</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 手游+服务 -->
+			<div class="fix">
+				<div class="mod mod-3 mod-newgame fl">
+					<div class="mod-hd">
+						{{data name="2017首页新游"}}
+						<strong class="mod-tit">手机游戏</strong>
+						<div class="ritem">{{data name="2017首页新游更多链接地址"}}
+							<a href="{{$DATA["2017首页新游更多链接地址"]}}" target="_blank" class="more">更多 <i></i></a>
+						</div>
+					</div>
+					<ul class="newgame-list fix">
+						{{foreach from=$DATA['2017首页新游'].list item=item}}
+						<li>
+							<a href="{{$item.url}}" target="_blank" class="item">
+								<div class="img">
+								<img _src="{{$item.thumb}}" width="80" height="80" class="lazy_load"></div>
+								<div class="fl">
+									<h3 class="name">{{$item.title}}</h3>
+									<p class="type">{{$item.ext1}}</p>
+									<em class="status {{$item.ext2}}"></em>
+								</div>
+							</a>
+							<a href="{{$item.url}}" target="_blank" class="go">开始试玩</a>
+						</li>
+						{{/foreach}}
+					</ul>
+				</div>
+
+				<div class="mod mod-6 mod-kf fr">
+					<div class="mod-hd">
+						<strong class="mod-tit">服务通道</strong>
+					</div>
+					<div class="mod-bd fix">
+						<ul class="kf-list fix">
+							<li><a href="{{$CONFIG.app_url}}/users/users_modpass.php" title="9377帐号怎么修改密码" target="_blank">修改密码</a></li>
+							<li><a href="{{$CONFIG.app_url}}/getpass.php" title="9377帐号怎么密码找回" target="_blank">密码找回</a></li>
+							<li><a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" title="9377帐号怎么绑定手机" target="_blank">绑定手机</a></li>
+							<li><a href="{{$CONFIG.app_url}}/users/users_index.php?type=0" title="9377帐号怎么绑定邮箱" target="_blank">绑定邮箱</a></li>
+							<li><a href="{{$CONFIG.url}}/zjjh/" rel="nofollow" target="_blank">家长监护</a></li>
+							<li><a href="{{$CONFIG.app_url}}/users/users_index.php#addiction" rel="nofollow" target="_blank">防沉迷验证</a></li>
+							<li><a href="{{$CONFIG.url}}/kefu.html" rel="nofollow" target="_blank">在线客服</a></li>
+							<li><a href="{{$CONFIG.url}}/form/" rel="nofollow" target="_blank">问题自助提报</a></li>
+						</ul>
+						<div class="info">
+							<i class="icon-kfs"></i>
+							<p>客服电话 7x24</p>
+							<p class="num">020-32568400</p> 
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 礼包 -->
+			<div class="mod mod-5 mod-card">
+				{{data name="2017首页游戏礼包"}}
+				<div class="mod-hd">
+					<strong class="mod-tit">页游礼包</strong>
+					<div class="ritem"> <a href="{{$CONFIG.url}}/gift/" target="_blank" class="more">更多 <i></i></a> </div>
+				</div>
+				<div class="mod-bd">
+					<ul class="card-list fix">
+						{{foreach from=$DATA['2017首页游戏礼包'].list item=item}}
+						<li>
+							<a href="{{$CONFIG.url}}/gift/g-{{$item.ID}}.html" title="{{$item.NAME}}礼包" target="_blank" class="item">
+								<div class="img"> {{data name="2017首页礼包图{{$item.ALIAS}}"}}{{$DATA["2017首页礼包图{{$item.ALIAS}}"]|replace:'src=':'class="img lazy_load" _src='}} <i></i> </div>
+								<div class="info">
+									<p class="name">{{$item.NAME}}</p>
+									<p class="desc">新手卡</p>
+									<i class="go">领取</i>
+								</div>
+							</a>
+						</li>
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div> 
+	{{include file="footer.html"}}
+	<!-- 小号 -->
+	{{include file="/pop_samll_user_2017.html"}}
+	<!-- 小号 -->
+	{{include file="/pop_login_register.html"}}
+	<!-- 账号绑定 -->
+	{{include file="/pop_user_bind.html"}}
+	<!-- 账号绑定 -->
+	<!-- 签到模块 -->
+	{{include file="/pop_sign_2018.html"}}
+	<!-- 签到模块end -->
+	<script> var menuID = 0; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/jquery.slideBox2.0.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/index_2017.js?{{$CONFIG.build}}x"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/small_user_2017.js?{{$CONFIG.build}}3260"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/DD_belatedPNG_0.0.8a-min.js?20150610110116"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*')</script>
+	<![endif]-->
+</body>
+</html>

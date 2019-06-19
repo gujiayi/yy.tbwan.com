@@ -1,0 +1,190 @@
+{{assign var=app_url value="{{$CONFIG.app_url}}/h5"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+	<title>{{$row.ad_title}}</title>
+	<meta name="keyword" content="{{$row.keyword}}">
+	<meta name="description" content="{{$row.description}}">
+	<meta name="frontend" content="Robin">
+	<style>
+	@charset "utf-8";
+	/*reset.css*/
+	html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 62.5%; } body { margin: 0; font-size: 1.4rem; line-height: 1.5; color: #333333; background-color: white; height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; } article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; } audio, canvas, progress, video { display: inline-block; vertical-align: baseline; } audio:not([controls]) { display: none; height: 0; } [hidden], template { display: none; } svg:not(:root) { overflow: hidden; } a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #0088cc; } a:active { outline: 0; } a:active { color: #006699; } abbr[title] { border-bottom: 1px dotted; } b, strong { font-weight: bold; } dfn { font-style: italic; } mark { background: #ff0; color: #000; } small { font-size: 80%; } sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } img { border: 0; vertical-align: middle; } hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; } pre { overflow: auto; white-space: pre; white-space: pre-wrap; word-wrap: break-word; } code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; } button, input, optgroup, select, textarea { color: inherit; font: inherit; margin: 0; } button { overflow: visible; } button, select { text-transform: none; } button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; } button[disabled], html input[disabled] { cursor: default; } button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; } input { line-height: normal; } input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; } input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { height: auto; } input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; } input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; } fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; } legend { border: 0; padding: 0; } textarea { overflow: auto; resize: vertical; } optgroup { font-weight: bold; } table { border-collapse: collapse; border-spacing: 0; } td, th { padding: 0; } html, button, input, select, textarea { font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif; } h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; } ul, ol, li, dl, dd { margin: 0; padding: 0; } ul, ol { list-style: none outside none; } h1, h2, h3 { line-height: 2; font-weight: normal; } h1 { font-size: 1.8rem; } h2 { font-size: 1.6rem; } h3 { font-size: 1.4rem; } input::-moz-placeholder, textarea::-moz-placeholder { color: #cccccc; } input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #cccccc; } input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #cccccc; } * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; } .fix {zoom:1;} .fix:after,.fix:before{display:block;content:"clear";height:0;clear:both;overflow:hidden;visibility:hidden;} .none { display: none;} .hidden { width: 0px; height: 0px; overflow: hidden;} .tc { text-align: center;}
+	/*reset.css*/
+	body { font-family: 'microsoft yahei'; overflow:hidden;}
+	.img-bg { width: 100%; height: 100%; }
+
+	/*弹窗*/
+	.mask{position:fixed;z-index:9999;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,.5);font-size:14px;}
+	.login-box {position:fixed;z-index:10000;background:#fff;width:80%;overflow: hidden;text-align:center;max-width:300px;top:50%;left:50%;-o-border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}
+
+	.login-box { text-align: left; padding: 0 10px;}
+	.login-hd { text-align: center; padding: 10px 0 0 0; color: #343434; font-size: 20px;}
+	.login-box .w-item { height: 42px; padding: 10px; border: 1px solid #d5d5d5; border-radius: 5px; margin: 10px 0; position:relative;}
+	.login-box .w-item input { height: 24px; line-height: 24px; border: 0 none; outline: 0 none; }
+	.login-box .w-item i { display:inline-block; vertical-align: top; width: 24px; height: 24px; line-height: 24px;}
+	.login-box .icon-user { background: url({{$CONFIG.resource}}/images/2017/h5tg/user.png) no-repeat; background-size: 24px auto;}
+	.login-box .icon-lock { background: url({{$CONFIG.resource}}/images/2017/h5tg/lock.png) no-repeat; background-size: 24px auto;}
+	.login-tip { margin: -5px 0 10px 0; display: none;}
+	.login-tip .err { background: url({{$CONFIG.resource}}/images/2017/h5tg/warn.png) left no-repeat; background-size: 18px auto; padding-left: 20px; font-size: 13px; color: #ea0303; line-height: 18px;}
+
+	.btn-group a { display:inline-block; width: 49%; margin-right: 2%; color: #fff; height: 42px; line-height: 42px; font-size: 14px; text-align: center; border-radius: 3px; text-decoration: none;}
+	.btn-group a:last-child { margin-right: 0; }
+	.btn-group .btn-sw { background: #03b4f5; display: none;}
+	.btn-group .btn-reg { background: #ffc000; }
+	.btn-group .btn-login { background: #f64956; }
+
+	.login-box .icon-qq { background: url({{$CONFIG.resource}}/images/2017/h5tg/qq.png) no-repeat; background-size: 24px auto;}
+	.login-box .icon-wb { background: url({{$CONFIG.resource}}/images/2017/h5tg/wb.png) no-repeat; background-size: 24px auto;}
+	.login-box .icon-wx { background: url({{$CONFIG.resource}}/images/2017/h5tg/wx.png) no-repeat; background-size: 24px auto;}
+	.login-box .btn-submit { display: block; width: 100%; height: 30px; line-height: 30px; border-radius: 5px; color: #fff; text-align: center; background: #000; }
+
+	.third-login-mod {}
+	.login-box .third-login-mod .hd { margin: 5px 0 25px 0; border-bottom: 1px solid #cecece; }
+	.third-login-mod .hd { margin: 10px 0; text-align: center; font-size: 16px; color: #343434; }
+	.login-box .third-login-mod span { display:inline-block; background: #fff; position:relative; top: 12px; padding: 0 5px;}
+	.third-login-list { margin: 10px 0; text-align: center;}
+	.third-login-list a { display:inline-block; width: 40px; height: 40px; margin: 0 10px;}
+	.third-login-list .third-qq { background: url({{$CONFIG.resource}}/images/2017/h5tg/qq.png) no-repeat; background-size: 40px auto;}
+	.third-login-list .third-wb { background: url({{$CONFIG.resource}}/images/2017/h5tg/wb.png) no-repeat; background-size: 40px auto;}
+	.third-login-list .third-wx { background: url({{$CONFIG.resource}}/images/2017/h5tg/wx.png) no-repeat; background-size: 40px auto; display: none;}
+
+	.footer { width: 100%; text-align: center; color: #fff; line-height: 18px; font-size: 12px; padding-bottom: 6px; position:absolute; bottom: 0;}
+	</style>
+</head>
+<body>
+	<img src="{{$CONFIG.resource}}/images/2017/h5tg/bg.jpg" alt="" class="img-bg">
+	<div class="footer">
+		<p>上海誉点信息技术有限公司 沪网文[2015]0075-025号</p>
+		<p>备案号：沪ICP备14052946号-36  增值电信业务经营许可证沪B2-20150073 联系电话(7x24)：020-37039849</p>
+		<p>文化部网络游戏举报和联系电子邮箱：wlwh@vip.sina.com</p>
+	</div>
+	<div class="mask" id="login-pop">
+		<div class="login-box"> 
+			<div class="login-hd">登陆/注册</div> 
+			<div class="login-form"> 
+				<div class="w-item"> <i class="icon-user"></i> <input id="J-username" pattern="w{4,20}" type="text" placeholder="请填写账号"> </div> 
+				<div class="w-item"> <i class="icon-lock"></i> <input id="J-password" pattern="w{6,}" type="password" placeholder="请填写密码"> </div> 
+				<div class="login-tip" id="login-tip"></div>
+				<div class="btn-group">
+					<a href="javascript:;" class="btn-sw" id="J-login-sw">一键试玩</a><a href="javascript:;" class="btn-reg" id="J-reg-btn">注册</a><a href="javascript:;" class="btn-login" id="J-login-btn">登陆</a>
+				</div>
+			</div>
+			<div class="third-login-mod"> 
+				<div class="hd"><span>其他登陆方式</span></div> 
+				<div class="bd third-login-list"> 
+					<a href="{{$app_url}}/api/qq.php?_qq_action=login" login="qq" class="third-qq openid_login"></a>
+					<a href="{{$app_url}}/api/weibo.php?_wb_action=login" login="wb" class="third-wb openid_login"></a>
+					<a href="{{$app_url}}/api/wx_login.php?_wx_action=login" login="wx" class="third-wx openid_login"></a>
+				</div> 
+			</div> 
+		</div>
+	</div>
+
+	<script src="{{$CONFIG.resource}}/js/2017/h5/zepto.min.js?{{$CONFIG.build}}"></script>
+	<script>
+		var timestamp = (new Date).getTime()/1000 + 3600;
+	    var lm = $_GET['lm'] || '{{$row.referer}}'; //渠道名
+		var uid = $_GET['uid'] || '{{$row.uid}}'; //广告版本id
+		var chl_type = $_GET['chl_type'] || '{{$row.chl_type}}'; //渠道类型
+		var gid = '{{$row.gid}}' || 346;
+		var game_url = '{{$app_url}}/game_login.php?gid='+gid+'&sid=1';
+
+		C9377.setcookie('lm', lm, timestamp );
+		C9377.setcookie('referer_param', uid, timestamp );
+		$('#J-reg-btn').click(function(){
+			var urn = $('#J-username').val(),
+				psw = $('#J-password').val();
+			if (urn.length < 4 || psw.length < 6) {
+				$('#login-tip').show().html('<span class="err">请输入完整信息</span>')
+				return false;
+			}
+			var param = {
+				'do' : 'register',
+				'LOGIN_ACCOUNT' : urn,
+				'PASSWORD' : psw,
+				'PASSWORD1' : psw,
+				'client' : 1,
+				'is_ajax' : 1,
+				'_ajax' : 1,
+				'lm' : lm,
+				'chl_type' : chl_type,
+				'refererParam' : uid,
+				'gid' : gid,
+				'sid' : 'new'
+			}
+			getJson(param, function(result){
+				if (result.msg == '注册成功, 正在为您跳转' || result.msg == '登录成功') {
+					window.location.href = game_url;
+				}else{
+					$('#login-tip').show().html('<span class="err">'+result.msg+'</span>')
+					return false;
+				}
+			}, C9377.app_url+'/register.php','POST');
+		})
+		$('#J-login-btn').click(function(){
+			var urn = $('#J-username').val(),
+				psw = $('#J-password').val();
+			if (urn.length < 4 || psw.length < 6) {
+				$('#login-tip').show().html('<span class="err">请输入完整信息</span>')
+				return false;
+			}
+			var param = {
+				'do' : 'login',
+				'_ajax' : 1,
+				'username' : urn,
+				'password' : psw,
+				'return_json' : 1
+			}
+			getJson(param, function(result){
+				if (result.status >= 0) {
+					window.location.href = game_url;
+				}else{
+					$('#login-tip').show().html('<span class="err">'+result.msg+'</span>')
+					return false;
+				}
+			}, C9377.app_url+'/login.php','POST');
+		});
+
+		function getJson(data, callback, url, type){
+			$.ajax({
+				'url': url ? url : 'index.php',
+				'type': type ? type : 'GET',
+				'data': data,
+				'dataType': 'json',
+				'async': false,
+				'cache': false,
+				success: function(info){
+					callback(info);
+					return false;
+				},
+				error: function(e){
+					alert('网络繁忙！');
+				}
+			})
+		}
+
+		$.getJSON(C9377.app_url+'/api/user_info_jsonp.php?level=1&callback=?', function(json){
+			if(json.LOGIN_ACCOUNT) {
+				window.location.href = game_url;
+			}
+		});
+		
+		var param = {
+			lm: lm,
+			uid: uid,
+			gid: gid
+		};
+		$('a.openid_login').each(function(){
+			$(this).attr('href', this.href += '&_9377_foward='+ encodeURIComponent(game_url) +'&_9377_param='+ encodeURIComponent(ajax_parameters(param)));
+		});
+		
+		if(C9377.wechat){
+			$('a.third-wx').attr('href', $('a.third-wx').attr('href') +'&appid=wxddfee21452d1c59b&scope=snsapi_userinfo&mini=1').show();
+		}
+	</script>
+	<img src="{{$CONFIG.tc_url}}/{{$row.chl_id}}/" style="display: none;" />
+</body>
+</html>

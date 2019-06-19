@@ -1,0 +1,145 @@
+
+	{{data name="注册页面标题"}}
+	{{data name="注册页面关键字"}}
+	{{data name="注册页面描述"}}
+
+	<div class=" showRegister" id="showRegister">
+		<div class=" register-main w503">
+			<div class="mod-register-wp">
+				<div class="title">用户注册</div>
+				<ul class="register-tab">
+					<li class="active">账号注册</li>
+					<li>手机注册</li>
+				</ul>
+				<div class="register-tab-con">
+					<div class="register-item register-account">
+						<form method="POST" action="{{$CONFIG.app_url}}/register.php" id="register-form">
+							<input type="hidden" name="do" value="register" />
+							<!-- <input type="hidden" name="sub_account" value="{{$sub_account}}" /> -->
+							<input type="hidden" name="gourl" value="{{$gourl}}" />
+
+							<div class="w-item ">
+								<label for="" class="w-label"></label>
+								<div class="w-div">推荐您使用<em>「手机注册」</em>的方式，找回密码更方便</div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label">账号：</label>
+								<input type="text" name="LOGIN_ACCOUNT" id="username1" class="w-input" placeholder="帐号由4~20数字、字母或下划线组成">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+									<label for="" class="w-label">密码：</label>
+									<input type="password" name="PASSWORD" id="password1" class="w-input" placeholder="支持6~20位字母、数字或特殊字符">
+									<div class="w-tips"></div>
+								</div>
+								<div class="w-item">
+									<label for="" class="w-label">确认密码：</label>
+									<input type="password" name="PASSWORD1" class="w-input" placeholder="请确认密码">
+									<div class="w-tips"></div>
+								</div>
+							<div class="w-item">
+								<label for="" class="w-label">真实姓名：</label>
+								<input type="text" name="NAME" class="w-input" placeholder="请输入真实姓名，如 张三">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label">身份证号：</label>
+								<input type="text" name="ID_CARD_NUMBER" class="w-input" placeholder="请输入有效的18位身份证号码">
+								<div class="w-tips"></div>
+							</div>
+						
+							<div class="w-item js-ydcode-reg">
+								<label for="" class="w-label">验证码：</label>
+								<div class="w-div">
+										<input name="code" id="code1"  class="w-input w-code" type="text" placeholder="图形验证码">
+										<img onClick="this.src= '{{$CONFIG.app_url}}/code.php?'+Math.random()"
+											src="{{$CONFIG.app_url}}/code.php?'+Math.random()" title="点击更换" id="php-code"
+											class="php-code" />
+								</div>
+								<div class="w-tips"></div>
+							</div>
+						
+							<div class="w-item  w-item-sm">
+								<label for="" class="w-label"></label>
+								<div class="w-div"><input class="none ckterms" type="checkbox" name="TERMS" id="" /><i name="AGREEMENT" class="icon-cb" id="agreement-reg"></i><a href="{{$CONFIG.url}}/yhxy.html" target="_blank">我已阅读并同意《用户注册服务协议》</a></div>
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label-sub"></label>
+								<div class="w-div"> <input type="submit" id="submit-reg" class="w-submit" value="立即注册"/> </div>
+							</div>
+						</form>
+					</div>
+					<div class="register-item register-phone none" style="margin-top:20px;">
+						<form method="POST" action="{{$CONFIG.app_url}}/register.php" id="register-phone">
+							<input type="hidden" name="do" value="register" />
+							<input type="hidden" name="sub_account" value="{{$sub_account}}" />
+							<input type="hidden" name="gourl" value="{{$gourl}}" />
+
+							<div class="w-item">
+									<label for="" class="w-label">手机号码：</label>
+									<input type="text" name="LOGIN_ACCOUNT" id="phone" class="w-input" placeholder="请输入您的手机号码" maxlength="11">
+									<p class="w-tips"></p>
+								</div>
+						
+							<div class="w-item">
+								<label for="" class="w-label">密码：</label>
+								<input type="password" name="PASSWORD" id="password2" class="w-input" placeholder="支持6~20位字母、数字或特殊字符">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label">确认密码：</label>
+								<input type="password" name="PASSWORD1" class="w-input" placeholder="请确认密码">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label">真实姓名：</label>
+								<input type="text" name="NAME" class="w-input" placeholder="请输入真实姓名，如 张三">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label">身份证号：</label>
+								<input type="text" name="ID_CARD_NUMBER" class="w-input" placeholder="请输入有效的18位身份证号码">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item js-ydcode-phone">
+									<label for="" class="w-label">验证码：</label>
+									<div class="w-div">
+											<input name="code" id="code2"  class="w-input w-code" type="text" placeholder="图形验证码">
+											<img onClick="this.src= '{{$CONFIG.app_url}}/code.php?'+Math.random()"
+											src="{{$CONFIG.app_url}}/code.php?'+Math.random()" title="点击更换" id="php-code"
+											class="php-code" />
+									</div>
+									<div class="w-tips"></div>
+								</div>
+								<div class="w-item">
+										<label for="" class="w-label">短信验证码：</label>
+										<div class="w-div">
+												<input type="text" name="captcha" class="w-input w-captcha" placeholder="短信验证码由6位数字组成">
+												<input type="button" value="发送短信验证码" onClick="sendCaptcha(this);" class="w-btn" id="btn-pscap">
+											</div>
+										<div class="w-tips"></div>
+									</div>
+							<div class="w-item w-item-sm">
+								<label for="" class="w-label"></label>
+								<div class="w-div"><input class="none ckterms" type="checkbox" name="TERMS" id="" /><i class="icon-cb" id="agreement-phone"></i><a href="{{$CONFIG.url}}/yhxy.html" target="_blank">我已阅读并同意《用户注册服务协议》</a></div>
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label for="" class="w-label-sub"></label>
+								<div class="w-div"><input type="submit" class="w-submit" id="submit-phone" value="立即注册"/> </div>
+							</div>
+						</form>
+					</div>
+					<a href="javascript:login();" class="tologin"><p>已有帐号？<em>马上登录</em></p></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="layerRegister" onclick="colseReg()"></div>
+	<!-- <script> var fixedSize = false; </script> -->
+	<!-- <script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/register.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/tn_code.js?{{$CONFIG.build}}"></script> -->
+<!-- </body>
+</html> -->

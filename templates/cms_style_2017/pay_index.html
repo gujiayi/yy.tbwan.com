@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{$DATA['充值首页标题']}}</title>
+	<meta name="keywords" content="{{$DATA['充值首页关键字']}}" />
+	<meta name="description" content="{{$DATA['充值首页描述']}}" />
+    <link href="{{$CONFIG.resource}}/style/cms_style_2015/common.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <link href="{{$CONFIG.resource}}/style/cms_style_2015/style.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/fast_register.js?{{$CONFIG.build}}"></script>
+   	<script type="text/javascript"> document.domain = '{{$CONFIG.cookie_domain}}'; </script>
+   	{{if $pid == 16}}
+   	<link href="{{$CONFIG.resource}}/style/market/css/payment.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+   	<script type="text/javascript" src="{{$CONFIG.resource}}/style/market/js/popup.js?{{$CONFIG.build}}"></script>
+		 {{/if}}
+		 
+</head>
+<body>
+<!-- 头部导航部分 start -->    
+{{data name="充值首页标题"}}
+{{data name="充值首页关键字"}}
+{{data name="充值首页描述"}}
+<div class="pay_header">
+ 	<div class="wrapper">
+    	<h1 class="logo"><a href="{{$CONFIG.url}}/"><img src="{{$CONFIG.resource}}/images/cms_style_2015/9377_logo.jpg?{{$CONFIG.build}}" width="152" height="70" /></a></h1>
+        <img class="ml30 mt20" src="{{$CONFIG.resource}}/images/cms_style_2015/pay/pay_h.gif?{{$CONFIG.build}}" width="107" height="32" />
+        <div class="ml30 mt20 fl">{{data name="充值信息调用"}}{{$DATA['充值信息调用']}}</div>
+        <span class="pay_head_mes">
+         	{{if $user}}
+         	<a href="{{$CONFIG.app_url}}/users/users_index.php" target="_blank">{{$user.LOGIN_ACCOUNT}}</a>  <a href="{{$CONFIG.app_url}}/login.php?do=logout" rel="nofollow">退出</a>
+         	{{else}}
+         	<a href="{{$CONFIG.app_url}}/login.php" rel="nofollow">登录</a>
+         	{{/if}}
+        </span>
+    </div>   
+</div>
+<div class="cb"></div>
+<!-- 头部导航部分 end -->    
+
+<div class="pay_main">
+  <div class="wrapper clearfix">
+  	<a name="pos" id="pos"></a>
+  	<!--左边-->
+	<div class="cz_left fl">
+		<div class="cz_left_height"></div>
+		<ul>
+			{{foreach from=$pay_array key=k item=v}}
+			{{if $v.id == 16 && $gid == 118 || empty($v['name'])}}{{continue}}{{/if}}
+			<li class="li_{{$k}}{{if $pid == $k}}_bg{{/if}}" ><a href="javascript:select_payway({{$k}});">{{$v.name}}</a></li>
+			{{/foreach}}
+		</ul>
+		<div id="cz_end" class="cz_left_height"></div>
+	</div>
+	<script type="text/javascript"> 
+	$(function(){
+		//左侧栏的修改
+		$('.cz_left ul li:last').addClass('bbnone');
+		//当右边高过左边栏的时候
+		var clHight = $('.cz_left').outerHeight(true);
+		var crHight = $('.cz_right').outerHeight(true);
+		var oh = parseInt($('.cz_left_height').css('height'));
+		var hightNum = crHight-clHight+oh;
+		if(clHight<crHight){
+			$('#cz_end').css('height',hightNum);
+		}
+	});
+	</script>
+    <!--左边END-->
+    <!--充值中心-->
+    <div class="cz_right fr">
+        <form id="pay_form" action="{{$CONFIG.app_url}}/pay/paygourl.php" method="post">
+            <input type="hidden" name="pid" value="{{$pid}}" />
+            {{if $pid==4}}
+            	{{include file="/personal_pay.html"}}
+            {{else}}
+            <ul class="clearfix">
+            	<li class="main_select_choose">当前选中的是<em>{{$pay_array[$pid]['name']}}</em>充值方式</li>
+				<li>
+                	<span  class="main_user_account" {{if !$uname}}style="display:none;"{{/if}}>
+	                    <span class="label_name">充值帐号：</span>
+	                    <span id="login_account">{{$uname}}</span>
+	                    <span class="change_user"
+						{{if $pid == 16 && $smarty.const.TIMESTAMP - strtotime($user['REGISTER_TIME']) < 2592000}} style="display: none;"{{/if}}>[<a id="change_user" href="javascript:;">更改</a>]</span>
+	                </span>
+ 					<span  id="main_user_input" {{if $uname}}style="display:none;"{{/if}}>
+	                    <span class="label_name" >充值帐号：</span><input type="text" name="uname2" class="user_input" id="uname2" value="{{$uname}}" /><span class="change_user">[<a id="define_user" href="javascript:;">确定</a>]</span>
+	                    {{if $smarty.cookies.openid_type}}
+	                    	<font color="red">您正在使用{{$smarty.cookies.openid_type}}登录, 请勿填写{{$smarty.cookies.openid_type}}账号</font>
+	                    {{/if}}
+ 					</span>
+                    <input type="hidden" name="uname" class="user_input" id="uname" value="{{$uname}}" {{if $pid == 16}} readonly{{/if}}/>
+                </li>
+                {{if $pid != 16}}
+                <li><span class="label_name">充值到：</span>
+                	<div class="pay_where">
+                        <span class="pay_place cicrl_role1 {{if empty($pay_to)}}place_checked{{/if}}"><input type="radio" name="pay_to" value="0"  {{if empty($pay_to)}}checked{{/if}} />充值到游戏</span>
+                        <span class="pay_place cicrl_role2  {{if !empty($pay_to)}}place_checked{{/if}}"><input type="radio" name="pay_to" value="1" {{if !empty($pay_to)}}checked{{/if}} />充值到9377游戏币</span>
+                     </div>
+                </li>
+                {{/if}}
+                {{if empty($pay_to)}}
+                <li class="select_main_games clearfix"><span class="label_name">选择游戏：</span>
+					<div class="select_list_pay" id="main_select_games">
+						<span class="pay_list_word"><em>1</em>{{if $gamename}}{{$gamename}}{{else}}选择充值的游戏{{/if}}</span><span class="pay_list_icon"><i></i></span>
+						<input type="hidden" name="gid" value="{{$gid}}" id="gid">
+					</div>
+					<div class="select_list_pay" id="main_select_server">
+						<span class="pay_list_word server_pay_list_word"><em>2</em>选择游戏服务器</span><span class="pay_list_icon"><i></i></span>
+						<input type="hidden" name="sid" value="{{$sid}}" id="sid">
+					</div>
+					<div class="select_pay_arrow"></div>
+					<!-- 选择充值的游戏 -->
+					<div class="select_pay_games" id="server_pay_tit">
+						<div class="select_games_tit clearfix">
+							<p class="select_games_close"></p>
+							<ul class="tit clearfix"> 
+								<li>最近玩过</li>
+								<li>ABCDE</li>
+								<li>FGHIJK</li>
+								<li>LMNOP</li>
+								<li>QRSTU</li>
+								<li>VWXYZ</li>
+							</ul>
+						</div>
+						<div class="select_pay_con txt"> 
+							{{if !empty($last_games)}}
+								<div class="pay_pinyi_list clearfix"> 
+									{{assign var="last_game_tmp" value=array()}}
+									{{foreach from=$last_games item="game"}}
+									{{if !in_array($game.gid, $last_game_tmp)}}
+									{{assign var="tmp" value=$games_pay_list[$game.gid]}}
+									{{if !empty($tmp.ID)}}
+									{{append var="last_game_tmp"  value=$game.gid}}
+									<a class="gid_item {{if $gid == $tmp.ID}}on{{/if}}" href="javascript:;" gid="{{$tmp.ID}}">{{$tmp.NAME}}</a>
+									{{/if}}
+									{{/if}}
+									{{/foreach}}
+								</div>
+							{{/if}}	
+						</div>
+						{{assign var=letter_parts value=array(range(a,e), range(f, k), range(l, p), range(q, u), range(v, z))}}
+						{{foreach from=$letter_parts item="part"}}
+						<div class="select_pay_con txt">
+							{{foreach from=$part item="word"}}
+							{{if !empty($games_letters[$word])}}
+							<div class="letter_list clearfix">
+								<div class="pay_pinyi"><em>{{$word|strtoupper}}</em></div>
+								<div class="pay_pinyi_list clearfix"> 
+									{{foreach from=$games_letters[$word] item="v"}}
+									{{if $v.ID == 118}}{{continue}}{{/if}}
+									<a class="gid_item {{if $gid == $v.ID}}on{{/if}}" href="javascript:;" gid="{{$v.ID}}">{{$v.NAME}}</a>
+									{{/foreach}}
+								</div>
+							</div>
+							{{/if}}
+							{{/foreach}}
+						</div>
+						{{/foreach}}
+					</div>
+					<!-- 选择游戏服务器 -->
+					<div class="select_server_games" id="server_select_tit">
+						<div class="select_server_tit"> 
+							<p class="select_games_close"></p>
+							<div class="select_server_zone">
+								选服：<input type="text" id="sid_input" value=""   onkeydown="if(event.keyCode==13){$('.go_server').trigger('click'); return false;}"/><a href="javascript:;" class="go_server">确定</a>
+							</div>
+							<ul class="tit"> 
+								<li>最近玩过</li>
+								{{assign var="servers_new" value=array_values($servers)}}
+								{{assign var="count" value=count($servers_new)}}
+								{{if $count >= 112}}
+								{{assign var="per_page" value=intval($count/3)+1}}
+								{{else}}
+								{{assign var="per_page" value=28}}
+								{{/if}}
+								{{assign var="page" value=ceil($count / $per_page)}}
+								{{assign var="page_range" value=range(0, $page -1)}}
+								{{assign var="server_range" value=range($per_page -1, 0)}}
+								{{foreach from=$page_range item=k}}
+								{{assign var="part1" value=$servers_new[$k * $per_page]['SID']}}
+								{{if isset($servers_new[$k * $per_page + $per_page -1])}}
+								{{assign var="part2" value=$servers_new[$k * $per_page + $per_page -1]['SID']}}
+								{{else}}
+								{{foreach from=$server_range item=k2}}
+								{{if isset($servers_new[$k * $per_page + $k2]) && $servers_new[$k * $per_page + $k2]['SID'] < $part1}}
+								{{assign var="part2" value=$servers_new[$k * $per_page + $k2]['SID']}}
+								{{break}}
+								{{/if}}
+								{{/foreach}}
+								{{/if}}
+								<li>{{$part1}}-{{$part2|max:1}}</li>
+								{{/foreach}}
+							</ul>
+						</div>
+						<div class="select_server_con txt">
+							{{if !empty($last_games)}}
+								<div class="pay_pinyi_list clearfix"> 
+									{{foreach from=$last_games item="server" key=k}}
+									{{if $gid && $server.gid == $gid}}
+									{{assign var="last_game_server" value="1"}}
+									{{assign var="_cs" value=$servers[$server.sid]}}
+									<a class="sid_item sid_{{$server.sid}} _SID_{{$_cs.ID}} {{if $sid == $_cs.ID}}on{{/if}}" href="javascript:;" sid="{{$_cs.ID}}">{{$server.name}}</a>
+									{{/if}}
+									{{/foreach}}
+								</div>
+							{{/if}}	
+						</div>
+						{{foreach from=$page_range item=k name=part}}
+						<div class="select_server_con txt clearfix">
+							{{foreach from=array_reverse($server_range) item=k2 name=server key=num}}
+							{{if empty($servers_new[$k * $per_page + $k2])}}
+							{{continue}}
+							{{/if}}
+							{{assign var="server" value=$servers_new[$k * $per_page + $k2]}}
+							{{if !empty($server.CLOSE_PAY)}}{{continue}}{{/if}}
+							<a href="javascript:;"  sid="{{$server.ID}}" class="sid_item sid_{{$server.SID}} _SID_{{$server.ID}} {{if $server.ID == $sid}} on{{/if}}">
+								{{$server.SERVER_NAME}}{{if $game == 'aszt'}} ({{$server.SHORT_NAME}}){{/if}}
+							</a>
+							{{/foreach}}
+						</div>
+						{{/foreach}}
+					</div>
+					<!-- 选择游戏服务器end  -->
+                </li>
+                {{else}}
+                	<li>
+                		<input type="hidden" name="gid" id="gid" value="118">
+                		<input type="hidden" name="sid" id="sid" value="15760">
+                	</li>
+                {{/if}}
+
+                {{if $is_role}}
+                <li><span class="label_name">游戏角色：</span>
+                	<select class="pay_select"  name="role" id="role">
+                		<option value="0">请选择角色名</option>
+                	</select>
+                	<input type="button" value="获取角色名" id="role_button" onclick="get_role();" />
+                </li>
+                {{/if}}
+                <li class="clearfix"><span class="label_name fl">选择金额：</span>
+                	<div class="pay_money_box">
+                		{{foreach from=$payways_select item=way}}
+                        <span {{if $way == $default_money}}class="money_checked"{{/if}}>
+                        	<input type="radio" name="money" {{if $way == $default_money}}checked{{/if}}  value="{{$way}}"/>
+                        	<font>{{$way}}{{if $pid == 16}}游戏币{{else}}元{{/if}}</font>
+                        </span>
+                        {{/foreach}}
+                        {{if $money_select != 0}}
+                        <span class="last_money"><font><input type="text" maxlength="10" size="10" name="money2" id="money2"  onkeyup="this.value = this.value.replace(/[^0-9]/g, ''); get_game_coin();" style="display:block;"/>元</font></span> 
+                        {{/if}}         
+                    </div> 
+                </li>
+                {{if !empty($gid)}}
+                <li style="text-align:center;">
+					您将获得 
+					<strong class="gameb red" id="game_coin">0&nbsp;</strong>{{$coin_name}}
+					<input type="hidden" name="game_coin" />(兑换比例 1:{{$factors_coin_radio}})
+                </li>
+                {{/if}}
+				<li> <input class="pay_submit" type="submit" value="立即充值" /></li>
+            </ul>
+            {{/if}}
+        </form>
+        
+        {{data name="充值活动"}}
+        {{if $DATA['充值活动']}}
+        <div class="main_explain">
+        	{{$DATA['充值活动']}}
+        </div>
+        {{/if}}
+    </div>
+      <!--充值中心end-->
+  </div>
+</div>
+<div class="f_banner">
+    <div class="wrapper">
+        <dl class="service">
+            <dt>充值客服</dt>
+            <dd>
+                充值客服电话（免长途通话费）：<br>
+                <strong class="tel">020-32568400</strong><br>
+                <a class="service_button" href="{{$CONFIG.app_url}}/kefu.html" target="_blank"><em class="icon16 service_16"></em><span class="name">咨询客服</span></a>
+                <em class="line"></em>
+            </dd>
+        </dl>
+        <dl class="faq">
+            <dt>常见问题解答</dt>
+            <dd>
+				<!--
+                {{data name="常见问题解答"}}
+                <ul class="article_l_box">
+                    {{foreach from=$DATA["常见问题解答"].list item="v"}}
+                    <li class="article_list"><a href="{{$v.artlink}}" target="_blank">{{$v.title}}</a></li>
+                    {{/foreach}}
+                </ul>
+				-->
+				{{data name="常见问题解答"}}{{$DATA['常见问题解答']}}
+                <em class="line"></em>
+            </dd>
+        </dl>
+        <dl class="help">
+            <dt>充值帮助</dt>
+            <dd>
+                {{data name="充值帮助"}}
+                <ul class="article_l_box">
+                    {{foreach from=$DATA["充值帮助"].list item="v"}}
+                    <li class="article_list"><a href="{{$v.artlink}}" target="_blank">{{$v.title}}</a></li>
+                    {{/foreach}}
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</div> 
+<!--脚注开始-->
+<style>
+.J1000 .w1200 { width: 1000px!important; } .w1000{width:1000px!important;margin:0 auto} .w1200{width:1200px!important;margin:0 auto} .footer{width:100%;background:#fff} .footer a:hover { color: #e1405a; text-decoration: none; } .links-box{padding:25px 0;border-bottom:1px solid #e4e4e4;} .links-list{height:30px;line-height:30px;overflow:hidden;position:relative} .links-list a{margin-right:20px;color:#9fa0a0;white-space:nowrap} .links-list span { float: left; } .links-list .lbox { width: 870px; margin-left: 6px; float: left; display: inline;} .J1200 .links-list .lbox { width: 1100px; } .remgame-box, .friends-box { position:relative; } .links-box .more{width:30px;height:30px;position:absolute;top:0;right:0;} .links-box .morev{transform: rotate(180deg); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg);} .links-box .links-auto { height: auto;} .coinfo{height: 96px;line-height:20px;padding:34px 0;overflow:hidden;color: #797979;position:relative;} .coinfo a {color: #797979;} .coinfo .info{margin-left:30px} .coinfo .about{margin-bottom:15px} .coinfo .about a{height:14px;line-height:14px;font-size:14px;margin-right:15px;} .legal-list{position:absolute;top:20px;right:0;overflow:hidden} .legal-list a{width:auto;height:30px;line-height:15px;padding:8px 10px 8px 50px;-webkit-border-radius:23px;border-radius:23px;overflow:hidden;color:#797979;margin-left:15px;float:left;background:#f2f2f2 url(/images/2017/legal.png?201708251703) no-repeat} .legal-list .legal-1{background-position:10px 6px} .legal-list .legal-2{background-position:10px -44px} .legal-list .legal-3{background-position:10px -94px}
+.float-menu {width:50px; position: fixed; left:50%; margin-left:620px; _position: absolute; _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));bottom:20px;_bottom: "auto"; z-index:1;} .J1000 .float-menu { margin-left: 510px; } .float-menu a{display:block; width:50px; height:49px; background:url(/images/2017/float_menu.jpg?201708251703) no-repeat;} .float-menu a:hover{-webkit-transition:all .2s linear;-moz-transition:all .2s linear;-o-transition:all .2s linear; transition:all .2s linear;} .float-menu .f-wechat{background-position:0 0;height: 50px;} .float-menu .f-wechat:hover{background-position:-50px 0;} .float-menu .f-kefu{background-position:0 -50px;} .float-menu .f-kefu:hover{background-position:-50px -50px;} .float-menu .f-top{background-position:0 -99px;} .float-menu .f-top:hover{background-position:-50px -99px;}
+</style>
+{{include file="footer.html"}}
+<script>
+	// 右侧菜单
+	var $fmenu = $('#float-menu'), $ftop = $fmenu.find('.f-top');
+	$ftop.click(function (e){
+		$('body,html').animate({scrollTop:0},200);
+	});
+	var st = 0;
+	$(window).scroll(function (){
+		if($(window).scrollTop() === 0){
+			$ftop.slideUp();
+			st = 0;
+		} else {
+			if(st === 0) $ftop.slideDown();
+			st = 1;
+		}
+	}).trigger('scroll');
+</script>
+<!--脚注结束-->
+
+<iframe id="pay_window" name="pay_window" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" allowTransparency="true" scrolling="no" src="about:blank" style="display: none; z-index: 999999; position: absolute;"></iframe>
+<script type="text/javascript">
+function close_window(){
+	$('#pay_window').attr('src', 'about:blank').hide();
+	overlay({action: 'hide'});
+	$(document).unbind('click', close_window);
+}
+</script>
+ 
+<script type="text/javascript">
+var ratio = {{$factors_coin_radio|json_encode}};
+
+$(function(){
+	// 选中单选框
+	$(".pay_place").click(function(){
+		$(this).addClass("place_checked").siblings("span")
+		.removeClass("place_checked");
+		var pay_to = $(this).find('input[name="pay_to"]').val();
+		if( pay_to == 1 ) {
+			window.location.href = '{{$CONFIG.app_url}}/pay_index.php?gid=118&sid=15760&pay_to=1&pid={{if $pid == 16}}0{{else}}{{$pid}}{{/if}}';
+		}else {
+			window.location.href = '{{$CONFIG.app_url}}/pay_index.php?pid={{$pid}}';
+		}
+	});
+
+	$(".pay_money_box span:not('.last_money')").click(function(){
+		$(this).addClass("money_checked").siblings("span").removeClass("money_checked");
+		$(this).find('input').attr('checked', 1);
+		$('#money2').val('');
+		get_game_coin();
+	});
+
+	// $('input[name="pay_to"]').click(function(){
+	// 	var pay_to = $(this).val();
+	// 	if( pay_to == 1 ) {
+	// 		window.location.href = 'pay_index.php?gid=118&sid=15760&pay_to=1&pid={{if $pid == 16}}0{{else}}{{$pid}}{{/if}}';
+	// 	}else {
+	// 		window.location.href = 'pay_index.php?pid={{$pid}}';
+	// 	}
+	// });
+
+	$('#change_user').click(function(){
+		$('.main_user_account').hide();
+		$('#main_user_input').show();
+		$('#uname2').focus();
+	});
+
+	$('#uname2').blur(function(){
+		$('#define_user').trigger('click');
+	});
+
+	var define_user_check = false;
+	$('#define_user').click(function(){
+		if( define_user_check == false ) {
+			define_user_check = true;
+			var username = $('#uname2').val();
+			var gid = $('#gid').val();
+			var sid = $('#sid').val();
+
+			if( !username ) {
+				alert('请输入您要充值的帐号。');
+			} else{
+				if( gid < 1 || sid < 1) {//没选游戏或者没选服
+					$('.main_user_account').show();
+					$('#uname').val(username);
+					$('#login_account').html(username);
+					$('#main_user_input').hide();
+					$('label[for="uname"]').remove();
+					check_game_user.error = 0;
+				}else if( -1 == check_game_user(username) ) {
+					check_game_user.error = 1;
+					alert('所在的服务器没有角色');
+				}
+			}
+			define_user_check = false;
+		}
+	});
+
+	//选游戏
+	$('.gid_item').click(function(event){
+		var gid = $(this).attr('gid');
+		if( gid > 0 ) {
+			$('#gid').val(gid);
+			$('#sid').val(0);
+			select_payway({{$pid|intval}});
+			event.preventDefault();
+		}
+	});
+
+	//选服
+	$('.sid_item').click(function(event){
+		var sid = $(this).attr('sid');
+		if( sid > 0 ) {
+			$('#sid').val(sid);
+			$('.sid_item').removeClass('on');
+			$('._SID_'+sid).addClass('on');
+			//$(this).addClass('on');
+			change_server();
+			set_server_name();
+			$('.select_games_close').trigger('click');
+			event.preventDefault();
+		}
+	});
+
+	//跳服
+	$('.go_server').click(function(){
+		var input_sid =$('#sid_input').val();
+		if( !input_sid ) {
+			alert('请选择要充值的服');
+			return false;
+		}
+
+		var sid = $('.sid_'+input_sid).attr('sid');
+		if( sid > 0 ) {
+			$('.sid_'+input_sid).trigger('click');
+		}else {
+			alert('请输入正确的服');
+		}
+	});
+
+
+	set_server_name();
+	
+	if($_GET['pid']){
+		window.scrollTo(0, $('#pos').offset().top);
+	}
+	
+	//选择游戏
+	$('#main_select_games').click(function(){
+		$('.select_pay_arrow').removeClass('arrow_server');
+		$('.select_pay_arrow').show();
+		$('.select_pay_games').show();
+		$('.select_server_games').hide();
+	});
+	$('#main_select_server').click(function(){
+		{{if empty($servers)}}
+			alert('请先选择游戏');
+			return false;
+		{{/if}}
+		$('.select_pay_arrow').addClass('arrow_server');
+		$('.select_pay_arrow').show();
+		$('.select_server_games').show();
+		$('.select_pay_games').hide();
+	});
+	$('.select_games_close').click(function(){
+		$('.select_pay_arrow').hide();
+		$('.select_pay_games').hide();
+		$('.select_server_games').hide();
+	});
+	//Tab切换
+    function initTab(name) {
+        var $tab = $(name);
+        $tab.find('.tit li').click(function(){
+            $tab.find('.txt').hide().eq($(this).index()).show(); 
+            $(this).addClass('on').siblings().removeClass('on');
+        }).eq(1).click();
+    };
+	initTab('#server_select_tit');
+	initTab('#server_pay_tit');
+
+	{{if $gid}}
+		var index = $('.select_pay_con a[gid={{$gid}}]').parent().parent().parent().index();
+		$('.select_games_tit li').eq(index-1).trigger('click');
+		{{if empty($sid)}}
+			$('.select_pay_arrow').addClass('arrow_server');
+			$('.select_pay_arrow').show();
+			$('.select_server_games').show();
+			{{if $last_game_server}}
+				$('.select_server_tit li').eq(0).trigger('click');
+			{{/if}}
+		{{/if}}
+	{{elseif !empty($last_games)}}
+		$('.select_games_tit li').eq(0).trigger('click');
+	{{/if}}
+});
+
+check_game_user.error = 0;
+function check_game_user(username) {
+	ret = false;
+	if( username ) {
+		$.ajax({
+			url: '/api/check_game_user.php',
+			cache: false,
+			async: false,//异步
+			dataType: 'json',
+			beforeSend: function(){ $('#define_user').html('正在检查角色').attr('disabled', true); },
+			data: {
+				gid: {{$gid}},
+				sid: function(){ return $('#sid').val(); },
+				username: username,
+				json: 1
+			},
+			success: function(data){
+				$('#define_user').html('确定').attr('disabled', false);
+				if( data == true ) {
+					$('.main_user_account').show();
+					$('#uname').val(username);
+					$('#login_account').html(username);
+					$('#main_user_input').hide();
+					$('label[for="uname"]').remove();
+					check_game_user.error = 0;
+					ret = true;
+				}else {
+					ret = -1;
+					//$('#uname2').focus();
+				}
+			}
+		});
+	}
+	return ret;
+}
+
+function set_server_name() {
+	var server_name = $('.select_server_con a.on').html();
+	if( server_name ) {
+		$('.server_pay_list_word').html('<em>2</em>'+server_name);
+	}
+}
+
+function select_payway(id){
+	var gid = 0;
+	if($('#gid').length){
+		gid = $('#gid').val();
+	}else{
+		var tmp = window.location.href.match(/gid=(\d+)/);
+		if(tmp){ gid = tmp[1]; }
+	}
+
+	var data = $('#sid').length ?
+		$('#pay_form').serialize().replace(/&?pid=\d+&?/g, '') :
+		'gid='+ gid;
+	window.location.href = '{{$CONFIG.app_url}}/pay_index.php?'+ data +'&pid='+ id;
+}
+
+
+
+function get_game_coin(){
+	var money = parseInt($('#money2').val());
+	if(!money){
+		money = parseInt($('input[name="money"]:checked').val());
+	}else{
+		$('input[name="money"]:checked').attr('checked', false)
+		.parent().removeClass('money_checked');
+	}
+
+	if(isNaN(money)) money = 0;
+	$('#game_coin').html(money * ratio);
+	$('#pay_form input[name=game_coin]').val(money * ratio);
+}
+
+get_game_coin();
+
+function change_server(){
+	var val = $('#uname').val();
+	$('#uname').val(val +' ');
+	//validator.element('#uname');
+	if( -1 == check_game_user(val) ) {
+		alert('您所在的区没有角色');
+	}
+
+	$('#uname').val($.trim($('#uname').val()));
+}
+
+function get_role(){
+	if(!parseInt($('#sid').val())){
+		alert('请先选择服');
+		$('#sid').focus();
+		return;
+	}
+	
+	$.ajax({
+		url: '/api/get_role_data.php',
+		cache: false,
+		dataType: 'json',
+		beforeSend: function(){ $('#role_button').val('正在获取').attr('disabled', true); },
+		data: {
+			'username': $('#uname').val(),
+			'gid': $('#gid').val(),
+			'server_id': $('#sid').val()
+		},
+		success: function(json){
+			$('#role_button').val('获取角色').attr('disabled', false);
+			//.append('<option value="">请选择角色</option>');
+			
+			if(!json.data){
+				alert('您所在的区没有角色');
+				return;
+			}
+			
+			$('#role').empty();
+			for(var i in json.data){
+				$('<option></option>').val(i).html(json.data[i]).appendTo($('#role'));
+			}
+		}
+	});
+}
+
+var validator = $('#pay_form').validate({
+	rules: {
+		gid: {
+			min: 1
+		},
+		
+		sid: {
+			min: 1
+		},
+		
+		// uname: {
+		// 	required: true,
+		// 	remote: {
+		// 		url: '/api/check_game_user.php',
+		// 		cache: false,
+		// 		async: false,
+		// 		beforeSend: function(){ },
+		// 		data: {
+		// 			gid: {{$gid}},
+		// 			sid: function(){ return $('#sid').val(); },
+		// 			username: function(){ return $('#uname').val(); },
+		// 			json: 1
+		// 		}
+		// 	}
+		// },
+		
+		uname: {
+			required: true
+		},
+		
+		{{if $is_role}}
+		role: {
+			required: true
+		},
+		{{/if}}
+		
+		money: {
+			min: function(){
+				var money = parseInt($('#money2').val());
+				
+				return money == 0 || isNaN(money) ? 1 : 0;
+			}
+		},
+		
+		money2: {
+			min: function(){
+				var money = parseInt($('input[name="money"]:checked').val());
+				
+				return money == 0 || isNaN(money) ? 5 : 0;
+			}
+		}
+	},
+	
+	messages: {
+		gid: {
+			min: '请选择游戏'
+		},
+		
+		sid: {
+			min: '请选择服'
+		},
+		
+		// uname: {
+		// 	required: '用户名必须填写',
+		// 	remote: '所在的服务器没有角色'
+		// },
+		uname: {
+			required: '用户名必须填写'
+		},
+		
+		{{if $is_role}}
+		role: {
+			required: '请选择角色'
+		},
+		{{/if}}
+		
+		money: {
+			min: '请选择金额'
+		},
+		
+		money2: {
+			min: '至少充值5元'
+		}
+	},
+	
+	submitHandler: function(form){
+		var check_pwd2 = true;
+		if( check_game_user.error == 1 ) {
+			alert('请确认您要充值的帐号。');
+			$('#uname2').focus();
+			return false;
+		}else if( true != check_game_user($('#uname').val()) ) {
+			alert('所在的服务器没有角色');
+			$('#uname').focus();
+			return false;
+		}
+
+		//防止没有默认值的渠道直接提交
+		if( $('#pay_form input[name=game_coin]').val() < 1 ) {
+			alert('请选择充值金额');
+			return false;
+		}
+
+		
+		{{if $pid == 16}}
+		gold_9377 = isNaN(parseInt($('#money2').val()))  ? parseInt($('input[name="money"]:checked').val()) : parseInt($('#money2').val());
+		$.ajax({
+			url: '/market/api/api.php',
+			type: "POST",
+			data: {
+				'ac': 'check_pwd2',
+				'credit':gold_9377,
+				'password2':'check'
+			},
+			timeout : 60000, //超时时间设置，单位毫秒
+			dataType: "json",
+			async: false,//异步
+			cache:false, 
+			success: function(result){
+				if( result.data  == 'nologin' ) {
+					alert('请先登录再进行充值');
+					check_pwd2 = false;
+					return false;
+				}else if( result.status != 1 ) {
+					$('#pwd2_tips').html(result.msg);
+					$popup('#wpop8', '.colse_btn');
+					check_pwd2 = false;
+					return false;
+				}        
+			}
+		}); 
+
+		if( check_pwd2 == true && confirm('确定要使用游戏币充值？') != true ) {
+			check_pwd2 = false;
+		}
+		
+		{{elseif $pid == 32 || $pid == 37 || $pid == 49}}
+		form.target = 'pay_window';
+		overlay({});
+		$('#pay_window').css({width: 480, height: 490}).show();
+		element_to_center($('#pay_window'));
+		$(document).bind('click', close_window);
+		{{/if}}
+		
+		check_pwd2 == true && form.submit();
+	},
+	
+	// errorPlacement: function(error, element) {
+	// 	error.appendTo(element.parent().next().empty());
+	// },
+	
+	// success: function(e){
+	// 	e.removeClass('error').addClass('correct').html('&nbsp;');
+	// },
+	
+	errorClass: 'error',
+	validClass: 'correct',
+	
+	onkeyup: false
+
+});
+</script>
+
+{{if $pid == 16}}
+<script type="text/javascript">
+	$(function(){
+		$('.gray').click(function(){
+			$('#wpop8').show();
+			if($.browser.msie && parseInt($.browser.version) == 6) {
+				$("html,body").css("overflow", "")
+			};
+			$(this).stop();
+			return false;
+		});
+
+
+		$(document).keyup(function(event){
+			if(event.keyCode ==13 && $("#check_pwd2").attr('class') ){
+				$("#check_pwd2").trigger("click");
+			}
+		});
+		
+		$('#check_pwd2').live('click', function(){
+			var check_pwd2 = false;
+			var password2 = $('#password2').val();
+			if( password2 ) {
+				gold_9377 = isNaN(parseInt($('#money2').val()))  ? parseInt($('input[name="money"]:checked').val()) : parseInt($('#money2').val());
+				$.ajax({
+					url: '/market/api/api.php',
+					type: "POST",
+					data: {
+						'ac': 'check_pwd2',
+						'credit':gold_9377,
+						'password2':password2
+					},
+					timeout : 60000, //超时时间设置,单位毫秒
+					dataType: "json",
+					async: false,//异步
+					cache:false, 
+					success: function(result){
+						if( result.status == 1) {
+							if( confirm('确定要使用游戏币充值？') ) {
+								$('#pay_form').submit();
+							}else {
+								$('.colse_btn').trigger('click');
+							}
+						}else {
+							$('#pwd2_tips').html(result.msg);
+						} 
+						return;
+					}
+				});
+			}else {
+				$('#pwd2_tips').html('请输入二级密码');
+			} 
+			$('#password2').val('');
+		});
+	});
+</script>
+<div class="pay_tips_box" id="wpop8">
+	<dl>
+        <dt id="pop_dt">
+			<p class="pop_dt_p">
+				<label for="password2">二级密码：</label>
+				<input class="obtain_password" type="password" name="password2" id="password2">
+				<a href="{{$CONFIG.app_url}}/getpass.php?pwd2=1" target="_blank" class="forget_pwd reg_close">我忘记了</a>
+			</p>
+			<p style="color:#f00; line-height:24px; text-align:left; padding-left:122px;" id="pwd2_tips"></p>
+        </dt>
+        <dd class="clearfix">
+            <h5 class="btn colse_btn"><a>取消</a></h5>
+            <h5><input type="submit" value=" " class="check_pwd2" id="check_pwd2"></h5>
+        </dd>
+        <dd id="tips" class="red"> </dd>
+    </dl>
+</div>
+{{/if}}
+</body>
+</html>

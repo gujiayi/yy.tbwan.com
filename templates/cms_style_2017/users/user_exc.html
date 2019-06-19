@@ -1,0 +1,50 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">积分卡兑换</em></p></div>
+<div class="user-mod-wp user-mod-exc" id="user-mod-exc">
+	<div class="user-select-hd">
+		<ul class="left fl">
+			<li class="item active"><a href="javascript:;">积分卡兑换</a><i></i></li>
+			<li class="item"><a href="javascript:;">兑换记录</a></li>
+		</ul>
+	</div>
+	<div class="user-mod-bd">
+		<!-- 积分卡兑换 -->
+		<form action="/users/users_do.php" method="post" class="form-exc J-exc-item">
+			<input name="do" value="exchange" type="hidden" />
+			<div class="w-item">
+				<label class="w-label"><i>*</i> 积分卡卡号：</label>
+				<input type="text" name="card_id" class="w-input">
+			</div>
+			<div class="w-item">
+				<label class="w-label"><i>*</i> 卡密码：</label>
+				<input type="text" name="card_pwd" class="w-input" placeholder="如不需要密码的卡，请留空">
+			</div>
+			<div class="w-item">
+				<label class="w-label"></label>
+				<div class="w-div-l tc"> <input type="submit" class="btn btn-l btn-blue" value="兑 换"> </div>
+			</div>
+		</form>
+		<!-- 兑换记录 -->
+		<table class="user-center-table table-exc J-exc-item none">
+			<thead> <tr> <th>兑换时间</th> <th>积分额度</th> <th>积分卡卡号</th> </tr> </thead>
+			<tbody>
+				{{if empty($exchange_logs.data)}}
+				<tr><td colspan="3">暂无记录</td></tr>
+				{{else}}
+				{{foreach from=$exchange_logs.data item="v"}}
+				<tr>
+					<td>{{$v.exchange_time|date_format:'%Y-%m-%d %H:%I'}}</td>
+					<td>{{$v.card_val}}{{$v.credit_name}}</td>
+					<td>{{$v.card_id}}</td>
+				</tr>
+				{{/foreach}}
+				{{/if}}
+			</tbody>
+		</table>
+		<dl class="desc-exc">
+			<dt>积分卡兑换说明：</dt>
+			<dd>1、积分卡可通过9377游戏发布的活动渠道获得，如论坛活动 </dd>
+			<dd>2、积分卡分不同面值及有效的使用期 </dd>
+			<dd>3、积分卡使用后将作废</dd>
+		</dl>
+	</div>
+</div>

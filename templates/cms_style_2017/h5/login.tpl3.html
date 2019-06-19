@@ -1,0 +1,121 @@
+<div class="mask none" id="login-pop">DDD{{$getpass_user}}
+	<!-- 用户登录 -->
+	<div class="dialog-box mod-login mod-login-module mod-login-ulogin none">
+		<a href="javascript:;" title="关闭" class="dialog-close icon-close"></a>
+		<div class="login-hd login-hd-color"> <div class="login-hd-tit">用户登录</div></div>
+		<div class="login-form">
+			<div class="w-form">
+				<div class="w-item"><i class="icon-user"></i> <input name="username" type="text" placeholder="请输入您的账号"/> <b class="more"></b></div>
+				<div class="w-item"><i class="icon-lock"></i> <input name="password" type="password" placeholder="请输入您的密码"/> <span class="icon-oeye"></span></div> 
+				<div class="w-btn fix"><a class="w-submit" href="javascript:;" onClick="H9377.userLogin(this)">立即登陆</a><a class="w-reg" href="javascript:H9377.loadLoginMode('reg');">快速注册</a></div>
+				<div class="user-opt fix user-opt2">
+					<label class="login-save"><i class="icon-cb icon-cbed" name="login_save"></i>记住密码</label>
+					<label class="login-auto uopt2"><i class="icon-cb" name="login_auto"></i>自动登录</label>
+					<a href="javascript:retPass.view();" target="_blank" rel="nofollow">忘记密码?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 手机注册 -->
+	<div class="dialog-box mod-login mod-login-module mod-reg-phone "> 
+		<div class="login-hd2 login-hd-color"> <div class="login-hd-tit"><a href="javascript:H9377.loadLoginMode();" class="icon-back"></a>快速注册</div> </div>
+		<ul class="login-mod-sbox2"> <li class="active">手机注册</li> <li onClick="H9377.loadLoginMode('reg');">快速注册</li> </ul> 
+		<div class="login-form"> 
+			<div class="w-form"> 
+				<div class="w-item"> <i class="icon-mobile"></i> <input name="cellphone" type="phone" placeholder="请输入11位数字手机号码"> </div> 
+				<div class="w-item"> <i class="icon-email"></i> <input name="captcha" type="text" placeholder="请输入短信验证码"> <button class="w-button2 J-sendcaptcha" onClick="H9377.sendCaptcha(this);">获取验证码</button> </div>
+				<div class="w-item"> <i class="icon-lock"></i> <input name="password" type="password" placeholder="请输入6-20位数字或字母"> </div> 
+				<div class="w-tips"><input type="checkbox" name="terms"/><a href="http://www.9377.com/yhxy.html" target="_blank">我已阅读并同意《用户注册服务中心》</a></div>
+				<div class="w-btn fix">
+					<a class="fr w-red" href="javascript:;" onClick="H9377.userRegister(this,'phone',1)">立即注册</a> <a href="javascript:H9377.loadLoginMode();" class="fl w-gray">取消</a>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<!-- 普通注册 -->
+	<div class="dialog-box mod-login mod-login-module mod-reg-pub none">
+		<div class="login-hd2 login-hd-color"> <div class="login-hd-tit"><a href="javascript:H9377.loadLoginMode();" class="icon-back"></a>快速注册</div> </div>
+		<ul class="login-mod-sbox2"> <li onclick="H9377.loadLoginMode('phone');">手机注册</li> <li class="active">快速注册</li> </ul> 
+		<div class="login-form">
+			<div class="w-form"> 
+				<div class="w-item"> <i class="icon-user"></i> <input name="username" type="text" placeholder="请输入您的账号"> </div> 
+				<div class="w-item"> <i class="icon-lock"></i> <input name="password" type="password" placeholder="请输入您的密码"> </div> 
+				<div class="w-tips"><input type="checkbox" name="terms"/><a href="http://www.9377.com/yhxy.html" target="_blank">我已阅读并同意《用户注册服务中心》</a></div>
+				<div class="w-btn fix">
+					<a class="fr w-red" href="javascript:;" onClick="H9377.userRegister(this,'reg',1)">立即注册</a><a href="javascript:H9377.loadLoginMode();" class="fl w-gray">取消</a>
+				</div>
+				<div class="w-tips2"><a href="javascript:H9377.loadLoginMode();">已有账户</a></div>
+			</div> 
+		</div> 
+	</div>
+	<!-- 一键注册 -->
+	<div class="dialog-box mod-login mod-login-module mod-reg-onekey none"> 
+		<div class="login-hd tc"> <div class="login-hd-tit">注册成功</div> </div>
+		<div class="accinfo">
+			<p class="aitem">账号：yd***</p>
+			<p class="aitem">密码：123456789</p>
+			<p class="xitem">账号密码已截图存放至相册</p>
+		</div>
+		<a href="javascript:;" class="btn-enter">进入游戏（3）</a>
+
+
+		<div class="login-form"> 
+			<input name="username" disabled="disabled" type="hidden" >
+			<input name="password" disabled="disabled" type="hidden" >
+		</div> 
+	</div>
+	<!-- 找回密码 -->
+	<div class="dialog-box2 mod-login-module mod-uc mod-uc-retpass">
+		<div class="dialog-tit"><a href="javascript:retPass.close();" class="icon-back"></a>找回密码</div>
+		<div class="w-form retpass-step-1">
+			<div class="w-box w-box1"><input type="text" name="account" placeholder="请输入账号"/></div>
+			<div class="w-item3 flex mrb15"> 
+				<div class="flex-list"><input name="code" type="text" placeholder="请输入验证码"> </div>
+				<img onclick="this.src= '/code.php?' +Math.random();" src="/code.php?{{$CONFIG.build}}" title="点击更换" class="php-code">
+			</div>
+			<div class="w-btn2"><a href="javascript:retPass.ver();">下一步</a></div>
+		</div>
+		<div class="w-form retpass-step-2 none">
+			<div class="w-word w-word2"><em>*</em>已确认账号：<span class="rp-user"></span></div>
+			<div class="w-item4 flex">
+				<label for=""><em>*</em>选择验证方式：</label>
+				<div class="flex-list"> <select id="rp-type-list"> </select> </div>
+			</div>
+			<div class="type-phone">
+				<div class="w-item4">
+					<label for=""><em>*</em>已绑定手机：<span class="rp-phone"></span></label>
+					<button class="w-button3 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'retpass@phone',1);">点击发送</button>
+				</div>
+				<div class="w-item4 flex">
+					<label for=""><em>*</em>短信验证码：</label>
+					<div class="flex-list"><input name="captcha" type="text" placeholder="请输入短信验证码"/></div>
+				</div>
+				<div class="w-btn2"><a href="javascript:retPass.verType('phone');">下一步</a></div>
+			</div>
+			<div class="type-email none">
+				<div class="w-item4">
+					<label for=""><em>*</em>已绑定邮箱：<span class="rp-email"></span></label>
+					<button class="w-button3 J-sendcaptcha" onClick="H9377.sendCaptcha(this,'retpass@email',1);">点击发送</button>
+				</div>
+				<div class="w-item4 flex">
+					<label for=""><em>*</em>邮件验证码：</label>
+					<div class="flex-list"><input name="code" type="text" placeholder="请输入邮件验证码"/></div>
+				</div>
+				<div class="w-btn2"><a href="javascript:retPass.verType('email');">下一步</a></div>
+			</div>
+		</div>
+		<div class="w-form retpass-step-3 none">
+			<div class="w-word"><em>*</em>已确认账号：<span class="rp-user"></span></div>
+			<div class="w-box w-box2"><input type="text" name="password" placeholder="输入新密码"/></div>
+			<div class="w-box mrb15"><input type="text" name="password1" placeholder="再次输入新密码"/></div>
+			<div class="w-btn2"><a href="javascript:;" onClick="retPass.verPass()">确认</a></div>
+		</div>
+		<div class="w-form retpass-step-4 none">
+			<div class="w-finish"><img src="{{$CONFIG.resource}}/images/2017/h5/right.png" alt="" title="" /></div>
+			<div class="w-tips3 mrb30">恭喜！密码修改成功</div>
+			<div class="w-btn fix">
+				<a class="w-blue" href="javascript:retPass.close();">返回登录</a>
+			</div>
+		</div>
+	</div>
+</div>

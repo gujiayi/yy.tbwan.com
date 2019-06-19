@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Jinlian"/>
+	<title>{{if $title neq ''}}{{$title}}{{/if}}</title>
+	<meta name="keywords" content="{{if $keywords neq ''}}{{$keywords}}{{/if}}"/>
+	<meta name="description" content="{{if $description neq ''}}{{$description}}{{/if}}"/>
+	<link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/baobiao/style.css?{{$CONFIG.build}}"  />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript">document.domain = '{{$CONFIG.cookie_domain}}'; </script>
+</head>
+<body>
+	<!--网站头部部分-->
+	<div class="header">
+		<div class="hd-top">
+			<div class="w1000 w1200 fix">
+				<div class="hd-left fl">
+					<div class="home-opt"> <a href="javascript:winSetHP();">设为首页</a> &nbsp;|&nbsp; <a href="javascript:winAddFav();">收藏</a> </div>
+					<div class="home-search">
+						{{data name="搜索推荐"}}
+						<form method="get" action="{{$CONFIG.app_url}}/game_center.php" target="_blank" id="top-search-form" onSubmit="return topBarSearch();">
+							<input class="search-txt" type="text" name="q" placeholder="搜索游戏" autocomplete="off" id="top-search-val">
+							<input class="search-btn" type="submit" value="" id="top-search-btn">
+						</form>
+						<div class="search-rem none" id="search-rem">
+							<ul class="list">
+								{{foreach from=$DATA['搜索推荐'].list item=item}}
+								<li>
+									<div class="a">{{$item.NAME}}</div>
+									<div class="b">
+										<a href="{{$item.CONFIG.site}}" target="_blank" class="img"><img src="{{$CONFIG.resource}}/images/2017/icon/44_44/{{$item.ALIAS}}.jpg"></a>
+										<div class="info fl">
+											<a href="{{$item.CONFIG.site}}" target="_blank" class="name">{{$item.NAME}}</a>
+											<a href="{{$item.CONFIG.server_list_url}}" target="_blank" class="btn-play">进入游戏</a>
+										</div>
+									</div>
+								</li>
+								{{/foreach}}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="hd-right fr">
+					<div class="top-user-mod">
+						<div class="nologin">
+							<a href="{{$CONFIG.app_url}}/login.php" rel="nofollow" class="item to-login"><i></i>登录</a>
+							<a href="{{$CONFIG.app_url}}/register.php" rel="nofollow" class="item to-reg"><i></i>注册</a>
+						</div>
+						<div class="logined none">
+							<div class="user-vip-wp">
+								<a class="item user-vip" href="{{$CONFIG.app_url}}/users/users_index.php?type=14" target="_blank"> <i class="user-vip-level"></i> <em>0</em> </a>
+								<a class="item user-name" href="{{$CONFIG.app_url}}/users/users_index.php" target="_blank"></a>
+								<div class="vip-box none">
+									<div class="hd">
+										<i class="c"></i> <em class="vip"><i>VIP1</i></em>
+										<a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" target="_blank" class="fl">什么是VIP等级？</a>
+										<a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" target="_blank" class="fr">提升VIP></a>
+									</div>
+									<div class="bd">
+										<div class="vitem vitem-1">
+											<a href="http://mall.9377.com/task.php" target="_blank">【获得】</a><i></i> 积分：<span class="user-credit"></span>
+										</div>
+										<div class="vitem vitem-2">
+											<a href="{{$CONFIG.app_url}}/pay_index.php?gid=118&sid=15760&pay_to=1&pid=1" target="_blank">【充值】</a>
+											<i></i> 游戏币：<span class="user-coin"></span>
+										</div>
+										<div class="vitem vitem-3">
+											<a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" target="_blank">【提升】
+											</a><i></i> 安全等级：<span class="user-slevel"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a class="item user-logout" href="{{$CONFIG.app_url}}/login.php?do=logout">[退出]</a>
+							<em class="gap">|</em>
+							<div class="user-msg-wp">
+								<a class="item user-msg" href="{{$CONFIG.app_url}}/users/users_index.php?type=15">消息<i></i></a>
+								<div class="msg-box none">
+									<i class="c"></i>
+									<div class="data none">
+										<div class="hd"></div>
+										<div class="bd"></div>
+										<a href="{{$CONFIG.app_url}}/users/users_index.php?type=15" target="_blank" class="all">查看全部消息&gt;&gt;</a>
+									</div>
+									<div class="nomsg none">
+										<img src="{{$CONFIG.app_url}}/images/2017/nodata.jpg" alt="">
+										<p>暂时没有新消息了！</p>
+										<a href="{{$CONFIG.app_url}}/users/users_index.php?type=15" target="_blank" class="all">查看全部消息&gt;&gt;</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="all-game-wp">
+						<a href="javascript:;" class="item all-game-btn">全部游戏<i></i></a>
+						<div class="all-game-box none">
+							{{data name="2017顶部所有游戏"}}
+							<ul class="all-game-img">
+								{{foreach from=$DATA['2017顶部所有游戏'].list item=item}}
+								<li>
+									<a href="{{$item.CONFIG.site}}" target="_blank">
+										<img _src="{{$CONFIG.resource}}/images/2017/icon/462_280/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}">
+										<p class="txt">{{$item.SHORT_DESCRIPTION}}</p>
+									</a>
+								</li>
+								{{/foreach}}
+							</ul>
+							<dl class="all-game-list fix">
+								<dt><em><i class="icon-new"></i> 新游</em> <em><i class="icon-hot"></i> 火爆</em> 热门游戏 </dt>
+								{{foreach from=$DATA['2017顶部所有游戏'].list item=item name=glist}}
+								<dd {{if $smarty.foreach.glist.index > 10}}class="sitem"{{/if}}>
+									<a href="{{$item.CONFIG.site}}" target="_blank">
+									{{$item.NAME}}
+									{{if $item['CONFIG']['step'] == 'new'}} <i class="icon-new"></i> {{elseif $item['CONFIG']['step'] == 'hot'}} <i class="icon-hot"></i> {{/if}}
+									</a>
+								</dd>
+								{{/foreach}}
+								<dd><a href="{{$CONFIG.app_url}}/game_center.php" target="_blank" class="more">更多游戏+</a></dd>
+							</dl>
+							<dl class="all-game-tool">
+								{{data name="顶栏游戏工具"}}
+								<dt>游戏工具</dt>
+								{{foreach from=$DATA["顶栏游戏工具"].list item="v"}}
+								<dd>
+									<a href="{{$v.url}}" target="_blank">
+										<img src="{{$v.thumb}}" alt="{{$v.title}}" title="{{$v.title}}" width="60" height="60"/>
+										<p>{{$v.title}}</p>
+									</a>
+								</dd>
+								{{/foreach}}
+							</dl>
+						</div>
+					</div>
+					<div class="safe-mod-wp none">
+						<div class="safe-mod safe-mod-idc none">
+							<a href="javascript:;" class="close"></a>
+							<div class="hd"><i></i>您的账号尚未完善身份证信息</div>
+							<div class="bd">
+								<p>身份证信息是判断账号归属的重要依据，为了您</p>
+								<p>的账号安全，请尽快完善！</p>
+								<a href="{{$CONFIG.app_url}}/users/users_index.php?type=21" target="_blank" opt="idc" class="go">完善信息</a>
+							</div>
+						</div>
+						<div class="safe-mod safe-mod-phone none">
+							<a href="javascript:;" class="close"></a>
+							<div class="hd"><i></i>您尚未完绑定密保手机</div>
+							<div class="bd">
+								<p>绑定手机可用于忘记密码或者账号被盗时</p>
+								<p>快速重置密码</p>
+								<a href="{{$CONFIG.app_url}}/users/users_index.php?type=6" target="_blank" opt="phone" class="go">绑定手机</a>
+							</div>
+						</div>
+						<div class="safe-mod safe-mod-info none">
+							<a href="javascript:;" class="close"></a>
+							<div class="hd"><i></i>您尚未完完善个人资料</div>
+							<div class="bd">
+								<p>完善账号的个人资料，提高账号安全度，</p>
+								<p>做完美的人!</p>
+								<a href="{{$CONFIG.app_url}}/users/users_index.php?type=0" target="_blank" opt="info" class="go">完善信息</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hd-baobiao fix">
+			<div class="b-menu fr">
+				<ul class="fix">
+					<li><a href="javascript:;">首页</a></li>
+					<li><a href="http://bbs.9377.com/forum-566-1.html" target="_blank">意见反馈</a></li>
+					<li><a href="{{$CONFIG.url}}/kefu/" target="_blank">客服中心</a></li>
+				</ul>
+			</div>
+			<div class="b-logo fl">
+				<img src="{{$CONFIG.resource}}/images/2017/baobiao/icon.png" alt="" title="" />
+				<h2>9377游戏保镖</h2>
+				<p>您的贴身游戏侍卫</p>
+			</div>
+		</div>
+	</div>
+	<!--网站头部部分end-->
+	<div class="b-container">
+		<div class="b-banner">
+			<object id="xy" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" height="647" width="1920">
+				<param name="allowFullScreen" value="true" />
+				<param name="loop" value="true" />
+				<param name="play" value="true" />
+				<param name="menu" value="true" />
+				<param name="quality" value="high" />
+				<param name="wmode" value="transparent" />
+				<param name="allowScriptAccess" value="always" />
+				<param name="flashvars" value="winType=interior&amp;auto_play=0" />
+				<param name="movie" value="{{$CONFIG.resource}}/images/2017/baobiao/main.swf?{{$CONFIG.build}}" />
+				<embed name="xy" allowfullscreen="true" src="{{$CONFIG.resource}}/images/2017/baobiao/main.swf?{{$CONFIG.build}}" flashvars="winType=interior&amp;auto_play=0" allowScriptAccess="always" width="1920" height="647" loop="true" menu="true" play="true" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" type="application/x-shockwave-flash" wmode="transparent"></embed>
+			</object>
+			<div class="b-title">{{data name="206*206二维码"}}</div>
+			<div class="b-down">
+				{{$DATA["206*206二维码"]}}
+				<ul class="down-btn">
+					<li>{{data name="ios下载链接"}}{{data name="ios说明"}}
+						<a href="{{$DATA['ios下载链接']}}">
+							<i class="csp b-ios"></i><p><span>iOS正式版</span>{{$DATA["ios说明"]}}</p>
+						</a>
+					</li>
+					<li>{{data name="安卓下载链接"}}
+						<a href="{{$DATA['安卓下载链接']}}">
+							<i class="csp b-android"></i><p><span>Android</span>下载</p>
+						</a>
+					</li>
+				</ul>{{data name="软件大小"}}{{data name="版本号"}}
+				<div class="down-node"><p>{{$DATA["版本号"]}}<span class="csp"></span></p><p>{{$DATA["软件大小"]}}</p></div>
+			</div>
+		</div>
+		<div class="mod">
+			<div class="bao-tit"><i class="csp baot1"></i>特色功能<span>FUNCTIONAL FEATURES</span></div>
+			{{data name="特色功能数据块调用"}}
+			<ul class="b-ts fix">
+				{{foreach from=$DATA["特色功能数据块调用"].list item="v" name="op"}}
+				<li>
+					<div class="ts-img ts{{$smarty.foreach.op.index+1}}"><img src="{{$v.thumb}}" alt="{{$v.title}}" title="{{$v.title}}" width="264" height="288"/></div>
+					<p><em>{{$v.title}}</em>{{$v.ext4}}</p>
+				</li>
+				{{/foreach}}
+			</ul>
+		</div>
+		<div class="mod">
+			<div class="bao-tit"><i class="csp baot2"></i>特别福利<span>SPECIAL BENEFITS</span></div>
+			<div class="b-fuli">{{data name="游戏保镖标题"}}
+				<h4 class="fuli-tit">{{$DATA["游戏保镖标题"]}}</h4>
+				<div class="fuli-txt">
+					{{data name="游戏保镖内容"}}{{$DATA["游戏保镖内容"]}}
+				</div>
+				<div class="fuli-btn fix">
+					<a class="ios-btn" href="{{$DATA['ios下载链接']}}">立即领取礼包iOS系统</a>
+					<a class="android-btn" href="{{$DATA['安卓下载链接']}}">立即领取礼包Android系统</a>
+				</div>
+				<div class="b-come"></div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	{{data name="全站底部公共调用"}}{{$DATA['全站底部公共调用']}}
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

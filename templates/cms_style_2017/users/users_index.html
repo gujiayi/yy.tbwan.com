@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>用户中心_9377网页游戏平台_一起玩更快乐！</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/user.css?{{$CONFIG.build}}" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script> document.domain = '9377.com'; </script>
+</head>
+<body>
+	{{include file="header.html"}}
+	<div class="u-container fix">
+		<div class="w1000 user-wp">
+			<div class="user-header">
+				<div class="left">
+					<div class="avatar"><img src="{{$user_avatar}}" alt="" width="120" height="120"></div>
+					<a href="javascript:avapopOpen();" class="avatar_btn">修改头像</a>
+				</div>
+				<div class="right">
+					<div class="top">
+						<div class="item item-1">
+								<p class="nikename" style="font-size: 14px;margin-top:25px;">账号：{{$user.LOGIN_ACCOUNT}}</p>
+							<!-- <p class="nikename">{{if $user.BBS_NAME}}{{$user.BBS_NAME}}{{else}}暂无昵称 <a href="{{$CONFIG.app_url}}/users/users_index.php?type=4" class="btn-nike"></a>{{/if}}</p> -->
+							<!-- <p class="acc">账号：{{$user.LOGIN_ACCOUNT}}</p> -->
+							<a href="{{$CONFIG.app_url}}/users/users_modpass.php" target="_blank" class="btn btn-s btn-red mgv10">修改密码</a>
+						</div>
+						<div class="item item-2">
+							<p class="fix">
+								<span class="fl">上次登陆时间：{{$user.LAST_LOGIN_TIME}}</span>
+								<!-- <a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" class="fr">了解VIP特权</a> -->
+							</p>
+							<!-- <div class="vip-wp"> -->
+								<!-- <i class="vip-level"><i>VIP{{$user.user_level.level}}</i></i> -->
+								<!-- <div class="vip-proc"><i style="width: {{$user.user_level.next_level_per}}%"></i></div> -->
+								<!-- <span class="vip-num">{{$user.user_level.score|intval}}/{{$user.user_level.next_level.credit|intval}}</span> -->
+							<!-- </div> -->
+						</div>
+						<div class="item item-3">
+								<p>信息完整度：<span>{{$user.infos_per}}%</span></p>
+								<a href="{{$CONFIG.app_url}}/users/users_index.php?type=0" target="_blank">去完善>></a>
+							</div>
+						<!-- <a href="javascript:;" class="btn-sign" id="btn-sign">打卡领积分</a> -->
+					</div>
+					<!-- <div class="bottom fix">
+						<div class="item item-1">
+							<i class="icon icon-integ"></i>
+							<p>我的积分：<span>{{$user.credit.credit|intval}}</span></p>
+							<a href="http://mall.9377.com/task.php?task=2" target="_blank">赚积分>></a>
+						</div>
+						<div class="item item-2">
+							<i class="icon icon-coin"></i>
+							<p>9377游戏币：<span>{{$user.credit.gold|intval}}</span></p>
+							<a href="{{$CONFIG.app_url}}/pay_index.php" target="_blank">充游戏币>></a>
+						</div>
+						<div class="item item-3">
+							<i class="icon icon-page"></i>
+							<p>信息完整度：<span>{{$user.infos_per}}%</span></p>
+							<a href="{{$CONFIG.app_url}}/users/users_index.php?type=0" target="_blank">去完善>></a>
+						</div>
+					</div> -->
+				</div>
+			</div>
+			<div class="user-main fix" id="user">
+				<ul class="user-menu">
+					<li{{if $type == 22 || (!isset($type) && $user.IS_OPENID==0)}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=22" class="user-m1">我的账号</a></li>
+					<li{{if $type == 10}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=10" class="user-m2">我的游戏</a></li>
+					<li{{if isset($type) && $type == 0}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=0" class="user-m3">个人资料</a></li>
+					<li{{if $type == 2 || $type == 6 || $type == 9 || $type == 20 || $type == 21}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" class="user-m4">账号安全</a></li>
+					<!-- <li{{if $type == 12}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=12" class="user-m5">我的积分</a></li>
+					<li{{if $type == 13}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=13" class="user-m6">9377游戏币</a></li>
+					<li{{if $type == 11}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=11" class="user-m7">二级密码</a></li>
+					<li{{if $type == 16}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=16" class="user-m8">商城订单</a></li>
+					<li{{if $type == 17}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=17" class="user-m9">收货地址</a></li> -->
+					<li{{if $type == 15}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=15" class="user-m10">我的消息</a></li>
+					<!-- <li{{if $type == 18}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=18" class="user-m11">积分卡兑换</a></li>
+					<li{{if $type == 14}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" class="user-m12">VIP特权</a></li> -->
+					<li{{if $type == 19}} class="active"{{/if}}><a href="{{$CONFIG.app_url}}/users/users_index.php?type=19" class="user-m13">账号注销</a></li>
+				</ul>
+				<div class="user-ctn">
+					{{if !empty($avatar_swf) && $is_user_photo}}
+						{{include file="users/user_photo.html"}}
+					{{elseif (!isset($type)|| $type==7) && $user.IS_OPENID}}
+					    {{include file="users/user_bindacc.html"}}
+					{{elseif (isset($type) && $type == 0) || $type == 3}}
+						{{include file="users/user_info.html"}}
+					{{elseif $type == 1}}
+						{{include file="users/user_password.html"}}
+					{{elseif $type == 2 || $type == 6 || $type == 9 || $type == 20 || $type == 21}}
+						{{include file="users/user_mysafe.html"}}
+					{{elseif $type == 4}}
+						{{include file="users/user_bbs.html"}}
+					{{elseif $type == 10}}
+						{{include file="users/user_mygame.html"}}
+					{{elseif $type == 11}}
+						{{include file="users/user_2pass.html"}}
+					{{elseif $type == 12}}
+						{{include file="users/user_mycredit.html"}}
+					{{elseif $type == 13}}
+						{{include file="users/user_mycoin.html"}}
+					{{elseif $type == 14}}
+						{{include file="users/user_svip.html"}}
+					{{elseif $type == 16}}
+						{{include file="users/user_orders.html"}}
+					{{elseif $type == 17}}
+						{{include file="users/user_addr.html"}}
+					{{elseif $type == 18}}
+						{{include file="users/user_exc.html"}}
+					{{elseif $type == 15}}
+						{{include file="users/user_mymsg.html"}}
+					{{elseif $type == 22}}
+						{{include file="users/user_myacc.html"}}
+					{{elseif $type == 19}}
+						{{include file="users/user_logoff.html"}}
+					{{else}}
+					{{include file="users/user_myacc.html"}}
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{{include file="footer.html"}}
+	
+	<!-- 修改头像弹窗 -->
+	<div class="avatar-pop none" id="avatar-pop">
+		<a href="javascript:avapopClose();" class="avapop-close"></a>
+		<div class="ava-hd" id="curavatar">
+			<img src="{{$user_avatar}}" />
+			<p>当前头像</p>
+		</div>
+		<div class="ava-bd">
+			<div class="ava-uptype fix">
+				<a href="javascript:;" class="active">推荐头像</a>
+				{{if $user.BBS_ID}}
+				<a href="javascript:;">自定义头像</a>
+				<span class="line"></span>
+				{{/if}}
+			</div>
+			<div class="ava-upwrap">
+				<div class="ava-upbox ava-system">
+					<p class="tips">选择一个新照片进行保存，即可获得全新造型。</p>
+					<div class="sys-ava-list fix" id="sys-ava-list"></div>
+					<a href="javascript:;" class="sys-ava-submit" id="sys-ava-submit">保存</a>
+					<p class="dib sub-tips" id="s-tips"></p>
+				</div>
+				<div class="ava-upbox ava-custom none">
+					{{if $user.BBS_ID}} {{$avatar_swf}} {{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 二级密码 -->
+	<div class="pass2-pop none" id="pass2-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<div class="hd">请输入二级密码</div>
+		<div class="bd">
+			<p class="tip">为了您的账号安全，此处操作需要输入二级密码</p>
+			<input type="password" placeholder="二级密码" class="cs-psw2" id="J-psw2">
+			<p class="input-tips" id="J-psw2-tips"></p>
+			<div class="opt">
+				<a href="javascript:;" class="button-red fl" data-tar="" id="J-psw2-submit">提交</a>
+				{{if empty($user.GAMES_LOGINED)}}
+				<a href="{{$CONFIG.app_url}}/users/users_index.php?type=11" target="_blank" class="fr">马上设置！</a>
+				{{else}}
+				<a href="{{$CONFIG.app_url}}/users/users_modpass.php?pwd2=2" target="_blank" class="fr">忘记密码？</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<!-- 签到模块 -->
+	{{include file="/pop_sign_2018.html"}}
+	<!-- 帐号绑定 -->
+	<div class="bindacc-pop none" id="bindacc-pop">
+		<a href="javascript:;" class="pop-close w-pop-close"></a>
+		<div class="hd">恭喜您绑定成功</div>
+		<div class="bd">
+			<a href="http://mall.9377.com/task.php?task=2" target="_blank" class="btn btn-green w-close-reload">领取50积分</a>
+		</div>
+	</div>
+	<!-- 签到模块 -->
+	{{if $type == 17}}
+	<!-- 添加收货地址 -->
+	<div class="addr-opt-pop none" id="addr-opt-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<h3 class="hd">收货信息</h3>
+		<div class="bd">
+			<form class="form-addr-opt" id="form-addr-opt">
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 姓名：</label>
+					<input type="text" name="realname" id="realname" class="w-input" value="">
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 所在地区：</label>
+					<select name="province" id="province" required class="w-select-s"></select>
+					<select name="city" id="city" required class="w-select-s"></select>
+					<select name="area" id="area" required class="w-select-s"></select>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 详细地址：</label>
+					<input type="text" name="address" id="address" class="w-input" value="">
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 手机/固话：</label>
+					<input type="text" name="tel" id="tel" class="w-input" value="">
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 邮政编码：</label>
+					<input type="text" name="post_no" id="postnum" class="w-input" value="">
+				</div>
+				<div class="w-item w-item-fix">
+					<label class="w-label"></label>
+					<a href="javascript:;" class="setdef"><i></i>设为默认收货地址</a>
+				</div>
+				<div class="tc"> <a href="javascript:;" class="btn btn-l btn-green" id="addr-opt-submit">确定</a> </div>
+			</form>
+		</div>
+	</div>
+	<!-- 添加收货地址 -->
+	{{/if}}
+	<!-- 手机验证 -->
+	<div class="vphone-pop none" id="vphone-pop">
+		<a href="javascript:;" class="pop-close w-pop-close"></a>
+		<div class="hd">手机短信验证</div>
+		<div class="bd">
+			<div class="level-tips"><i></i>该操作需要先验证您的绑定手机</div>
+			<form class="vphone-form" id="vphone-form">
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 已绑定手机：</label>
+					<div class="w-div pd0">{{$user.PHONE}}</div>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 验证码：</label>
+					<div class="w-div pd0">
+						<input name="code" type="text" class="w-input" />
+						<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code"/>
+					</div>
+				</div>
+				<div class="w-item">
+					<label class="w-label"><i>*</i> 短信验证码：</label>
+					<div class="w-div pd0">
+						<input type="text" name="captcha" id="captcha" class="w-input" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+						<input type="button" value="点击发送" onClick="userVphone.sendCaptcha(this);" class="pop-button pop-button-green">
+					</div>
+				</div>
+				<div class="w-item last">
+					<label class="w-label"></label>
+					<div class="w-div pd0 w-tips"> <!-- 错误提示 --> </div>
+				</div>
+				<div class="w-item tc">
+					<a href="javascript:userVphone.ver();" class="btn btn-l btn-red">验 证</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 手机验证 -->
+	<script>
+		C9377.build = '{{$CONFIG.build}}';
+		var users_bbsid = '{{$user.BBS_ID}}',
+			fixedSize = false,
+			menuID = 1,
+			users_pf = '{{$user["CONFIG"]["reg_type"]}}', //当前帐号属于哪个平台
+			verification = '{{$verification}}'; // 手机验证是否在有效期内
+	</script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/users.js?{{$CONFIG.build}}"></script>
+	{{if $type == 17}}
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/user_address.js?{{$CONFIG.build}}"></script>
+	{{/if}}
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/DD_belatedPNG_0.0.8a-min.js?20150610110116"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*')</script>
+	<![endif]-->
+</body>
+</html>

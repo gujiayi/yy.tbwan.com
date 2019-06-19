@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$DATA['游戏中心标题']}}</title>
+<meta name="keywords" content="{{$DATA['游戏中心关键字']}}" />
+<meta name="description" content="{{$DATA['游戏中心描述']}}" />
+<link href="{{$CONFIG.resource}}/style/cms_style_2015/common.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+<link href="{{$CONFIG.resource}}/style/cms_style_2015/style.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/comon_2015.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript">
+document.domain = '{{$CONFIG.cookie_domain}}';
+</script>
+</head>
+<body>
+<!--网站头部部分-->
+{{include file="/commom_top.html"}}
+{{include file="/top.html"}}
+{{data name="游戏中心关键字"}}
+{{data name="游戏中心描述"}}
+{{data name="游戏中心标题"}}
+<div class="gray_bg_main">
+    <div class="wrapper get_card_area clearfix">
+    <div class="center_left"> <span class="game_detail_img"><em></em> <img src="{{$CONFIG.resource}}/images/cms_style_2012_new/game/game_center_big/{{$G.ALIAS}}.jpg?{{$CONFIG.build}}" width="308" height="233" /></span>
+      <div class="game_detail">
+        <h2>{{$G.NAME}}<br /><span>{{$G.TYPE}}</span></h2>
+        <p class="game_center_f">
+			{{if empty($G['DESCRIPTION'])}}
+				{{$G.SHORT_DESCRIPTION}}
+			{{else}}
+				{{$G.DESCRIPTION}}
+			{{/if}}
+		</p>
+      <p class="mt20"><a class="com_submit_btn" href="{{$gameurl}}" target="_blank">进入官网</a><a class="com_submit_blue_btn ml10" href="/gift/giftdetail.php?gid={{$G.ID}}" target="_blank">领取新手礼包</a></p>
+      </div>
+    
+      <!--服务器列表开始-->
+       <br clear="all" />
+      <div class="recommend_server"><span class="recommend_left">推荐服务器：
+	  {{foreach from=$new_games item=item}}
+		<a href="{{$CONFIG.app_url}}/game_login.php?game={{$game}}&server={{$item.SID}}" target="_blank">
+		{{$gamename}} [{{$item.SERVER_NAME}}]
+		</a>
+	  {{/foreach}}
+	  </span>
+	  
+	  <form onSubmit="return check_go()"><span class="recommend_right">快速输入服数 进入游戏:<input id="go_sid" type="text" name="sid" class="input" /><input id="go_game" type="hidden" name="game" value="{{$G.ALIAS}}" />
+      <input type="submit" value="GO" class="btn_go" /></span>
+	  </form>
+	  <script type="text/javascript">
+	  function check_go(){
+		var game = $("#go_game").val();
+		var sid = $("#go_sid").val();
+		if(sid == ""){
+			alert("还没填上区服！");
+			return false;
+		}
+		if(game == "xxcq"){
+			sid = parseInt(sid) + 4;
+		}
+		
+		window.location.href="{{$CONFIG.app_url}}/game_login.php?game="+game+"&sid="+sid;
+		return false;
+	  }
+	  </script>
+	  </div>
+      <div class="service_list_tit clearfix">
+		<span>服务器选择</span>
+        <ul class="service_list_ul clearfix" id="service">
+			{{foreach from=$servers_list_data item=row key=k name=part}}
+			<li class="current">{{$k}}服</li>
+			{{/foreach}}
+		</ul>
+      </div>
+	<div class="servie_list_content" id="service_content">
+		{{foreach from=$servers_list_data item=row key=k name=part}}
+			<ul class="clearfix">
+			{{foreach from=$row item=item name=server}}
+				<li>
+					<a href="{{$CONFIG.app_url}}/game_login.php?game={{$G.ALIAS}}&server={{$item.SID}}" target="_blank"><span>{{if $item.STATE == -1}}期待{{elseif $item.STATE == 0}}维护{{else}}{{if $smarty.foreach.part.last && $smarty.foreach.server.first}}新区{{else}}已开放{{/if}}{{/if}}</span>[{{$item.SERVER_NAME}}]</a>
+				</li>
+				{{/foreach}}
+			</ul>
+		{{/foreach}}
+	</div>
+	  <script type="text/javascript">
+	  $('ul.service_list_ul li').each(function(k){
+		var li = $(this);
+		(function(i){
+			li.click(function(){
+				$('.service_list_ul li').removeClass('current');
+				li.addClass('current');
+				
+				$('div.servie_list_content ul').hide().eq(i).show();
+			});
+		})(k);
+	  });
+	  $('ul.service_list_ul li:last').click();
+	  </script>
+       <!--服务器列表结束-->
+    </div>
+    <div class="game_list_s">
+		<div class="game_list_tit">
+			<span onclick="_switch('left')" class="go_left"></span>
+			<span><font>游戏中心</font> <b id="current_game_page">0 / 0</b></span>
+			<span onclick="_switch('right')" class="go_right"></span>
+		</div>
+		<div class="game_list_wrap">
+			<div class="game_list_txt">
+			  <ul>
+				{{foreach from=$DATA['顶部所有游戏导航'].list item=item}}
+				<li class="game_{{$item.ALIAS}}">
+					<a href="{{$CONFIG.app_url}}/game_box.php?game={{$item.ALIAS}}"><img src="{{$CONFIG.resource}}/images/cms_style_2017/game/icon/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" class="game_img"><strong class="y_left">{{$item.NAME}}</strong></a>
+				</li>
+				{{/foreach}}
+			  </ul>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		var ul = $('.game_list_txt ul');
+		while(true){
+			if(!ul.find('li:eq(10)').length) break;
+			
+			var new_ul = $('<ul></ul>');
+			for(var i = 0; i < 10; i++){
+				var last_li = ul.find('li:eq(10)');
+				if(!last_li.length) break;
+				
+				new_ul.append(last_li)
+			}
+			
+			$('.game_list_txt ul:last').after(new_ul);
+		}
+		
+		function _switch(dir, callback){
+			var div = $('div.game_list_txt');
+			var px = parseInt(div.css('margin-left').replace(/[^0-9-]/g, ''));
+			var count = div.find('ul').length;
+			var width = $('div.game_list_wrap').width();
+			var max_px = width * count - width;
+			var dis;
+			
+			if(dir == 'left'){
+				dis = px == 0 ? 0 : px + width;
+			}else{
+				dis = px <= -max_px ? -max_px : px - width;
+			}
+			
+			var current = Math.abs(Math.min(dis, 0) / width) +1;
+			current = Math.min(count, current);
+			
+			div.animate({'margin-left': dis}, 200, callback);
+			$('#current_game_page').html(current +' / '+ count);
+		}
+		
+		{{if $game}}
+		_switch('left');
+		$(function(){
+			var ul = $('.game_list_txt li.game_{{$game}}')
+				.find('a').addClass('current_game').end()
+				.parent().get(0);
+			
+			$('.game_list_txt ul').each(function(k, v){
+				if(v === ul && k > 0){
+					(function(offset){
+						var func = arguments.callee;
+						_switch('right', function(){
+							if(!--offset) return;
+							
+							func(offset);
+						});
+					})(k);
+					
+					return false;
+				}
+			});
+		});
+		{{/if}}
+		</script>
+	</div>
+    <br clear="all" />
+</div>
+</div>
+<!--脚注开始-->
+{{include file="/bottom.html"}}
+{{include file="/slider_bar.html"}}
+<!--脚注结束-->
+</body>
+</html>

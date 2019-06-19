@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>9377游戏{{if $smarty.get.type == 'phone'}}手机验证礼包领取{{else}}实名验证礼包领取{{/if}}_一起玩更快乐-9377网页游戏</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/user.css?{{$CONFIG.build}}" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+</head>
+<body>
+	{{include file="header.html"}}
+	
+	<div class="g-container fix">
+		<div class="w1000 user-main">
+			<div class="sgift-hd">
+				<h3 class="tit"> {{if $smarty.get.type == 'phone'}} 手机验证礼包领取 {{else}} 实名验证礼包领取 {{/if}} </h3>
+				<!-- <a href="{{$CONFIG.app_url}}/gift/" target="_blank" class="more">点我领取更多礼包</a> -->
+			</div>
+			<div class="sgift-bd">
+				{{if $smarty.get.type == 'phone'}}
+				<div class="ver-box {{if $user.BIND_CELLPHONE}}none{{/if}}">
+					<p class="ver-tit">您的帐号尚未进行手机验证，请先完成以下操作！</p>
+					<div class="ver-fill form-mibao-phone form-mibao-phone1">
+						<div class="w-item">
+							<label class="w-label">手机号码：</label>
+							<input type="text" name="cellphone" class="w-input">
+							<div class="w-tips w-tips1"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label">验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="code" class="w-input">
+								<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code" id="img-code" />
+							</div>
+							<div class="w-tips w-tips2"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label">短信验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="captcha" class="w-input">
+								<input type="button" value="点击发送" onClick="bindPhone.sendCaptcha(this);" class="w-button btn-green">
+							</div>
+							<div class="w-tips w-tips3"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<div class="w-div-l pd0 tc mgv15">
+								<a href="javascript:bindPhone.bind(getCardCb);" class="btn btn-l btn-blue">下一步</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{else}}
+				<div class="ver-box {{if $user.ID_CARD_NUMBER}}none{{/if}}">
+					<p class="ver-tit">您的帐号尚未进行实名验证，请先完成以下操作！</p>
+					<div class="ver-fill">
+						<form action="" class="form-mibao-idcard" cb="getCardCb">
+							<div class="w-item">
+								<label class="w-label">真实姓名</label>
+								<input type="text" name="name" class="w-input">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label class="w-label">身份证号</label>
+								<input type="text" name="id_card_number" class="w-input">
+								<div class="w-tips"></div>
+							</div>
+							<div class="w-item">
+								<label class="w-label"></label>
+								<div class="w-div-l pd0 tc">
+									<input type="submit" class="btn btn-l btn-blue mgv20" value="验 证">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				{{/if}}
+				<div class="ver-box ver-box-ok none">
+					{{if $smarty.get.type == 'phone'}}
+						<p class="ver-tit">手机验证已成功，恭候多时的礼包为您奉上：</p>
+					{{else}}
+						<p class="ver-tit">身份验证已成功，恭候多时的礼包为您奉上：</p>
+					{{/if}}
+					<p class="ver-card">{{$card}}</p>
+					<div class="tc"> <a href="javascript:;" class="btn btn-l btn-red btn-copy">复 制</a> </div>
+					{{data name="礼包提示"}}
+					{{if $DATA['礼包提示']}}
+						<div class="ver-tip">{{$DATA['礼包提示']}}</div>
+					{{else}}
+						<div class="ver-tip">请复制礼包序号并前往游戏界面内进行兑换。</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	<script>
+		var fixedSize = false, menuID = '3', sign='{{$sign}}', card_type='{{$card_type}}';
+		var isBind = '{{if $smarty.get.type == "phone"}}{{if $user.BIND_CELLPHONE}}true{{/if}}{{else}}{{if $user.ID_CARD_NUMBER}}true{{/if}}{{/if}}';
+	</script>
+	<script> if( !sign ) {window.location.href = C9377.app_url +'/login.php'; } </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/ZeroClipboard.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/users.js?{{$CONFIG.build}}"></script>
+	<script>
+		function getCardCb(){
+			// 手机绑定回调
+			if( !sign ) {
+				window.location.href = C9377.app_url +'/login.php';
+				return;
+			}else {
+				$.getJSON('/gift/index.php?card_type='+card_type+'&sign='+sign, function(json){
+					if( json.status != 1 ) {
+						$('.ver-card').html(json.msg);
+					}else{
+						$('.ver-card').html(json.msg);
+						setCopyTxt('.btn-copy', json.msg);
+					}
+				});
+			}
+			$('.ver-box').hide();
+			$('.ver-box-ok').show();
+		}
+		function idCardCb(){
+			// 身份证验证回调
+			getCardCb();
+		}
+		if (isBind) {
+			getCardCb();
+		}
+	</script>
+</body>
+</html>

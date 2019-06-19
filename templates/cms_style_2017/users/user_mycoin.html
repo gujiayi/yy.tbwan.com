@@ -1,0 +1,87 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">9377游戏币</em></p></div>
+<div class="user-mod-wp user-mod-mycoin" id="user-mod-mycoin">
+	<div class="user-select-hd">
+		<ul class="left fl">
+			<li class="item-1 {{if $t != 2}}active{{/if}}"><a href="{{$CONFIG.app_url}}/users/users_index.php?type=13">获取的游戏币</a><i></i></li>
+			<li class="item-2 {{if $t == 2}}active{{/if}}"><a href="{{$CONFIG.app_url}}/users/users_index.php?type=13&t=2">消耗的游戏币</a></li>
+		</ul>
+		<div class="right fr">
+			<a href="{{$CONFIG.app_url}}/pay_index.php?gid=118&sid=15760&pay_to=1&pid=1" target="_blank" class="btn-blue">充值9377游戏币</a>
+			<a href="{{$CONFIG.app_url}}/pay_index.php?uname2=&uname=&pay_to=0&gid=0&sid=0&money=100&money2=&pid=16" target="_blank" class="btn-green">充值到游戏</a>
+			<a href="{{$CONFIG.url}}/kefu/faq/145339.html#p17" target="_blank" class="btn-link">9377游戏币FAQ</a>
+		</div>
+	</div>
+	<div class="user-mod-bd">
+		{{if $t != 2}}
+			<table class="user-center-table">
+				<thead> <tr> <td>时间</td> <td>游戏币数量</td> <td>备注</td> </tr> </thead>
+				{{if empty($credit_logs.data)}}
+				<tbody class="table-data none">
+					<tr><td colspan="3">暂无记录</td></tr>
+				</tbody>
+				{{else}}
+				<tbody class="table-data none">
+					{{foreach from=$credit_logs.data item="v"}}
+					<tr>
+						<td>{{$v.timestamp|date_format:'%Y-%m-%d'}}</td>
+						<td>{{$v.amount|intval}}</td>
+						<td>{{$v.description}}</td>
+					</tr>
+					{{/foreach}}
+				</tbody>
+				{{/if}}
+				<tbody class="offline none">
+					<!-- 二级密码过期 -->
+					<tr>
+						<td colspan="4">
+							<p>为了您的账号安全，此处需要输入二级密码</p>
+							<a href="javascript:;" data-tar="user-mycoin" class="btn btn-l btn-red J-btn-to2pass">输入二级密码</a>
+						</td>
+					</tr> 
+					<!-- 二级密码存活 -->
+				</tbody>
+			</table>
+			<div class="mod-pages none">
+				{{$credit_logs.pages}}
+			</div>
+		{{else}}
+			<table class="user-center-table mycoin-table">
+				<thead> <tr> <td class="td1">账号</td> <td class="td2">游戏</td> <td class="td3">区服</td> <td class="td4">游戏币数量</td> <td class="td5">备注</td> </tr> </thead>
+				{{if empty($credit_logs.data)}}
+				<tbody class="table-data none">
+					<tr><td colspan="5">暂无记录</td></tr>
+				</tbody>
+				{{else}}
+				<tbody class="table-data none">
+					{{foreach from=$credit_logs.data item="v"}}
+					<tr>
+						<td>{{$v.username}}</td>
+						<td>{{$v.game}}</td>
+						<td>{{$v.server}}</td>
+						<td>{{$v.amount|intval}}</td>
+						<td>{{$v.description}}</td>
+					</tr>
+					{{/foreach}}
+				</tbody>
+				{{/if}}
+				<tbody class="offline none">
+					<!-- 二级密码过期 -->
+					<tr>
+						<td colspan="5">
+							<p>为了您的账号安全，此处需要输入二级密码</p>
+							<a href="javascript:;" data-tar="user-mycoin" class="btn btn-l btn-red J-btn-to2pass">输入二级密码</a>
+						</td>
+					</tr> 
+					<!-- 二级密码存活 -->
+				</tbody>
+			</table>
+			<div class="mod-pages none">
+				{{$credit_logs.pages}}
+			</div>
+		{{/if}}
+	</div>
+</div>
+
+
+
+

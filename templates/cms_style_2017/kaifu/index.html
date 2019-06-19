@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="J1100">
+<head>
+	<meta charset="utf-8">
+	<title>网页游戏开服表_页游开服表_最新网页游戏开服时间表-9377网页游戏</title>
+	<meta name="keywords" content="网页游戏开服表,页游开服表,最新网页游戏开服时间表" />
+	<meta name="description" content="9377网页游戏开服栏目提供今日页游开服表、最新网页游戏开服时间表以及历史网页游戏开服表大全，关注网页游戏开服就选9377！" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/kaifu.css?{{$CONFIG.build}}" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+</head>
+<body>
+	{{include file="header.html"}}
+	<div class="g-container">
+		<div class="w1000 kaifu-main">
+			<h2 class="mod-tit"><span><em>今日网页游戏开服表</em></span></h2>
+			{{data name="今日网页游戏开服表"}}
+			<table class="kaifu-table">
+				<thead>
+					<tr> <td>游戏名称</td> <td>区服</td> <td>题材</td> <td>日期</td> <td>时间</td> <td>运营商</td> <td>礼包</td> <td>快捷操作</td> <td>开服状态</td> </tr>
+				</thead>
+				<tbody>
+					{{foreach from = $DATA['今日网页游戏开服表'].list item=item}}
+					{{if $item.SERVER_START_TIME|date_format:'%Y-%m-%d' == $smarty.now|date_format:'%Y-%m-%d'}}
+					<tr>
+						<td><a href="{{$CONFIG.url}}/kaifu/{{$item.GAME.ALIAS}}/" target="_blank">{{$item.GAME.NAME}}</a></td>
+						<td><a href="{{$item.SERVER_URL}}" target="_blank" rel="nofollow">{{$item.SERVER_NAME}}</a></td>
+						<td><a href="{{$CONFIG.app_url}}/game_center.php" target="_blank">{{$item.GAME.TYPE}}</a></td>
+						<td>{{$item.SERVER_START_TIME|date_format:'%m-%d'}}</td>
+						<td>{{$item.SERVER_START_TIME|date_format:'%H:%M'}}</td>
+						<td>9377</td>
+						<td><a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank">领取礼包</a></td>
+						<td><a href="{{$item.SERVER_URL}}" target="_blank" class="go" rel="nofollow">开始游戏</a></td>
+						<td> {{if $item.STATE == 1}} 火爆开启中 {{elseif $item.STATE == -1 || $item.STATE == -3}} 期待 {{elseif $item.STATE == 0}} 维护中 {{elseif $item.STATE == -2}} 已关闭 {{/if}}</td>
+					</tr>
+					{{/if}}
+					{{/foreach}}
+				</tbody>
+			</table>
+			<h1 class="mod-tit" id="all"><span><em>网页游戏开服表大全</em></span></h1>
+			<table class="kaifu-table">
+				<thead>
+					<tr> <td>游戏名称</td> <td>区服</td> <td>题材</td> <td>日期</td> <td>时间</td> <td>运营商</td> <td>礼包</td> <td>快捷操作</td> <td>开服状态</td> </tr>
+				</thead>
+				<tbody>
+				{{data name="网页游戏开服表大全"}}
+				{{foreach from=$list item=item}}
+					<tr>
+						<td><a href="{{$CONFIG.url}}/kaifu/{{$item.GAME.ALIAS}}/" target="_blank">{{$item.GAME.NAME}}</a></td>
+						<td><a href="{{$item.SERVER_URL}}" target="_blank" rel="nofollow">{{$item.SERVER_NAME}}</a></td>
+						<td>{{$item.GAME.TYPE}}</td>
+						<td>{{$item.SERVER_START_TIME|date_format:'%m-%d'}}</td>
+						<td>{{$item.SERVER_START_TIME|date_format:'%H:%M'}}</td>
+						<td>9377</td>
+						<td><a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank">领取礼包</a></td>
+						<td><a href="{{$item.SERVER_URL}}" target="_blank" class="go" rel="nofollow">开始游戏</a></td>
+						<td> {{if $item.STATE == 1}} 火爆开启中 {{elseif $item.STATE == -1 || $item.STATE == -3}} 期待 {{elseif $item.STATE == 0}} 维护中 {{elseif $item.STATE == -2}} 已关闭 {{/if}} </td>
+					</tr>
+				{{/foreach}}
+				</tbody>
+			</table>
+			<div class="mod-pages">
+				{{$pagelist}}
+			</div>
+			<div class="rank-wp">
+				<div class="rank-box">
+					{{data name="开服表周游戏排行榜"}}
+					<div class="hd">周·网页游戏开服排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row2">游戏名称</dd> <dd class="row row3">区服</dd> <dd class="row row4">题材</dd> </dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表周游戏排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row2"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row3"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server={{$item.NEW_SERVER}}" target="_blank" rel="nofollow" >{{$item.NEW_SERVER_NAME}}</a></span>
+								<span class="row row4">{{$item.TYPE}}</span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+				<div class="rank-box">
+					{{data name="开服表热门游戏排行榜"}}
+					<div class="hd">热门网页游戏排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row2">游戏名称</dd> <dd class="row row3">区服</dd> <dd class="row row4">题材</dd> </dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表热门游戏排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row2"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row3"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server={{$item.NEW_SERVER}}" target="_blank" rel="nofollow">{{$item.NEW_SERVER_NAME}}</a></span>
+								<span class="row row4">{{$item.TYPE}}</span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+				<div class="rank-box">
+					{{data name="开服表礼包领取排行榜"}}
+					<div class="hd">网页游戏礼包领取排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row5">游戏名称</dd> <dd class="row row6">游戏礼包</dd></dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表礼包领取排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row5"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row6"><a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank">等级成长礼包</a></span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	<script> var fixedSize = false, menuID = 8; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/DD_belatedPNG_0.0.8a-min.js?20150610110116"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*')</script>
+	<![endif]-->
+</body>
+</html>

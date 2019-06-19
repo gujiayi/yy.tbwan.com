@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>网页游戏礼包大全_页游激活码_新手卡_等级礼包-9377网页页游</title>
+	<meta name="keywords" content="网页游戏礼包大全,页游激活码,网页游戏新手卡,网页游戏等级礼包,网页游戏特权礼包" />
+	<meta name="description" content="9377网页游戏礼包中心为页游玩家提供免费领取的网页游戏新手卡、网页游戏激活码、网页游戏等级礼包、网页游戏特权礼包、网页游戏抢号、网页游戏道具卡等服务。" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> if(/(mobile|ipad|iphone|android|\s+adr\s+)/i.test(navigator.userAgent) && !$_COOKIE['skip_wap']){ window.location.href = '{{$CONFIG.url}}/wap/guide/'; } </script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/gift.css?{{$CONFIG.build}}" />
+</head>
+<body class="w992">
+	{{include file="header.html"}}
+	<div class="g-container fix">
+		<div class="w1000 w1200 gift-main">
+			<div class="mod mod-1 fix">
+				<div class="gift-recom" id="gift-recom">
+					{{data name="礼包列表"}}
+					{{foreach from=$DATA['礼包列表'].list name=list item=item}}
+					<div class="item-{{$smarty.foreach.list.index+1}}">
+						{{if $smarty.foreach.list.first}}
+							{{if $item.ext4}} <i class="c c-{{$item.ext1}}-large">{{$item.ext4}}</i>{{/if}}
+						{{else}}
+							{{if $item.ext4}} <i class="c c-{{$item.ext1}}">{{$item.ext4}}</i>{{/if}}
+						{{/if}}
+						<a href="{{$item.url}}" target="_blank">
+							{{if $smarty.foreach.list.index > 1}}
+								{{data name="{{$smarty.foreach.list.index}}小图"}}{{$DATA["{{$smarty.foreach.list.index}}小图"]|replace:'src=':'class="simg" _src='}}
+							{{/if}}
+							<img src="{{$item.thumb}}" class="bimg" alt="">
+						</a>
+					</div>
+					{{/foreach}}
+				</div>
+				<div class="hotgift-wp">
+					{{data name="热门礼包"}}
+					<div class="mod-tit"><span>热门礼包</span></div>
+					<div class="hotgift-list" id="hotgift-list">
+						<ul class="slide-bd">
+							{{foreach from=array(0,1) item=item key=key1}}
+								<li class="slide-item">
+									{{foreach from=range(0,4) item=item key=key2}}
+									{{assign var="item" value=$DATA['热门礼包']['list'][$key1 * 5 + $key2]}}
+									{{if !empty($item)}}
+									<div class="item">
+										<div class="img">{{data name="{{$item.G.ALIAS}}礼包图"}}{{$DATA["{{$item.G.ALIAS}}礼包图"]}}</div>
+										<div class="info">
+											<p>{{$item.G.NAME}}</p>
+											<span>{{data name="{{$item.G.ALIAS}}礼包名"}}{{$DATA["{{$item.G.ALIAS}}礼包名"]}}</span>
+										</div>
+										<div class="fr">
+											<p class="sur">剩余<em>{{$item.surplus/$item.total*100|intval}}%</em></p>
+											<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.G.ID}}" target="_blank" class="go">领取礼包</a>
+										</div>
+									</div>
+									{{/if}}
+									{{/foreach}}
+								</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mod mod-2 fix">
+				<div class="fl game_filter">
+					<div class="filter-box">
+						<h3 class="mod-tit"><span>全部游戏筛选</span></h3>
+						<a href="{{$CONFIG.app_url}}/gift/giftrecord.php" target="_blank" class="btn-giftrec">礼包领取记录</a>
+						<!-- <a href="{{$CONFIG.app_url}}/users/users_index.php?type=14" target="_blank" class="btn-viplevel">VIP等级说明</a>  -->
+						<form class="sc-box" onsubmit="return giftSearch(this);">
+							<input type="text" class="key" placeholder="搜索游戏" name="q">
+							<input type="submit" class="btn" value="搜索"> 
+						</form>
+						<div class="filter-item">
+							<p class="hd">全部类型：</p>
+							<div class="bd fix">
+								<a href="javascript:;" onClick="gameFilter(this,'type','')" class="active">全部</a>
+								{{foreach from=$games_type item=item key=type}}
+								{{if $type && $item}}
+								<a href="javascript:;" onClick="gameFilter(this,'type','{{$type}}')">{{$type}}</a>
+								{{/if}}
+								{{/foreach}}
+							</div>
+						</div>
+						<div class="filter-item">
+							<p class="hd">全部题材：</p>
+							<div class="bd fix">
+								<a href="javascript:;" onClick="gameFilter(this,'subject','')" class="active">全部</a>
+								{{foreach from=$games_subject item=item key=type}}
+								{{if $type && $item}}
+								<a href="javascript:;" onClick="gameFilter(this,'subject','{{$type}}')">{{$type}}</a>
+								{{/if}}
+								{{/foreach}}
+							</div>
+						</div>
+						<div class="filter-item">
+							<p class="hd">字母排序：</p>
+							<div class="bd fix">
+								<a href="javascript:;" onClick="gameFilter(this,'letter','')" class="active">全部</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','ABC')">ABC</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','DEF')">DEF</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','GHI')">GHI</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','JKL')">JKL</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','MNO')">MNO</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','PQR')">PQR</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','STU')">STU</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','VWX')">VWX</a>
+								<a href="javascript:;" onClick="gameFilter(this,'letter','YZ')">YZ</a>
+							</div>
+						</div>
+					</div>
+					<div class="hotgame-tab" id="hotgame-tab">
+						<div class="hotgame-tit">
+							<div class="mod-tit"><span>游戏礼包</span></div>
+								
+						</div>
+						<div class="bd">
+							<div class="hotgame-list hotgame-list-pc">
+								<!-- js加载 -->
+							</div>
+							
+						</div>
+					</div>
+				</div>
+            	
+				<div class="filter-wp" id="filter-wp">
+					<div class="mod-tit"><span>礼包领取排行</span></div>
+					{{data name="礼包领取排行"}}
+					<ul class="rank-list">
+						{{foreach from=$DATA['礼包领取排行'].list item=item key=k}}
+							<li>
+									<a target="_blank" href="/gift/giftdetail.php?gid={{$item.url}}">
+									<i class="nums">{{$k+1}}</i>
+									<span class="info" title="{{$item.title}}" >{{$item.title}}</span>
+									<span class="dress"> {{$item.ext4}}</span>
+									<span class="go" >{{$item.ext8}}+人<i>领取</i></span>
+									</a>
+								</li>
+						{{/foreach}}
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	<script> var menuID = 3; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/jquery.slideBox2.0.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/platform/yxdt/jquery.nicescroll.min.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/gift.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/register.js?{{$CONFIG.build}}"></script>
+    <script type="text/javascript">
+    $("#"+eval($_GET['p'])).show().siblings(".hotgame-list:visible").hide();
+    $("#tab"+eval($_GET['p'])).addClass('active').siblings("li:visible").removeClass('active');
+    </script>
+</body>
+</html>

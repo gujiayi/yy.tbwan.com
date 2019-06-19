@@ -1,0 +1,91 @@
+.g-container { padding-bottom: 15px; }
+.gamecenter-main .mod{padding:25px;overflow:hidden;margin-bottom:10px;background:#fff;border-bottom: 3px solid #ebeaea;}
+.gamecenter-main .mod-1{padding:0;}
+.gc-kv{width:100%;height:366px;overflow:hidden;float:left;position:relative}
+.gc-kv .hd{position:absolute;bottom:10px;left:50%; margin-left:-120px;z-index:2}
+.gc-kv .hd li{display: inline-block;
+  vertical-align: middle;
+  width: 38px;
+  height: 8px;
+  margin: 0 4px;
+  position: relative;
+  line-height: 99px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #fff;
+  *display: inline;
+  *zoom: 1;
+  _overflow: hidden;}
+.gc-kv .hd li:before{    content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 38px;
+  height: 28px;display:none}
+.gc-kv .hd h4{width:146px;height:22px;padding-top:14px;font-size:14px;overflow:hidden}
+.gc-kv .hd p{width:146px;height:18px;overflow:hidden;color:#d6d6d6}
+.gc-kv .hd .active{background:#ff7733}
+.gc-kv .hd .active:before{display:block}
+.gc-kv .hd .active p{color:#fff}
+.gc-kv .bd{position:relative;z-index:1}
+.gc-kv .bd li{position:absolute;top:0;left:0;width:1200px}
+.gc-kv .a { display: none; }
+.gc-kv .b { display: block; }
+.gc-kv img{width:100%;}
+.w1200 .gc-kv { width:1200px;}
+
+.w1200 .gc-kv .a { display: block; }
+.w1200 .gc-kv .b { display: none; }
+.mod .mod-tit{height:16px;padding-bottom:12px;position:relative}
+.mod .mod-tit span{display:block;height:16px;line-height:16px;font-size:16px;border-left:1px solid #ff7733;padding-left:10px;color: #595758;vertical-align: auto;}
+.gc-rank{width:278px;height:930px; overflow:hidden; float:right}
+.rank-list{height:847px;overflow: hidden;border:1px solid #d5d4d0}
+.rank-list li{height:36px;padding:12px 0; margin:0 10px;overflow:hidden;border-bottom:1px dotted #d5d4d0}
+.rank-list .info { float:left;display: block;width:110px;margin:0 0 0 15px; height: 34px; line-height: 34px; font-size:14px; width: 110px;  text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.rank-list .dress{float:left; display: block; height: 16px; line-height: 34px; }
+.rank-list .go{width:74px;height:22px;line-height:22px;margin-top:5px;text-align:center;color: #ff7733;border-radius:3px;border:1px solid #d7d7d7;font-size:14px;float:right}
+.rank-list .go:hover{color:#fff!important;border-color:#ff7733;background:#ff7733}
+
+
+
+
+.hotgame-list{width:664px;float:left;_overflow:hidden;}
+.w1200 .hotgame-tab,.w1200 .hotgame-list{width:850px; position:relative;}
+.w1200 .hotgame-tab{float:left;}
+.hotgame-tab .hotgame-tit{position:relative;margin-top:20px;}
+.hotgame-tab .tab_hd{position:absolute; top:0; left:108px; z-index:10;}
+.hotgame-tab .tab_hd li{float:left; width:71px; height:17px; line-height:17px; text-align:center; color:#fff; border-radius:15px; margin-right:5px; background:#9fa0a0;}
+.hotgame-tab .tab_hd li.active{background:#ff7733;}
+.sc-box{overflow:hidden;position:absolute;top:-4px;right:15px}
+.w1200 .sc-box{right:0}
+.sc-box .key{width:143px;height:22px;line-height:22px;padding:0 10px;border:1px solid #d6d4d2;border-right:0 none;font-family:'microsoft yahei';float:left}
+.sc-box .key:hover, .sc-box .key:focus { border-color: #ff7733; }
+.sc-box .btn{width:44px;height:24px;line-height:22px;color:#fff;border:0 none;cursor:pointer;font-family:'microsoft yahei';background:#ff7733;float:left}
+.game-list{height:560px;margin-right:-20px;overflow:hidden}
+.game-list li{width:313px;margin:0 20px 24px 0;float:left;border:1px solid #d5d4d0}
+.w1200 .game-list { margin-right: -13px; }
+.w1200 .game-list li {margin:0 13px 24px 0;width:272px;}
+.game-list li:hover{border:1px solid #ff7733}
+.game-list .img{display:block;width:313px;height:134px;margin-bottom:8px;overflow:hidden;position:relative;}
+.w1200 .game-list .img{width:272px;}
+.game-list .img .m { width: 100%; height: 100%; position:absolute; top: 0px; left: 0px; opacity: 0; filter: alpha(opacity=0); background: #000; transition: all .2s ease;}
+.game-list .img .glogo { position:absolute; top: 0px; left: 0px; z-index: 2; transform: scale(0); opacity: 0; filter: alpha(opacity=0);}
+.game-list .img:hover .m { opacity: .7; filter: alpha(opacity=70); }
+.game-list .img:hover .glogo { transform: scale(1); opacity: 1; filter: alpha(opacity=70);}
+.game-list .img img {width:100%; transition: all .4s ease; }
+.game-list .img:hover img { transform: scale(1.1); }
+.game-list .info{height:26px;overflow:hidden; padding: 0 10px;}
+.game-list .name{color:#595757;font-size:14px;line-height:18px;float:left}
+.game-list .go{width:64px;height:18px;line-height:18px;border:1px solid #9fa0a0;text-align:center;-webkit-border-radius:9px;border-radius:9px;color:#9fa0a0;float:right}
+.game-list .go:hover{color:#fff!important;border-color:#ff7733;background:#ff7733}
+.filter-box{width:650px;border-bottom:1px dotted #d5d4d0}
+.w1200 .filter-box{width:850px;}
+.filter-box .filter-item{padding:8px 0 11px;border-top:1px dotted #d5d4d0}
+.filter-item .hd{float:left;font-size:15px;height: 46px;line-height:46px;color:#9fa0a0}
+.filter-item .bd{overflow:hidden;margin-right:-30px;margin-top:14px;}
+.filter-item .bd a{display:block;width:64px;height:20px;line-height:20px;-webkit-border-radius:10px;border-radius:10px;text-align:center;color:#595757;margin:0 30px 8px 0;float:left}
+.filter-item .bd a:hover,.filter-item .bd .active{color:#fff!important;background:#ff7733}
+.filter-box .recom{display:block;margin-bottom:10px}
+.gamecenter-main .nodata { margin: 143px auto; }
+.mod-pages {margin: 14px 0;}
+.weplay-list .game-list {height: 178px; overflow:hidden;}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    
+    <div class="inside_con">
+        <ul class="news_lists">
+          {{section name="list" loop=$artlist}}
+          <li>
+              <a href="{{$artlist[list].artlink}}">
+                  <p class="list_title">{{$artlist[list].title}}</p>
+                  <p>{{$artlist[list].description}}</p>
+              </a>
+          </li>
+          {{/section}}
+        
+        </ul>
+    </div>
+</div>
+  
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

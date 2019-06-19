@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="inside_status_bg"></div>
+    <div class="inside_game_con">
+    <!-- 推荐游戏 两款 -->
+        <div class="i_com_box hot_game_list" >
+            {{data name="首页推荐游戏"}}
+            <ul class="fix">
+                {{foreach from=$DATA['首页推荐游戏'].list item=item}}
+                <li>
+                    {{data name="{{$item.NAME}}独立官网"}}
+                    <a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.ALIAS}}{{/if}}">
+                        <div class="hot_game_img">
+                            {{if $item['CONFIG']['step'] == 'new'}}<span class="new_tag">新</span>
+                            {{elseif $item['CONFIG']['step'] == 'hot'}}<span class="hot_tag">热</span>{{/if}}
+                            
+                            <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                        </div>
+                    </a>
+                    <div class="h_game_right">
+                        <p>
+                            {{if $item['CONFIG']['step'] == 'new'}}<span class="new_tag_txt">本周最热</span>
+                            {{elseif $item['CONFIG']['step'] == 'hot'}}<span class="hot_tag_txt">五星推荐</span>{{/if}}
+                        </p>
+                        <p class="h_game_name">{{$item.NAME}}</p>
+                        <p class="h_game_ell">{{data name="首页推荐游戏{{$item.ALIAS}}slogan"}}{{$DATA["首页推荐游戏{{$item.ALIAS}}slogan"]}}</p>
+                    </div>
+                    
+                </li>
+                {{/foreach}}
+            
+            </ul>
+        </div>
+
+        <div class="i_com_box area_value" id="type">
+            <div class="recom_title">
+                <h2><font class="tit_ico tit_ico05"></font>按字母查询</h2>
+            </div>
+            <div class="fix">
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center#type" {{if empty($cur_letter)}}class="current"{{/if}}>不限</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=recent#type" {{if $cur_letter=="recent"}}class="current"{{/if}}>玩过的</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=ABCDE#type" {{if $cur_letter=="ABCDE"}}class="current"{{/if}}>ABCDE</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=FGHIJK#type" {{if $cur_letter=="FGHIJK"}}class="current"{{/if}}>FGHIJK</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=LMNOP#type" {{if $cur_letter=="LMNOP"}}class="current"{{/if}}>LMNOP</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=QRSTU#type" {{if $cur_letter=="QRSTU"}}class="current"{{/if}}>QRSTU</a>
+                <a href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center&letter=VWXYZ#type" {{if $cur_letter=="VWXYZ"}}class="current"{{/if}}>VWXYZ</a>
+            </div>
+        </div>
+        
+        <div class="i_com_box game_center_box">
+            <ul class="fix">
+                {{foreach from=$games item=item}}
+                    <li class="game_center_row fix">
+                        <a class="game_center_link fix" href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.ALIAS}}">
+                            <div class="game-icon fl">
+                                <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                            </div>
+                            <div class="game_center_msg">
+                                <div class="game_center_title">{{$item.NAME}} <span class="game_center_type">{{$item.TYPE}}</span><span class="game_center_type02">礼包</span></div>
+                                <div class="game_center_summary ell">{{data name="{{$item.ALIAS}}_slogan"}}{{$DATA["{{$item.ALIAS}}_slogan"]}}</div>
+                                <div class="game_center_iconfont">{{$item.df_pack_size}}</div>
+                            </div>
+                        </a>
+                    </li>
+                {{/foreach}}	
+                
+            </ul>
+            <div class="pagination" id="gamecenter-pagination">
+            {{$pagelist}}
+            </div>
+        </div>
+    </div>
+    
+</div>
+  
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{{data name="新通用底部_ad脚本"}}{{$DATA["新通用底部_ad脚本"]}} 
+<div class="top_sub_main">
+	<div class="top_sub_nav clearfix">
+		<div class="sub_nav_right fr clearfix">
+			<div class="top_login_tips fl clearfix" id="top_login_tips">
+				<a class="t_btn1" href="{{$CONFIG.app_url}}/login.php" rel="nofollow"><i class="c_login_icon"></i>登录</a>
+				<a class="t_btn2" href="{{$CONFIG.app_url}}/register.php" rel="nofollow"><i class="c_reg_icon"></i>注册</a>
+			</div>
+			<span class="all_games_ico fl" id="all_game_hover">全部游戏<i class="game_list_icon"></i></span>
+		</div>
+		<div class="sub_nav_left fl">
+			<a href="{{$CONFIG.app_url}}/downloads.php?game=aszt&amp;item=mini&amp;lm=&amp;uid=&amp;url=http%3A%2F%2Fcdnsource.9377.com%2Fjs%2F9377%25E6%25B8%25B8%25E6%2588%258F%25E4%25B8%25AD%25E5%25BF%2583.exe" rel="nofollow">
+				<i class="c_web_icon"></i>保存桌面
+			</a>
+			<a href="javascript:;" onclick="if(document.all){document.body.style.behavior = 'url(#default#homepage)'; document.body.setHomePage('{{$CONFIG.url}}'); }else{ alert('浏览器不支持此操作, 请手动设为首页'); }" rel="nofollow">
+				<i class="c_home_icon"></i>设为首页
+			</a>
+			<a href="javascript:;" onclick="try{ window.external.addFavorite('{{$CONFIG.url}}', '9377游戏平台'); } catch(e) {  try{ window.sidebar.addPanel('9377游戏平台', '{{$CONFIG.url}}', ''); }catch (e) { alert('加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.');  } }" rel="nofollow">
+				<i class="c_add_icon"></i>加入收藏
+			</a>
+		</div>
+		<div class="sub_nav_search fl">
+			<form method="post" action="{{$CONFIG.app_url}}/search.php" onsubmit="return check_search($(this));">
+				<input class="search_txt input_focus" type="text" name="q" value="搜索游戏"/>
+				<input class="search_btn" type="submit" value=" " />
+			</form>
+		</div>
+		<div class="all_games_up none" id="all_game_div">
+			<i class="all_game_arrow"></i>
+			<ul class="all_games_img fl" id="all_games_img">
+				{{foreach from=$DATA['顶部所有游戏导航'].list item=item name=imgl}}
+				<li>
+					<a href="{{$item.CONFIG.site}}" target="_blank"><img _src="{{$CONFIG.resource}}/images/2017/icon/462_280/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" alt=""></a>
+					<div class="game_txt">{{$item.SHORT_DESCRIPTION}}</div>
+				</li>
+				{{/foreach}}
+			</ul>
+			<dl class="all_games_list fl">
+				<dt>推荐游戏</dt>
+				{{foreach from=$DATA['顶部所有游戏导航'].list item=item}}
+				<dd>
+					<a href="{{$item.CONFIG.site}}" target="_blank">
+						<em>{{$item.NAME}}</em>
+						{{if $item['CONFIG']['step'] == 'beta'}}
+						<i class="s_t">T</i>
+						{{elseif $item['CONFIG']['step'] == 'new'}}
+						<i class="s_n">N</i>
+						{{elseif $item['CONFIG']['step'] == 'hot'}}
+						<i class="s_h">H</i>
+						{{/if}}
+					</a>
+				</dd>
+				{{/foreach}}
+				<dd><a class="all_game_more" href="{{$CONFIG.app_url}}/game_center.php" target="_blank" rel="nofollow">更多游戏&gt;&gt;</a></dd>
+			</dl>
+			<div class="all_games_tool fl">
+				<div class="games_tool_tit">游戏工具</div>
+				{{data name="63*60游戏工具数据块调用"}}
+				<ul class="games_tool_list">
+					{{foreach from=$DATA["63*60游戏工具数据块调用"].list item="v"}}
+					<li>
+						<a href="{{$v.url}}" target="_blank">
+							<div class="games_tool_img"><img src="{{$v.thumb}}" alt="{{$v.title}}" title="{{$v.title}}" width="63" height="60"/></div>
+							<p>{{$v.title}}</p>
+						</a>
+					</li>
+					{{/foreach}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{{data name="顶部所有游戏导航"}}

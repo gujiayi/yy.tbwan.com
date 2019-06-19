@@ -1,0 +1,46 @@
+<div class="mod"><p class="mod-hd">
+	<em class="mod-tit">绑定9377账号</em>
+</p></div>
+<div class="user-mod-wp user-mod-bindacc" id="user-mod-bindacc">
+	<div class="level-tips"><i></i>为了您的账号安全，请先注册新的9377游戏账号，并与您当前的<span class="col1">微信登录</span>账号进行绑定！</div> 
+	<form action="" method="POST" class="form-bindacc" id="form-bindacc">
+		<input name="do" value="bind_openid" type="hidden" />           
+		<input name="callback" value="bind_success_callback" type="hidden" />
+		<div class="w-item">
+			<label class="w-label">亲爱的</label>
+			<div class="w-div pd0"><i class="i-third-x"></i> <span class="name-third-x col1"></span></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label">账号：</label>
+			<input type="text" name="new_username" id="username-bindacc" class="w-input" placeholder="帐号由4~20数字、字母或下划线组成">
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label">密码：</label>
+			<input type="password" name="password" id="password-bindacc" class="w-input" placeholder="支持6~20位字母、数字或特殊字符">
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label">确认密码：</label>
+			<input type="password" name="password1" class="w-input" placeholder="请确认密码">
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label">验证码：</label>
+			<div class="w-div pd0">
+				<input type="text" name="code" id="code" class="w-input" placeholder="请填写验证码" maxlength="4">
+				<img onclick="this.src = '/code.php?' +Math.random();" src="/code.php?{{$CONFIG.build}}" title="点击更换" class="php-code">
+			</div>
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label"></label>
+			<div class="w-div-l pd0"><i class="icon-cb icon-cbed" id="agreement-bindacc"></i><a href="{{$CONFIG.url}}/yhxy.html" target="_blank">我已阅读并同意《用户注册服务协议》</a></div>
+			<div class="w-tips"></div>
+		</div>
+		<div class="w-item">
+			<label for="" class="w-label"></label>
+			<div class="w-div pd0"> <input type="submit" id="submit-reg" class="w-submit" value="立即注册" /> </div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,56 @@
+.select-item-box .close, .sg-item-list .sg-item a, .pay-money-box span { background: url(/images/2016/pay.png) no-repeat;}
+.pay-wp { margin: 30px 0; background: #fff; border: 1px solid #e2e2e2;}
+.pay-list { width: 304px; border-right: 1px solid #e2e2e2; min-height: 706px; height: auto!important; height: 706px;}
+.pay-list li { border-bottom: 1px solid #e2e2e2; float: left;}
+.pay-list li a { display: block; width: 304px; height: 71px; line-height: 70px; color: #666; font-size: 20px; text-align: center;}
+.pay-list li .active, .pay-list li a:hover { color: #fff; background: #03b4f5;}
+.pay-box { width: 793px; min-height: 666px; padding: 20px 50px; border-left: 1px solid #e2e2e2; margin-left: -1px;}
+.pay-box-tit { font-size: 20px; height: 40px; line-height: 40px; border-bottom: 1px solid #e2e2e2;}
+.pay-box-tit span { color: #03b4f5;}
+.w-item { margin: 30px 0; position: relative;}
+.w-label { display: inline-block; vertical-align: top; width: 86px; height: 32px; line-height: 32px; font-size: 16px;}
+.w-div { display: inline-block; vertical-align: top; *display: inline; *zoom: 1; min-height: 32px; line-height: 32px;}
+.w-div.none { display: none;}
+.w-input { vertical-align: top; width: 210px; height: 20px; line-height: 20px; padding: 5px; border: 1px solid #03b4f5; border-radius: 5px; *vertical-align: middle;}
+.w-input.error { border-color: #f00;}
+
+.pay-money-box { width: 530px;}
+.pay-money-box span { float: left; width: 85px; height: 38px; line-height: 38px; padding: 0 10px; text-decoration: none; position: relative; cursor: pointer; margin: 0 0 -1px -1px; border: 1px solid #c9c9c9; background-color: #fff; background-position: -100px -100px;}
+.pay-money-box .active { border-color: #03b4f5; background-position: 80px -33px; z-index: 2;}
+.pay-money-box span input { display: none;}
+.pay-money-box .last-money { background: #f1f1f1;}
+.pay-money-box .last-money input { display: inline-block; vertical-align: middle; width: 50px; height: 26px; line-height: 26px; border: 1px solid#c9c9c9; text-align: center; outline: none; background: #fff; visibility: visible; position: relative; top: -2px;}
+.btn-submit, .btn-kf { display: inline-block; width: 212px; height: 48px; line-height: 48px; margin: 0 20px 0 -1px; font-size: 16px; text-align: center; background: #03b4f5; color: #fff; border-radius: 4px; border: 0 none; vertical-align: top; font-family: 'microsoft yahei'; cursor: pointer;}
+.btn-kf { background: #bccacf;}
+.btn-submit:hover, .btn-kf:hover { color: #fff; opacity: 0.9;}
+.select-item { width: 250px; height: 48px; line-height: 48px; cursor: pointer; margin-right: 22px; border: 1px solid #03b4f5; border-radius: 3px; overflow: hidden; position: relative;}
+.select-item em { display: inline-block; vertical-align: middle; width: 22px; height: 22px; line-height: 22px; margin: 0 8px; text-align: center; color: #fff; border-radius: 50px; overflow: hidden; background: #03b4f5; position: relative; top: -3px;}
+.select-item span { display: inline-block; width: 160px; height: 48px; color: #03b4f5; border-right: 1px solid #03b4f5; font-size: 18px;}
+.select-item i { width: 0px; height: 0px; overflow: hidden; border-width: 10px 8px; border-style: solid; border-color: #03b4f5 transparent transparent transparent; position: absolute; top: 20px; right: 17px;}
+
+.select-item-box { width: 530px; height: 240px; border: 1px solid #03b4f5; background: #fff; position: absolute; top: 65px; left: 88px; z-index: 9; zoom: 1;}
+.select-item-box .arrow { width: 0px; height: 0px; overflow: hidden; border-width: 10px 8px; border-style: solid; border-color: transparent transparent #03b4f5 transparent; position: absolute; top: -20px; left: 65px;}
+.select-item-box2 .arrow { left: auto; right: 65px;}
+.select-item-box .close { width: 26px; height: 26px; background-position: 0 -159px; position: absolute; top: 8px; right: 8px; z-index: 9; }
+.select-item-box .close:hover { opacity: 0.9;}
+.select-item-box .hd { height: 36px; padding-top: 6px; background: #03b4f5;}
+.select-item-box .hd li { height: 36px; line-height: 36px; padding: 0 20px; color: #fff; cursor: pointer; border-radius: 5px 5px 0 0; margin-left: 10px; overflow: hidden; font-size: 16px; float: left;}
+.select-item-box .hd .active { color: #03b4f5; background: #fff;}
+.select-item-box .bd { background: #fff;}
+.z-index-item { z-index: 8;}
+
+.sg-item-list { height: 190px; padding-top: 8px; overflow-y: auto;}
+.sg-item-list .sg-li { min-height: 34px; height: auto!important; height: 34px; overflow: hidden;}
+.sg-item-list .sg-li em { width: 18px; height: 18px; line-height: 18px; text-align: center; color: #fff; font-size: 16px; margin: 8px 0px 8px 10px; border-radius: 2px; overflow: hidden; background: #03b4f5; float: left;}
+.sg-item-list .sg-li .sg-item { width: 468px; margin-left: 16px; float: left;}
+.sg-item-list .sg-item a { width: 116px; padding-left: 20px; height: 32px; line-height: 32px; background-position: 0 -82px; float: left;}
+.sg-item-list .sg-item .active,.sg-item-list .sg-item a:hover { background-position: 0 -118px;}
+
+/*.main_user_input { display: none;}*/
+/*人工充值页面*/
+.artificial{padding:30px 0; font-size: 16px;}
+.artificial dl{line-height:28px; color:#7b7b7b; margin-bottom:20px;}
+.artificial dt{margin-bottom:10px;}
+.artificial dd em{display:inline-block; margin-right:10px;}
+.artificial dd .infor{color:#03b4f5; padding:0 28px; margin-bottom:10px;}
+.artificial dd .infor em{color:#7b7b7b;}

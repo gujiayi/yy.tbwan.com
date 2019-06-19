@@ -1,0 +1,16 @@
+<div class="top_menu">
+    <div class="wrapper clearfix">
+    	{{if $top_category_id != 10252}}
+		<h1 class="logo"><a href="{{$CONFIG.url}}/"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" height="70" alt="网页游戏" title="网页游戏"/></a></h1>
+		{{else}}
+		<a href="{{$CONFIG.url}}/" class="logo"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" height="70" alt="网页游戏" title="网页游戏"/></a>
+		{{/if}}
+		<ul class="clearfix">
+			<li><a href="{{$CONFIG.url}}/"><span>首页</span><i></i></a></li>
+			<li><a href="{{$CONFIG.app_url}}/users/users_index.php" rel="nofollow"><span>用户中心</span><i></i></a></li>
+			<li><a href="{{$CONFIG.app_url}}/game_center.php"><span>游戏中心</span><i></i></a></li>
+			<li><a href="{{$CONFIG.app_url}}/pay_index.php" target="_blank" rel="nofollow"><span>充值中心</span><i></i></a></li>
+			<li><a href="{{$CONFIG.url}}/kefu/" rel="nofollow"><span>客服中心</span><i></i></a></li>
+		</ul>
+    </div>
+</div>

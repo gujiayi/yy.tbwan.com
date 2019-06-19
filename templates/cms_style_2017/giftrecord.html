@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>礼包领取_网页游戏新手卡免费领取_9377礼包中心</title>
+	<meta name="keywords" content="礼包，游戏礼包中心，礼包领取,新手卡领取" />
+	<meta name="description" content="礼包中心，提供热门网页游戏新手卡领取，开服礼包领取。9377网页游戏平台，精品网页游戏研发与运营商。领取新手卡礼包上9377，一起玩更快乐" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/gift.css?{{$CONFIG.build}}" />
+</head>
+<body>
+	{{include file="header.html"}}
+	
+	<div class="g-container fix">
+		<div class="w1000 gift-main">
+			<div class="mod">
+				<div class="gift-local">当前位置： <a href="{{$CONFIG.url}}">505PK</a> > <a href="{{$CONFIG.url}}/gift/">礼包中心</a> > <a href="#" class="active">礼包领取记录</a></div>
+				<div class="gift-type-filter">
+					<a href="{{$CONFIG.app_url}}/gift/giftrecord.php" class="default {{if !$smarty.get.sort}}active{{/if}}">默认</a>
+					<span class="gift-type-list gift-type" id="gift-type">
+						{{if $smarty.get.sort == 3}}
+						<em id="gift-type-a" class="active">新手卡礼包</em>
+						{{elseif $smarty.get.sort == 4}}
+						<em id="gift-type-a" class="active">VIP礼包</em>
+						{{else}}
+						<em id="gift-type-a">礼包类型</em>
+						{{/if}}
+						<ul>
+							<li><a href="{{$CONFIG.app_url}}/gift/giftrecord.php?sort=3" class="sort {{if $smarty.get.sort == 3}}active{{/if}}">新手卡礼包</a></li>
+							<li><a href="{{$CONFIG.app_url}}/gift/giftrecord.php?sort=4" class="sort {{if $smarty.get.sort == 4}}active{{/if}}">VIP礼包</a></li>
+						</ul>
+					</span>
+					<span class="gift-type-list gift-time" id="gift-time">
+						{{if $smarty.get.sort == 1}}
+						<em id="gift-type-a" class="active">从近到远</em>
+						{{elseif $smarty.get.sort == 2}}
+						<em id="gift-type-a" class="active">从远到近</em>
+						{{else}}
+						<em id="gift-type-a">领取时间</em>
+						{{/if}}
+						<ul>
+							<li><a href="{{$CONFIG.app_url}}/gift/giftrecord.php?sort=1" class="sort {{if $smarty.get.sort == 1}}active{{/if}}">从近到远</a></li>
+							<li><a href="{{$CONFIG.app_url}}/gift/giftrecord.php?sort=2" class="sort {{if $smarty.get.sort == 2}}active{{/if}}">从远到近</a></li>
+						</ul>
+					</span>
+				</div>
+				<div class="gift-record-list">
+				{{if $new_card}}
+					{{foreach from=$new_card item=item}}
+					{{if !$item.card_no || !$item.name}}{{continue}}{{/if}}
+					<div class="gift-record-item">
+						<div class="img">{{data name="{{$item.G.ALIAS}}{{$item.name}}礼包图"}}{{$DATA["{{$item.G.ALIAS}}{{$item.name}}礼包图"]}}</div>
+						<div class="info">
+							<p class="i1">
+								<strong class="name">{{$item.G.NAME}} {{$item.name}}</strong>
+								<a href="{{$item.G.CONFIG.server_list_url}}" target="_blank" class="gogame">进入游戏</a>
+							</p>
+							<p class="i2">
+								<span><em>类型：{{$item.vip}}</em>领取时间：{{$item.end_day}}</span>
+								<a href="{{$item.G.CONFIG.site}}" target="_blank" class="goweb">进入官网</a>
+							</p>
+						</div>
+						<div class="detail">
+							<p>礼包码：<strong>{{$item.card_no}}</strong></p>
+							<a href="javascript:;" cid="{{$item.card_no}}" class="btn-get">复制礼包码</a>
+						</div>
+					</div>
+					{{/foreach}}
+				{{else}}
+				<div class="nodata"> <i></i> <p>暂无领取记录</p> </div>
+				{{/if}}
+				</div>
+				{{if $pagelist}}
+				<div class="mod-pages"> {{$pagelist}} </div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+	<i class="mask none" id="mask"></i>
+	<div class="tips-pop none" id="tips-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<div class="hd">提示</div>
+		<div class="bd">
+			<div class="bd-txt"> <p>礼包码</p> </div> 
+			<a href="javascript:;" class="pop-button pop-button-green">确定</a> 
+			<a href="javascript:;" class="pop-button pop-button-gray w-pop-close">取消</a>
+		</div>
+	</div>
+
+	{{include file="footer.html"}}
+	<script> var fixedSize = false, menuID = 3; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/ZeroClipboard.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/gift.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

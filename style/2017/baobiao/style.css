@@ -1,0 +1,59 @@
+.csp{background:url(/images/2017/baobiao/csp.png) 0 0 no-repeat;}
+.hd-baobiao{width:1200px; margin:0 auto; padding-top:15px; height:89px;}
+.b-logo{padding-left:100px;}
+.b-logo img{position:absolute; margin-left:-100px;}
+.b-logo h2{padding-top:11px; font:26px/33px \5FAE\8F6F\96C5\9ED1; color:#3e3940;}
+.b-logo p{font:14px/20px \5FAE\8F6F\96C5\9ED1; color:#b0afb1; letter-spacing:7px; padding-left:2px;}
+.b-menu{padding-top:20px; _width:500px;}
+.b-menu li{float:left; display:inline; margin-left:14px;}
+.b-menu li a{display:block; width:136px; height:32px; border:1px solid #a4a4a4; font:16px/32px \5FAE\8F6F\96C5\9ED1; color:#a4a4a4; text-align:center; border-radius:13px;}
+
+.b-banner{height:647px; position:relative;}
+.b-banner object{position:absolute; width:1920px; height:647px; left:50%; margin-left:-960px; top:0; z-index:1;}
+.b-title{position:absolute; width:645px; height:145px; top:121px; left:50%; margin-left:-107px; background:url(/images/2017/baobiao/word.png) 0 0 no-repeat; z-index:3;}
+.b-down{position:absolute; left:50%; top:311px; margin-left:-18px; z-index:4; padding-left:229px;}
+.b-down img{position:absolute; margin-left:-229px;}
+.down-btn{height:146px;}
+.down-btn li{margin-bottom:12px;}
+.down-btn li a{display:block; width:127px; height:44px; border:2px solid #b2cbf8; padding:6px 0 6px 56px; background-color:#7eaaf4; border-radius:12px;}
+.down-btn li a:hover{border:2px solid #c4d8fd; background-color:#7f9fe8;}
+.down-btn li p{border-left:1px solid #fff; height:44px; font:14px/18px \9ED1\4F53; color:#f9fbfe; padding-left:13px;}
+.down-btn li p span{display:block; font:20px/26px \9ED1\4F53;}
+.down-btn li i{width:43px; height:44px; position:absolute; margin-left:-51px;}
+.down-btn li i.b-ios{background-position:0 0;}
+.down-btn li i.b-android{background-position:0 -72px;}
+.down-node{font:15px/26px \5FAE\8F6F\96C5\9ED1; color:#fff;}
+.down-node .csp{width:47px; height:26px; position:absolute; background-position:5px -141px;}
+.down-btn li em{color:#ee0404;}
+
+.b-container{padding-bottom:66px; background-color:#f4f4f4; width:100%; min-width:1200px;}
+.b-container .mod{width:1200px; margin:0 auto;}
+.bao-tit{margin:74px 0 26px; height:42px; padding-left:40px; font:32px/42px \5FAE\8F6F\96C5\9ED1; color:#373140;}
+.bao-tit span{font:16px/24px \5FAE\8F6F\96C5\9ED1; color:#acacac; vertical-align:bottom; padding-left:5px; *margin-top:-4px; *display:inline-block;}
+.bao-tit i{position:absolute; width:24px; height:42px; margin-left:-40px;}
+.bao-tit i.baot1{background-position:-10px -180px;}
+.bao-tit i.baot2{background-position:-10px -228px;}
+
+.b-ts{margin-right:-48px; height:361px;}
+.b-ts li{float:left; display:inline; width:264px; margin-right:48px;}
+.ts-img{width:264px; height:288px;}
+.ts1{background-color:#5cadff;}
+.ts2{background-color:#ff6565;}
+.ts3{background-color:#30dba2;}
+.ts4{background-color:#ffdb4e;}
+.b-ts li img{display:block; width:100%; -webkit-transition:all 0.3s linear 0s; -moz-transition:all 0.3s linear 0s; -o-transition:all 0.3s linear 0s; -ms-transition:all 0.3s linear 0s; transition:all 0.3s linear 0s;}
+.b-ts li:hover img{-webkit-transform:rotateY(180deg);  -moz-transform:rotateY(180deg);  -o-transform:rotateY(180deg);  -ms-transform:rotateY(180deg);  transform:rotateY(180deg);  -webkit-transition:all 0.4s linear 0.05s;  -moz-transition:all 0.4s linear 0.05s;  -o-transition:all 0.4s linear 0.05s;  -ms-transition:all 0.4s linear 0.05s;  transition:all 0.4s linear 0.05s;}
+.b-ts li p{font:14px/28px \5FAE\8F6F\96C5\9ED1; color:#7f7d82; text-align:center; padding-top:10px;}
+.b-ts li em{display:block; font:19px/32px \5FAE\8F6F\96C5\9ED1; color:#373140;}
+
+.b-fuli{height:386px; position:relative; background-color:#fe6868;}
+.fuli-tit{padding:62px 0 0 142px; font:44px/54px \5FAE\8F6F\96C5\9ED1; color:#fff550;}
+.fuli-txt{padding:12px 0 0 94px; width:562px; height:94px; font:17px/21px \5FAE\8F6F\96C5\9ED1; color:#ffb0b0; text-align:center;}
+.fuli-txt .yellow{color:#edd252;}
+.fuli-btn{padding-left:96px;}
+.fuli-btn a{float:left; display:inline; width:258px; height:107px; font:0/0 a; overflow:hidden; margin-right:31px; background:url(/images/2017/baobiao/dbtn.jpg) 0 0 no-repeat;}
+.fuli-btn a.ios-btn{background-position:0 0;}
+.fuli-btn a.ios-btn:hover{background-position:0 -107px;}
+.fuli-btn a.android-btn{background-position:0 -214px;}
+.fuli-btn a.android-btn:hover{background-position:0 -321px;}
+.b-come{position:absolute; width:554px; height:459px; right:-26px; top:-82px; background:url(/images/2017/baobiao/man.png) 0 0 no-repeat;}

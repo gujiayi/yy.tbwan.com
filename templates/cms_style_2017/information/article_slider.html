@@ -1,0 +1,69 @@
+<div class="news_sidebar fr">
+	<div class="games_rank bgb scroll_rank">
+		<div class="hot_tit">游戏排行榜</div>
+		{{data name="平台新闻游戏排行榜"}}
+		<div class="prev_next hd">
+			<a class="prev"></a>
+			<ul></ul>
+			<a class="next"></a>
+		</div>
+		<div class="rank_tit fix">
+			<span style="width:14%;">排行</span>
+			<span style="width:30%;">游戏名称</span>
+			<span style="width:30%;">区服</span>
+			<span style="width:26%;">题材</span>
+		</div>
+		<div class="scroll bd">
+			<ul class="scroll_txt">
+				{{foreach from=array(0,1) item=item key=key1}}
+				<li>
+					<dl class="sideMen">
+						{{foreach from=range(0,9) item=item key=key2}}
+						{{assign var="item" value=$DATA['平台新闻游戏排行榜']['list'][$key1 * 9 + $key2]}}
+						<dt class="sidedt">
+							<span class="td" style="width:14%; {{if $key2 < 3}}color:#03b4f5;{{else}}color:#888;{{/if}}">{{$key2+1}}</span>
+							<span class="td" style="width:30%; text-align:left;"><a href="{{$item.CONFIG['site']}}" target="_blank">{{if $item.NAME == '雷霆之怒绿色版'}}雷霆之怒{{else}}{{$item.NAME}}{{/if}}</a></span>
+							<span class="td" style="width:30%;"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new" target="_blank">{{$item.NEW_SERVER_NAME}}</a></span>
+							<span class="td" style="width:26%;">{{$item.TYPE}}</span>
+						</dt>
+						<dd class="sidedd">
+							<span class="pic"><a href="{{$item.CONFIG['site']}}" target="_blank"><img src="{{$CONFIG.resource}}/images/cms_style_2012_new/game/hot_70/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" width="60" height="56" /></a></span>
+							<p class="text">{{$item.SHORT_DESCRIPTION|truncate:30:"..."}}</p>
+						</dd>
+						{{/foreach}}
+					</dl>
+				</li>
+				{{/foreach}}
+			</ul>
+		</div>
+	</div>
+	<div class="hot_information bgb">
+		<div class="hot_tit">{{data name="右侧新闻标题"}}{{$DATA["右侧新闻标题"]}}</div>{{data name="右侧页游资讯"}}
+		<ul class="headnews sideMen">
+            {{foreach from=$DATA['右侧页游资讯'].list item=item name=name}}
+            <li>
+                <div class="news_txt sidedt">
+                    <span class="news_num">{{$smarty.foreach.name.iteration}}</span>
+                    <a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:25}}</a>
+                </div>
+                <div class="news_con sidedd">{{$item.description|truncate:56}}</div>
+            </li>
+            {{/foreach}}
+		</ul>
+	</div>
+	<div class="hot_play bgb">
+		<div class="hot_tit">大家都在玩</div>
+		{{data name="大家都在玩"}}
+		<ul class="fix">
+			{{foreach from=$DATA["大家都在玩"].list item="v"}}
+			<li>
+				<a href="{{$v.CONFIG['site']}}" target="_blank">
+					{{data name="大家都在玩_140_104_{{$v.ALIAS}}"}}{{$DATA["大家都在玩_140_104_{{$v.ALIAS}}"]}}	
+				</a>
+				<div class="hp_tit"><a href="{{$v.CONFIG['site']}}" target="_blank">{{$v.NAME}}</a></div class="hp_tit">
+				<p>{{$v.SHORT_DESCRIPTION|truncate:30}}</p>
+			</li>
+			{{/foreach}}
+		</ul>
+	</div>
+</div>

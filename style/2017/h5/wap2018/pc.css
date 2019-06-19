@@ -1,0 +1,70 @@
+.flex{display:-webkit-box !important; display:-moz-box !important; display:-ms-flexbox !important; display:-webkit-flex !important; display:flex !important;}
+.flex-list{-webkit-box-flex:1; -moz-box-flex:1; -ms-flex:1; box-flex:1; -webkit-flex:1; flex:1;}
+.flex-v {-webkit-box-direction: normal; -webkit-box-orient: vertical; -moz-flex-direction: column; -webkit-flex-direction: column; flex-direction: column; }
+.item{position:relative; display:flex; -webkit-box-align:center; -webkit-align-items:center; align-items:center;}
+
+.leftbar { margin-left: 260px; }
+.nodown { width: 379px; height: 259px; background: url('/images/2017/h5/nodown.png') no-repeat; position:absolute; bottom: 6%; left: 50%; margin-left: -618px;}
+.ps-flinks {width: 100%; height: 84px; line-height: 80px; margin-top: 10px; overflow: hidden; position: relative; background: #fff url('/images/2017/h5/pc/bg-flinks.jpg?2018') top center no-repeat; }
+.ps-flinks .links {padding-left: 220px; }
+.ps-flinks .links a {font-size: 14px; color: #8c8b8b; margin: 0 5px; }
+.g-footer { margin-top: 0; }
+
+.pc-sidebar .i-gift, .pc-sidebar .i-game, .pc-sidebar .i-shut, .pc-sidebar .i-refresh, .pc-sidebar .i-home, .ps-mask-card .i-suc { background: url('/images/2017/h5/wap2018/pc-sidebar-icon.png') no-repeat; } 
+.pc-sidebar { width: 70%; min-width: 530px; max-width: 1380px; background: #fff; height: 100%; position:absolute; top: 0px; left: 0px; z-index: 101; }
+.ps-top { padding: 0 20px; height: 52px; line-height: 52px; color: #58a2ff; font-size: 18px; position:relative;}
+.ps-top .ustatus img { border-radius: 50%; border: 2px solid #dfdfdf; margin-right: 10px;}
+.ps-top .ubtns { position:absolute; top: 0px; right: 0px; }
+.ps-top .ubtns a { display: block; width: 112px; height: 26px; line-height: 26px; text-align: center; color: #58a2ff; font-size: 16px; border: 1px solid #58a2ff; border-radius: 2px; margin: 10px 20px 0 0; float: left; }
+.ps-top .name { color: #2e2e2e; }
+.ps-fun-tab { height: 56px; overflow:hidden; border-top: 2px solid #f8f8f8; border-bottom: 2px solid #f8f8f8; }
+.ps-fun-tab li { width: 50%; height: 56px; color: #999; font-size: 20px; text-align: center; cursor: pointer; float: left; }
+.ps-fun-tab .active { color: #ff5e33; background: #f8f8f8; }
+.ps-fun-tab .i-gift, .ps-fun-tab .i-game { display:inline-block; vertical-align: middle; width: 40px; height: 56px; background-position: 10px 15px;}
+.ps-fun-tab .i-game { background-position: -78px 15px }
+.ps-fun-tab .active .i-gift { background-position: 10px -35px }
+.ps-fun-tab .active .i-game { background-position: -78px -35px }
+
+.ps-fun-wrap { background: #fff; }
+.ps-fun-box { height: auto; overflow-y: auto; }
+.ps-fun-wrap .item-list { padding: 0 20px; }
+.ps-fun-wrap .item-list li { min-height: 66px; padding: 20px 0 10px; border-bottom: 1px solid #f8f8f8; position:relative;}
+.ps-fun-wrap .item-list img { float: left; margin-right: 10px;}
+.ps-fun-wrap .item-list .info { margin-right: 100px; height: 66px; overflow: hidden; }
+.ps-fun-wrap .item-list .info h3 { font-size: 16px; color: #333; margin: 10px 0 2px 0;}
+.ps-fun-wrap .item-list .desc { color: #999; width: 80%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 24px; height: 24px;}
+.ps-fun-wrap .item-list .desc-more { line-height: 24px; padding-top: 10px; }
+
+.ps-fun-wrap .item-list .btn-get { width: 88px; height: 30px; line-height: 30px; text-align: center; border-radius: 2px; font-size: 16px; color: #58a2ff; border: 1px solid #58a2ff; position:absolute; top: 44px; right: 0;}
+.ps-fun-wrap .item-list .btn-get:hover { color: #fff; background: #58a2ff;}
+
+.ps-ctl { position: absolute; top: 300px; right: -90px; }
+.ps-ctl i { display: block; width: 40px; height: 40px; margin-bottom: 5px;}
+.ps-ctl .i-shut { background-position: 0 -100px; }
+.ps-ctl .i-refresh { background-position: -43px -98px; }
+.ps-ctl .i-home { background-position: -86px -97px; }
+.ps-ctl a { width: 40px; height: auto; text-align: center; color: #fff; font-size: 18px; margin-bottom: 60px; display: block;}
+.ps-ctl a:hover { color: #ff5e33; }
+
+.xsidebar { width: 77px; height: 69px; background: url('/images/2017/h5/pc2018/qqh.png') no-repeat; position: absolute; top: 120px; right: 0px; z-index: 10;}
+
+.ps-mask { z-index: 102; background: rgba(0, 0, 0, .8); opacity: 1}
+.ps-mask .dialog-box {top:50%;left:50%;-o-border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:5px;-ms-transform:translate(-145%,-50%);-moz-transform:translate(-145%,-50%);-o-transform:translate(-145%,-50%);-webkit-transform:translate(-145%,-50%);transform:translate(-145%,-50%);}
+.dialog-box {position:fixed;z-index:10000;background:#fff;width:80%;overflow: hidden;text-align:center;max-width:300px;}
+.dialog-box .title{ width: 100%; height: 55px; line-height: 55px; text-align: center; color: #fff; font-size:16px; background: #58a2ff;}
+.dialog-box .info{ display: block; width: 100%; min-height: 80px; line-height: 80px; font-size: 16px; color:#333;}
+.dialog-box .info .cell { display: table-cell; height: 100%; padding: .2rem .3rem; vertical-align: middle; }
+.dialog-box .info span{color:#00A3FF;font-weight:bold;}
+.dialog-box .opt{ height: 39px; border-top:1px solid #d5d5d5;}
+.dialog-box .opt a{color:#00A3FF;text-decoration:none;font-size: 16px;line-height: 40px;}
+.dialog-box .opt a:last-child{border-left:1px solid #d5d5d5;}
+
+/* 礼包领取成功弹窗 */
+.ps-mask-card {}
+.ps-mask-card .dialog-close { position: absolute; top: 0; right: 0; width: 30px; height: 30px; line-height: 28px; text-align: center; font-size: 18px; font-family: cursive; cursor: pointer; color: #999; }
+.ps-mask-card .title { height: 70px; line-height: 70px; background: #fff; font-size: 20px; color: #333; }
+.ps-mask-card .i-suc { display:inline-block; vertical-align: middle; width: 28px; height: 32px; margin-right: 10px; background-position: 0 -162px;}
+.ps-mask-card .info { width: auto; padding: 0 28px; line-height: 24px; text-align: left; font-size: 14px; color: #666;}
+.ps-mask-card .opts {}
+.ps-mask-card .box-cid, .ps-mask-card .btn { width: 210px; height: 30px; line-height: 30px; text-align: center; padding: 0 10px; margin: 20px auto; background: #eee; font-size: 16px; color: #333; }
+.ps-mask-card .btn { display: block; color: #fff; background: #58a2ff; }

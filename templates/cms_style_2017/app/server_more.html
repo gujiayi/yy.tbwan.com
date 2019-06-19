@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    
+    <div class="inside_game_con">
+    	<div class="i_com_box">
+            <div class="server_played"  id="J_index_loginwp">
+                <div class="server_fire clearfix">
+                    <div class="quick_search">
+                        <input id="go_sid" type="text" name="sid" placeholder="输入数字/服名称 快速搜索" />
+                    </div>
+                </div>
+            </div>
+        <div class="panel_area fix" id="panel_area">
+            <div class="js_serbox pane_box">
+                <div class="server_list" id="server_list">
+                    <ul id="server_list_x" class="fix">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="js_serbox search_box">
+                <div class="server_list" id="server_list2">
+                    <ul class="fix"> </ul>
+                </div>
+            </div>
+        </div>
+            <!-- 如何分区进入游戏 -->
+<!--            <div class="sever_page clearfix">
+                <div class="pages_list" id="pages_list">
+                    <a href="javascript:;" title="第一页" class="first_btn"></a>
+                    <a href="javascript:;" title="上一页" class="prev_btn"></a>
+                    <span class="pages" id="pages">
+                     
+                    </span>
+                    <a href="javascript:;" title="下一页" class="next_btn"></a>
+                    <a href="javascript:;" title="最后一页" class="last_btn"></a>
+                </div>
+            </div>
+-->        
+        
+        </div>
+    </div>
+</div>
+  
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript">
+    function check_go(){
+        var game = document.getElementById('go_game').value;
+        var sid = document.getElementById('go_sid').value;
+        var name = document.getElementById('go_name').value;
+        var sname = document.getElementById('go_sname').value;
+        if(sid == ""){
+            alert("还没填上区服！");
+            return false;
+        }
+        if(game == "xxcq"){
+            sid = parseInt(sid) + 4;
+        }
+        
+        return false;
+    }
+    // js加载区服
+    var server_arr = {
+        searchpages : new Array(),
+        searchdata : new Array(),
+        searchpage : 1, // 搜索分页当前页，过滤相同请求
+        pages : '',
+        data : new Array(),
+        opt : 1 // 分页按钮操作类别 1：全服分页 2：搜索分页
+    }
+    var sl_gpage = 1; //全局当前页面变量
+	// 全局token
+	var token = $_GET['token'] ? $_GET['token'] : 'fuck';
+
+    getServerData(1);
+    function setPage(pages,select){
+        var tpl = '';
+        for(var i = 1; i <= pages; i++){
+            tpl += '<a href="javascript:;" onclick="toPage('+i+')">'+i+'</a>';
+        }
+        $('#pages').html(tpl);
+        $('#pages a').eq(select).addClass('on');
+    }
+    function getServerData(page){
+        if (server_arr.data[page]) {
+            // 如果已经请求过数据
+            $('#server_list ul').html(server_arr.data[page]);
+        }else{
+            // 未请求过数据
+            var sdata = {
+                game : '{{$alias}}',
+                return_json : 1,
+                p: page
+            }
+            $.ajax({
+                url : C9377.app_url+'/api/app_yxbb.php?act=server_more&_ajax=1',
+                data : sdata,
+                type : 'GET',
+                dataType : 'json',
+                success : function(json){
+                    var server = {
+                        data : json.data,
+                        len : json.data.length,
+                        tpl : ''
+                    }
+                    for(var i = 0; i < server.len; i++){
+                        server.tpl += '<li><a href="'+C9377.app_url+'/api/app_yxbb.php?act=boss_list&gid='+server.data[i].GAME_ID+'&sid='+server.data[i].SID+'&token='+token+'" class="item">'+server.data[i].SERVER_NAME+'</a></li>'
+                    }
+                    server_arr.data[json.page] = server.tpl;
+                    $('#server_list ul').html(server.tpl);
+                    // 读取页数
+                    if (!server_arr.pages) {
+                        server_arr.pages = json.pages;
+                        setPage(json.pages, 0);
+                    };
+                }
+            });
+        }
+    }
+
+    // 搜索游戏
+    var searchdelay;
+    $('#go_sid').keyup(function(){
+        clearTimeout(searchdelay);
+        searchdelay = setTimeout(function(){
+            var key = $('#go_sid').val();
+            setTimeout(function(){$('#go_sid').val(key); },0)
+            var box_ele = $('.js_serbox');
+            if (key) {
+                box_ele.eq(0).hide();
+                box_ele.eq(1).show();
+                server_arr.opt = 2; //分页按钮类别设置为搜索模块的
+            }else{
+                box_ele.eq(1).hide();
+                box_ele.eq(0).show();
+                server_arr.opt = 2; //分页按钮类别设置为全服模块的
+                // 重新读取全服分页
+                setPage(server_arr.pages,0);
+            }
+            key && getSearchData(1, key);
+        },300);
+    });
+    function getSearchData (index,key) {
+        if (server_arr.searchdata[key] && server_arr.searchdata[key][index]) {
+            // 如果已经请求过数据
+            $('#server_list2 ul').html(server_arr.searchdata[key][index]);
+            setPage(server_arr.searchpages[key], index-1);
+        }else{
+            var search_data = {
+                game : '{{$alias}}',
+                return_json : 1,
+                p : index,
+                q : key
+            }
+            $.ajax({
+                url : C9377.app_url+'/api/app_yxbb.php?act=server_more&_ajax=1',
+                data : search_data,
+                type : 'GET',
+                dataType : 'json',
+                success : function(json){
+                    var server = {
+                            data : json.data,
+                            len : json.data.length,
+                            tpl : ''
+                        }
+					for(var i = 0; i < server.len; i++){
+						server.tpl += '<li><a href="'+C9377.app_url+'/api/app_yxbb.php?act=boss_list&gid='+server.data[i].GAME_ID+'&sid='+server.data[i].SID+'&token='+token+'" class="item">'+server.data[i].SERVER_NAME+'</a></li>'
+					}
+                    if (!server_arr.searchdata[key]) {server_arr.searchdata[key] = new Array(); };
+                    server.tpl = server.tpl != '' ? server.tpl : ' '; //没数据也存起来，防止空数据时重复请求
+                    server_arr.searchdata[key][json.page] = server.tpl;
+                    $('#server_list2 ul').html(server.tpl);
+                    server_arr.searchpages[key] = json.pages;
+                    setPage(json.pages, (index-1));
+                }
+            });  
+        }
+    }
+	
+	
+	//滚动
+	var page=2;
+	var finished=0;  
+	var sover=0;  
+	  
+	//如果屏幕未到整屏自动加载下一页补满  
+/*	var setdefult=setInterval(function (){  
+		if(sover==1)  
+			clearInterval(setdefult);     
+		else if($("#server_list").height()<$(window).height())  
+			loadmore($(window));  
+		else  
+			clearInterval(setdefult);  
+	},500);  
+*/	  
+	//加载完  
+	function loadover(){  
+		if(sover==1)  
+		{     
+			var overtext="Duang～到底了";  
+			$(".loadmore").remove();  
+			if($(".loadover").length>0)  
+			{  
+				$(".loadover span").eq(0).html(overtext);  
+			}  
+			else  
+			{  
+				var txt='<div class="loadover"><span>'+overtext+'</span></div>'  
+				$("body").append(txt);  
+			}  
+		}  
+	}  
+	  
+	//加载更多  
+	var vid=0;  
+	function loadmore(obj){  
+		if(finished==0 && sover==0)  
+		{  
+			var scrollTop = $(obj).scrollTop();  
+			var scrollHeight = $(document).height();  
+			var windowHeight = $(obj).height();  
+			  
+			if($(".loadmore").length==0)  
+			{  
+				var txt='<div class="loadmore"><span class="loading"></span>加载中..</div>'  
+				$("body").append(txt);  
+			}  
+			  
+			if (scrollTop + windowHeight -scrollHeight<=50 ) {  
+				//此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作  
+				  
+				  
+				//防止未加载完再次执行  
+				finished=1;  
+	 
+				var sdata = {
+					game : '{{$alias}}',
+					return_json : 1,
+					p: page
+				}
+				$.ajax({
+					url : C9377.app_url+'/api/app_yxbb.php?act=server_more&_ajax=1',
+					data : sdata,
+					type : 'GET',
+					dataType : 'json',
+					success : function(json){
+						if(json==""){  
+							sover = 1;  
+							loadover();                       
+							if (page == 1) {  
+								$("#no_msg").removeClass("hidden");  
+								$(".loadover").remove();  
+							}  
+						}else{  
+							var server = {
+								data : json.data,
+								len : json.data.length,
+								tpl : ''
+							}
+							for(var i = 0; i < server.len; i++){
+								server.tpl += '<li><a href="'+C9377.app_url+'/api/app_yxbb.php?act=boss_list&gid='+server.data[i].GAME_ID+'&sid='+server.data[i].SID+'&token='+token+'" class="item">'+server.data[i].SERVER_NAME+'</a></li>'
+							}
+	
+						setTimeout(function(){
+							$(".loadmore").remove();
+							server_arr.data[json.page] = server.tpl;
+							$('.server_list ul').append(server.tpl);
+							page+=1;
+							finished=0;
+							//最后一页
+							if(page==json.pages)
+							{
+								sover=1;
+								loadover();
+							}
+						},1000);
+	
+						};
+					}
+				});
+	
+				  
+	
+			}  
+		}  
+	}  
+	//页面滚动执行事件  
+	$(window).scroll(function (){  
+		loadmore($(this));  
+		
+		var val = $(document).scrollTop();
+		if(val > 0){
+			$('.quick_search').css({'top':0,'position':'fixed','left':'3%','width':'94%','background':'#fff'});	
+		}else{
+			$('.quick_search').css('position','static');	
+		}
+	});  
+</script>
+</body>
+</html>

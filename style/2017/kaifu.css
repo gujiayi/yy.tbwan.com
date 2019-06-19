@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* 
+ * 9377平台开服列表  
+ * 2017
+ */
+.g-container { padding: 32px 0 25px;}
+.g-container .kaifu-main { width: 1000px!important; padding: 38px 50px; }
+.kaifu-main { border-bottom: 3px solid #ebeaea; background: #fff;}
+.mod-tit{display:block;height:16px;margin-bottom:16px;color: #595757;position:relative;*display: inline;*zoom:1;*width: 140px;}
+.mod-tit span{display:block;height:16px;line-height:16px;font-size:16px;font-weight: bold;border-left:1px solid #ff7733;padding-left:10px;vertical-align:auto;}
+.mod-tit em {color: #ff7733}
+.kaifu-table { width: 100%; border: 1px solid #d6d4d2; text-align: center; margin-bottom: 50px;}
+.kaifu-table thead { color: #9fa0a0; }
+.kaifu-table tbody { color: #595757; }
+.kaifu-table td { border: 1px solid #d6d4d2; line-height: 36px;}
+.kaifu-table .go {display:inline-block; width: 64px; height: 20px; line-height: 20px; text-align: center; color: #fff; background: #ff7733; border-radius: 10px;}
+.kaifu-table .go:hover { color: #fff!important; background: #ff8948;}
+.mod-pages { margin-top: -10px; }
+
+.rank-wp { margin-top: 60px; overflow:hidden; margin-right: -50px;}
+.rank-box { width: 316px; margin-right: 26px; float: left; display: inline; }
+.rank-box .hd, .xnews-wp .news-box .hd { height: 32px; line-height: 32px; font-size: 16px; font-weight: bold; color: #fff; padding-left: 20px; background: #429dea; }
+.rank-box .bd, .xnews-wp .news-box .bd { border: 1px solid #d6d4d2; border-top: 0 none; padding: 5px 0; }
+.rank-box .hl { width: 278px; margin: 0 auto; overflow:hidden; color: #9fa0a0;}
+.rank-box .row { line-height: 36px; float: left; text-align: center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.rank-box .row1 { width: 24px; }
+.rank-box .row2 { width: 92px; }
+.rank-box .row3 { width: 94px; }
+.rank-box .row4 { width: 68px; }
+.rank-box .row5 { width: 144px; }
+.rank-box .row6 { width: 110px; text-align: right;}
+.rank-box .list { color: #595757; }
+.rank-box .list li { width: 278px; padding: 0 18px; overflow:hidden; }
+.rank-box .list li a {-webkit-transition: initial; -ms-transition: initial; -o-transition: initial; transition: initial;}
+.rank-box .list .row { border-bottom: 1px dotted #ddddd9; }
+.rank-box .list li:last-child .row { border-bottom: 0 none; }
+.rank-box .list li:hover { color: #fff; background: #429dea; }
+.rank-box .list li:hover a { color: #fff!important;}
+.rank-box .list li:hover .row { border-color: #429dea; }
+.rank-box .list a { color: #595757; }
+.rank-box .list .row1 i {display:inline-block; width: 15px; height: 15px; line-height: 15px; text-align: center; color: #fff; background: #429dea; border-radius: 2px;}
+.rank-box .list li:nth-child(1) .row1 i { background: #ff7733; }
+.rank-box .list li:nth-child(2) .row1 i { background: #ffb72b; }
+.rank-box .list li:nth-child(3) .row1 i { background: #ffb72b; }
+.rank-box .list li:nth-child(n+4):hover .row1 i { background: #fff; color: #429dea; }
+
+.fl-table { width: 100%; margin-top: 75px;}
+.fl-table .hd { width: 178px; text-align: center; font-size: 14px; color: #429dea;}
+.fl-table .bd { width: 822px; }
+.fl-table .bd a { width: 134px; height: 22px; line-height: 22px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; float: left;}
+/*单游戏开服页*/
+.game-wp { overflow:hidden;}
+.game-wp .img { display: block; width: 500px; height: 300px; overflow:hidden; float: left; background: #f1f1f1;}
+.game-wp .ginfo { width: 454px; float: right; }
+.game-wp .mod-tit { margin: 25px 0 20px; }
+.game-wp .mod-tit i { font-size: 12px; color: #9fa0a0; margin-left: 20px; font-weight: normal; }
+.game-wp .opt-box { margin-top: 10px; }
+.game-wp .btn-group { width: 340px; float: left; }
+.game-wp .btn-group a { width: 140px; height: 32px; line-height: 32px; text-align: center; color: #fff; font-size: 14px; border-radius: 16px; margin: 24px 12px 0 0; float: left; display: inline;}
+.game-wp .btn-group .btn-1 { background: #4dd589; }
+.game-wp .btn-group .btn-2 { background: #ff7733; }
+.game-wp .btn-group .btn-3 { background: #ffb72b; }
+.game-wp .btn-group .btn-4 { background: #429dea; }
+.game-wp .btn-group .btn-1:hover { color: #fff!important; background: #58e79c; }
+.game-wp .btn-group .btn-2:hover { color: #fff!important; background: #ff8948; }
+.game-wp .btn-group .btn-3:hover { color: #fff!important; background: #ffc047; }
+.game-wp .btn-group .btn-4:hover { color: #fff!important; background: #53c1f8; }
+.game-wp .gqr { float: right; }
+.game-wp .gqr p { display: block; width: 112px; height: 20px; line-height: 20px; text-align: center; color: #fff; background: #ff7733; }
+
+.x-mod-tit { margin: 42px 0 15px; padding-bottom: 11px; border-bottom: 1px dotted #dcdbd8; position:relative; }
+.x-mod-tit .more { position:absolute; top: 0px; right: 0px; color: #595757; font-weight: normal; }
+/*截图*/
+.xpic-box { position:relative; }
+.xpic-box .slide-xd { width:910px; overflow:hidden; margin: 0 auto;}
+.xpic-box .slide-bd { height: 150px; overflow:hidden; position:relative;}
+.xpic-box .slide-bd li { width: 220px; height: 150px; overflow:hidden; margin-right: 10px; float: left; display: inline;}
+.xpic-box .slide-bd img {  }
+.xpic-box .slide-prev, .xpic-box .slide-next { width: 15px; height: 29px; line-height: 99px; overflow:hidden; position:absolute; top: 62px; background: url(/images/2017/kaifu/arr.png?201709211515) no-repeat;}
+.xpic-box .slide-prev { background-position: 0 -40px; left: 10px;}
+.xpic-box .slide-next { background-position: -38px -40px; right: 10px;}
+.xpic-box .slide-prev:hover { background-position: 0 0px; }
+.xpic-box .slide-next:hover { background-position: -38px 0px; }
+/*开服表*/
+.xkaifu-wp { overflow:hidden; }
+.xkaifu-table { width: 468px; line-height: 32px; text-align: center; float: left; }
+.xkaifu-table thead { color: #9fa0a0; }
+.xkaifu-table .go { color: #ff7733; }
+.xkaifu-table2 { float: right; }
+/*礼包*/
+.xgift-wp { margin-top: 32px; }
+.xgift-wp .xgift-box { width: 500px; float: left; }
+.xgift-box .hd { height: 32px; line-height: 32px; font-size: 16px; color: #fff; text-align: center; background: #429dea; }
+.xgift-box:first-child .hd { border-right: 1px solid #fff; }
+.xgift-box:last-child ul { border-left: 0 none; }
+.xgift-box ul { border-left: 1px solid #d6d4d2; border-right: 1px solid #d6d4d2;}
+.xgift-box ul li { height: 36px; line-height: 36px; text-align: center; border-bottom: 1px solid #d6d4d2;}
+.xgift-box ul span, .xgift-box .name { display:inline-block; vertical-align: middle; width: 150px; }
+.xgift-box .go { display:inline-block; vertical-align: middle; width: 84px; height: 20px; line-height: 20px; text-align: center; color: #fff; border-radius: 10px; overflow:hidden; background: #429dea;}
+.xgift-box .go:hover { color: #fff!important; background: #53c1f8; }
+/*新闻*/
+.xnews-wp { overflow:hidden; }
+.xnews-wp .news-box { width: 484px; float: left;}
+.xnews-wp .news-box2 { width: 484px; float: right;}
+.xnews-wp .news-box li { padding: 0 20px; line-height: 32px; overflow:hidden;}
+.xnews-wp .news-box i { width: 12px; text-align: center; float: left; }
+.xnews-wp .news-box a { width: 326px; margin: 0 15px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; float: left;}
+.xnews-wp .news-box a:hover { color: #429dea!important; }
+.xnews-wp .news-box span { color: #9fa0a0; float: right; }

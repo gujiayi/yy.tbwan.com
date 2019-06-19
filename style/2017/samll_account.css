@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS reset */
+::-webkit-input-placeholder{color:#999;}
+:-moz-placeholder{color:#999;}
+::-moz-placeholder{color:#999;}
+:-ms-input-placeholder{color:#999;}
+.none{display:none;}
+body{position:relative;}
+* html,* html body{background-image:url(about:blank);background-attachment:fixed}
+* html body{position:relative; height:100%; overflow-x:hidden;}
+* html .gary-mark{position:absolute; top:expression(eval(document.documentElement.scrollTop));}
+* html .small-wrap{position:absolute; top:expression(eval(document.documentElement.scrollTop)+300); overflow-x:hidden;}
+* html .small-close{right:20px; top:20px; background:url(/images/2017/samll_account/close.jpg) 0 0 no-repeat;}
+* html .small-close:hover{background-position:0 0;}
+.gary-mark{width:100%; height:100%; position:fixed; top:0; left:0; opacity:0.5; background:#000; filter:alpha(opacity=50); z-index:1000;}
+
+/* 验证 */
+.small-wrap{width:558px; position:fixed; left:50%; top:50%; margin-left:-291px; margin-top:-180px; z-index:1002; background:#fff url(/images/2017/samll_account/bg.jpg) 0 top no-repeat;}
+.small-box{position:relative;}
+.small-tit{padding-top:27px; height:48px; font:20px/28px \5FAE\8F6F\96C5\9ED1; color:#fff; text-align:center;}
+.small-close{position:absolute; width:30px; height:30px; top:-3px; right:-37px; font:0/0 a; overflow:hidden; background:url(/images/2017/samll_account/close.png) 0 0 no-repeat;}
+.small-close:hover{background-position:-30px 0;}
+.small-tab{padding-top:22px; height:48px;}
+.small-tab ul{width:420px; margin:0 auto;}
+.small-tab li{float:left; display:inline; width:140px; margin-left:-1px;}
+.small-tab li a{display:block; height:29px; border:1px solid #d7d7d7; text-align:center; font:14px/29px \5FAE\8F6F\96C5\9ED1; color:#9fa0a0; position:relative; overflow:hidden;}
+.small-tab li.on a{color:#e1405a;}
+.small-tab li.on span{position:absolute; left:0; bottom:-1px; height:2px; overflow:hidden; width:140px; background-color:#e1405a;}
+
+.game-tit{width:524px; margin:0 auto; height:32px; font:14px/32px \5FAE\8F6F\96C5\9ED1; background-color:#f1f1f1; color:#595757; margin-bottom:13px;}
+.game-item{height:35px; font:12px/35px \5FAE\8F6F\96C5\9ED1; color:#9fa0a0; overflow:hidden;}
+.game-zone a{color:#9fa0a0;}
+.game-tit p,.game-item p{float:left; display:inline; overflow:hidden;}
+.game-zone{padding-left:9px; width:152px;}
+.game-samll{width:196px;}
+.game-state{width:62px;}
+.game-operate{width:104px;}
+.game-tit .game-operate{text-indent:48px;}
+.game-item .game-operate{padding-top:7px; height:28px; overflow:hidden;}
+.agree-state{color:#4dd589;}
+.refuse-state{color:#e1405a;}
+.wait-state{color:#cfa131;}
+.enter-btn,.noenter-btn{float:right; display:inline; width:74px; height:21px; text-align:center; color:#fff; font:12px/21px \5FAE\8F6F\96C5\9ED1; border-radius:3px;}
+.enter-btn{background-color:#e1405a;}
+.enter-btn:hover{color:#fff!important; background-color:#f6587b;}
+.noenter-btn{background-color:#d7d7d7; cursor:default;}
+.noenter-btn:hover{color:#fff!important; background-color:#e2e2e2;}
+.delete-btn,.edit-btn{float:left; display:inline; width:23px; height:20px; font:0/0 a; overflow:hidden; background:url(/images/2017/samll_account/icon.jpg) 0 0 no-repeat;}
+.delete-btn{background-position:0 0;}
+.delete-btn:hover{background-position:0 -20px;}
+.edit-btn{background-position:-22px 0;}
+.edit-btn:hover{background-position:-22px -20px;}
+
+.red-no{color:#e1405a;}
+.small-notice{text-align:center; font:12px/24px \5FAE\8F6F\96C5\9ED1; padding:6px 0 16px;}
+.samll-btn{margin:0 17px; border-top:1px solid #ededed; padding:20px 0 25px; text-align:center;}
+.samll-btn a{height:32px; padding:0 26px; margin:0 14px; display:inline-block; *display:inline; zoom:1; vertical-align:top; border-radius:20px; font:14px/32px \5FAE\8F6F\96C5\9ED1; color:#fff; background-color:#e1405a;}
+.samll-btn a:hover{background-color:#f6587b;}
+.samll-btn a.gray-btn{background-color:#d7d7d7;}
+.samll-btn a.gray-btn:hover{background-color:#e2e2e2;}
+.small-img{width:104px; height:104px; margin:0 auto; background:url(/images/2017/samll_account/xiaohao.jpg) 0 0 no-repeat;}
+.no-hao{padding:10px 0 16px; font:14px/22px \5FAE\8F6F\96C5\9ED1;}
+
+.handle-state{color:#9fa0a0;}
+.handle-state span{padding:0 5px;}
+.handle-agree{color:#429dea;}
+.handle-refuse{color:#9fa0a0;}
+.handle-operate .delete-btn{margin-left:51px;}
+
+.small-account-box{padding-left:17px; max-height:280px; _height:280px; overflow:auto; overflow-x:hidden; position:relative;}
+
+/* 添加小号 */
+.small-tit2{padding-bottom:10px;}
+.small-item{margin-top:10px; position:relative;}
+.small-label{float:left; display:inline; width:137px; padding-right:7px; text-align:right; font:14px/36px \5FAE\8F6F\96C5\9ED1; color:#595757;}
+.small-label em{color:#e1405a; padding-right:3px;}
+.small-select{position:relative; z-index:9;}
+.select-item{float:left; display:inline; width:156px; height:36px; margin-right:6px; position:relative;}
+.select-item span{display:block; width:140px; height:34px; border:1px solid #c5c5c5; border-radius:3px; padding-left:14px; font:12px/34px \5FAE\8F6F\96C5\9ED1; color:#595757; position:relative; z-index:2;}
+.select-item i{position:absolute; width:0; height:0; font:0/0 a; overflow:hidden; border-width:7px; border-style:solid; border-color:#595757 #fff #fff; top:14px; right:8px; z-index:1;}
+.select-item i.seclick{border-color:#4dd589 #fff #fff;}
+.select-item ul{position:absolute; top:34px; left:0; width:154px; max-height:240px; _height:240px; border:1px solid #c5c5c5; border-top:none; overflow:auto; overflow-x:hidden; background-color:#fff; display:none;}
+.select-item li{font:12px/24px \5FAE\8F6F\96C5\9ED1; color:#595757; padding-left:14px; cursor:pointer;}
+.small-item input{float:left; display:inline; width:288px; height:34px; padding:0 14px; font:12px/34px \5FAE\8F6F\96C5\9ED1; border:1px solid #c5c5c5; border-radius:3px;}
+.s-agreement{color:#595757;}
+.s-agreement em{color:#e1405a;}
+.small-notice2{padding-top:10px; height:20px; font:12px/17px \5FAE\8F6F\96C5\9ED1; color:#595757; padding-left:170px; background:url(/images/2017/samll_account/check.jpg) 145px 10px no-repeat;}
+.check-tips{font:12px/16px \5FAE\8F6F\96C5\9ED1; color:#e1405a; text-align:center; padding:8px 0;}
+
+/* 提示 */
+.small-tips{position:fixed; width:276px; left:50%; top:50%; margin:-75px 0 0 -138px; z-index:1002;}
+.tips-close{position:absolute; width:32px; height:32px; right:0; top:0; text-align:center; font:18px/32px \5FAE\8F6F\96C5\9ED1; color:#f7f2f2;}
+.tips-close:hover{color:#fff;}
+.tips-tit{height:32px; font:18px/32px \5FAE\8F6F\96C5\9ED1; color:#fff; text-align:center; background-color:#e1405a;}
+.tips-con{border:1px solid #c9c9c9; border-top:none; height:117px; border-radius:3px; background-color:#fff; overflow:hidden;}
+.tips-txt{text-align:center; padding:0 20px; font:14px/28px \5FAE\8F6F\96C5\9ED1; color:#000; padding-top:26px;}
+.tips-con .samll-btn{border-top:none;}
+
+.sub-info{font:12px/35px \5FAE\8F6F\96C5\9ED1; color:#e1405a; text-align:center;}
+.sub-info a{margin-left:19px; color:#c6a670;}
+.sub-txt{padding-bottom:12px; padding-right:20px; font:12px/30px \5FAE\8F6F\96C5\9ED1; color:#9fa1a2; text-align:center;}
+.sub-txt span{display:inline-block; *display:inline; zoom:1; vertical-align:top; *vertical-align:middle; height:30px; line-height:30px; width:94px; text-align:right;}

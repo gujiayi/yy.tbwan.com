@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="cheny">
+    <title>9377游戏保镖</title>
+    <meta name="keywords" content="游戏保镖,游戏保镖下载,苹果系统游戏保镖,游戏保镖安卓版" />
+    <meta name="description" content="9377游戏保镖是官方推出的一款多功能APP，游戏保镖集挂机、打BOSS闹钟、礼包、资讯、帐号保护于一体，是您的贴身管家也是 您的私人保镖。游戏保镖目前提供两个版本下载，适应安卓和苹果系统，免费为您的游戏护航。" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/app/style.css?{{$CONFIG.build}}" />
+    <script src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script> 
+    <script>
+        window['adaptive'].desinWidth = 640;
+        window['adaptive'].baseFont = 18;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 1;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="status_bg"></div>
+    <div class="index_main">
+    	<!-- 推荐游戏 两款 -->
+        <div class="i_com_box hot_game_list" >
+            {{data name="首页推荐游戏"}}
+            <ul class="fix">
+                {{foreach from=$DATA['首页推荐游戏'].list item=item}}
+                <li>
+                    {{data name="{{$item.NAME}}独立官网"}}
+                    <a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.ALIAS}}{{/if}}">
+                        <div class="hot_game_img">
+                            {{if $item['CONFIG']['step'] == 'new'}}<span class="new_tag">新</span>
+                            {{elseif $item['CONFIG']['step'] == 'hot'}}<span class="hot_tag">热</span>{{/if}}
+                            
+                            <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                        </div>
+                    </a>
+                    <div class="h_game_right">
+                        <p>
+                            {{if $item['CONFIG']['step'] == 'new'}}<span class="new_tag_txt">本周最热</span>
+                            {{elseif $item['CONFIG']['step'] == 'hot'}}<span class="hot_tag_txt">五星推荐</span>{{/if}}
+                        </p>
+                        <p class="h_game_name">{{$item.NAME}}</p>
+                        <p class="h_game_ell">{{data name="首页推荐游戏{{$item.ALIAS}}slogan"}}{{$DATA["首页推荐游戏{{$item.ALIAS}}slogan"]}}</p>
+                    </div>
+                    
+                </li>
+                {{/foreach}}
+            
+            </ul>
+        </div>
+        
+    	<!-- 新闻公告  默认显示3条-->
+        <div class="i_com_box recommend">
+            <div class="recom_title">
+                <h2><font class="tit_ico tit_ico01"></font>新闻公告</h2>
+            </div>
+            <div class="recom-box">
+                <div class="news_box">
+                     {{data name="首页3条新闻资讯"}}
+					<ul class="first_ul">
+						{{foreach from=$DATA['首页3条新闻资讯'].list item="v" name="ls"}}
+						<li><a href="{{$v.artlink}}" title="{{$v.title|cn_substr:60}}"><img src="{{$v.picurl}}" />{{$v.title|cn_substr:36}}</a></li>
+						{{/foreach}}
+					</ul>	
+                </div>
+            	<a class="get_more_area" href="{{$CONFIG.url}}/yxbb/note/">点击查看更多<span class="arrow_more_area"></span></a>
+            </div>
+        </div>
+        
+    	<!-- 推广 游戏-->
+        <div class="i_com_box recommend">
+        	<div class="tg_game_area">
+            {{data name="首页推广图578*244"}}
+                {{foreach from=$DATA["首页推广图578*244"].list item="v"}}
+                <h3 class="tg_tt">{{$v.title}}</h3>
+                <div class="tg_ban"><a href="{{$v.url}}"><img  src="{{$v.thumb}}" alt="{{$v.title}}" title="{{$v.title}}" /></a></div>
+                {{/foreach}}
+                
+                <div class="tg_tag">推广</div>
+            </div>
+        </div>
+
+    	<!-- 热门游戏 六款 -->
+        <div class="i_com_box recommend">
+            <div class="recom_title">
+                <h2 class="fix"><font class="tit_ico tit_ico02"></font>大家都在玩</h2>
+            </div>
+            <div class="i_comon_game" >
+                {{data name="首页热门游戏"}}
+                <ul class="fix">
+                    {{foreach from=$DATA['首页热门游戏'].list item=item}}
+                    <li>
+                        <a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.ALIAS}}{{/if}}">
+                            <div class="hot_game_img">
+                                <img src="{{$CONFIG.resource}}/images/cms_style_2015/game/160_160/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" />
+                            </div>
+                        </a>
+                        <p class="ell">{{$item.NAME}}</p>
+                    </li>
+                    {{/foreach}}
+                
+                </ul>
+            </div>
+            	<a class="get_more_area" href="{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_center">前往游戏中心<span class="arrow_more_area"></span></a>
+        </div>
+        
+    	<!-- 游戏排行 5款 -->
+        <div class="i_com_box recommend">
+            <div class="recom_title">
+                <h2 class="fix"><font class="tit_ico tit_ico03"></font>开服列表</h2>
+            </div>
+            <div class="server_tab tab">
+                <div class="server_tit tit">
+                    <a class="cur" href="javascript:;">新服预告</a>
+                    <a href="javascript:;">已开新服</a>
+                </div>
+					<div class="kafu_tit">
+						<ul>
+							<li class="th1">游戏</li>
+							<li class="th2">区服</li>
+							<li class="th3">开服时间</li>
+						</ul>
+					</div>
+                <div class="server-box txt cur">
+                    <div class="sertable" id="no_server">
+                        {{data name="新服预告"}}
+                        <table class="server-table" cellpadding="0" cellspacing="0" border="0">
+                            
+                            {{foreach from=range(0,23) item=item key=key2}}
+                            {{assign var="item" value=$DATA['新服预告']['list'][$key1 * 17 + $key2]}}
+                            <tr>
+                                <td width="40%" align="left"><a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.GAME.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.GAME.ALIAS}}{{/if}}">{{$item.GAME.NAME}}</a></td>
+                                <td width="32%" align="left"><a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.GAME.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.GAME.ALIAS}}{{/if}}">{{$item.SERVER_NAME}}</a></td>
+                                <td width="28%" align="left">{{$item.SERVER_START_TIME|date_format:'%m-%d %H:%M'}}</td>
+                            </tr>
+                            {{/foreach}}
+                        </table>
+                    </div>
+                    <div class="loader" id="no_loader">加载中···</div>
+                    <a id="no_more" class="get_more_area" href="javascript:;">点击查看更多<span class="arrow_more_area"></span></a>
+                </div>
+                <div class="server-box txt">
+                    <div class="sertable" id="has_server">
+                        {{data name="已开新服"}}
+                        <table class="server-table" cellpadding="0" cellspacing="0" border="0">
+                            
+                            {{foreach from=range(0,29) item=item key=key2}}
+                            {{assign var="item" value=$DATA['已开新服']['list'][$key1 * 17 + $key2]}}
+                            <tr>
+                                <td width="40%" align="left"><a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.GAME.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.GAME.ALIAS}}{{/if}}">{{$item.GAME.NAME}}</a></td>
+                                <td width="32%" align="left"><a href="{{if $item['CONFIG']['step'] == 'hot'}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_main&game={{$item.GAME.ALIAS}}{{else}}{{$CONFIG.app_url}}/api/app_yxbb.php?act=game_show&game={{$item.GAME.ALIAS}}{{/if}}">{{$item.SERVER_NAME}}</a></td>
+                                <td width="28%">{{$item.SERVER_START_TIME|date_format:'%m-%d %H:%M'}}</td>
+                            </tr>
+                            {{/foreach}}
+                        </table>
+                    </div>
+                    <div class="loader" id="has_loader">加载中···</div>
+                    <a id="has_more" class="get_more_area" href="javascript:;">点击查看更多<span class="arrow_more_area"></span></a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+</div>
+
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/app/main.js?{{$CONFIG.build}}"></script>
+
+</body>
+</html>

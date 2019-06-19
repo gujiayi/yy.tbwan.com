@@ -1,0 +1,46 @@
+<!--账号绑定 start-->
+<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/bindacc.css?{{$CONFIG.build}}" />
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+<!-- 绑定操作 -->
+	<div class="bindmod-pop bindacc-pop none" id="pop-bind-user">
+		<a href="javascript:;" class="pop-close btn-bind-nt"></a>
+		<div class="hd">微信账号绑定</div>
+		<div class="bd">
+			<div class="tuser">亲爱的 <i class="i-third-wx i-third-x"></i> <span class="col1">yonghuming</span></div>
+			<p class="ttip">为了您的账号安全，请先注册新的9377游戏账号，并与您当前的<span class="thirdtxt">QQ</span>登录账号进行绑定！<span class="col1">绑定成功送积分大礼！</span></p>
+			<p class="errtip"></p>
+			<form action="" method="POST" class="form-bindacc" id="form-bindacc">
+				<input name="do" value="bind_openid" type="hidden" />           
+				<input name="callback" value="bind_success_callback" type="hidden" />
+				<div class="w-item">
+					<i class="i-ticon-u"></i>
+					<input type="text" name="new_username" id="username-bindacc" class="w-input" placeholder="帐号由4~20数字、字母或下划线组成">
+				</div>
+				<div class="w-item">
+					<i class="i-ticon-l"></i>
+					<input type="password" name="password" id="password-bindacc" class="w-input" placeholder="支持6~20位字母、数字或特殊字符">
+				</div>
+				<div class="w-item">
+					<i class="i-ticon-l"></i>
+					<input type="password" name="password1" class="w-input" placeholder="请确认密码">
+				</div>
+				<div class="w-item w-item-x">
+					<i class="icon-cb icon-cbed" id="agreement-bindacc"></i><a href="{{$CONFIG.url}}/yhxy.html" target="_blank">我已阅读并同意《用户注册服务协议》</a>
+				</div>
+				<input type="submit" id="submit-reg" class="w-submit" value="立即注册" />
+				<div class="bind-opt">
+					<p class="fl">注：暂不支持老账号绑定</p>
+					<a href="javascript:;" class="fr btn-bind-nt">下次再绑定&gt;&gt;</a>
+				</div>
+			</form>
+		</div>
+	</div>
+<!-- 绑定成功 -->
+	<div class="bindmod-pop bindsuc-pop none" id="pop-bind-user-suc">
+		<a href="javascript:;" class="pop-close"></a>
+		<div class="hd">恭喜您绑定成功</div>
+		<div class="bd">
+			<a href="http://mall.9377.com/task.php?task=2" target="_blank" class="btn btn-green w-pop-close">领取50积分</a>
+		</div>
+	</div>
+<!--账号绑定 end-->

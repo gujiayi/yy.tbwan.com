@@ -1,0 +1,82 @@
+<div class="mod"><p class="mod-hd"><em class="mod-tit">商城订单</em></p></div>
+<div class="user-mod-wp user-mod-orders" id="user-mod-orders">
+	<div class="user-mod-bd">
+		<table class="user-center-table">
+			<thead> <tr> <td>订单号</td> <td>购买时间</td> <td>商品</td> <td>消费积分</td> <td>状态</td> <td>物流</td> </tr> </thead>
+			{{if empty($data.data)}}
+			<tbody class="table-data none">
+				<tr><td colspan="6">暂无记录</td></tr>
+			</tbody>
+			{{else}}
+			<tbody class="table-data none">
+				{{foreach from=$data.data item="v"}}
+				<tr>
+					<td>{{$v.order_id}}</td>
+					<td>{{$v.addtime|date_format:'%Y-%m-%d'}}</td>
+					<td>
+						{{if empty($v.info.goods_info)}}
+							订购中
+						{{else}}
+							{{foreach from=$v.info.goods_info item="g" key="gid"}}
+								{{if $data.goods_data.$gid.name}}
+									{{if !empty($g.card.newercard)}}
+										{{foreach from=$g.card.newercard item="c"}}
+										<a href="http://mall.9377.com/detail.php?id={{$gid}}" target="_blank" class="goods"> {{$data.goods_data.$gid.name|truncate:40}}x1 </a>
+										<a href="javascript:;" cid="{{$c}}" class="btn-getcard">点击获取</a><br>
+										{{/foreach}}
+									{{else}}
+										<a href="http://mall.9377.com/detail.php?id={{$gid}}" target="_blank" class="goods"> {{$data.goods_data.$gid.name|truncate:40}}x{{$g.num}} </a>
+										<br/>
+									{{/if}}
+								{{/if}}
+							{{/foreach}}
+						{{/if}}
+					</td>
+					<td>
+						{{if empty($v.info.goods_info)}}
+						系统计算中
+						{{else}}
+						{{$v.info.order_cost.credit}}
+						{{if $v.info.order_cost.credit&& $v.info.order_cost.gold}}<br/>{{/if}}
+						{{if $v.info.order_cost.gold}}
+						{{$v.info.order_cost.gold}}游戏币
+						{{/if}}
+						{{/if}}
+					</td>
+					<td orderid="{{$v.order_id}}">
+						{{if in_array($v.status, array(1,2))}}
+							<span class="deal-ready">待发货</span>
+						{{elseif $v.status == 3}}
+							<a href="javascript:;" class="deal-confirm">确认收货</a>
+						{{elseif $v.status == 4}}
+							<span class="deal-over">交易完成</span>
+						{{elseif $v.status == 5 || $v.status < 1}}
+							<a href="javascript:;" status="{{$v.status}}" class="deal-delete">删除订单</a>
+						{{/if}}
+					</td>
+					<td>
+						{{if $v.info.send_express_info.exp_type || $v.info.send_express_info.exp_no}}
+							{{$v.info.send_express_info.exp_type}}
+							{{$v.info.send_express_info.exp_no}}
+						{{else}}
+							无
+						{{/if}}
+					</td>
+				</tr>
+				{{/foreach}}
+			</tbody>
+			{{/if}}
+			<tbody class="offline none">
+				<!-- 二级密码过期 -->
+				<tr>
+					<td colspan="6">
+						<p>为了您的账号安全，此处需要输入二级密码</p>
+						<a href="javascript:;" data-tar="user-orders" class="btn btn-l btn-red J-btn-to2pass">输入二级密码</a>
+					</td>
+				</tr> 
+				<!-- 二级密码存活 -->
+			</tbody>
+		</table>
+		<div class="mod-pages none"> {{$data.pages}} </div>
+	</div>
+</div>

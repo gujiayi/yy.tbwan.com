@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+    <meta charset="utf-8">
+    <title>9377帐号异常登录验证</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/user.css?{{$CONFIG.build}}" />
+    <link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/modpass.css?{{$CONFIG.build}}" />
+    <script type="text/javascript"> document.domain = '9377.com'; </script>
+</head>
+<body>
+    <div class="mp-header">
+        <div class="w1000 fix">
+            <div class="hd-left fl">
+                <h1 class="logo fl"><a href="{{$CONFIG.url}}/"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" alt="网页游戏" title="网页游戏"/></a></h1>
+                <span>账号安全中心</span>
+            </div>
+            <div class="hd-right fr">
+                <ul class="menu">
+                    <li><a href="{{$CONFIG.url}}/"><span>首页</span></a></li>
+                    <li><a href="{{$CONFIG.app_url}}/game_center.php"><span>找游戏</span></a></li>
+                    <li><a href="{{$CONFIG.app_url}}/pay_index.php" target="_blank" rel="nofollow"><span>充值中心</span></a></li>
+                    <li><a href="{{$CONFIG.url}}/kefu/" rel="nofollow"><span>客服</span></a></li>
+                    <li><a href="http://bbs.9377.com/" target="_blank"><span>论坛</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="g-container fix">
+        <div class="w1000 mp-main">
+            <div class="exception-wp">
+                {{if $user['LOCKED']}}
+                <div class="exce-hd">
+                    <p><i class="islocked"></i>您的账号已经被锁定 <a href="{{$CONFIG.app_url}}/login.php?do=logout" class="col1 mgh30">退出登录</a></p>
+                </div>
+                {{else}}
+                <div class="exce-hd">
+                    <i class="notlocked"></i>
+                    <p>您的账号 {{$user.LOGIN_ACCOUNT}} 不在常用地区登录。为了确保账号安全，请进行手机短信验证。</p>
+                    <p>点击获取验证码之后，短信验证码将会发送到绑定的手机上。验证码5分钟内有效。</p>
+                </div>
+                <div class="exce-bd">
+                    <form action="" class="form-exce form-mibao-phone1">
+                        <input type="hidden" name="remember" value="1" />
+                        <input type="hidden" name="step" value="2" />
+                        <div class="w-item">
+                            <label class="w-label"><i>*</i> 已绑定手机：</label>
+                            <div class="w-div col1 pd0">{{$user['PHONE']}}</div>
+                        </div>
+                        <div class="w-item">
+                            <label class="w-label"><i>*</i> 短信验证码：</label>
+                            <input type="text" name="captcha" id="captcha" class="w-input" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+                            <input type="button" value="点击发送" opt="phone" onClick="excepVer.sendCaptcha(this);" class="w-button btn-green">
+                            <div class="w-tips w-tips1"></div>
+                        </div>
+                        <div class="w-item">
+                            <label class="rem"><i></i>把 <span class="col1">“{{$user.LOGIN_AREA}} ({{$ip}})”</span> 作为我的常用登录地区。</label>
+                            {{if $is_test}}<p>  <span class="col1">你是白名单用户, 输入 {{$test_code}} 通过</span> </p> {{/if}}
+                        </div>
+                        <div class="tips">
+                            <p><span class="col1">注：</span>勾选之后，下次登录不需要验证码。不勾选则继续使用验证码。</p>
+                            <p>如果您在异地临时登录几次，建议不要勾选。</p>
+                        </div>
+                        <div class="w-item tc">
+                            <label class="w-label"></label>
+                            <div class="w-div mgv15"><a href="javascript:excepVer.ver();" class="btn btn-l btn-blue">验 证</a></div>
+                        </div>
+                    </form>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+    {{include file="footer.html"}}
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/modpass.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

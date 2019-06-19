@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{if $title neq ''}}{{$title}}{{/if}}</title>
+	<meta name="keywords" content="{{if $keywords neq ''}}{{$keywords}}{{/if}}" />
+	<meta name="description" content="{{if $description neq ''}}{{$description}}{{/if}}" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+	<link href="{{$CONFIG.resource}}/style/cms_style_2015/news2.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+</head>
+<body>
+	{{include file="header.html"}}
+
+	<div class="news_wrapper">
+		<div class="news_bg">
+			{{$DATA["资讯中心_背投广告2"]}}
+		</div>
+		<div class="news_wrap">{{data name="资讯中心_背投广告2"}}
+			{{include file="/information/article_header.html"}}
+			<div class="news_hot">
+				<div class="hot_tit tc">热门网页游戏</div>
+				{{data name="热门游戏"}}
+				<ul class="hot_games fix">
+	                {{foreach from=$DATA['热门游戏'].list item=item}}
+	                <li>
+	                    <a href="{{$item.CONFIG['site']}}" target="_blank">
+	                        <div class="hot_img">{{data name="134*81热门游戏图{{$item.ALIAS}}"}}{{$DATA["134*81热门游戏图{{$item.ALIAS}}"]}}</div>
+	                        <p>{{$item.NAME}}</p>
+	                    </a>
+	                </li>
+	                {{/foreach}}
+	            </ul>
+				<ul class="games_class fix">
+	            	{{foreach from=range(1,6) item=item name=name}}
+	                	<li class="classify fix">
+							{{data name="游戏分类标签{{$smarty.foreach.name.iteration}}"}}
+	                        <span class="tips_word fl"><em>{{$DATA["游戏分类标签{{$smarty.foreach.name.iteration}}"]}}</em><i></i></span>
+	                        {{data name="游戏分类{{$smarty.foreach.name.iteration}}"}}
+	                        {{foreach from=$DATA["游戏分类{{$smarty.foreach.name.iteration}}"].list item=v}}
+	                        <a href="{{$v.url}}" title="{{$v.title}}" target="_blank">{{$v.title}}</a>
+	                        {{/foreach}}
+	                    </li>
+	                {{/foreach}}
+				</ul>
+			</div>
+			<div class="news_main fix">
+				<div class="news_sidebar fr">
+					<div class="headline bgb">
+						<div class="hot_tit">头条资讯</div>
+						{{data name="今日头条"}}
+						<ul class="headnews">
+							{{foreach from=$DATA['今日头条'].list item=item name=name}}
+							<li>
+								<div class="news_txt">
+									<span class="news_num">{{$smarty.foreach.name.iteration}}</span>
+	                                <a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:30}}</a>
+								</div>
+								<div class="news_con">{{$item.description|truncate:50}}</div>
+							</li>
+	                        {{/foreach}}
+						</ul>
+					</div>
+					<div class="games_rank bgb scroll_rank">
+						<div class="hot_tit">游戏排行榜</div>
+						{{data name="平台新闻游戏排行榜"}}
+						<div class="prev_next hd">
+	                        <a class="prev"></a>
+	                        <ul></ul>
+	                        <a class="next"></a>
+	                    </div>
+						<div class="rank_tit fix">
+	                        <span style="width:14%;">排行</span>
+	                        <span style="width:30%;">游戏名称</span>
+	                        <span style="width:30%;">区服</span>
+	                        <span style="width:26%;">题材</span>
+	                    </div>
+						<div class="scroll bd">
+	                        <ul class="scroll_txt">
+	                        	{{foreach from=array(0,1) item=item key=key1}}
+	                            <li>
+	                                <dl class="sideMen">
+	                                	{{foreach from=range(0,9) item=item key=key2}}
+	                                	{{assign var="item" value=$DATA['平台新闻游戏排行榜']['list'][$key1 * 9 + $key2]}}
+	                                    <dt>
+	                                        <span class="td" style="width:14%; {{if $key2 < 3}}color:#03b4f5;{{else}}color:#888;{{/if}}">{{$key2+1}}</span>
+	                                        <span class="td" style="width:30%; text-align:left;"><a href="{{$item.CONFIG['site']}}" target="_blank">{{if $item.NAME == '雷霆之怒绿色版'}}雷霆之怒{{else}}{{$item.NAME}}{{/if}}</a></span>
+	                                        <span class="td" style="width:30%;"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server=new" target="_blank">{{$item.NEW_SERVER_NAME}}</a></span>
+	                                        <span class="td" style="width:26%;">{{$item.TYPE}}</span>
+	                                    </dt>
+	                                    <dd>
+	                                        <span class="pic"><a href="{{$item.CONFIG['site']}}" target="_blank"><img src="{{$CONFIG.resource}}/images/cms_style_2012_new/game/hot_70/{{$item.ALIAS}}.jpg?{{$CONFIG.build}}" width="60" height="56" /></a></span>
+	                                        <p class="text">{{$item.SHORT_DESCRIPTION|truncate:30:"..."}}</p>
+	                                    </dd>
+	                                    {{/foreach}}
+	                                </dl>
+	                            </li>
+	                            {{/foreach}}
+	                        </ul>
+	                    </div>
+					</div>
+					<div class="games_rank bgb scroll_open">
+						<div class="hot_tit">开服列表</div>
+						{{data name="开服列表"}}
+						<div class="prev_next hd">
+	                        <a class="prev"></a>
+	                        <ul></ul>
+	                        <a class="next"></a>
+	                    </div>
+						<div class="server_tit fix">
+							<span class="wlk_1">游戏名称</span>
+							<span class="wlk_2">区服</span>
+							<span class="wlk_3">日期</span>
+							<span class="wlk_3">时间</span>
+						</div>
+						<div class="scroll bd">
+							<div class="scroll_txt">
+								{{foreach from=array(0,1,2) item=item key=key1}}
+								<ul class="wlk_list">
+									{{foreach from=range(0,10) item=item key=key2}}
+									{{assign var="item" value=$DATA['开服列表']['list'][$key1 * 10 + $key2]}}
+									<li>
+										<a class="wlk_1"href="{{$item.GAME.CONFIG.site}}" target="_blank">{{if $item.GAME.NAME == '雷霆之怒绿色版'}}雷霆之怒{{else}}{{$item.GAME.NAME}}{{/if}}</a><a class="wlk_2" href="{{$item.SERVER_URL}}" target="_blank">{{$item.SERVER_NAME}}</a><span class="wlk_3">{{$item.SERVER_START_TIME|date_format:'%m-%d'}}</span><span class="wlk_3">{{$item.SERVER_START_TIME|date_format:'%H:%M'}}</span>
+									</li>
+									{{/foreach}}
+								</ul>
+								{{/foreach}}
+							</div>
+						</div>
+					</div>
+					<div class="hot_seat">{{data name="296*212右侧图片"}}{{$DATA["296*212右侧图片"]}}</div>
+				</div>
+				<!-- 左侧栏 -->
+				<div class="news_column fl">
+					<dl class="news_carousel fullSlide">
+	                	{{data name="资讯幻灯图"}}
+	                    <dt class="bd">
+	                        <ul>
+	                        	{{foreach from=$DATA["资讯幻灯图"].list item="v"}}
+								{{if $smarty.foreach.list.index > 5}}{{break}}{{/if}}
+	                            <li>
+	                            	<a href="{{$v.artlink}}" target="_blank" title="{{$v.title}}">
+	                                	<img src="{{$v.flash_url}}" width="583" height="296" />
+	                                    <div class="text">
+	                                    	<h4>{{$v.title|truncate:20}}</h4>
+	                                    </div>
+	                                </a>
+	                            </li>
+	                            {{/foreach}}
+	                        </ul>
+	                    </dt>
+	                    <dd class="hd">
+	                        {{foreach from=$DATA["资讯幻灯图"].list item="v" name=forname}}
+							{{if $smarty.foreach.list.index > 5}}{{break}}{{/if}}
+	                        <a class="b{{$smarty.foreach.forname.iteration}}" title="{{$v.title}}">{{$v.title|truncate:20}}</a>
+	                        {{/foreach}}
+	                    </dd>
+	                </dl>
+	                <script type="text/javascript">
+	                	$(".fullSlide").slide({ titCell:".hd a", mainCell:".bd ul", effect:"topLoop", vis:4, autoPlay:true, trigger:"click",delayTime:1000 });
+	                </script>
+					<div class="fix news_pr">
+						<div class="news_list fr">
+							<h2 class="hot_tit"><a href="{{$CONFIG.url}}/news/zixun/" target="_blank">+更多</a>页游资讯</h2>{{data name="页游资讯"}}
+							<ul>
+								{{foreach from=$DATA['页游资讯'].list item=item name=name}}
+								<li>
+									<span>{{$item.pubdate|date_format:'%m-%d'}}</span>
+									<a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:30}}</a>
+								</li>
+								{{/foreach}}
+							</ul>
+						</div>
+						<div class="news_list fl">
+							<h2 class="hot_tit"><a href="{{$CONFIG.url}}/news/dsj/" target="_blank">+更多</a>9377风采</h2>{{data name="9377风采"}}
+							<ul>
+								{{foreach from=$DATA['9377风采'].list item=item name=name}}
+								<li>
+									<span>{{$item.pubdate|date_format:'%m-%d'}}</span>
+									<a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:30}}</a>
+								</li>
+								{{/foreach}}
+							</ul>
+						</div>
+					</div>
+					<div class="news_adsense">{{data name="资讯中心广告位700*120"}}{{$DATA["资讯中心广告位700*120"]}}</div>
+					<div class="fix news_pr">
+						<div class="news_list fr">
+							<h2 class="hot_tit"><a href="{{$CONFIG.url}}/news/pingce/" target="_blank">+更多</a>游戏评测</h2>
+							{{data name="游戏评测"}}
+							<ul>
+								{{foreach from=$DATA['游戏评测'].list item=item name=name}}
+								<li>
+									<span>{{$item.pubdate|date_format:'%m-%d'}}</span>
+									<a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:30}}</a>
+								</li>
+								{{/foreach}}
+							</ul>
+						</div>
+						<div class="news_list fl">
+							<h2 class="hot_tit"><a href="{{$CONFIG.url}}/news/gonglue/" target="_blank">+更多</a>游戏攻略</h2>
+							{{data name="游戏攻略"}}
+							<ul>
+								{{foreach from=$DATA['游戏攻略'].list item=item name=name}}
+								<li>
+									<span>{{$item.pubdate|date_format:'%m-%d'}}</span>
+									<a href="{{$item.artlink}}" target="_blank">{{$item.title|truncate:30}}</a>
+								</li>
+								{{/foreach}}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="news_advertis">{{data name="资讯中心广告位1000*80_2"}}{{$DATA["资讯中心广告位1000*80_2"]}}</div>
+			<div class="hot_video">
+				<h2 class="hot_tit tc"><a href="{{$CONFIG.url}}/news/video/" target="_blank">+更多</a>游戏视频</h2>
+				{{data name="游戏视频"}}
+				<ul class="fix">
+					{{foreach from=$DATA['游戏视频'].list item="v"}}
+					<li>
+						<a href="{{$v.artlink}}" target="_blank">
+							<div class="video_list">
+								<img src="{{$v.flash_url}}" alt="{{$v.title}}" width="220" height="162"/>
+								<p></p>
+							</div>
+							<p class="video_into">{{$v.title}}</p>
+						</a>
+					</li>
+	                {{/foreach}}
+				</ul>
+			</div>
+		</div>
+		<div class="friendly_link fix">
+			<div class="friendly_tit">友情链接</div>
+			<ul class="fr fix">
+				{{if $show_fs eq 1}}
+				{{data name="新闻资讯友情链接2" postfix=$top_category_id}}
+				{{$DATA['新闻资讯友情链接2'].content}}
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+
+	{{include file="footer.html"}}
+	
+	<script> var menuID = 7, fixedSize = false; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.SuperSlide.2.1.1.js?{{$CONFIG.build}}"></script>	
+	<script type="text/javascript">
+		$(".headnews").slide({titCell:".news_txt",targetCell:".news_con",defaultIndex:0,effect:"slideDown",delayTime:300});
+		$(".sideMen").slide({titCell:"dt",targetCell:"dd",defaultIndex:0,effect:"slideDown",delayTime:300});
+		$(".scroll_rank,.scroll_open").slide({titCell:".hd ul",mainCell:".bd .scroll_txt",autoPage:true,effect:"left",vis:1});
+		
+		$('.headnews li:last').addClass('news_bd');
+		$('.top_menu ul li').eq(6).find('a').addClass('on'); //导航
+	</script>
+</body>
+</html>

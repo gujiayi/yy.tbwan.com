@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{$DATA['充值首页标题']}}</title>
+	<meta name="keywords" content="{{$DATA['充值首页关键字']}}" />
+	<meta name="description" content="{{$DATA['充值首页描述']}}" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/pay.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/register_111.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/login_111.css?{{$CONFIG.build}}" />
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+	<style>
+			.w1200 {
+				 width: 1000px!important;}
+		</style>
+</head>
+<body>
+	{{data name="充值首页标题"}}
+	{{data name="充值首页关键字"}}
+	{{data name="充值首页描述"}}
+	<!--[if lte IE 8]>
+	<div class="killie">
+		<div class="main">
+		亲爱的玩家，您的浏览器版本过低，为了您的帐号及财产安全，建议您 <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">升级IE浏览器</a>
+		</div>
+	</div>
+	<![endif]-->
+	<div class="pay-header">
+		<div class="w1000 fix">
+			<a href="{{$CONFIG.url}}" class="logo"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" alt="网页游戏" title="网页游戏"></a>
+			<h2 class="tit">充值中心</h2>
+			<div class="info">
+				{{if $user}}
+				<p class="item">
+					<a href="{{$CONFIG.app_url}}/users/users_index.php" target="_blank">{{$user.LOGIN_ACCOUNT}}</a> 
+					<a href="{{$CONFIG.app_url}}/login.php?do=logout" rel="nofollow" class="pdh10">[退出]</a> |
+					<a href="{{$CONFIG.url}}/kefu/" target="_blank" class="ml10">联系客服</a>
+				</p>
+				<!-- <p class="item item-2">
+					您的505PK游戏币余额：<span class="col1">{{$user.credit.gold|intval}}</span>
+					<a href="{{$CONFIG.app_url}}/pay_index.php?pid=16" class="btn-usebal">用余额充值</a>
+				</p> -->
+				{{else}}
+				<p class="item"><a href="javascript:login();" rel="nofollow">登录</a> | <a href="{{$CONFIG.url}}/kefu/" target="_blank">联系客服</a></p>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="g-container">
+		<div class="w1000 wp-pay fix">
+			<div class="pay-left">
+				<ul class="pay-list">
+					{{foreach from=$pay_array key=k item=v}}
+					{{if $v.id == 16 && $gid == 118 || empty($v['name']) || $v.id == 121}}{{continue}}{{/if}}
+					<li><a href="javascript:;" pid="{{$k}}" class="item-{{$k}} {{if $pid == $k}}active{{/if}}"><i></i><span>{{$v.name}}</span></a></li>
+					{{/foreach}}
+				</ul>
+			</div>
+			<div class="pay-right">
+				<h2 class="order-tit o-tit-{{$pid}}"><i></i>{{$pay_array[$pid]['name']}}</h2>
+				<div class="o-table">
+					<div class="o-tr fix">
+						<label class="o-label">充值账号：</label>
+						<div class="o-div">
+							<div class="name-confirm {{if !$uname}}none{{/if}}">
+								<span class="dib" id="pay-account">{{$uname}}</span>
+								<a href="javascript:;" class="btn-define btn-edit {{if $pid == 16 && $smarty.const.TIMESTAMP - strtotime($user['REGISTER_TIME']) < 2592000}} none{{/if}}">[更改]</a>
+							</div>
+							<div class="name-fill {{if $uname}}none{{/if}}">
+								<input type="text" class="o-input tc" placeholder="请输入帐号" id="uname2" value="{{$uname}}"> <a href="javascript:;" class="btn-define btn-confirm">[确定]</a>
+								{{if $smarty.cookies.openid_type}}
+									<span class="col1">您正在使用{{$smarty.cookies.openid_type}}登录, 请勿填写{{$smarty.cookies.openid_type}}账号</font>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					<div class="o-tr fix" id="tr-pay-for">
+						<label class="o-label">充值到：</label>
+						<div class="o-div">
+							<a href="javascript:;" pid="0" class="pay-for pay-for-game {{if empty($pay_to)}}active{{/if}}"><i></i><span>游戏</span><em></em></a>
+							<a href="javascript:;" pid="1" class="pay-for pay-for-platform {{if !empty($pay_to)}}active{{/if}}"><i></i><span>505PK游戏币</span><em></em></a>
+							<span class="pay-for-tip none">手游暂不支持游戏币充值</span>
+						</div>
+					</div>
+					<div class="o-tr tr-select-type fix" id="tr-select-type">
+						<label class="o-label">选择游戏：</label>
+						<div class="o-div">
+							<a href="javascript:;" class="o-select j-select-game">{{if $gamename && $gid != 118}}{{$gamename}}{{else}}选择充值游戏{{/if}}</a>
+							<a href="javascript:;" class="o-select j-select-serv">选择充值区服</a>
+							<span class="role-status"></span>
+						</div>
+						<div class="select-wp select-game-wp none">
+							<a href="javascript:;" class="close"></a>
+							<div class="hd">
+								<ul> <li class="active">最近玩过</li> <li>ABCDE</li> <li>FGHIJK</li> <li>LMNOP</li> <li>QRSTU</li> <li>VWXYZ</li> </ul>
+							</div>
+							<div class="bd">
+								<!-- 最近玩过 -->
+								<div class="select-box">
+								{{if $user}}
+									{{if !empty($last_games_letter)}}
+									{{foreach key=letter from=$last_games_letter item="part"}}
+										<div class="filter-box"> 
+											<div class="filter-item fix">
+												<em class="tag-{{$letter}}">{{$letter|strtoupper}}</em>
+												<div class="fbd">
+													{{foreach from=$part item="game"}}
+													{{assign var="tmp" value=$games_pay_list[$game.gid]}}
+													{{if !empty($tmp.ID)}}
+													{{append var="last_game_tmp"  value=$game.gid}}
+													<a href="javascript:;" gid="{{$tmp.ID}}" max="{{$tmp.MAX_SERVER}}" ali="{{$tmp.ALIAS}}" class="gid-item gid-{{$tmp.ID}} {{if $gid == $tmp.ID}}active{{/if}}">{{$tmp.NAME}}</a>
+													{{/if}}
+													{{/foreach}}
+												</div>
+											</div>
+										</div>
+									{{/foreach}}
+									{{else}}
+									<span class="noserver">没有最近玩过的游戏</span>
+									{{/if}}
+								{{else}}
+									<span class="noserver">登录后可查看最近玩过的游戏及区服</span>
+								{{/if}}
+								</div>
+								<!-- 字母查找 -->
+								{{assign var=letter_parts value=array(range(a,e), range(f, k), range(l, p), range(q, u), range(v, z))}}
+								{{foreach from=$letter_parts item="part"}}
+								<div class="select-box none">
+									<div class="filter-box">
+									{{foreach from=$part item="word"}}
+									{{if !empty($games_letters[$word])}}
+									<div class="filter-item fix">
+										<em class="tag-{{$word}}">{{$word|strtoupper}}</em>
+										<div class="fbd">
+											{{foreach from=$games_letters[$word] item="v"}}
+											{{if $v.ID == 118}}{{continue}}{{/if}}
+											<a href="javascript:;" title="{{$v.NAME}}" max="{{$v.MAX_SERVER}}" gid="{{$v.ID}}" ali="{{$v.ALIAS}}" class="gid-item gid-{{$v.ID}} {{if $gid == $v.ID}}active{{/if}}">{{$v.NAME}}</a>
+											{{/foreach}}
+										</div>
+									</div>
+									{{/if}}
+									{{/foreach}}
+									</div>
+								</div>
+								{{/foreach}}
+							</div>
+						</div>
+						<div class="select-wp select-serv-wp none">
+							<a href="javascript:;" class="close"></a>
+							<div class="hd">
+								<div class="hdmenu">
+									<ul>
+										<!-- js加载 -->
+									</ul>
+								</div>
+								<div class="search-box">
+									<input type="text" id="search-sers-id">
+									<a href="javascript:;" title="点击搜索" class="btn-search"></a>
+								</div>
+							</div>
+							<div class="bd">
+								<div class="select-box servers-box">
+									<!-- js加载 -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="o-tr fix none" id="tr-select-role">
+						<label class="o-label">游戏角色：</label>
+						<div class="o-div">
+							<a href="javascript:;" class="o-select j-select-role">请选择角色名</a>
+							<ul class="select-list none" id="role-list"></ul>
+							<input type="button" value="获取角色名" class="o-button" onClick="CSPay.getRole(this)"/>
+							<span class="role-status"></span>
+						</div>
+					</div>
+					<div class="o-tr fix">
+						<label class="o-label">选择金额：</label>
+						<div class="o-div">
+							<div class="pay-money-list">
+							{{foreach from=$payways_select item=way}}
+							<a href="javascript:;" mid="{{$way}}" class="money-item {{if $way == $default_money}}active{{/if}}"> {{$way}}{{if $pid == 16}}游戏币{{else}}元{{/if}} <i></i></a>
+							{{/foreach}}
+							</div>
+							<span class="other-money-wp">
+								<span class="other-money-box"> <input type="text" maxlength="10" class="o-input other-money" placeholder="请输入其他金额" /><i></i></span>元
+							</span>
+							
+							<span id="user-getcoin" class="user-getcoin">您将获得 <strong class="col1" id="game-coin">0</strong> {{$coin_name}} (兑换比例 1:<span id="coin-radio">{{$factors_coin_radio}}</span>)</span>
+						</div>
+					</div>
+					<div class="o-tr fix">
+						<label class="o-label">&nbsp;</label>
+						<div class="o-div">
+							<a href="javascript:CSPay.confirmOrder();" class="btn-cforder">立即充值</a>
+						</div>
+					</div>
+				</div>
+				<!-- 人工充值 -->
+				<div class="o-rgpay none">
+					{{data name="人工充值内容"}}
+
+					{{if $DATA['人工充值内容']}}
+					{{$DATA['人工充值内容']}}
+					{{else}}
+					<h4 class="rg-tit">一、联系方式：</h4>
+					<p>客服充值电话：<span class="col1">020-32568400</span> (7×24小时)       <a href="{{$CONFIG.url}}/kefu.html" target="_blank" class="ml10 a-kf">联系在线客服</a></p>
+					<h4 class="rg-tit">二、银行转账充值账号：</h4>
+					<table>
+						<thead> <tr> <td>开户地</td> <td>开户行</td> <td>开户名称</td> <td>卡号</td> </tr> </thead>
+						<tbody>
+							<tr> 
+								<td class="td1">广州</td> 
+								<td class="td2">工商银行广州育蕾街支行</td> 
+								<td class="td2">上海誉点信息技术有限公司</td> 
+								<td class="td2">3602 8798 29100 310063</td> 
+							</tr>
+							<tr> 
+								<td>广州</td> 
+								<td>建设银行广州工业园支行</td> 
+								<td>上海誉点信息技术有限公司</td> 
+								<td>4400 1470 5130 5301 1858</td> 
+							</tr>
+							<tr> 
+								<td>广州</td> 
+								<td>农业银行广州东方三路支行</td> 
+								<td>上海誉点信息技术有限公司</td> 
+								<td>4406 0201 0400 04344</td> 
+							</tr>
+						</tbody>
+					</table>
+					<h4 class="rg-tit">外汇银行账号信息：</h4>
+					<table>
+						<tbody>
+							<tr> <td class="td3">Beneficiary Bank Name</td> <td class="td4">INDUSTRIAL AND COMMERCIAL BANK OF CHINA</td> </tr>
+							<tr> <td>Beneficiary Name</td> <td>SHANGHAI YUDIAN INFORMATION TECHNOLOGY CO.,LTD</td> </tr>
+							<tr> <td>Beneficiary Account Number</td> <td>3602 8798 09100 310722</td> </tr>
+							<tr> <td>Beneficiary Bank Address</td> <td>GUANGDONG PROVINCIAL BRANCH, GUANGZHOU TIANHE SUB-BR, TIANHE EAST ROAD NO.102，GUANGZHOU.</td> </tr>
+							<tr> <td>SWIFT CODE</td> <td><strong>ICBKCNBJGDG</strong></td> </tr>
+						</tbody>
+					</table>
+					<h4 class="rg-tit">三、誉点支付宝人工充值账户：</h4>
+					<p><span class="col1">2850907859@qq.com</span> 上海誉点信息技术有限公司</p>
+					<h4 class="rg-tit">四、人工充值流程：</h4>
+					<dl>
+						<dd><span class="col1">第1步：</span>请从官网充值中心获取人工充值银行帐号信息。</dd>
+						<dd><span class="col1">第2步：</span>向官方相应银行帐号转账(转账时将金额增加角和分，方便官方充值客服查询)</dd>
+						<dd><span class="col1">第3步：</span>联系在线客服以及客服电话。向充值客服提供准确的游戏帐号,游戏名称,游戏服务器,游戏角色,充值银行,充值金额,</dd>
+						<dd>真实姓名，联系电话等。</dd>
+						<dd><span class="col1">第4步：</span>9377客服人员确认玩家汇款或转帐到账，实时充游戏币。</dd>
+						<dd><span class="col1">第5步：</span>请玩家到游戏内查收游戏币。</dd>
+					</dl>
+					<h4 class="rg-tit">五、人工充值流程：</h4>
+					<dl>
+						<dd><span class="col1">第1步：</span>请从官网充值中心获取人工充值银行帐号信息。</dd>
+						<dd><span class="col1">第2步：</span>向官方相应银行帐号转账(转账时将金额增加角和分，方便官方充值客服查询)</dd>
+						<dd><span class="col1">第3步：</span>联系在线客服以及客服电话。向充值客服提供准确的游戏帐号,游戏名称,游戏服务器,游戏角色,充值银行,充值金额,</dd>
+						<dd>真实姓名，联系电话等。</dd>
+						<dd><span class="col1">第4步：</span>9377客服人员确认玩家汇款或转帐到账，实时充游戏币。</dd>
+						<dd><span class="col1">第5步：</span>请玩家到游戏内查收游戏币。</dd>
+					</dl>
+					{{/if}}
+				</div>
+				<!-- 充值提示 -->
+				<div class="tip-wp" id="tip-wp">
+					{{foreach from=$pay_array key=k item=v}}
+						{{if $v.id == 16 && $gid == 118 || empty($v['name'])}}{{continue}}{{/if}}
+						{{if $DATA["{{$v['name']}}充值说明"]}}
+							<div class="tip-box pd20 tip-{{$v.id}}">{{$DATA["{{$v['name']}}充值说明"]}}{{data name="{{$v['name']}}充值说明"}}</div>
+						{{else}}
+							<div class="tip-box tip-{{$v.id}}">{{$DATA["{{$v['name']}}充值说明"]}}{{data name="{{$v['name']}}充值说明"}}</div>
+						{{/if}}
+					{{/foreach}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<form id="payform" action="{{$CONFIG.app_url}}/pay/paygourl.php" method="post">
+		<input type="hidden" name="pid" value="{{$pid}}" />
+		<input type="hidden" name="uname" value="{{$uname}}" />
+		<input type="hidden" name="pay_to" value="{{if empty($pay_to)}}0{{else}}1{{/if}}" />
+		<input type="hidden" name="money" value="{{$way}}"/>
+		<input type="hidden" name="money2" />
+		<input type="hidden" name="game_coin" />
+		<input type="hidden" name="gid" value="{{$gid}}" />
+		<input type="hidden" name="server" value="{{$sid}}" />
+	</form>
+	<div class="pass2-pop none" id="pass2-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<div class="hd">请输入二级密码</div>
+		<div class="bd">
+			<p class="tip">为了您的账号安全，此处操作需要输入二级密码</p>
+			<input type="password" placeholder="二级密码" class="cs-psw2" id="J-psw2">
+			<p class="input-tips" id="J-psw2-tips"></p>
+			<div class="opt">
+				<a href="javascript:CSPay.verPass2();" class="button-red fl" id="J-psw2-submit">提交</a>
+				<a href="{{$CONFIG.app_url}}/users/users_modpass.php?pwd2=2" target="_blank" class="fr">忘记密码？</a>
+			</div>
+		</div>
+	</div>
+	<div class="confirm-pop none" id="confirm-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<div class="hd">充值信息确认</div>
+		<div class="bd">
+			<p class="tit">请确认您的充值订单信息</p>
+			<ul class="confirm-list">
+				
+			</ul>
+			<a href="javascript:CSPay.submitOrder();" class="btn-submit">前往付款</a>
+		</div>
+	</div>
+	<div class="ubind-pop none" id="ubind-pop">
+		<a href="javascript:;" class="pop-close w-pop-close"></a>
+		<div class="hd">完善信息</div>
+		<div class="bd">
+			<ul class="ubind-tab"> <li class="active">手机号绑定</li> <li>身份证绑定</li> </ul>
+			<div class="ubind-wp">
+				<div class="ubind-box">
+					<form action="" method="POST" class="form-mibao-phone" id="form-mibao-Phone">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>手机号码：</label>
+							<input type="text" name="cellphone" class="w-input">
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>验证码：</label>
+							<div class="w-div pd0">
+								<input name="code" type="text" class="w-input-m"  />
+								<img onClick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="php-code"/>
+							</div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>短信验证码：</label>
+							<div class="w-div pd0">
+								<input type="text" name="captcha" id="captcha" class="w-input-m" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+								<input type="button" value="点击发送" onClick="CSPay.sendCaptcha(this);" class="pop-button pop-button-green">
+							</div>
+						</div>
+						<div class="ftips">按照政府部门关于实名注册要求，在您<em class="col1">未绑定有效身份证信息</em>之前，无法进行充值，敬请谅解 </div>
+						<div class="w-item tc">
+							<a href="javascript:CSPay.bindPhone();" class="btn btn-l btn-red">立即绑定</a>
+						</div>
+					</form>
+				</div>
+				<div class="ubind-box none">
+					<form action="" method="POST" class="form-mibao-idcard">
+						<div class="level-tips"><i></i>帐号的身份证信息只能填写一次，是判断帐号归属的重要依据</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>真实姓名：</label>
+							<input type="text" name="name" class="w-input">
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>身份证号：</label>
+							<input type="text" name="idc" class="w-input">
+						</div>
+						<div class="ftips">按照政府部门关于实名注册要求，在您<em class="col1">未绑定有效身份证信息</em>之前，无法进行充值，敬请谅解 </div>
+						<div class="w-item tc">
+							<input type="submit" value="立即绑定" class="btn btn-l btn-red">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="login-pop none" id="login-pop">
+		<a href="javascript:;" class="pop-close w-pop-close"></a>
+		<div class="hd">Welcome！</div>
+		<div class="bd">
+			<ul class="login-tab login-tab-1">
+				<li>9377游戏账号登录</li>
+				<!-- <li>扫码登录</li> --> 
+			</ul>
+			<form action="" method="POST" class="form-login" id="form-login">
+				<div class="w-item"> <i class="icon-user"></i><input name="username" type="text" placeholder="帐号" class="w-input"> </div>
+				<div class="w-item"> <i class="icon-lock"></i><input name="password" type="password" placeholder="密码" class="w-input"> </div>
+				<div class="user-opt">
+					<a href="{{$CONFIG.app_url}}/getpass.php" target="_blank" rel="nofollow" class="fr">忘记密码</a>
+					<label class="login-save"><i class="icon-cb icon-cbed"></i> 自动登录</label>
+				</div>
+				<div class="user-opt2">
+					<a href="javascript:CSPay.submitLogin();" class="pop-button pop-button-red pop-button-login">登录</a>
+					<div class="login-tip"></div>
+				</div>
+				<div class="user-third">
+					<a href="{{$CONFIG.app_url}}/register.php" target="_blank" rel="nofollow" class="link-reg fr col1">免费注册<i></i></a>
+					<a href="{{$CONFIG.app_url}}/api/qq.php?_qq_action=login" target="_blank" rel="nofollow" title="QQ登录" class="third-login-qq"></a>
+					<a href="{{$CONFIG.app_url}}/api/wx_login.php?_wx_action=login" target="_blank" rel="nofollow" title="微信登录" class="third-login-wx"></a>
+					<a href="{{$CONFIG.app_url}}/api/weibo.php?_wb_action=login" target="_blank" rel="nofollow" title="微博登录" class="third-login-wb"></a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 扫码支付 -->
+	<iframe name="pay_window" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" allowTransparency="true" scrolling="no" src="about:blank" class="pay-window" id="pay_window"></iframe>
+	<!-- 登录 -->
+	{{include file="login_111.html"}}
+	<!-- 登录end -->
+	<!-- 注册 -->
+	{{include file="register_111.html"}}
+	<!-- 注册end -->
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	{{include file="footer.html"}}
+	<script>
+		// 充值参数
+		var payParam = {
+			ratio : 0,
+			pid : '{{$pid}}',
+			uname : '{{$uname}}',
+			pay_to : '{{$pay_to}}',
+			money : '{{$default_money}}',
+			money2 : '{{$money2}}',
+			gid : '{{if !empty($pay_to)}}118{{/if}}',
+			server : '{{if empty($pay_to)}}{{$server}}{{else}}1{{/if}}', //对应url的sid或server字段
+			game_coin : 0,
+			role : ''
+		}
+		var serverData = {}; //存储服务器缓存数据
+		// 关闭iframe
+		function close_window(){
+			$('#pay_window').attr('src', 'about:blank').hide();
+			overlay({action: 'hide'});
+			$(document).unbind('click', close_window);
+		}
+
+		var pay_array = '{{$pay_array|json_encode}}'
+		var games_pay_list = '{{$games_pay_list|json_encode}}'
+		var last_game_data = '{{$last_games_letter|json_encode}}'
+		var default_server = '{{$default_sid|json_encode}}'
+	</script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.nicescroll.min.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/pay.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/login.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/register.js?{{$CONFIG.build}}"></script>
+	
+	{{data name="2017充值备用"}}{{$DATA['2017充值备用']}}
+</body>
+</html>

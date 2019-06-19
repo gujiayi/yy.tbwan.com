@@ -1,0 +1,100 @@
+<!--小号 start-->
+<link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/samll_account.css?{{$CONFIG.build}}" />
+<div class="gary-mark none" id="gary-mark"></div>
+<!-- 查看小号 -->
+<div class="small-wrap none" id="after-log">
+	<div class="small-box">
+		<a href="javascript:void(0);" class="small-close w-pop-close" title="关闭">关闭</a>
+		<div class="small-tit">小号管理</div>
+		<div class="small-tab" id="small-tab">
+			<ul class="clearfix">
+				<li class="on"><a href="javascript:void(0);" id="_my_sub">我的小号（0）<span></span></a></li>
+				<li><a href="javascript:void(0);" id="_i_sub">我是小号（1）<span></span></a></li>
+				<li><a href="javascript:void(0);">小号数量说明<span></span></a></li>
+			</ul>
+		</div>
+		<div class="small-main" id="small-main">
+			<div class="small-con">
+				<div class="game-tit clearfix" id="mysamll">
+					<p class="game-zone">游戏区服</p>
+					<p class="game-samll">小号(备注)</p>
+					<p class="game-state">状态</p>
+					<p class="game-operate">操作</p>
+				</div>
+				<div class="small-account-box" id="small_account_box"></div>
+				<div class="small-notice red-no" id="small-notice">注：添加小号成功后，请登陆小号确认授权!</div>
+			</div>
+			<div class="small-con none">
+				<div class="game-tit clearfix" id="issamll">
+					<p class="game-zone">游戏区服</p>
+					<p class="game-samll">我是他的小号</p>
+					<p class="game-state">状态</p>
+					<p class="game-operate">操作</p>
+				</div>
+				<div class="small-account-box" id="small_account_box2"></div>
+				<div class="small-notice red-no" id="small-notice2">注：添加小号成功后，请登陆小号确认授权!</div>
+			</div>
+			<div class="small-con none">
+				<div class="sub-info">不同VIP等级可添加不同数量小号<a href="http://wvw.9377.com/pay_index.php" target="_blank">马上提升>></a></div>
+				<div class="sub-txt">
+					<p><span>VIP0：</span>可添加3个小号</p>
+					<p><span>VIP1~VIP3：</span>可添加4个小号</p>
+					<p><span>VIP4~VIP6：</span>可添加6个小号</p>
+					<p><span>VIP7~VIP9：</span>可添加8个小号</p>
+				</div>
+			</div>
+		</div>
+		<div class="samll-btn">
+			<a href="javascript:;" id="add-small-account">添加小号</a><a class="gray-btn" href="{{$CONFIG.app_url}}/register.php?sub_account=1" target="_blank">没有小号,去注册</a>
+		</div>
+	</div>
+</div>
+<!-- 添加小号 -->
+<div class="small-wrap none" id="reg-samll-user">
+	<div class="small-box">
+		<a href="javascript:void(0);" class="small-close w-pop-close" title="关闭">关闭</a>
+		<div class="small-tit small-tit2">小号管理</div>
+		<form action="" method="post" id="form_register">
+			<div class="small-item small-select clearfix">
+				<label class="small-label" for=""><em>*</em>游戏服区:</label>
+				<div class="select-item">
+					<i id="gid_arrow"></i><span id="s_gid_name" value="">请选择游戏</span>
+					<ul name="s_gid" id="s_gid">
+					</ul>
+				</div>
+				<div class="select-item">
+					<i id="sid_arrow"></i><span id="s_sid_name" value="">请选择服</span>
+					<ul name="s_sid" id="s_sid">
+					</ul>
+				</div>
+			</div>
+			<div class="small-item clearfix">
+				<label class="small-label" for="account"><em>*</em>用户名:</label>
+				<input type="text" name="LOGIN_ACCOUNT" id="account" placeholder="用户名（4-20个数字、字母、下划线）"/>
+			</div>
+			<div class="small-item clearfix">
+				<label class="small-label" for="mpassword"><em>*</em>密码:</label>
+				<input type="password" name="PASSWORD" id="mpassword" placeholder="密码（4-20个数字、字母、下划线）"/>
+			</div>
+			<div class="small-item clearfix">
+				<label class="small-label" for="stips"><em></em>备注:</label>
+				<input type="text" name="stips" id="stips" placeholder="请输入备注，6个字之内（可不填）"/>
+			</div>
+			<div class="small-notice2">
+				<input class="hidden" type="checkbox" checked="checked" disabled="disabled" name="check-consent" id="check-consent" /><label for="check-consent">&nbsp;<a class="s-agreement" href="{{$CONFIG.url}}/yhxy.html" target="_blank">我已经阅读并同意<em>《用户注册服务协议》</em></a></label>
+			</div>
+			<div class="check-tips" id="check-tips"></div>
+			<div class="samll-btn">
+				<a href="javascript:;" id="add_sub_account">添加小号</a>
+				<a class="gray-btn w-pop-close" href="javascript:;">取消</a>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 提示 -->
+<div class="small-tips none" id="small-tips">
+	<a class="tips-close" href="javascript:void(0);">X</a>
+	<div class="tips-tit">提示</div>
+	<div class="tips-con"><p class="tips-txt">确定要删除小号？</p><p class="samll-btn"><a href="javascript:;" class="small-real-del">确定</a><a class="gray-btn small-canel-del" href="javascript:;" >取消</a></p></div>
+</div>
+<!--小号 end-->

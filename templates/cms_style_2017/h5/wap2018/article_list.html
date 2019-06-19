@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="frontend" content="Jinlian">
+    <title>{{$title}}</title>
+	<meta name="keywords" content="{{$keywords}}">
+	<meta name="description" content="{{$description}}">
+    <meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/swiper.min.css?{{$CONFIG.build}}"/>
+	<link rel="stylesheet" type="text/css" href="{{$CONFIG.resource}}/style/2017/h5/wap2018/style.css?{{$CONFIG.build}}1sf" />
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/adaptive.js"></script>
+    <script type="text/javascript">
+        window['adaptive'].desinWidth = 1242;
+        window['adaptive'].baseFont = 36;
+        window['adaptive'].maxWidth = 640;
+        window['adaptive'].scaleType = 3;
+        window['adaptive'].init();
+    </script>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="article-tit fix">
+			<li {{if $CATEGORY.id == '14665'}}class="on"{{/if}}><a href="http://h5.9377.com/xwzx/">公告</a></li>
+			<li {{if $CATEGORY.id == '14743'}}class="on"{{/if}}><a href="http://h5.9377.com/ztzx/">专题</a></li>
+			<li {{if $CATEGORY.id == '14668'}}class="on"{{/if}}><a href="http://h5.9377.com/glzx/">攻略</a></li>
+		</ul>
+		<div class="article-list">
+			{{if $CATEGORY.id == '14665'}}
+			<!-- 公告 -->
+			{{data name="新闻列表"}}
+			<ul class="news-list">
+				<!-- {{section name="list" loop=$artlist}}
+				<li><a href="{{$artlist[list].artlink}}" target="_blank"><span>{{$artlist[list].adddate|date_format:'%m-%d'}}</span>{{$artlist[list].title}}</a></li>
+				{{/section}} -->
+
+				{{foreach from=$DATA['新闻列表'].list item=item}}
+				<li><a href="{{$item.artlink}}" target="_blank"><span>{{$item.adddate|date_format:'%m-%d'}}</span>{{$item.title}}</a></li>
+				{{/foreach}}
+				<li class="tc">没有更多了</li>
+			</ul>
+			{{/if}}
+
+			{{if $CATEGORY.id == '14743'}}
+			<!-- 专题 -->
+			{{data name="专题列表"}}
+			<div class="zt-list">
+				{{foreach from=$DATA['专题列表'].list item=item}}
+				<a href="{{$item.url}}" class="item" target="_blank">
+					<img src="{{$item.thumb}}" alt="">
+					<span>{{$item.title}}</span>
+				</a>
+				{{/foreach}}
+			</div>
+			{{/if}}
+
+			{{if $CATEGORY.id == '14668'}}
+			<!-- 攻略 -->
+			<div class="gl-box gift-box">
+				{{data name="攻略对应游戏"}}
+				<ol>
+					{{foreach from=$DATA['攻略对应游戏']['list'] item=item}}
+					<li>
+						{{data name="{{$item.NAME}}列表"}}
+						<div class="top flex">
+							<img src="{{$CONFIG.resource}}/images/2017/h5/icon/{{$item.ALIAS}}.png" alt="" title="" />
+							<h2 class="flex-list title">{{$item.CONFIG.alias_name}}</h2>
+							<a class="gift-btn" href="javascript:H9377.listView({{$item.ID}});">更多</a>
+						</div>
+						<ul>
+							{{foreach from=$DATA["{{$item.NAME}}列表"]['list'] item=v name=list}}
+							{{if $smarty.foreach.list.index >= 3}}{{break}}{{/if}}
+							<li class="flex"> <a href="{{$v.artlink}}" target="_blank"><span>{{$v.adddate|date_format:'%m-%d'}}</span>{{$v.title}}</a> </li>
+							{{/foreach}}
+						</ul>
+						<div class="list-wp none" id="list-wp-{{$item.ID}}">
+							<div class="list-wp-hd"><a href="javascript:H9377.listHide({{$item.ID}});" class="back">&lt;</a>{{$item.CONFIG.alias_name}}游戏攻略</div>
+							<div class="gl-box gift-box">
+								<ol>
+									<li>
+										<div class="top flex">
+											<img src="{{$CONFIG.resource}}/images/2017/h5/icon/{{$item.ALIAS}}.png" alt="" title="" />
+											<h2 class="flex-list title">{{$item.CONFIG.alias_name}}</h2>
+										</div>
+										<ul>
+											{{foreach from=$DATA["{{$item.NAME}}列表"]['list'] item=v name=list}}
+											<li class="flex"> <a href="{{$v.artlink}}" target="_blank"><span>{{$v.adddate|date_format:'%m-%d'}}</span>{{$v.title}}</a> </li>
+											{{/foreach}}
+											<li class="tc">没有更多了</li>
+										</ul>
+									</li>
+								</ol>
+							</div>
+						</div>
+					</li>
+					{{/foreach}}
+				</ol>
+			</div>
+			{{/if}}
+		</div>
+	</div>
+    <script> var menuID = 2; </script>
+	{{include file="h5/wap2018/h5_footer.html"}}
+</body>
+</html>

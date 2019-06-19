@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{$CONFIG.site_title}}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<meta name="keywords" content="{{$CONFIG.site_keyword}}" />
+	<meta name="description" content="{{$CONFIG.site_description}}" />
+	<meta property="qc:admins" content="0767356077613776375" />
+	<meta property="wb:webmaster" content="a66b8764e570c6f1" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> if(/(mobile|ipad|iphone|android|\s+adr\s+)/i.test(navigator.userAgent) && !$_COOKIE['skip_wap']){ window.location.href = '{{$CONFIG.url}}/wap/guide/'; } </script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/news.css?{{$CONFIG.build}}" />
+</head>
+<body>
+	{{include file="header.html"}}
+	
+	<div class="g-container fix">
+		<div class="w1000 news-main">
+			<div class="mod mod-1">
+				<div class="news-local">当前位置： <a href="{{$CONFIG.url}}">9377游戏</a> >> {{$position}}</div>
+				<div class="news-wp">
+					<div class="news-hd">
+						<a href="{{$CONFIG.url}}/focus/" class="item {{if $CATEGORY.id == 14047}}active{{/if}}">全部</a>
+						<a href="{{$CONFIG.url}}/focus/notice/" class="item {{if $CATEGORY.id == 14050}}active{{/if}}">公告</a>
+						<a href="{{$CONFIG.url}}/focus/active/" class="item {{if $CATEGORY.id == 14053}}active{{/if}}">活动</a>
+						<a href="{{$CONFIG.url}}/h5/m/news/" class="item {{if $CATEGORY.id == 15057}}active{{/if}}">手游</a>
+					</div>
+					<div class="news-bd fix">
+						<div class="news-left">
+							<ul class="news-list">
+								{{section loop=$artlist name="list"}}
+								<li>
+									<div class="t">
+										{{if $artlist[list].typename == '公告'}}
+											<i class="tag-blue">{{$artlist[list].typename}}</i>
+										{{else}}
+											<i class="tag-green">{{$artlist[list].typename}}</i>
+										{{/if}}
+										<a href="{{$artlist[list].artlink}}" target="_blank" class="tit">{{$artlist[list].title}}</a>
+										<em class="time">{{$artlist[list].adddate|date_format:'%Y-%m-%d'}}</em>
+									</div>
+									<div class="b">
+										<p class="desc">{{$artlist[list].description|truncate:74:"...":true}}</p>
+										<a href="{{$artlist[list].artlink}}" target="_blank" class="view">查看详情</a>
+									</div>
+								</li>
+								{{/section}}
+							</ul>
+							<div class="mod-pages"> {{$pagelist}} </div>
+						</div>
+						<div class="news-right">
+							<div class="mod-hd"> <strong class="mod-tit">游戏开服列表</strong> </div>
+							{{data name="页面开服列表"}}
+							<div class="openser-wp">
+								<div class="hd"><em class="i1">游戏</em><em class="i2">区服</em><em class="i3">时间</em></div>
+								<div class="bd openser-box" id="openser-box">
+									<div class="slide-bd">
+									{{foreach from=array(0,9) item=item key=key1}}
+										<ul class="slide-item">
+											{{foreach from=range(0,9) item=item key=key2}}
+											{{assign var="item" value=$DATA['页面开服列表']['list'][$key1 * 10 + $key2]}}
+											{{if !empty($item)}}
+											<li><a href="{{$item.GAME.CONFIG.site}}" target="_blank"><span class="i1">{{$item.GAME.NAME}}</span><span class="i2">{{$item.SERVER_NAME}}</span><span class="i3">{{$item.SERVER_START_TIME|date_format:'%m-%d %H:%M'}}</span></a></li>
+											{{/if}}
+											{{/foreach}}
+										</ul>
+									{{/foreach}}
+									</div>
+								</div>
+							</div>
+							{{data name="平台侧边推荐288*84"}}
+							{{foreach from=$DATA['平台侧边推荐288*84'].list item=item}}
+							<a href="{{$item.url}}" target="_blank" title="{{$item.title}}" class="recom"><img src="{{$item.thumb}}" width="288"></a>
+							{{/foreach}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/jquery.slideBox2.0.js?{{$CONFIG.build}}"></script>
+	<script>
+		$('#openser-box').slideBox({mode: 'left',autoPlay:false});
+		var menuID = 0, fixedSize = false;
+	</script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/register.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

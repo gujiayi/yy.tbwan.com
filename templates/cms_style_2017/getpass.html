@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>9377帐号{{$append.name}}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/user.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/modpass.css?{{$CONFIG.build}}" />
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+</head>
+<body>
+<div class="mp-header">
+	<div class="w1000 fix">
+		<div class="hd-left fl">
+			<h1 class="logo fl"><a href="{{$CONFIG.url}}/"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" alt="网页游戏" title="网页游戏"/></a></h1>
+			<span>账号安全中心</span>
+		</div>
+		<div class="hd-right fr">
+			<ul class="menu">
+				<li><a href="{{$CONFIG.url}}/"><span>首页</span></a></li>
+				<li><a href="{{$CONFIG.app_url}}/game_center.php" target="_blank"><span>游戏中心</span></a></li>
+				<li><a href="{{$CONFIG.app_url}}/pay_index.php" target="_blank" rel="nofollow"><span>充值中心</span></a></li>
+				<li><a href="{{$CONFIG.url}}/kefu/" rel="nofollow"><span>客服中心</span></a></li>
+				<!-- <li><a href="http://bbs.9377.com/" target="_blank"><span>论坛</span></a></li> -->
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="g-container fix">
+	<div class="w1000 mp-main">
+		<div class="step-wp">
+			<span {{if !$getpass_user}} class="active"{{/if}}><b>1</b>确认账号</span>
+			<span {{if $getpass_user}} class="active"{{/if}}><b>2</b>选择验证方式</span>
+			<span><b>3</b>{{$append.name}}</span>
+			<span><b>4</b>完成</span>
+		</div>
+		<div class="mp-wp">
+			{{if !$getpass_user}}
+			<div class="mp-item mp-item-1">
+				<form>
+					<input name="do" value="set_getpass_user" type="hidden" />
+					<input name="pwd2" value="{{$smarty.get.pwd2|default:1}}" type="hidden" />
+					<div class="mp-mod-form">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>输入帐号：</label>
+							<input type="text" class="w-input" name="username" id="username">
+							<div class="w-tips"> </div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>输入验证码：</label>
+							<input type="text" name="code" class="w-input-s"  >
+							<img onclick="this.src= '/code.php?'+Math.random();" src="/code.php?{{$smarty.now}}" alt="点击更换" class="mt5 ml10 fl" id="img-code" />
+							<div class="w-tips"> </div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<input type="submit" value="下一步" onClick="return modPass.confirm();" class="w-button btn-red mgv15">
+						</div>
+					</div>
+				</form>
+			</div>
+			{{else}}
+			<div class="mp-item mp-item-2">
+				<div class="mp-mod-select">
+					{{if $set_getpass_user && !$getpass_user.safe_verify}}
+					<label class="user-label">您的帐号尚未绑定任何安全方式，请通过 <a href="{{$CONFIG.url}}/kefu/" target="_blank" class="appeal col1">帐号丢失申诉</a> 找回密码。</label>
+					{{elseif $getpass_user}}
+					<label class="user-label">
+						<em>*</em> 已确认账号：<span>{{$getpass_user.LOGIN_ACCOUNT}}</span>
+						{{if $smarty.get.pwd2 != 2}} <a href="?do=set_getpass_user">[更换用户名]</a></span>{{/if}}
+					</label>
+					{{/if}}
+					<ul class="mp-mod-list">
+						<li class="dib {{if !empty($getpass_user.BIND_CELLPHONE)}}active{{else}}noset{{/if}}">
+							<a href="javascript:;" opt="phone" class="item item-1"><i></i>
+								{{if !empty($getpass_user.BIND_CELLPHONE)}}<span>已设置</span>{{else}}<span>未设置</span>{{/if}}
+								<p>密保手机</p>
+							</a>
+						</li>
+						<li class="dib {{if !empty($getpass_user.EMAIL)}}active{{else}}noset{{/if}}">
+							<a href="javascript:;" opt="email" class="item item-2"><i></i>
+								{{if !empty($getpass_user.EMAIL)}}<span>已设置</span>{{else}}<span>未设置</span>{{/if}}
+								<p>密保邮箱</p>
+							</a>
+						</li>
+						<li class="dib {{if !empty($getpass_user.ANSWER)}}active{{else}}noset{{/if}}">
+							<a href="javascript:;" opt="answer" class="item item-3"><i></i>
+								{{if !empty($getpass_user.ANSWER)}}<span>已设置</span>{{else}}<span>未设置</span>{{/if}}
+								<p>密保问题</p>
+							</a>
+						</li>
+					</ul>
+					{{if $getpass_user && $smarty.get.pwd2 != 1}}
+					<p class="tips">未设置/重置密保资料？可点击  <a href="{{$CONFIG.app_url}}/users/users_index.php?type=9" target="_blank">设置密保资料</a>  去进行完善</p>
+					{{/if}}
+				</div>
+				<div class="mp-mod-form none">
+					<div class="w-item">
+						<label class="w-label"><i>*</i>已确认账号：</label>
+						<div class="w-div">{{$getpass_user.LOGIN_ACCOUNT}}</div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"><i>*</i>选择验证方式：</label>
+						<select name="" id="select-by-mod" class="w-select">
+							{{if !empty($getpass_user.BIND_CELLPHONE)}}<option value="phone">密保手机</option>{{/if}}
+							{{if !empty($getpass_user.EMAIL)}}<option value="email">密保邮箱</option>{{/if}}
+							{{if !empty($getpass_user.ANSWER)}}<option value="answer">密保问题</option>{{/if}}
+						</select>
+					</div>
+					<div class="mod-by-item mod-by-phone none">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>已绑定手机：</label>
+							<div class="w-div">{{$getpass_user.PHONE}}</div>
+							<input type="button" value="点击发送" opt="phone" onClick="modPass.sendCaptcha(this);" class="w-button btn-green">
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>短信验证码：</label>
+							<input type="text" id="captcha" class="w-input-s" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<input type="button" value="下一步" onClick="modPass.ver('phone');" class="w-button btn-red mgv15">
+						</div>
+					</div>
+					<div class="mod-by-item mod-by-email none">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>已绑定邮箱：</label>
+							<div class="w-div">{{$getpass_user.EMAIL}}</div>
+							<input type="button" value="点击发送" opt="email" onClick="modPass.sendCaptcha(this);" class="w-button btn-green">
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>邮件验证码：</label>
+							<input type="text" id="code" class="w-input-s" onKeyUp="value=value.replace(/[^0-9,]/g,'');">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<input type="button" value="下一步" onClick="modPass.ver('email');" class="w-button btn-red mgv15">
+						</div>
+						<div class="tips2">注：如没收到邮件，请检查邮箱的反垃圾设置，并到垃圾邮箱查看是否收到</div>
+					</div>
+					<div class="mod-by-item mod-by-answer none">
+						<div class="w-item">
+							<label class="w-label"><i>*</i>已设置问题：</label>
+							<div class="w-div">{{$getpass_user.QUESTION}}</div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"><i>*</i>输入答案：</label>
+							<input type="text" id="answer" class="w-input">
+							<div class="w-tips"></div>
+						</div>
+						<div class="w-item">
+							<label class="w-label"></label>
+							<input type="button" value="下一步" onClick="modPass.ver('answer');" class="w-button btn-red mgv15">
+						</div>
+						<div class="tips">忘记密保资料？可进行  <a href="{{$CONFIG.app_url}}/form/submit.php?name=user_stolen" target="_blank">账号申诉</a>  或者  <a href="{{$CONFIG.url}}/kefu/" target="_blank">联系客服</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="mp-item mp-item-3 none">
+				<div class="mp-mod-form">
+					<input name="pwd2" value="{{$smarty.get.pwd2|default:1}}" type="hidden" />
+					<div class="w-item">
+						<label class="w-label"><i>*</i>已确认账号：</label>
+						<div class="w-div">{{$getpass_user.LOGIN_ACCOUNT}}</div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"><i>*</i>输入新密码：</label>
+						<input type="password" id="password" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"><i>*</i>再次输入新密码：</label>
+						<input type="password" id="password1" class="w-input">
+						<div class="w-tips"></div>
+					</div>
+					<div class="w-item">
+						<label class="w-label"></label>
+						<input type="button" value="确认" onClick="modPass.varPass();" class="w-button btn-red mgv15">
+					</div>
+				</div>
+			</div>
+			<div class="mp-item mp-item-4 none">
+				<div class="success"><i></i>恭喜您，密码重置成功！</div>
+				<p class="back">点击  <a href="{{$CONFIG.url}}">返回9377平台</a>  登录账号</p>
+			</div>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+{{include file="footer.html"}}
+<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/modpass.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

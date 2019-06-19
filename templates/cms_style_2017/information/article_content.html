@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{$row.title}} | {{if $CATEGORY.id != 11219}}9377{{/if}}{{$typename}}</title>
+	<meta name="keywords" content="{{$row.title}}" />
+	<meta name="description" content="{{if $description neq ''}}{{$description}}{{/if}}" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+	<link href="{{$CONFIG.resource}}/style/cms_style_2015/news2.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+</head>
+<body>
+	{{include file="header.html"}}
+	
+	<div class="news_wrapper">
+		<div class="news_bg">
+			{{$DATA["资讯中心_背投广告2"]}}
+		</div>
+		<div class="news_wrap">
+			{{include file="information/article_header.html"}}
+			<div class="hot_cur">当前位置：<a href="{{$CONFIG.url}}">首页</a> &gt;&gt; {{$position}}</div>
+			<div class="fix">
+				{{include file="information/article_slider.html"}}
+				<div class="news_column fl">
+					<div class="news_show bgb">
+						<div class="hot_tit">{{$typename}}</div>
+						<h1>{{$row.title}}</h1>
+						<div class="news_author">栏目：{{$typename}}<span>作者：{{if $row.author}}{{$row.author}}{{else}}9377平台{{/if}}</span><span>日期：{{$row.adddate|date_format:'%Y/%m/%d'}}</span></div>
+						<div class="news_body">
+							{{$body}}
+							
+							<div class="like_btn fix">
+								<ul>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click1">0</span>
+												<em style="height:1px;" class="hclick1"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="1">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/1.jpg?{{$CONFIG.build}}" />
+											超赞
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click2">0</span>
+												<em style="height:1px;" class="hclick2"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="2">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/2.jpg?{{$CONFIG.build}}" />
+											欢呼
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click3">0</span>
+												<em style="height:1px;" class="hclick3"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="3">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/3.jpg?{{$CONFIG.build}}" />
+											难过
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click4">0</span>
+												<em style="height:1px;" class="hclick4"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="4">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/4.jpg?{{$CONFIG.build}}" />
+											愤怒
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click5">0</span>
+												<em style="height:1px;" class="hclick5"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="5">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/5.jpg?{{$CONFIG.build}}" />
+											恶心
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click6">0</span>
+												<em style="height:1px;" class="hclick6"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="6">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/6.jpg?{{$CONFIG.build}}" />
+											期待
+										</a>
+									</li>
+									<li>
+										<h3>
+											<p class="vote_bar">
+												<span class="vote_num click7">0</span>
+												<em style="height:1px;" class="hclick7"></em>
+											</p>
+										</h3>
+										<a href="javascript:;" class="clickitem" clickid="7">
+											<img src="{{$CONFIG.resource}}/images/cms_style_2015/news/7.jpg?{{$CONFIG.build}}" />
+											关我屁事
+										</a>
+									</li>
+								</ul>
+								<script type="text/javascript">
+									$.getJSON('{{$CONFIG.app_url}}/api/article_user_click.php?aid={{$row.id}}&callback=?', function(json){
+										var html = '';
+										window['clicks_total'] = 0;
+										for( i in json.clicks ) {
+											if( false != (tmp = i.match(/click(\d+)/)) ) {
+												window['clicks_total'] += parseInt(json.clicks[i]);
+												$('.click'+tmp[1]).html(json.clicks[i]);
+												if( json.heights[i] > 1 ) {
+													$('.hclick'+tmp[1]).css('height', json.heights[i]);
+												}
+											}
+										}
+										$('#article_click').html(html);
+										
+										$(function(){
+											var clickitem = false;
+											$('.clickitem').live('click', function(){
+												if( $_COOKIE['article_clicks_{{$row.id}}'] ) {
+													alert('您已表态，请勿重复表态');
+													//return false;
+												}else if( clickitem == false) {
+													clickitem = true;
+													var clickid = $(this).attr('clickid');
+													$.getJSON('{{$CONFIG.app_url}}/api/article_user_click.php?act=add&aid={{$row.id}}&clickid='+clickid+'&callback=?', function(json){
+														alert(json.msg);
+														clickitem = false;
+														if( json.status == true ) {
+															$('.click'+clickid).html(
+																current_clicks = parseInt($('.click'+clickid).html())+1
+															);
+															window['clicks_total']++;
+															set_heights();
+															C9377.setcookie('article_clicks_{{$row.id}}', 1);
+														}
+													});
+												}
+												return false;
+											});
+										});
+
+										function set_heights() {
+											for(i = 1; i <= 7; i++) {
+												var current_clicks = parseInt($('.click'+i).html());
+												var current_heights = parseInt((current_clicks/window['clicks_total'])*58);
+												current_heights = current_heights >= 1 ? current_heights : 1;  
+												$('.hclick'+i).css(
+													'height', 
+													current_heights
+												);
+											}
+										}
+									});
+								</script>
+							</div>
+							<div class="fix">
+								<div class="share fr">
+									<div class="bdsharebuttonbox" style="float:right;">
+										<a title="分享到QQ好友" class="bds_sqq" href="#" data-cmd="sqq"></a>
+										<a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a>
+										<a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a>
+										<a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a>
+										<a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a>
+										<a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a>
+										<a class="bds_more" href="#" data-cmd="more"></a>
+									</div>
+									<script type="text/javascript">
+										window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["sqq","tsina","weixin","qzone","tqq","renren"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","tsina","weixin","qzone","tqq","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+									</script>
+								</div>
+								<!-- 上下篇文章 -->
+								<div class="article_next fl">{{$prev_next_page}}</div>
+								<!-- 上下篇文章结束 -->
+							</div>
+						</div>
+					</div>
+	                <div class="woder fix">
+					{{if $relate_article}}
+	                    {{$relate_article}}
+					{{else}}
+						<div class="xg_news">
+							<h3>资讯推荐</h3>
+							{{data name="资讯推荐"}}
+							<ul>{{$DATA["资讯推荐"]}}</ul>
+						</div>
+					{{/if}}
+						<div class="qc_news">
+							<h3>你可能错过的资讯</h3>{{data name="错过的精彩"}}
+							<ul>{{$DATA["错过的精彩"]}}</ul>
+						</div>
+	                </div>
+					<!--高速版-->
+					<div id="SOHUCS"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{{include file="footer.html"}}
+
+	<script> var menuID = 7, fixedSize = false; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.SuperSlide.2.1.1.js?{{$CONFIG.build}}"></script>	
+	<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js"></script>
+	<script type="text/javascript">
+		$(".sideMen").slide({titCell:".sidedt",targetCell:".sidedd",defaultIndex:0,effect:"slideDown",delayTime:300});
+		$(".scroll_rank,.scroll_open").slide({titCell:".hd ul",mainCell:".bd .scroll_txt",autoPage:true,effect:"left",vis:1});
+		$('.top_menu ul li').eq(6).find('a').addClass('on'); //导航
+		//高速版评论
+		window.changyan.api.config({
+			appid: 'cysm3Xc9e',
+			conf: 'prod_4ea20da2b8db129dbfd16892b04b1013'
+		});
+	</script>
+	<script type="text/javascript" src="{{$CONFIG.app_url}}/api/article_hits.php?aid={{$row.id}}"></script>
+</body>
+</html>

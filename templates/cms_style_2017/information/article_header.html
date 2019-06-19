@@ -1,0 +1,26 @@
+<div class="news_nav fix">
+	<div class="news_search fr">
+		<form method="post" action="{{$CONFIG.app_url}}/search.php" onsubmit="return check_search($(this));">
+		<input class="dib news_search_txt" type="text" name="q" placeholder="资讯搜索,搜你想要" /><input class="dib news_search_btn" type="submit" value="" />
+		</form>
+	</div>
+	<div class="news_tips fix">
+		<span class="fl tips_word"><em>页游新动态</em><i></i></span>{{data name="页游新动态"}}
+		<ul class="fl tips_list">
+            {{foreach from=$DATA['页游新动态'].list item=v}}
+            <li>
+                <a href="{{$v.artlink}}" title="{{$v.title}}" target="_blank">{{$v.title}}</a>
+            </li>
+            {{/foreach}}
+		</ul>
+	</div>
+</div>
+<div class="news_advertis">{{data name="资讯中心广告位1000*80_1"}}{{$DATA["资讯中心广告位1000*80_1"]}}</div>
+<ul class="news_links fix">
+    <li class="news_line {{if $CATEGORY.id == 10252}}cur{{/if}}"><a href="{{$CONFIG.url}}/news/">{{if $CATEGORY.id == 10252}}<h1>网页游戏资讯</h1>{{else}}网页游戏资讯{{/if}}</a></li>
+	<li class="{{if $CATEGORY.id == 11219}}cur{{/if}}"><a href="{{$CONFIG.url}}/news/dsj/">9377风采</a></li>
+	<li class="{{if $CATEGORY.id == 12613}}cur{{/if}}"><a href="{{$CONFIG.url}}/news/zixun/">页游资讯</a></li>
+	<li class="{{if $CATEGORY.id == 12622}}cur{{/if}}"><a href="{{$CONFIG.url}}/news/gonglue/">游戏攻略</a></li>
+    <li class="{{if $CATEGORY.id == 12616}}cur{{/if}}"><a href="{{$CONFIG.url}}/news/pingce/">游戏评测</a></li>
+    <li class="last"><a href="{{$DATA['投稿有奖链接']}}" target="_blank">投稿有奖</a></li>
+</ul>{{data name="投稿有奖链接"}}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+    <meta charset="utf-8">
+    <title>{{$title}}</title>
+    <meta name="keywords" content="{{$keywords}}" />
+    <meta name="description" content="{{$description}}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit" />
+    <link href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <link href="{{$CONFIG.resource}}/style/cms_style_2015/news.css?{{$CONFIG.build}}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+</head>
+<body>
+    {{include file="header.html"}}
+    <div id="news_box" style="background:#f3f3f3; padding:26px 0;">
+    	<div class="news_main fix" style="background:none;">
+        	<div class="news_list">
+            	<h4><span>{{$typename}}</span>当前位置：{{$position}}</h4>
+                <ul>
+                	{{foreach from=$artlist item=item}}
+                	<li>
+                    	<h2><a href="{{$item.artlink}}" target="_blank">{{$item.title}}</a></h2>
+                        <p class="tips"><span><em></em>作者：{{if $item.author}}{{$item.author}}{{else}}9377平台{{/if}} </span><span><em class="t1"></em>时间：{{$item.adddate|date_format:'%Y-%m-%d'}}</span></p>
+                        <dl>
+                        	<dt><a href="{{$item.artlink}}" target="_blank">{{$item.description|truncate:100}}</a></dt>
+                            <dd><a href="{{$item.artlink}}" target="_blank">点击阅读</a></dd>
+                        </dl>
+                    </li>
+                    {{/foreach}}
+                </ul>
+                <div class="turn_page">
+                	{{$pagelist}}
+                </div>
+            </div>
+            <div class="info_box">
+                <dl>
+                	{{data name="精选活动"}}
+                	<dt><span>精选活动</span><a href="#" target="_blank">+更多</a></dt>
+                    <dd>
+                    	<ul class="info_active">
+                    		{{foreach from=$DATA["精选活动"].list item="v" key="k"}}
+                            <li>
+                                <span class="pic"><a href="{{$v.artlink}}" target="_blank"><img src="{{$CONFIG.resource}}/{{$v.picurl}}" width="80" height="67" /></a></span>
+                                <span class="text">
+                                    <p><a href="{{$v.artlink}}" target="_blank">{{$v.title|truncate:20}}</a></p>
+                                   {{$v.description|truncate:30}}
+                                </span>
+                            </li>
+                            {{/foreach}}
+                        </ul>
+                    </dd>
+                </dl>
+    			<div class="inside_banner">{{data name="广告位280*80_4"}}{{$DATA["广告位280*80_4"]}}</div>
+            </div>
+        </div>
+    </div>
+
+    {{include file="footer.html"}}
+    
+    <script type="text/javascript"> var fixedSize = false, menuID = 6; </script>
+    <script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+    <!--统计代码-->
+    <div style="display:none;">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254158075'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1254158075' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+    <!--统计代码end-->
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="J1000">
+<head>
+	<meta charset="utf-8">
+	<title>{{$card_list.game.NAME}}礼包_{{$card_list.game.NAME}}新手卡免费领取_9377礼包中心</title>
+	<meta name="keywords" content="{{$card_list.game.NAME}}礼包，{{$card_list.game.NAME}}新手卡" />
+	<meta name="description" content="9377礼包中心，提供{{$card_list.game.NAME}}礼包领取，新手卡礼包，升级礼包，{{$card_list.game.NAME}}VIP礼包领取。9377网页游戏平台，精品网页游戏研发与运营商。领取{{$card_list.game.NAME}}新手卡礼包上9377，一起玩更快乐。" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> if(/(mobile|ipad|iphone|android|\s+adr\s+)/i.test(navigator.userAgent) && !$_COOKIE['skip_wap']){ window.location.href = '{{$CONFIG.url}}/wap/guide/'; } </script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/gift.css?{{$CONFIG.build}}s" />
+</head>
+<body>	
+	{{include file="header.html"}}
+	<div class="g-container fix">
+		<div class="w1000 gift-main">
+			<div class="mod">
+				<div class="gift-local">当前位置： <a href="{{$CONFIG.url}}">505PK</a> > <a href="{{$CONFIG.url}}/gift/">礼包中心</a> > <a href="#" class="active">{{$card_list.game.NAME}}礼包</a></div>
+				<div class="gift-detail-wp fix">
+					<div class="img"><a href="{{$card_list.game.CONFIG.site}}" target="_blank"><img src="{{$CONFIG.resource}}/images/2017/gift/288_140/{{$card_list.game.ALIAS}}.jpg?{{$CONFIG.build}}" alt="{{$card_list.game.NAME}}" width="288" height="140"></a></div>
+					<div class="info">
+						<h1 class="name">{{$card_list.game.NAME}}礼包</h1>
+						<p class="num">礼包数量：<em>{{$card_list.list|count}}</em>个  <span class="ml10">我已领取：<i>{{$total}}</i>个</span></p>
+						<div class="opt">
+							<a href="{{$CONFIG.app_url}}/gift/giftrecord.php" rel="nofollow" class="btn-record">礼包领取记录</a>
+							<a href="{{if $isphone}}http://www.505pk.com/h5/m/{{else}}http://www.505pk.com/game_login.php?game={{$card_list.game.ALIAS}}&server=new{{/if}}" rel="nofollow" class="btn-play" target="_blank">马上进入游戏</a>
+						</div>
+					</div>
+					<div class="guide">
+						<table>
+							<tr>
+								<td class="guide-left">
+									<i class="icon-guide"></i>
+									<p>兑换指南</p>
+								</td>
+								<td class="guide-right">
+									<h2>{{$card_list.game.NAME}}礼包如何兑换</h2>
+									{{data name="{{$card_list.game.NAME}}兑换指南"}}
+									{{$DATA["{{$card_list.game.NAME}}兑换指南"]}}
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<h2 class="related-hd">{{$card_list.game.NAME}}礼包大全</h2>
+				<ul class="related-list">
+					{{assign var="xCardList" value=array('3019','1927','310','2041','961','3784')}}
+					{{foreach from=$card_list.list item=item}}
+					<li>
+						<div class="img">{{data name="{{$card_list.game.ALIAS}}{{$item.name}}礼包图"}}{{$DATA["{{$card_list.game.ALIAS}}{{$item.name}}礼包图"]}}</div>
+						<div class="info">
+							<h3 class="name">{{$item.name}}</h3>
+							<p class="tip">
+								{{if in_array($item.id, $xCardList)}}
+								剩余<em>20%</em>
+								{{else}}
+								剩余<em>{{$item.surplus/$item.total*100|intval}}%</em>
+								{{/if}}
+								领取条件：{{if $item.CONFIG.vip}}<i>VIP{{$item.CONFIG.vip}}</i>{{else}}暂无{{/if}}</p>
+						</div>
+						<div class="con">
+							<h3 class="hd">礼包内容</h3>
+							<div class="bd">{{$item.description}}</div>
+						</div>
+						<a href="javascript:;" class="btn-get" card_type="{{$item.id}}" data-d="{{if $isphone}}h59377{{/if}}" sign="{{$item.sign}}">立即领取</a>
+					</li>
+					{{/foreach}}
+				</ul>
+				<h2 class="related-hd">{{$card_list.game.NAME}}礼包兑换注意事项</h2>
+				<div class="gift-guide-all fix">
+					<div class="item item-l">
+						<i class="icon-sign"></i>
+						<p>兑换指南</p>
+					</div>
+					<div class="item item-m">
+						<p>1、同种礼包每个帐号只能领取1次</p>
+						<p>2、同种礼包每个游戏角色只能激活1次</p>
+					</div>
+					<div class="item item-r">
+						<p>3、一个礼包码只能激活1次，激活后失效</p>
+						<p>4、如因账号共享等情况导致礼包码被他人使用，造成的损失由玩家自己承担，不予重新补发礼包码</p>
+					</div>
+				</div>
+				<div class="gift-other">
+					<div class="mod-tit"><span>其他游戏礼包推荐</span></div>
+					<ul class="gift-other-list fix">
+					{{data name="游戏礼包推荐"}}
+						{{foreach from=$DATA['游戏礼包推荐'].list item=item}}
+						<li>
+							<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.G.ID}}" title="{{$item.G.NAME}}礼包" target="_blank" class="item">
+								<img src="{{$CONFIG.resource}}/images/2017/gift/288_140/{{$item.G.ALIAS}}.jpg?{{$CONFIG.build}}" alt="" width="288" height="140">
+								<i class="m"></i>
+								<span>立即领取</span>
+							</a>
+							<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.G.ID}}{{if $isphone}}&d=h59377{{/if}}" title="{{$item.G.NAME}}礼包" target="_blank" class="name">{{$item.G.NAME}}礼包</a>
+						</li>
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<i class="mask none" id="mask"></i>
+	<div class="tips-pop none" id="tips-pop">
+		<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+		<div class="hd">提示</div>
+		<div class="bd">
+			<div class="bd-txt"> <p>礼包码</p> </div> 
+			<a href="javascript:;" class="pop-button pop-button-green">确定</a> 
+			<a href="javascript:;" class="pop-button pop-button-gray w-pop-close">取消</a>
+		</div>
+	</div>
+
+	{{include file="footer.html"}}
+	<script> var fixedSize = false, menuID = 3; var cardGid = '{{$card_list.game.ID}}'; var cardAlias = '{{$card_list.game.ALIAS}}'; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/ZeroClipboard.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/gift.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.validator.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/register.js?{{$CONFIG.build}}"></script>
+</body>
+</html>

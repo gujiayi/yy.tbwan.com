@@ -1,0 +1,80 @@
+<div class="footer">
+	<div class="w1000 w1200">
+		{{data name="2019平台底部友链"}}
+		{{data name="2017平台底部推荐游戏"}}
+		{{if !empty($DATA['2019平台底部友链']['list'][0])}}
+		<div class="links-box">
+			<div class="remgame-box">
+				<div class="links-list">
+					<span>推荐游戏：</span>
+					<div class="lbox">
+						{{foreach from=$DATA['2017平台底部推荐游戏'].list item=item}}
+							<a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a>
+						{{/foreach}}
+					</div>
+				</div>
+				<a href="javascript:;" class="more"></a>
+			</div>
+			<div class="friends-box">
+				<div class="links-list">
+					<span>友情链接：</span>
+					<div class="lbox">
+						{{foreach from=$DATA['2017平台底部友链']['list'][0] item=item}}
+							<a href="{{$item.url}}" target="_blank">{{$item.name}}</a>
+						{{/foreach}}
+					</div>
+				</div>
+				<a href="javascript:;" class="more"></a>
+			</div>
+		</div>
+		{{/if}}
+		<div class="coinfo">
+			<a href="{{$CONFIG.url}}" title="网页游戏" class="logo fl"><img src="{{$CONFIG.resource}}/images/2017/logo.png?{{$CONFIG.build}}" width="100" /></a>
+			<div class="info fl">
+				<div class="about">
+					<a href="http://hr.9377.com/" rel="nofollow" target="_blank">关于我们</a>
+					<!-- <a href="http://hr.9377.com/" rel="nofollow" target="_blank">人才招聘</a> -->
+					<a href="{{$CONFIG.url}}/yhxy.html" rel="nofollow" target="_blank">用户协议</a>
+					<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2850907740&amp;site=qq&amp;menu=yes" rel="nofollow" target="_blank">友情链接联系</a>
+					<a href="{{$CONFIG.url}}/kefu/" rel="nofollow">客服中心</a>
+					<!-- <a href="http://hr.9377.com/business/" rel="nofollow" target="_blank">商务合作</a> -->
+					<a href="{{$CONFIG.url}}/zjjh/" rel="nofollow" target="_blank">家长监护</a>
+				</div>
+				<div class="copyright">
+        			{{data name="2017底部公司信息"}}
+        			{{if $DATA['2017底部公司信息']}}
+        				{{$DATA['2017底部公司信息']}}
+					{{else}}
+					<p>上海誉点信息技术有限公司 <a href="http://sq.ccm.gov.cn/ccnt/sczr/service/business/emark/toDetail/4028c08c4d9f1f09014dac9bbf0202ee#" rel="nofollow" target="_blank">沪网文〔2018〕2322-167号</a> 沪ICP备14052946号-5</p>
+					<p><a href="{{$CONFIG.url}}/icp.html" rel="nofollow" target="_blank">增值电信业务经营许可证沪B2-20150073</a> 联系电话(7x24)：020-32568400</p>
+					<p>9377<a href="{{$CONFIG.url}}">网页游戏</a>平台 文化部网络游戏举报和联系电子邮箱：<a href="mailto:wlwh@vip.sina.com" rel="nofollow">wlwh@vip.sina.com</a> </p>
+					{{/if}}
+				</div>
+			</div>
+			<div class="legal-list">
+				<a href="http://www.police.sh.cn/shga/index.html" class="legal-4" rel="nofollow" target="_blank">公共信息安全<br/>网络检查</a>
+				<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011402005021" class="legal-3" rel="nofollow" target="_blank">沪公网安备<br/>31011402005021</a>
+				<a href="http://218.242.124.22:8081/businessCheck/verifKey.do?showType=extShow&serial=9031000020181120145053000003397830-SAIC_SHOW_310000-2018112117030091967&signData=MEUCIEmYz20CYpe+griiULqCCdhmaJkZxNY8LL198rkIYEXoAiEA3PxRtWY94rVF9Iisj0vJ8Pv/T+sgaUc5hPN52Dghb7A=" class="legal-2" rel="nofollow" target="_blank">上海工商行<br/>政管理局</a>
+				<a href="http://sq.ccm.gov.cn:80/ccnt/sczr/service/business/emark/toDetail/4AF0E728107661F2E0530140A8C0EE0C" class="legal-1" rel="nofollow" target="_blank">互联网文化<br/>经营单位</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="float-menu" id="float-menu">
+	<a href="http://qiqi.9377.com/" class="f-wechat" target="_blank" rel="nofollow" title="关注微信"></a>
+	<a href="{{$CONFIG.url}}/kefu.html" class="f-kefu" target="_blank" rel="nofollow" title="客服中心"></a>
+	<a href="javascript:;" class="f-top" rel="nofollow" title="返回顶部"></a>
+</div>
+
+<div class="mask none" id="mask"></div>
+<div class="tips-pop none" id="tips-pop">
+	<a href="javascript:;" title="关闭" class="pop-close w-pop-close"></a>
+	<div class="hd">提示</div>
+	<div class="bd">
+		<div class="bd-txt"> <p></p> </div> 
+	</div>
+</div>
+
+
+{{data name="全站底部公共调用"}}{{$DATA['全站底部公共调用']}}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="J1100">
+<head>
+	<meta charset="utf-8">
+	<title>{{$game.NAME}}开服表_最新{{$game.NAME}}网页游戏开服时间表-9377网页游戏</title>
+	<meta name="keywords" content="{{$game.NAME}}开服表,最新{{$game.NAME}}开服时间表,今日{{$game.NAME}}开服表,{{$game.NAME}}开服" />
+	<meta name="description" content="9377网页游戏提供最新{{$game.NAME}}开服时间表、今日{{$game.NAME}}开服，关注{{$game.NAME}}开服动态就选9377！" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/common.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/kaifu.css?{{$CONFIG.build}}" />
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/jquery.lightbox.css?{{$CONFIG.build}}">
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+</head>
+<body>
+	{{include file="header.html"}}
+	<div class="g-container">
+		<div class="w1000 kaifu-main">
+        	<div class="bread_nagative">当前位置：<a href="{{$CONFIG.url}}/">页游首页</a> &gt; <a href="{{$CONFIG.url}}/kaifu/">页游开服表</a> &gt; {{$game.NAME}}开服表</div>
+			<div class="game-wp mt10">
+				<div class="img">
+					{{data name="开服表游戏头图{{$game.ALIAS}}"}}
+					<a href="{{$game.CONFIG.site}}" target="_blank" class="img">{{$DATA["开服表游戏头图{{$game.ALIAS}}"]}}</a>
+				</div>
+				<div class="ginfo">
+					<div class="mod-tit"><span>{{$game.NAME}}<i>游戏类型：{{$game.TYPE}}</i></span></div>
+					<div class="desc">{{$game.DESCRIPTION|truncate:120:"...":true}}</div>
+					<div class="opt-box">
+						<div class="btn-group">
+							<a href="{{$game.CONFIG.site}}" target="_blank" class="btn btn-1">进入官网</a>
+							<a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$game.ID}}" target="_blank" class="btn btn-2">领取礼包</a>
+							<a href="{{$CONFIG.app_url}}/login.php" target="_blank" class="btn btn-3">账号注册/登录</a>
+							<a href="http://wvw.9377.com/downloads.php?game=9377_gold_pay&item=client&url=http%3A%2F%2Fdl.wenjian.9377.com%2F%2F20170620%2F%2F9377gamebox.exe" target="_blank" class="btn btn-4">微端下载</a>
+						</div>
+						<div class="gqr">
+							<img src="{{$CONFIG.resource}}/images/2017/9377qr.jpg" alt="">
+							<p>扫我领礼包</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mod-tit x-mod-tit"><h1> <span><em>{{$game.NAME}}</em>开服表</span> </h1> <a href="{{$game.CONFIG.server_list_url}}" target="_blank" class="more">更多&gt;&gt;</a></div>
+			<div class="xkaifu-wp">
+				<table class="xkaifu-table">
+					<thead> <tr> <td>服务器类型</td> <td>区服</td> <td>日期</td> <td>时间</td> <td>快捷操作</td> <td>开服状态</td> </tr> </thead>
+					<tbody>
+						{{foreach from=$game.SERVERS_ID item=item name=list}}
+						{{if $smarty.foreach.list.index > 10}}{{break}}{{/if}}
+						{{if $item.STATE == 1}}
+						<tr>
+							<td>{{if $item.part}}{{$item.part}}{{else}}公测服{{/if}}</td>
+							<td><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.GAME_ID}}&server={{$item.ID}}" rel="nofollow" target="_blank">{{$item.SERVER_NAME}}</a></td>
+							<td>{{$item.SERVER_START_TIME|date_format:'%m-%d'}}</td> 
+							<td>{{$item.SERVER_START_TIME|date_format:'%H:%M'}}</td> 
+							<td><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.GAME_ID}}&server={{$item.ID}}" rel="nofollow" target="_blank" class="go">开始游戏</a></td> 
+							<td>火爆开启中</td> 
+						</tr>
+						{{/if}}
+						{{/foreach}}
+					</tbody>
+				</table>
+				<table class="xkaifu-table xkaifu-table2">
+					<thead> <tr> <td>服务器类型</td> <td>区服</td> <td>日期</td> <td>时间</td> <td>快捷操作</td> <td>开服状态</td> </tr> </thead>
+					<tbody>
+						{{foreach from=$game.SERVERS_ID item=item name=list}}
+						{{if $smarty.foreach.list.index > 9}}{{break}}{{/if}}
+						{{if $item.STATE == -1 || $item.STATE == -3 || $item.STATE == 1}}
+						<tr>
+							<td>{{if $item.part}}{{$item.part}}{{else}}公测服{{/if}}</td>
+							<td><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.GAME_ID}}&server={{$item.ID}}" rel="nofollow" target="_blank">{{$item.SERVER_NAME}}</a></td>
+							<td>{{$item.SERVER_START_TIME|date_format:'%m-%d'}}</td> 
+							<td>{{$item.SERVER_START_TIME|date_format:'%H:%M'}}</td> 
+							<td><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.GAME_ID}}&server={{$item.ID}}" rel="nofollow" target="_blank" class="go">开始游戏</a></td> 
+							<td>{{if $item.STATE == 1}}
+								{{if $item.part}}{{$item.part}}{{else}}公测服{{/if}}
+								{{else}}期待{{/if}}</td>
+						</tr>
+						{{/if}}
+						{{/foreach}}
+					</tbody>
+				</table>
+			</div>
+
+			<div class="mod-tit x-mod-tit"><h2> <span><em>{{$game.NAME}}</em>精彩截图</span> </h2></div>
+			<div class="xpic-box" id="xpic-box">
+				{{data name="开服表{{$game.ALIAS}}截图"}}
+				<div class="slide-xd">
+					<ul class="slide-bd fix">
+						{{foreach from=$DATA["开服表{{$game.ALIAS}}截图"].list item=item}}
+						<li class="slide-item"><a href="{{$item.thumb|replace:'.thumb.jpg':''}}" target="_blank"><img src="{{$item.thumb}}" alt="{{$item.title}}"></a></li>
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+
+			<div class="mod-tit x-mod-tit"><h2> <span><em>{{$game.NAME}}</em>新闻公告 攻略资料</span> </h2></div>
+			<div class="xnews-wp">
+				<div class="news-box">
+					{{data name="开服新闻公告{{$game.ALIAS}}"}}
+					<div class="hd">新闻公告</div>
+					<div class="bd">
+						<ul>
+							{{foreach from=$DATA["开服新闻公告{{$game.ALIAS}}"].list item=item name=list}}
+							<li><i>{{$smarty.foreach.list.index+1}}</i><a href="{{$item.artlink}}" target="_blank">{{$item.title}}</a><span>{{$item.pubdate|date_format:'%Y-%m-%d'}}</span></li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+				<div class="news-box news-box2">
+					{{data name="开服攻略资料{{$game.ALIAS}}"}}
+					<div class="hd">攻略资料</div>
+					<div class="bd">
+						<ul>
+							{{foreach from=$DATA["开服攻略资料{{$game.ALIAS}}"].list item=item name=list}}
+							<li><i>{{$smarty.foreach.list.index+1}}</i><a href="{{$item.artlink}}" target="_blank">{{$item.title}}</a><span>{{$item.pubdate|date_format:'%Y-%m-%d'}}</span></li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="xgift-wp fix">
+				{{data name="开服表其他游戏推荐"}}
+				<div class="xgift-box">
+					<div class="hd">礼包领取</div>
+					<ul>
+						{{foreach from=$DATA['开服表其他游戏推荐'].list item=item}}
+						{{if $item.ID != $game.ID}}
+						<li><span><a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank" >{{$item.NAME}}礼包</a></span> <a href="{{$CONFIG.url}}/gift/g-{{$item.ID}}.html" target="_blank" class="go">抢先领取</a></li>
+						{{/if}}
+						{{/foreach}}
+					</ul>
+				</div>
+				<div class="xgift-box">
+					<div class="hd">其他游戏开服列表</div>
+					<ul>
+						{{foreach from=$DATA['开服表其他游戏推荐'].list item=item}}
+						{{if $item.ID != $game.ID}}
+						<li><a href="{{$CONFIG.url}}/kaifu/{{$item.ALIAS}}/" class="name">{{$item.NAME}}开服表</a> <a href="{{$item.CONFIG.server_list_url}}" rel="nofollow" target="_blank" class="go">立即试玩</a></li>
+						{{/if}}
+						{{/foreach}}
+					</ul>
+				</div>
+			</div>
+
+			<div class="rank-wp">
+				<div class="rank-box">
+					{{data name="开服表周游戏排行榜"}}
+					<div class="hd">周·网页游戏开服排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row2">游戏名称</dd> <dd class="row row3">区服</dd> <dd class="row row4">题材</dd> </dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表周游戏排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row2"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row3"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server={{$item.NEW_SERVER}}" target="_blank" rel="nofollow">{{$item.NEW_SERVER_NAME}}</a></span>
+								<span class="row row4">{{$item.TYPE}}</span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+				<div class="rank-box">
+					{{data name="开服表热门游戏排行榜"}}
+					<div class="hd">热门网页游戏排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row2">游戏名称</dd> <dd class="row row3">区服</dd> <dd class="row row4">题材</dd> </dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表热门游戏排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row2"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row3"><a href="{{$CONFIG.app_url}}/game_login.php?game={{$item.ALIAS}}&server={{$item.NEW_SERVER}}" target="_blank" rel="nofollow">{{$item.NEW_SERVER_NAME}}</a></span>
+								<span class="row row4">{{$item.TYPE}}</span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+				<div class="rank-box">
+					{{data name="开服表礼包领取排行榜"}}
+					<div class="hd">网页游戏礼包领取排行榜</div>
+					<div class="bd">
+						<dl class="hl"> <dd class="row row1">排行</dd> <dd class="row row5">游戏名称</dd> <dd class="row row6">游戏礼包</dd></dl>
+						<ul class="list">
+							{{foreach from=$DATA['开服表礼包领取排行榜'].list item=item name=list}}
+							<li>
+								<span class="row row1"><i>{{$smarty.foreach.list.index+1}}</i></span>
+								<span class="row row5"><a href="{{$item.CONFIG.site}}" target="_blank">{{$item.NAME}}</a></span>
+								<span class="row row6"><a href="{{$CONFIG.url}}/gift/giftdetail.php?gid={{$item.ID}}" target="_blank">等级成长礼包</a></span>
+							</li>
+							{{/foreach}}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{include file="footer.html"}}
+	<script> var fixedSize = false, menuID = 8; </script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/common.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/plugin/jquery.slideBox.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/jquery.lightbox.min.js?{{$CONFIG.build}}"></script>
+	<script>
+		if ($('#xpic-box .slide-xd a').length > 4) {
+			$('#xpic-box').slideBox({
+				mode : 'left',
+				optevent: 'mouseenter', // 操作事件：click, mouseenter
+				navCell : false, // 导航按钮
+				nextBtn : true, // 下一页按钮
+				prevBtn : true, // 上一页按钮
+				autoPlay : true, // 自动播放
+				viewItem : 4 // 滚动数量
+			});
+		}
+		$('#xpic-box .slide-xd a').lightBox();
+	</script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/DD_belatedPNG_0.0.8a-min.js?20150610110116"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*')</script>
+	<![endif]-->
+</body>
+</html>

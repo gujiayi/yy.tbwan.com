@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{{$CONFIG.site_title}}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit" />
+	<meta name="frontend" content="Robin">
+	<meta name="keywords" content="{{$CONFIG.site_keyword}}" />
+	<meta name="description" content="{{$CONFIG.site_description}}" />
+	<meta property="qc:admins" content="0767356077613776375" />
+	<meta property="wb:webmaster" content="a66b8764e570c6f1" />
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/ajax.js?{{$CONFIG.build}}"></script>
+	<script type="text/javascript"> if(/(mobile|ipad|iphone|android|\s+adr\s+)/i.test(navigator.userAgent) && !$_COOKIE['skip_wap']){ window.location.href = '{{$CONFIG.url}}/wap/guide/'; } </script>
+	<script type="text/javascript"> document.domain = '9377.com'; </script>
+	<link rel="stylesheet" href="{{$CONFIG.resource}}/style/2017/login_111.css?{{$CONFIG.build}}" />
+</head>
+<body> -->
+
+	<div class=" showLogin" id="showLogin">
+		<div class="w400 login-main">
+			<div class="mod-login-wp">
+				<div class="title">登录505PK平台</div>
+				<!-- <ul class="login-tab login-tab-1"> -->
+					<!-- <li>登录505游戏平台</li> -->
+					<!-- <li>扫码登录</li> -->
+				<!-- </ul> -->
+				<div class="login-tab-con">
+					<div class="login-item login-account">
+						<form method="post" action="{{$CONFIG.app_url}}/login.php" class="login-form" onsubmit="return _login_form(this);">
+							<input type="hidden" name="do" value="login" />
+							<input type="hidden" name="gourl" value="{{$gourl}}" />
+							<input name="login_save" type="hidden" value="1" id="login-save" />
+							<div class="w-item"> <label for="username" class="icon-user"></label> <input name="username" id="username" type="text" placeholder="帐号" /> </div>
+							<div class="w-item"> <label for="password" class="icon-lock"></label> <input name="password" id="password" type="password" placeholder="密码" /> </div>
+							<div class="user-opt fix">
+								<label class="login-save fl"><i class="icon-cb icon-cbed"></i>自动登录</label>
+								<a href="{{$CONFIG.app_url}}/getpass.php" target="_blank" rel="nofollow" class="fr">忘记密码</a>
+							</div>
+							<input class="btn-tologin" type="submit" value="登录" />
+							<p class="tips" id="tips">{{if $msg}}{{$msg}}{{/if}}</p>
+							<div class="user-third">
+								<a href="javascript:register();" target="_blank" rel="nofollow" class="freereg">免费注册<i></i></a>
+								<!-- <a href="{{$CONFIG.app_url}}/api/qq.php?_qq_action=login" target="_blank" rel="nofollow" title="QQ登录" class="third-login-qq"></a>
+								<a href="{{$CONFIG.app_url}}/api/wx_login.php?_wx_action=login" target="_blank" rel="nofollow" title="微信登录" class="third-login-wx"></a>
+								<a href="{{$CONFIG.app_url}}/api/weibo.php?_wb_action=login" target="_blank" rel="nofollow" title="微博登录" class="third-login-wb"></a> -->
+							</div>
+						</form>
+					</div>
+					<div class="login-item login-qrcode">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="layerLogin" onclick="colseReg()"></div>
+	<script type="text/javascript" src="{{$CONFIG.resource}}/js/2017/login.js?{{$CONFIG.build}}"></script>
+<!-- </body>
+</html> -->
